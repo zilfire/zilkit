@@ -10,8 +10,6 @@ A Next.js application with TypeScript, TailwindCSS, and Sanity CMS for theme dev
 - 🗄️ **Sanity CMS** for content management
 - 🖼️ **Portable Text** for rich content rendering
 - 🌙 **Dark mode** support
-- 👁️ **Preview mode** with live editing
-- 🎭 **Presentation tool** for visual editing
 
 ## Getting Started
 
@@ -47,15 +45,14 @@ Open [http://localhost:3000](http://localhost:3000) in your browser.
 
 Visit [http://localhost:3000/studio](http://localhost:3000/studio) to access the Sanity Studio and manage your content.
 
-### 5. Preview Mode
+### 5. Content Management
 
-The app includes preview mode functionality:
+Visit [http://localhost:3000/studio](http://localhost:3000/studio) to access the Sanity Studio where you can:
 
-- **Presentation Tool**: Edit content with live preview in the studio
-- **Preview Banner**: Shows when viewing draft content
-- **Exit Preview**: Button to return to published content
-
-To use preview mode, create content in the studio and use the "Preview" button to see changes before publishing.
+- Create and edit pages
+- Manage blog posts
+- Update site settings
+- Configure site-wide options
 
 ## Project Structure
 

@@ -1,5 +1,6 @@
 import { getPostBySlug } from "../../../../lib/queries";
 import { getClient } from "../../../../lib/sanity";
+import { previewClient } from "../../../../lib/sanity.preview";
 import PortableTextComponent from "../../../../components/PortableText";
 import SanityImage from "../../../../components/SanityImage";
 import { notFound } from "next/navigation";
@@ -9,10 +10,16 @@ interface BlogPostProps {
   params: {
     slug: string;
   };
+  searchParams: {
+    preview?: string;
+  };
 }
 
-export default async function BlogPost({ params }: BlogPostProps) {
-  const post = await getClient().fetch(
+export default async function BlogPost({ params, searchParams }: BlogPostProps) {
+  const isPreview = searchParams.preview === 'true';
+  const client = isPreview ? previewClient : getClient();
+  
+  const post = await client.fetch(
     `*[_type == "post" && slug.current == $slug][0]`,
     { slug: params.slug }
   );
