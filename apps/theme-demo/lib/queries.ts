@@ -1,4 +1,4 @@
-import {client} from './sanity'
+import { client } from "./sanity";
 
 // GROQ queries
 export const settingsQuery = `
@@ -8,7 +8,7 @@ export const settingsQuery = `
     primaryColor,
     logo
   }
-`
+`;
 
 export const pagesQuery = `
   *[_type == "page"] | order(title asc) {
@@ -18,7 +18,7 @@ export const pagesQuery = `
     content,
     seo
   }
-`
+`;
 
 export const pageBySlugQuery = `
   *[_type == "page" && slug.current == $slug][0] {
@@ -28,7 +28,7 @@ export const pageBySlugQuery = `
     content,
     seo
   }
-`
+`;
 
 export const postsQuery = `
   *[_type == "post"] | order(publishedAt desc) {
@@ -40,7 +40,7 @@ export const postsQuery = `
     publishedAt,
     tags
   }
-`
+`;
 
 export const postBySlugQuery = `
   *[_type == "post" && slug.current == $slug][0] {
@@ -53,25 +53,25 @@ export const postBySlugQuery = `
     publishedAt,
     tags
   }
-`
+`;
 
 // Fetch functions
 export async function getSettings() {
-  return await client.fetch(settingsQuery)
+  return await client.fetch(settingsQuery);
 }
 
 export async function getPages() {
-  return await client.fetch(pagesQuery)
+  return await client.fetch(pagesQuery);
 }
 
 export async function getPageBySlug(slug: string) {
-  return await client.fetch(pageBySlugQuery, {slug})
+  return await client.fetch(pageBySlugQuery, { slug });
 }
 
 export async function getPosts() {
-  return await client.fetch(postsQuery)
+  return await client.fetch(postsQuery);
 }
 
 export async function getPostBySlug(slug: string) {
-  return await client.fetch(postBySlugQuery, {slug})
+  return await client.fetch(postBySlugQuery, { slug });
 }

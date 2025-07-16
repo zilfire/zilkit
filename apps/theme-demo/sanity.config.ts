@@ -1,16 +1,16 @@
-import {defineConfig} from 'sanity'
-import {structureTool} from 'sanity/structure'
-import {visionTool} from '@sanity/vision'
+import { defineConfig } from "sanity";
+import { structureTool } from "sanity/structure";
+import { visionTool } from "@sanity/vision";
 
 // Define the actions that should be available for singleton documents
-const singletonActions = new Set(["publish", "discardChanges", "restore"])
+const singletonActions = new Set(["publish", "discardChanges", "restore"]);
 
 // Define the singleton document types
-const singletonTypes = new Set(["settings"])
+const singletonTypes = new Set(["settings"]);
 
 export default defineConfig({
-  name: 'default',
-  title: 'Theme Demo CMS',
+  name: "default",
+  title: "Theme Demo CMS",
 
   projectId: process.env.NEXT_PUBLIC_SANITY_PROJECT_ID!,
   dataset: process.env.NEXT_PUBLIC_SANITY_DATASET!,
@@ -19,16 +19,14 @@ export default defineConfig({
     structureTool({
       structure: (S) =>
         S.list()
-          .title('Content')
+          .title("Content")
           .items([
             // Singleton documents
             S.listItem()
-              .title('Settings')
-              .id('settings')
+              .title("Settings")
+              .id("settings")
               .child(
-                S.document()
-                  .schemaType('settings')
-                  .documentId('settings')
+                S.document().schemaType("settings").documentId("settings")
               ),
             // Regular documents
             S.divider(),
@@ -43,192 +41,190 @@ export default defineConfig({
   schema: {
     types: [
       {
-        name: 'settings',
-        title: 'Settings',
-        type: 'document',
+        name: "settings",
+        title: "Settings",
+        type: "document",
         fields: [
           {
-            name: 'title',
-            title: 'Site Title',
-            type: 'string',
-            validation: Rule => Rule.required()
+            name: "title",
+            title: "Site Title",
+            type: "string",
+            validation: (Rule) => Rule.required(),
           },
           {
-            name: 'description',
-            title: 'Site Description',
-            type: 'text',
-            rows: 3
+            name: "description",
+            title: "Site Description",
+            type: "text",
+            rows: 3,
           },
           {
-            name: 'primaryColor',
-            title: 'Primary Color',
-            type: 'color',
+            name: "primaryColor",
+            title: "Primary Color",
+            type: "color",
             options: {
-              disableAlpha: true
-            }
+              disableAlpha: true,
+            },
           },
           {
-            name: 'logo',
-            title: 'Logo',
-            type: 'image',
+            name: "logo",
+            title: "Logo",
+            type: "image",
             options: {
-              hotspot: true
-            }
-          }
-        ]
+              hotspot: true,
+            },
+          },
+        ],
       },
       {
-        name: 'page',
-        title: 'Page',
-        type: 'document',
+        name: "page",
+        title: "Page",
+        type: "document",
         fields: [
           {
-            name: 'title',
-            title: 'Title',
-            type: 'string',
-            validation: Rule => Rule.required()
+            name: "title",
+            title: "Title",
+            type: "string",
+            validation: (Rule) => Rule.required(),
           },
           {
-            name: 'slug',
-            title: 'Slug',
-            type: 'slug',
+            name: "slug",
+            title: "Slug",
+            type: "slug",
             options: {
-              source: 'title',
-              maxLength: 96
+              source: "title",
+              maxLength: 96,
             },
-            validation: Rule => Rule.required()
+            validation: (Rule) => Rule.required(),
           },
           {
-            name: 'content',
-            title: 'Content',
-            type: 'array',
+            name: "content",
+            title: "Content",
+            type: "array",
             of: [
               {
-                type: 'block'
+                type: "block",
               },
               {
-                type: 'image',
+                type: "image",
                 options: {
-                  hotspot: true
-                }
-              }
-            ]
+                  hotspot: true,
+                },
+              },
+            ],
           },
           {
-            name: 'seo',
-            title: 'SEO',
-            type: 'object',
+            name: "seo",
+            title: "SEO",
+            type: "object",
             fields: [
               {
-                name: 'metaTitle',
-                title: 'Meta Title',
-                type: 'string'
+                name: "metaTitle",
+                title: "Meta Title",
+                type: "string",
               },
               {
-                name: 'metaDescription',
-                title: 'Meta Description',
-                type: 'text',
-                rows: 3
-              }
-            ]
-          }
+                name: "metaDescription",
+                title: "Meta Description",
+                type: "text",
+                rows: 3,
+              },
+            ],
+          },
         ],
         preview: {
           select: {
-            title: 'title',
-            slug: 'slug'
+            title: "title",
+            slug: "slug",
           },
-          prepare({title, slug}) {
+          prepare({ title, slug }) {
             return {
               title,
-              subtitle: slug?.current ? `/${slug.current}` : 'No slug'
-            }
-          }
-        }
+              subtitle: slug?.current ? `/${slug.current}` : "No slug",
+            };
+          },
+        },
       },
       {
-        name: 'post',
-        title: 'Blog Post',
-        type: 'document',
+        name: "post",
+        title: "Blog Post",
+        type: "document",
         fields: [
           {
-            name: 'title',
-            title: 'Title',
-            type: 'string',
-            validation: Rule => Rule.required()
+            name: "title",
+            title: "Title",
+            type: "string",
+            validation: (Rule) => Rule.required(),
           },
           {
-            name: 'slug',
-            title: 'Slug',
-            type: 'slug',
+            name: "slug",
+            title: "Slug",
+            type: "slug",
             options: {
-              source: 'title',
-              maxLength: 96
+              source: "title",
+              maxLength: 96,
             },
-            validation: Rule => Rule.required()
+            validation: (Rule) => Rule.required(),
           },
           {
-            name: 'excerpt',
-            title: 'Excerpt',
-            type: 'text',
-            rows: 3
+            name: "excerpt",
+            title: "Excerpt",
+            type: "text",
+            rows: 3,
           },
           {
-            name: 'featuredImage',
-            title: 'Featured Image',
-            type: 'image',
+            name: "featuredImage",
+            title: "Featured Image",
+            type: "image",
             options: {
-              hotspot: true
-            }
+              hotspot: true,
+            },
           },
           {
-            name: 'content',
-            title: 'Content',
-            type: 'array',
+            name: "content",
+            title: "Content",
+            type: "array",
             of: [
               {
-                type: 'block'
+                type: "block",
               },
               {
-                type: 'image',
+                type: "image",
                 options: {
-                  hotspot: true
-                }
-              }
-            ]
+                  hotspot: true,
+                },
+              },
+            ],
           },
           {
-            name: 'publishedAt',
-            title: 'Published at',
-            type: 'datetime',
-            initialValue: () => new Date().toISOString()
+            name: "publishedAt",
+            title: "Published at",
+            type: "datetime",
+            initialValue: () => new Date().toISOString(),
           },
           {
-            name: 'tags',
-            title: 'Tags',
-            type: 'array',
-            of: [{type: 'string'}],
+            name: "tags",
+            title: "Tags",
+            type: "array",
+            of: [{ type: "string" }],
             options: {
-              layout: 'tags'
-            }
-          }
+              layout: "tags",
+            },
+          },
         ],
         preview: {
           select: {
-            title: 'title',
-            media: 'featuredImage'
-          }
+            title: "title",
+            media: "featuredImage",
+          },
         },
         orderings: [
           {
-            title: 'Published at, new',
-            name: 'publishedAtDesc',
-            by: [
-              {field: 'publishedAt', direction: 'desc'}
-            ]
-          }
-        ]
-      }
+            title: "Published at, new",
+            name: "publishedAtDesc",
+            by: [{ field: "publishedAt", direction: "desc" }],
+          },
+        ],
+      },
     ],
   },
 
@@ -239,4 +235,4 @@ export default defineConfig({
         ? input.filter(({ action }) => action && singletonActions.has(action))
         : input,
   },
-})
+});

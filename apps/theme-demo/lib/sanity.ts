@@ -1,15 +1,15 @@
-import {createClient} from 'next-sanity'
+import { createClient } from "next-sanity";
 
-const projectId = process.env.NEXT_PUBLIC_SANITY_PROJECT_ID!
-const dataset = process.env.NEXT_PUBLIC_SANITY_DATASET!
-const apiVersion = process.env.NEXT_PUBLIC_SANITY_API_VERSION || '2024-01-01'
+const projectId = process.env.NEXT_PUBLIC_SANITY_PROJECT_ID!;
+const dataset = process.env.NEXT_PUBLIC_SANITY_DATASET!;
+const apiVersion = process.env.NEXT_PUBLIC_SANITY_API_VERSION || "2024-01-01";
 
 export const client = createClient({
   projectId,
   dataset,
   apiVersion,
   useCdn: false, // Set to false if statically generating pages, using ISR or tag-based revalidation
-})
+});
 
 // Helper function for preview mode
 export const previewClient = createClient({
@@ -18,8 +18,8 @@ export const previewClient = createClient({
   apiVersion,
   useCdn: false,
   token: process.env.SANITY_API_READ_TOKEN,
-})
+});
 
 export function getClient(preview?: boolean) {
-  return preview ? previewClient : client
+  return preview ? previewClient : client;
 }
