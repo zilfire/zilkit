@@ -15,6 +15,8 @@ export default defineConfig({
   projectId: process.env.NEXT_PUBLIC_SANITY_PROJECT_ID!,
   dataset: process.env.NEXT_PUBLIC_SANITY_DATASET!,
 
+  basePath: "/studio",
+
   plugins: [
     structureTool({
       structure: (S) =>
@@ -56,14 +58,6 @@ export default defineConfig({
             title: "Site Description",
             type: "text",
             rows: 3,
-          },
-          {
-            name: "primaryColor",
-            title: "Primary Color",
-            type: "color",
-            options: {
-              disableAlpha: true,
-            },
           },
           {
             name: "logo",
@@ -139,7 +133,7 @@ export default defineConfig({
           prepare({ title, slug }) {
             return {
               title,
-              subtitle: slug?.current ? `/${slug.current}` : "No slug",
+              subtitle: slug?.current ? `/pages/${slug.current}` : "No slug",
             };
           },
         },
@@ -215,6 +209,14 @@ export default defineConfig({
           select: {
             title: "title",
             media: "featuredImage",
+            slug: "slug",
+          },
+          prepare({ title, media, slug }) {
+            return {
+              title,
+              media,
+              subtitle: slug?.current ? `/blog/${slug.current}` : "No slug",
+            };
           },
         },
         orderings: [
