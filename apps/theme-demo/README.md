@@ -1,36 +1,107 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Theme Demo
+
+A Next.js application with TypeScript, TailwindCSS, and Sanity CMS for theme development and testing.
+
+## Features
+
+- ⚡ **Next.js 15** with App Router
+- 🎨 **TailwindCSS 3.4.17** for styling
+- 📝 **TypeScript** for type safety
+- 🗄️ **Sanity CMS** for content management
+- 🖼️ **Portable Text** for rich content rendering
+- 🌙 **Dark mode** support
 
 ## Getting Started
 
-First, run the development server:
+### 1. Install Dependencies
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+pnpm install
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### 2. Set up Sanity CMS
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+1. Create a new Sanity project at [sanity.io/manage](https://www.sanity.io/manage)
+2. Copy the environment variables:
+   ```bash
+   cp .env.example .env.local
+   ```
+3. Update `.env.local` with your Sanity project details:
+   ```env
+   NEXT_PUBLIC_SANITY_PROJECT_ID=your_project_id
+   NEXT_PUBLIC_SANITY_DATASET=production
+   NEXT_PUBLIC_SANITY_API_VERSION=2024-01-01
+   ```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+### 3. Run the Development Server
+
+```bash
+pnpm dev
+```
+
+Open [http://localhost:3000](http://localhost:3000) in your browser.
+
+### 4. Access the CMS Studio
+
+Visit [http://localhost:3000/studio](http://localhost:3000/studio) to access the Sanity Studio and manage your content.
+
+## Project Structure
+
+```
+├── src/
+│   ├── app/
+│   │   ├── studio/          # Sanity Studio route
+│   │   ├── page.tsx         # Homepage
+│   │   └── layout.tsx       # Root layout
+├── components/
+│   ├── PortableText.tsx     # Portable Text renderer
+│   └── SanityImage.tsx      # Sanity image component
+├── lib/
+│   ├── sanity.ts           # Sanity client configuration
+│   └── queries.ts          # GROQ queries
+├── sanity.config.ts        # Sanity studio configuration
+└── .env.example           # Environment variables template
+```
+
+## Content Types
+
+The CMS includes the following content types:
+
+- **Settings**: Site-wide settings (title, description, logo, primary color)
+- **Pages**: Static pages with rich content
+- **Posts**: Blog posts with featured images and tags
+
+## Development
+
+### Running Tests
+
+```bash
+pnpm test
+```
+
+### Building for Production
+
+```bash
+pnpm build
+```
+
+### Linting
+
+```bash
+pnpm lint
+```
+
+## Deployment
+
+When deploying, make sure to:
+
+1. Set up your environment variables in your hosting platform
+2. Add your deployment URL to your Sanity project's CORS origins
+3. Consider using Sanity's CDN for production by setting `useCdn: true` in the client configuration
 
 ## Learn More
 
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- [Next.js Documentation](https://nextjs.org/docs)
+- [TailwindCSS Documentation](https://tailwindcss.com/docs)
+- [Sanity Documentation](https://www.sanity.io/docs)
+- [TypeScript Documentation](https://www.typescriptlang.org/docs)
