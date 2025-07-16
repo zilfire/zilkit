@@ -17,6 +17,7 @@ export function DisableDraftMode() {
 
   // Don't render if we're in an iframe or popup
   if (isInIframe) {
+    console.log("DisableDraftMode: Not rendering in iframe or popup");
     return null;
   }
 

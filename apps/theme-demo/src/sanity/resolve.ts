@@ -1,5 +1,6 @@
 import {
   defineLocations,
+  defineDocuments,
   PresentationPluginOptions,
 } from "sanity/presentation";
 
@@ -10,13 +11,12 @@ export const resolve: PresentationPluginOptions["resolve"] = {
       select: {
         title: "title",
         slug: "slug.current",
-        type: "_type",
       },
       resolve: (doc) => ({
         locations: [
           {
             title: doc?.title || "Untitled",
-            href: `/${doc?.slug.current}`,
+            href: `/pages/${doc?.slug.current}`,
           },
           { title: "Home Page", href: `/` },
         ],

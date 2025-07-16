@@ -1,6 +1,6 @@
 import { defineConfig } from "sanity";
 import { structureTool } from "sanity/structure";
-import { presentationTool } from "sanity/presentation";
+import { presentationTool, defineDocuments } from "sanity/presentation";
 import { visionTool } from "@sanity/vision";
 
 // Define the actions that should be available for singleton documents
@@ -45,6 +45,14 @@ export default defineConfig({
           enable: "/api/draft-mode/enable",
           disable: "/api/draft-mode/disable", // optional, but recommended
         },
+      },
+      resolve: {
+        mainDocuments: defineDocuments([
+          {
+            route: "/pages/:slug",
+            filter: `_type == "page" && slug.current == $slug`,
+          },
+        ]),
       },
     }),
   ],
