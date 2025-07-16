@@ -15,10 +15,13 @@ interface BlogPostProps {
   };
 }
 
-export default async function BlogPost({ params, searchParams }: BlogPostProps) {
-  const isPreview = searchParams.preview === 'true';
+export default async function BlogPost({
+  params,
+  searchParams,
+}: BlogPostProps) {
+  const isPreview = searchParams.preview === "true";
   const client = isPreview ? previewClient : getClient();
-  
+
   const post = await client.fetch(
     `*[_type == "post" && slug.current == $slug][0]`,
     { slug: params.slug }
