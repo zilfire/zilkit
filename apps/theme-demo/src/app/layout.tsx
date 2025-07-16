@@ -1,7 +1,9 @@
+import { VisualEditing } from "next-sanity";
+import { draftMode } from "next/headers";
+import { DisableDraftMode } from "@/components/DisableDraftMode";
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
-import PreviewBanner from "../../components/PreviewBanner";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -19,7 +21,7 @@ export const metadata: Metadata = {
     "A Next.js application with TypeScript, TailwindCSS, and Sanity CMS",
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
@@ -27,8 +29,13 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${geistSans.variable} ${geistMono.variable}`}>
-        <PreviewBanner />
         {children}
+        {(await draftMode()).isEnabled && (
+          <>
+            <VisualEditing />
+            <DisableDraftMode />
+          </>
+        )}
       </body>
     </html>
   );
