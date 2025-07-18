@@ -31,7 +31,7 @@ export default async function Page({ params }: PageProps) {
 
   const faqData: FaqBlockData | undefined = data.faq;
 
-  console.log('data:', data);
+  // console.log('data:', data);
 
   return (
     <div className="min-h-screen bg-white dark:bg-gray-900">

@@ -32,7 +32,9 @@ export const FaqBlock: React.FC<FaqBlockProps> = ({ data }) => {
           <div className="w-full lg:w-4/12 mb-8">
             {heading && <h2 className="w-100 text-3xl font-bold mb-4 text-gray-700">{heading}</h2>}
             {description && (
-              <p className="text-gray-600 border-l-4 border-sky-500 pl-2 italic">{description}</p>
+              <p className="text-gray-600 border-l-4 border-accent-500 pl-2 italic">
+                {description}
+              </p>
             )}
           </div>
           {faqs && faqs.length > 0 && (
