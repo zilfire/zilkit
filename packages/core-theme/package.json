@@ -1,0 +1,41 @@
+{
+  "name": "@zilfire/core-theme",
+  "version": "0.0.1",
+  "description": "",
+  "type": "module",
+  "files": [
+    "dist"
+  ],
+  "exports": {
+    ".": {
+      "import": "./dist/index.js",
+      "require": "./dist/index.cjs"
+    },
+    "./blocks": {
+      "import": "./dist/web/blocks/index.js",
+      "require": "./dist/web/blocks/index.cjs"
+    }
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "tsc",
+    "dev": "tsc --watch",
+    "lint": "eslint . --ext .ts,.tsx",
+    "clean": "rm -rf dist"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "packageManager": "pnpm@10.12.1",
+  "devDependencies": {
+    "@types/react": "^19.1.8",
+    "react": "19.1.0",
+    "react-dom": "19.1.0",
+    "typescript": "^5.8.3",
+    "typescript-config": "workspace:^"
+  },
+  "peerDependencies": {
+    "react": ">=19.0.0",
+    "react-dom": ">=19.0.0"
+  }
+}

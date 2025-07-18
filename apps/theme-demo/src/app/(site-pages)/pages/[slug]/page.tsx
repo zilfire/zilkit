@@ -1,8 +1,9 @@
 // import { getPageBySlug } from "../../../../lib/queries";
-import { previewClient } from "@/sanity/client";
+import { client } from "@/sanity/client";
 import { draftMode } from "next/headers";
 import PortableTextComponent from "../../../../../components/PortableText";
 import { notFound } from "next/navigation";
+import { TestBlock } from "@zilfire/core-theme/blocks";
 
 interface PageProps {
   params: {
@@ -11,16 +12,19 @@ interface PageProps {
 }
 
 export default async function Page({ params }: PageProps) {
-  // const { isEnabled } = await draftMode();
+  const { isEnabled } = await draftMode();
   const { slug } = await params;
 
-  const data = await previewClient.fetch(
+  console.log("Draft mode enabled:", isEnabled);
+
+  const data = await client.fetch(
     `*[_type == "page" && slug.current == $slug][0]`,
-    { slug }
+    { slug },
+    { perspective: isEnabled ? "drafts" : "published" }
   );
 
   if (!data) {
-    return <div>No data</div>;
+    return notFound();
   }
 
   console.log("data:", data);
@@ -35,6 +39,9 @@ export default async function Page({ params }: PageProps) {
         </header>
 
         <main className="max-w-4xl mx-auto">
+          <TestBlock
+            data={{ title: "test block title", content: "test block content" }}
+          />
           {data.content && (
             <PortableTextComponent
               value={data.content}
