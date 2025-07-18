@@ -16,9 +16,10 @@ const config: Config = {
         primary: colors.cyan,
         secondary: colors.rose,
         accent: colors.amber,
+        'secondary-accent': colors.violet,
         neutral: colors.gray,
-        base: colors.white,
       },
+
       fontFamily: {
         sans: ['Inter', 'sans-serif'],
         serif: ['Merriweather', 'serif'],

@@ -54,7 +54,7 @@ export default async function Page({ params }: PageProps) {
             />
           )}
         </div>
-        {faqData && <FaqBlock data={faqData} />}
+        {faqData && <FaqBlock data={faqData} options={{}} />}
       </main>
     </div>
   );

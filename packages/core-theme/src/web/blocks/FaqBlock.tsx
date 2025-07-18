@@ -8,9 +8,22 @@ import type { FaqBlockData } from '../../data-types/blocks/faq-block';
 import type { PortableTextBlock } from '@portabletext/types';
 import { portableTextComponents } from '../text';
 import { PortableText } from 'next-sanity';
+import type { ThemeColor, FontStyle } from '../../data-types/utility/styling';
+import { getBorderColor, getFontColor } from '../utils/stylingUtils';
+
+type FaqOptions = {
+  sidebarRuleColor?: ThemeColor;
+  sidebarRule?: boolean;
+  descriptionFontStyle?: FontStyle;
+  descriptionTextColor?: ThemeColor;
+  headlineTextColor?: ThemeColor;
+  questionTextColor?: ThemeColor;
+  answerTextColor?: ThemeColor;
+};
 
 type FaqBlockProps = {
   data: FaqBlockData;
+  options?: FaqOptions;
 };
 
 type FAQItemProps = {
@@ -18,21 +31,40 @@ type FAQItemProps = {
     question: string;
     answer: PortableTextBlock;
   };
-
+  options?: FaqOptions;
   index: number;
 };
 
-export const FaqBlock: React.FC<FaqBlockProps> = ({ data }) => {
+export const FaqBlock: React.FC<FaqBlockProps> = ({ data, options }) => {
   const { heading, description, faqs } = data;
+  const { sidebarRuleColor, sidebarRule, descriptionFontStyle, headlineTextColor } = options || {};
+  const sidebarRuleOn = typeof sidebarRule === 'boolean' ? sidebarRule : true;
+  const italicDescription =
+    descriptionFontStyle === 'italic' || typeof descriptionFontStyle === 'undefined';
 
   return (
     <Section className="bg-stone-50 px-2" id="faq">
       <Container>
         <div className="flex flex-wrap lg:flex-nowrap gap-x-8">
           <div className="w-full lg:w-4/12 mb-8">
-            {heading && <h2 className="w-100 text-3xl font-bold mb-4 text-gray-700">{heading}</h2>}
+            {heading && (
+              <h2
+                className={`w-100 text-3xl font-bold mb-4 ${getFontColor(
+                  headlineTextColor || 'black'
+                )}`}
+              >
+                {heading}
+              </h2>
+            )}
             {description && (
-              <p className="text-gray-600 border-l-4 border-accent-500 pl-2 italic">
+              <p
+                className={clsx(
+                  'text-gray-600 ml-1',
+                  sidebarRuleOn &&
+                    `border-l-4 pl-2 ${getBorderColor(sidebarRuleColor || 'primary')}`,
+                  italicDescription && 'italic'
+                )}
+              >
                 {description}
               </p>
             )}
@@ -40,7 +72,7 @@ export const FaqBlock: React.FC<FaqBlockProps> = ({ data }) => {
           {faqs && faqs.length > 0 && (
             <div className="w-full lg:w-8/12 -mb-6 border-t">
               {faqs.map((faq, index) => (
-                <FaqItem qa={faq} index={index} key={index} />
+                <FaqItem qa={faq} index={index} key={index} options={options} />
               ))}
             </div>
           )}
@@ -50,7 +82,8 @@ export const FaqBlock: React.FC<FaqBlockProps> = ({ data }) => {
   );
 };
 
-const FaqItem = ({ qa, index }: FAQItemProps) => {
+const FaqItem = ({ qa, index, options }: FAQItemProps) => {
+  const { questionTextColor, answerTextColor } = options || {};
   const [open, setOpen] = useState(false);
   const qaRef = useRef<HTMLDivElement>(null);
   const handleToggle = (): void => {
@@ -76,7 +109,7 @@ const FaqItem = ({ qa, index }: FAQItemProps) => {
       <div>
         <div className="font-semibold text-lg">
           <a
-            className="cursor-pointer"
+            className={clsx('cursor-pointer', getFontColor(questionTextColor || 'black'))}
             onClick={(e) => {
               e.preventDefault();
               handleToggle();
