@@ -9,4 +9,4 @@ export type ThemeColor =
 
 export type FontStyle = 'normal' | 'italic';
 
-export type ColorMode = 'dark' | 'semi-dark' | 'dark-shade' | 'shade' | 'light';
+export type ColorMode = 'dark' | 'semi-dark' | 'normal' | 'dark-shade' | 'shade' | 'light-shade';
