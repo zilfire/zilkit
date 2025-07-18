@@ -7,6 +7,6 @@ export type ThemeColor =
   | 'white'
   | 'black';
 
-// export type ThemeFontColor = ThemeColor | 'muted';
-
 export type FontStyle = 'normal' | 'italic';
+
+export type ColorMode = 'dark' | 'semi-dark' | 'dark-shade' | 'shade' | 'light';

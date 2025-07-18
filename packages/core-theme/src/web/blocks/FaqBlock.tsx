@@ -8,10 +8,11 @@ import type { FaqBlockData } from '../../data-types/blocks/faq-block';
 import type { PortableTextBlock } from '@portabletext/types';
 import { portableTextComponents } from '../text';
 import { PortableText } from 'next-sanity';
-import type { ThemeColor, FontStyle } from '../../data-types/utility/styling';
+import type { ThemeColor, FontStyle, ColorMode } from '../../data-types/utility/styling';
 import { getBorderColor, getFontColor } from '../utils/stylingUtils';
 
 type FaqOptions = {
+  colorMode?: ColorMode;
   sidebarRuleColor?: ThemeColor;
   sidebarRule?: boolean;
   descriptionFontStyle?: FontStyle;
@@ -19,6 +20,7 @@ type FaqOptions = {
   headlineTextColor?: ThemeColor;
   questionTextColor?: ThemeColor;
   answerTextColor?: ThemeColor;
+  plusIconColor?: ThemeColor;
 };
 
 type FaqBlockProps = {
@@ -83,7 +85,7 @@ export const FaqBlock: React.FC<FaqBlockProps> = ({ data, options }) => {
 };
 
 const FaqItem = ({ qa, index, options }: FAQItemProps) => {
-  const { questionTextColor, answerTextColor } = options || {};
+  const { questionTextColor, answerTextColor, plusIconColor } = options || {};
   const [open, setOpen] = useState(false);
   const qaRef = useRef<HTMLDivElement>(null);
   const handleToggle = (): void => {
@@ -136,7 +138,7 @@ const FaqItem = ({ qa, index, options }: FAQItemProps) => {
       </div>
       <div className="grow flex justify-end items-start sky-500">
         <button
-          className="collapsible w-4 text-primary-700"
+          className={clsx('collapsible w-4', getFontColor(plusIconColor || 'primary'))}
           onClick={(e) => {
             e.preventDefault();
             handleToggle();

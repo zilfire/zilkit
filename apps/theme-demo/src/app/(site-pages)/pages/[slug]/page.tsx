@@ -50,7 +50,7 @@ export default async function Page({ params }: PageProps) {
           {data.content && (
             <PortableTextComponent
               value={data.content}
-              className="text-gray-800 dark:text-gray-200"
+              className="text-gray-700 dark:text-gray-200"
             />
           )}
         </div>
