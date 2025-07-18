@@ -7,14 +7,11 @@
     "dist"
   ],
   "exports": {
-    ".": {
-      "import": "./dist/index.js",
-      "require": "./dist/index.cjs"
-    },
-    "./blocks": {
-      "import": "./dist/web/blocks/index.js",
-      "require": "./dist/web/blocks/index.cjs"
-    }
+    ".": "./dist/index.js",
+    "./web/blocks": "./dist/web/blocks/index.js",
+    "./web/components": "./dist/web/components/index.js",
+    "./sanity-schema": "./dist/sanity/schema/index.js",
+    "./data-types": "./dist/data-types/index.js"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
@@ -28,14 +25,26 @@
   "license": "ISC",
   "packageManager": "pnpm@10.12.1",
   "devDependencies": {
+    "@portabletext/types": "^2.0.13",
     "@types/react": "^19.1.8",
+    "next": "15.4.1",
+    "next-sanity": "^10.0.0",
     "react": "19.1.0",
     "react-dom": "19.1.0",
+    "sanity": "^4.0.1",
     "typescript": "^5.8.3",
     "typescript-config": "workspace:^"
   },
   "peerDependencies": {
+    "next": ">=15.0.0",
+    "next-sanity": ">=10.0.0",
     "react": ">=19.0.0",
-    "react-dom": ">=19.0.0"
+    "react-dom": ">=19.0.0",
+    "sanity": ">=4.0.0"
+  },
+  "dependencies": {
+    "class-variance-authority": "^0.7.1",
+    "clsx": "^2.1.1",
+    "react-icons": "^5.5.0"
   }
 }
