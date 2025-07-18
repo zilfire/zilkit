@@ -35,14 +35,14 @@ export default async function Page({ params }: PageProps) {
 
   return (
     <div className="min-h-screen bg-white dark:bg-gray-900">
-      <div className="container mx-auto px-4 py-16">
-        <header className="text-center mb-12">
-          <h1 className="text-4xl md:text-6xl font-bold text-gray-900 dark:text-white mb-4">
-            {data.title}
-          </h1>
-        </header>
+      <header className="text-center mb-12">
+        <h1 className="text-4xl md:text-6xl font-bold text-gray-900 dark:text-white mb-4">
+          {data.title}
+        </h1>
+      </header>
 
-        <main className="max-w-4xl mx-auto">
+      <main className="">
+        <div className="max-w-4xl mx-auto">
           <Section className="mb-8">
             <p>section content</p>
           </Section>
@@ -53,9 +53,9 @@ export default async function Page({ params }: PageProps) {
               className="text-gray-800 dark:text-gray-200"
             />
           )}
-          {faqData && <FaqBlock data={faqData} />}
-        </main>
-      </div>
+        </div>
+        {faqData && <FaqBlock data={faqData} />}
+      </main>
     </div>
   );
 }
