@@ -21,11 +21,11 @@ export const ColorGrid = {
       bg: 'bg-neutral-950',
     },
     white: {
-      text: 'text-black',
+      text: 'text-white',
       bg: 'bg-white',
     },
     black: {
-      text: 'text-white',
+      text: 'text-black',
       bg: 'bg-black',
     },
   },
@@ -51,11 +51,11 @@ export const ColorGrid = {
       bg: 'bg-neutral-900',
     },
     white: {
-      text: 'text-black',
+      text: 'text-white',
       bg: 'bg-white',
     },
     black: {
-      text: 'text-white',
+      text: 'text-black',
       bg: 'bg-black',
     },
   },
@@ -81,11 +81,11 @@ export const ColorGrid = {
       bg: 'bg-neutral-700',
     },
     white: {
-      text: 'text-black',
+      text: 'text-white',
       bg: 'bg-white',
     },
     black: {
-      text: 'text-white',
+      text: 'text-black',
       bg: 'bg-black',
     },
   },
@@ -111,11 +111,11 @@ export const ColorGrid = {
       bg: 'bg-neutral-500',
     },
     white: {
-      text: 'text-black',
+      text: 'text-white',
       bg: 'bg-white',
     },
     black: {
-      text: 'text-white',
+      text: 'text-black',
       bg: 'bg-black',
     },
   },
@@ -141,11 +141,11 @@ export const ColorGrid = {
       bg: 'bg-neutral-200',
     },
     white: {
-      text: 'text-black',
+      text: 'text-white',
       bg: 'bg-white',
     },
     black: {
-      text: 'text-white',
+      text: 'text-black',
       bg: 'bg-black',
     },
   },
@@ -171,11 +171,11 @@ export const ColorGrid = {
       bg: 'bg-neutral-50',
     },
     white: {
-      text: 'text-black',
+      text: 'text-white',
       bg: 'bg-white',
     },
     black: {
-      text: 'text-white',
+      text: 'text-black',
       bg: 'bg-black',
     },
   },
