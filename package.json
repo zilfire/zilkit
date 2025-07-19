@@ -5,7 +5,7 @@
   "private": true,
   "scripts": {
     "build": "pnpm -r build",
-    "dev": "pnpm -r dev",
+    "dev": "concurrently \"pnpm --filter theme-demo dev\" \"pnpm --filter @zilfire/core-theme dev\"",
     "test": "pnpm -r test",
     "lint": "pnpm -r lint",
     "clean": "pnpm -r clean",
@@ -22,5 +22,8 @@
     "eslint": "^9.31.0",
     "eslint-plugin-react": "^7.37.5",
     "eslint-plugin-react-hooks": "^5.2.0"
+  },
+  "dependencies": {
+    "concurrently": "^9.2.0"
   }
 }
