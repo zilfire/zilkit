@@ -1,13 +1,18 @@
 import { HTMLAttributes } from 'react';
 import { cva } from 'class-variance-authority';
 import clsx from 'clsx';
+import type { ColorMode, ThemeColor, TextAlign, TextSize } from '../../data-types/utility/styling';
+import { colorGrid } from '../utils/colorGrid';
+import { styleGuide } from '../utils/textStyleUtils';
 
 interface ParagraphProps extends HTMLAttributes<HTMLParagraphElement> {
   className?: string;
   children?: React.ReactNode;
   colorScheme?: 'light' | 'dark' | 'primary' | 'secondary' | 'accent';
-  size?: 'sm' | 'md' | 'lg' | 'xl' | `2xl`;
-  align?: 'left' | 'center' | 'right' | 'justify';
+  size?: TextSize;
+  align?: TextAlign;
+  colorMode?: ColorMode;
+  themeColor?: ThemeColor;
 }
 
 const pClass = cva([], {
@@ -38,12 +43,20 @@ const pClass = cva([], {
 export const P: React.FC<ParagraphProps> = ({
   children,
   className,
-  colorScheme = 'dark',
-  size = 'md',
-  align = 'left',
+  size,
+  align,
+  colorMode,
+  themeColor,
 }) => {
+  const colorClass =
+    styleGuide.textColor[themeColor || styleGuide.defaults.p.textColor][
+      colorMode || styleGuide.defaults.colorMode
+    ];
+  const fontSizeClass = styleGuide.textSize.p[size || styleGuide.defaults.p.size];
+  const textAlignClass = styleGuide.textAlign[align || styleGuide.defaults.p.textAlign];
+
   return (
-    <p className={clsx(pClass({ colorScheme, size, align }), 'leading-normal', className)}>
+    <p className={clsx(fontSizeClass, colorClass, textAlignClass, 'leading-normal', className)}>
       {children}
     </p>
   );

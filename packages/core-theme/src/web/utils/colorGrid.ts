@@ -1,4 +1,4 @@
-export const ColorGrid = {
+export const colorGrid = {
   darkest: {
     primary: {
       text: 'text-primary-200',
@@ -121,23 +121,23 @@ export const ColorGrid = {
   },
   surface: {
     primary: {
-      text: 'text-primary-200',
+      text: 'text-primary-800',
       bg: 'bg-primary-200',
     },
     secondary: {
-      text: 'text-secondary-200',
+      text: 'text-secondary-800',
       bg: 'bg-secondary-200',
     },
     accent: {
-      text: 'text-accent-200',
+      text: 'text-accent-800',
       bg: 'bg-accent-200',
     },
     'secondary-accent': {
-      text: 'text-secondary-accent-200',
+      text: 'text-secondary-accent-800',
       bg: 'bg-secondary-accent-200',
     },
     neutral: {
-      text: 'text-neutral-200',
+      text: 'text-neutral-800',
       bg: 'bg-neutral-200',
     },
     white: {
@@ -151,23 +151,23 @@ export const ColorGrid = {
   },
   light: {
     primary: {
-      text: 'text-primary-200',
+      text: 'text-primary-800',
       bg: 'bg-primary-50',
     },
     secondary: {
-      text: 'text-secondary-200',
+      text: 'text-secondary-800',
       bg: 'bg-secondary-50',
     },
     accent: {
-      text: 'text-accent-200',
+      text: 'text-accent-800',
       bg: 'bg-accent-50',
     },
     'secondary-accent': {
-      text: 'text-secondary-accent-200',
+      text: 'text-secondary-accent-800',
       bg: 'bg-secondary-accent-50',
     },
     neutral: {
-      text: 'text-neutral-200',
+      text: 'text-neutral-800',
       bg: 'bg-neutral-50',
     },
     white: {

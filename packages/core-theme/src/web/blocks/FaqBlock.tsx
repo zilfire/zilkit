@@ -10,6 +10,7 @@ import { portableTextComponents } from '../text';
 import { PortableText } from 'next-sanity';
 import type { ThemeColor, FontStyle, ColorMode } from '../../data-types/utility/styling';
 import { getBorderColor, getFontColor } from '../utils/stylingUtils';
+import { P } from '../text/P';
 
 type FaqOptions = {
   colorMode?: ColorMode;
@@ -70,6 +71,9 @@ export const FaqBlock: React.FC<FaqBlockProps> = ({ data, options }) => {
                 {description}
               </p>
             )}
+            <P colorMode={'light'} themeColor={'primary'} className="">
+              test - {description}
+            </P>
           </div>
           {faqs && faqs.length > 0 && (
             <div className="w-full lg:w-8/12 -mb-6 border-t">

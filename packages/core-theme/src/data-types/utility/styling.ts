@@ -16,3 +16,38 @@ export type ColorMode =
   | 'medium' //500 | 950 or 50 - Mid backbground color
   | 'surface' //200 | 800 - Used for cards, sheets, or surfaces above the background.
   | 'light'; //50 | 800 - Standard light backgrounds.
+
+export type TextSize = 'xs' | 'sm' | 'md' | 'lg' | 'xl' | '2xl';
+export type TextAlign = 'left' | 'center' | 'right' | 'justify';
+
+export type TextComponents =
+  | 'p'
+  | 'span'
+  | 'h1'
+  | 'h2'
+  | 'h3'
+  | 'h4'
+  | 'h5'
+  | 'h6'
+  | 'li'
+  | 'ol'
+  | 'ul';
+
+export type StyleGuide = {
+  defaults: {
+    colorMode: ColorMode;
+  } & {
+    [K in TextComponents]: {
+      size: TextSize;
+      align: TextAlign;
+      textColor: ThemeColor;
+      textAlign: TextAlign;
+      leading: 'snug' | 'normal';
+    };
+  };
+  bgColor: Record<ThemeColor, Record<ColorMode, string>>;
+  textColor: Record<ThemeColor, Record<ColorMode, string>>;
+  textSize: Record<TextComponents, Record<TextSize, string>>;
+  textAlign: Record<TextAlign, string>;
+  leading: Record<string, string>;
+};
