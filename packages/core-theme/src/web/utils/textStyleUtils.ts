@@ -1,15 +1,5 @@
 import { StyleGuide } from '@/data-types/utility/styling';
-
-const textXS = 'text-xs md:text-sm';
-const textSmall = 'text-sm md:text-base';
-const textBase = 'text-base';
-const textLarge = 'text-lg md:text-xl';
-const textXL = 'text-xl md:text-2xl';
-const textXL2 = 'text-2xl md:text-3xl lg:text-4xl';
-const textXL3 = 'text-3xl md:text-4xl lg:text-5xl';
-const textXL4 = 'text-4xl md:text-5xl lg:text-6xl';
-const textXL5 = 'text-5xl md:text-6xl lg:text-7xl';
-const textXL6 = 'text-6xl md:text-7xl lg:text-8xl';
+import { typography } from './typography-style';
 
 const primaryDarkestBg = 'bg-primary-950';
 const primaryDarkBg = 'bg-primary-900';
@@ -306,96 +296,7 @@ export const styleGuide: StyleGuide = {
       light: blackTextLight,
     },
   },
-  textSize: {
-    p: {
-      xs: textXS,
-      sm: textSmall,
-      md: textBase,
-      lg: textLarge,
-      xl: textXL,
-      '2xl': textXL2,
-    },
-    span: {
-      xs: textXS,
-      sm: textSmall,
-      md: textBase,
-      lg: textLarge,
-      xl: textXL,
-      '2xl': textXL2,
-    },
-    h1: {
-      xs: textXL,
-      sm: textXL2,
-      md: textXL3,
-      lg: textXL4,
-      xl: textXL5,
-      '2xl': textXL6,
-    },
-    h2: {
-      xs: textLarge,
-      sm: textXL,
-      md: textXL2,
-      lg: textXL3,
-      xl: textXL4,
-      '2xl': textXL5,
-    },
-    h3: {
-      xs: textBase,
-      sm: textLarge,
-      md: textXL,
-      lg: textXL2,
-      xl: textXL3,
-      '2xl': textXL4,
-    },
-    h4: {
-      xs: textSmall,
-      sm: textBase,
-      md: textLarge,
-      lg: textXL,
-      xl: textXL2,
-      '2xl': textXL3,
-    },
-    h5: {
-      xs: textSmall,
-      sm: textBase,
-      md: textLarge,
-      lg: textXL,
-      xl: textXL2,
-      '2xl': textXL3,
-    },
-    h6: {
-      xs: textXS,
-      sm: textSmall,
-      md: textBase,
-      lg: textLarge,
-      xl: textXL,
-      '2xl': textXL2,
-    },
-    li: {
-      xs: textXS,
-      sm: textSmall,
-      md: textBase,
-      lg: textLarge,
-      xl: textXL,
-      '2xl': textXL2,
-    },
-    ol: {
-      xs: textXS,
-      sm: textSmall,
-      md: textBase,
-      lg: textLarge,
-      xl: textXL,
-      '2xl': textXL2,
-    },
-    ul: {
-      xs: textXS,
-      sm: textSmall,
-      md: textBase,
-      lg: textLarge,
-      xl: textXL,
-      '2xl': textXL2,
-    },
-  },
+  typography,
   textAlign: {
     left: 'text-left',
     center: 'text-center',
@@ -410,11 +311,4 @@ export const styleGuide: StyleGuide = {
     relaxed: 'leading-relaxed',
     loose: 'leading-loose',
   },
-};
-
-export const textAlignGrid = {
-  left: ['text-left'],
-  center: ['text-center'],
-  right: ['text-right'],
-  justify: ['text-justify'],
 };

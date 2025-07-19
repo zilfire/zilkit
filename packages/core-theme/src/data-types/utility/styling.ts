@@ -33,6 +33,15 @@ export type TextComponents =
   | 'ol'
   | 'ul';
 
+export type Typography = Record<
+  TextComponents,
+  {
+    fontSize: Record<TextSize, string>;
+    spacing: Record<TextSize, string>;
+    leading: Record<TextSize, string>;
+  }
+>;
+
 export type StyleGuide = {
   defaults: {
     colorMode: ColorMode;
@@ -47,7 +56,7 @@ export type StyleGuide = {
   };
   bgColor: Record<ThemeColor, Record<ColorMode, string>>;
   textColor: Record<ThemeColor, Record<ColorMode, string>>;
-  textSize: Record<TextComponents, Record<TextSize, string>>;
+  typography: Typography;
   textAlign: Record<TextAlign, string>;
   leading: Record<string, string>;
 };

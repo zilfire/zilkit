@@ -15,31 +15,6 @@ interface ParagraphProps extends HTMLAttributes<HTMLParagraphElement> {
   themeColor?: ThemeColor;
 }
 
-const pClass = cva([], {
-  variants: {
-    colorScheme: {
-      light: ['text-white'],
-      dark: ['text-black'],
-      primary: ['text-primary-700'],
-      secondary: ['text-secondary-700'],
-      accent: ['text-accent-700'],
-    },
-    size: {
-      sm: ['leading-snug md: leading-normal', 'text-xs md:text-sm', 'mb-4 md:mb-6'],
-      md: ['leading-snug md:leading-normal', 'text-base', 'mb-4 md:mb-6'],
-      lg: ['leading-snug md:leading-normal', 'text-base md:text-lg', 'mb-6 md:mb-8'],
-      xl: ['leading-snug md:leading-normal', 'text-lg md:text-xl', 'mb-6 md:mb-8'],
-      '2xl': ['leading-snug md:leading-normal', 'text-xl md:text-2xl', 'mb-6 md:mb-8'],
-    },
-    align: {
-      left: ['text-left'],
-      center: ['text-center'],
-      right: ['text-right'],
-      justify: ['text-justify'],
-    },
-  },
-});
-
 export const P: React.FC<ParagraphProps> = ({
   children,
   className,
@@ -52,11 +27,22 @@ export const P: React.FC<ParagraphProps> = ({
     styleGuide.textColor[themeColor || styleGuide.defaults.p.textColor][
       colorMode || styleGuide.defaults.colorMode
     ];
-  const fontSizeClass = styleGuide.textSize.p[size || styleGuide.defaults.p.size];
+  const fontSizeClass = styleGuide.typography.p.fontSize[size || styleGuide.defaults.p.size];
+  const leadingClass = styleGuide.typography.p.leading[size || styleGuide.defaults.p.size];
+  const spacingClass = styleGuide.typography.p.spacing[size || styleGuide.defaults.p.size];
   const textAlignClass = styleGuide.textAlign[align || styleGuide.defaults.p.textAlign];
 
   return (
-    <p className={clsx(fontSizeClass, colorClass, textAlignClass, 'leading-normal', className)}>
+    <p
+      className={clsx(
+        fontSizeClass,
+        colorClass,
+        textAlignClass,
+        leadingClass,
+        spacingClass,
+        className
+      )}
+    >
       {children}
     </p>
   );

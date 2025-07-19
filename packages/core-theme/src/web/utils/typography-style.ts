@@ -1,0 +1,301 @@
+import type { Typography } from '@/data-types/utility/styling';
+
+const textXS = 'text-xs md:text-sm';
+const textSmall = 'text-sm md:text-base';
+const textBase = 'text-base';
+const textLarge = 'text-lg md:text-xl';
+const textXL = 'text-xl md:text-2xl';
+const textXL2 = 'text-2xl md:text-3xl lg:text-4xl';
+const textXL3 = 'text-3xl md:text-4xl lg:text-5xl';
+const textXL4 = 'text-4xl md:text-5xl lg:text-6xl';
+const textXL5 = 'text-5xl md:text-6xl lg:text-7xl';
+const textXL6 = 'text-6xl md:text-7xl lg:text-8xl';
+
+export const typography: Typography = {
+  p: {
+    fontSize: {
+      xs: textXS,
+      sm: textSmall,
+      md: textBase,
+      lg: textLarge,
+      xl: textXL,
+      '2xl': textXL2,
+    },
+    spacing: {
+      xs: 'mb-4 md:mb-6',
+      sm: 'mb-4 md:mb-6',
+      md: 'mb-4 md:mb-6',
+      lg: 'mb-6 md:mb-8',
+      xl: 'mb-6 md:mb-8',
+      '2xl': 'mb-6 md:mb-8',
+    },
+    leading: {
+      xs: 'leading-snug md:leading-normal',
+      sm: 'leading-snug md:leading-normal',
+      md: 'leading-snug md:leading-normal',
+      lg: 'leading-snug md:leading-normal',
+      xl: 'leading-snug md:leading-normal',
+      '2xl': 'leading-snug md:leading-normal',
+    },
+  },
+  span: {
+    fontSize: {
+      xs: textXS,
+      sm: textSmall,
+      md: textBase,
+      lg: textLarge,
+      xl: textXL,
+      '2xl': textXL2,
+    },
+    spacing: {
+      xs: 'mb-4 md:mb-6',
+      sm: 'mb-4 md:mb-6',
+      md: 'mb-4 md:mb-6',
+      lg: 'mb-6 md:mb-8',
+      xl: 'mb-6 md:mb-8',
+      '2xl': 'mb-6 md:mb-8',
+    },
+    leading: {
+      xs: 'leading-snug md:leading-normal',
+      sm: 'leading-snug md:leading-normal',
+      md: 'leading-snug md:leading-normal',
+      lg: 'leading-snug md:leading-normal',
+      xl: 'leading-snug md:leading-normal',
+      '2xl': 'leading-snug md:leading-normal',
+    },
+  },
+  h1: {
+    fontSize: {
+      xs: textXL,
+      sm: textXL2,
+      md: textXL3,
+      lg: textXL4,
+      xl: textXL5,
+      '2xl': textXL6,
+    },
+    spacing: {
+      xs: 'space-x-1',
+      sm: 'space-x-2',
+      md: 'space-x-3',
+      lg: 'space-x-4',
+      xl: 'space-x-5',
+      '2xl': 'space-x-6',
+    },
+    leading: {
+      xs: 'leading-tight',
+      sm: 'leading-snug',
+      md: 'leading-normal',
+      lg: 'leading-relaxed',
+      xl: 'leading-loose',
+      '2xl': 'leading-loose',
+    },
+  },
+  h2: {
+    fontSize: {
+      xs: textLarge,
+      sm: textXL,
+      md: textXL2,
+      lg: textXL3,
+      xl: textXL4,
+      '2xl': textXL5,
+    },
+    spacing: {
+      xs: 'space-x-1',
+      sm: 'space-x-2',
+      md: 'space-x-3',
+      lg: 'space-x-4',
+      xl: 'space-x-5',
+      '2xl': 'space-x-6',
+    },
+    leading: {
+      xs: 'leading-tight',
+      sm: 'leading-snug',
+      md: 'leading-normal',
+      lg: 'leading-relaxed',
+      xl: 'leading-loose',
+      '2xl': 'leading-loose',
+    },
+  },
+  h3: {
+    fontSize: {
+      xs: textBase,
+      sm: textLarge,
+      md: textXL,
+      lg: textXL2,
+      xl: textXL3,
+      '2xl': textXL4,
+    },
+    spacing: {
+      xs: 'space-x-1',
+      sm: 'space-x-2',
+      md: 'space-x-3',
+      lg: 'space-x-4',
+      xl: 'space-x-5',
+      '2xl': 'space-x-6',
+    },
+    leading: {
+      xs: 'leading-tight',
+      sm: 'leading-snug',
+      md: 'leading-normal',
+      lg: 'leading-relaxed',
+      xl: 'leading-loose',
+      '2xl': 'leading-loose',
+    },
+  },
+  h4: {
+    fontSize: {
+      xs: textSmall,
+      sm: textBase,
+      md: textLarge,
+      lg: textXL,
+      xl: textXL2,
+      '2xl': textXL3,
+    },
+    spacing: {
+      xs: 'space-x-1',
+      sm: 'space-x-2',
+      md: 'space-x-3',
+      lg: 'space-x-4',
+      xl: 'space-x-5',
+      '2xl': 'space-x-6',
+    },
+    leading: {
+      xs: 'leading-tight',
+      sm: 'leading-snug',
+      md: 'leading-normal',
+      lg: 'leading-relaxed',
+      xl: 'leading-loose',
+      '2xl': 'leading-loose',
+    },
+  },
+  h5: {
+    fontSize: {
+      xs: textSmall,
+      sm: textBase,
+      md: textLarge,
+      lg: textXL,
+      xl: textXL2,
+      '2xl': textXL3,
+    },
+    spacing: {
+      xs: 'space-x-1',
+      sm: 'space-x-2',
+      md: 'space-x-3',
+      lg: 'space-x-4',
+      xl: 'space-x-5',
+      '2xl': 'space-x-6',
+    },
+    leading: {
+      xs: 'leading-tight',
+      sm: 'leading-snug',
+      md: 'leading-normal',
+      lg: 'leading-relaxed',
+      xl: 'leading-loose',
+      '2xl': 'leading-loose',
+    },
+  },
+  h6: {
+    fontSize: {
+      xs: textXS,
+      sm: textSmall,
+      md: textBase,
+      lg: textLarge,
+      xl: textXL,
+      '2xl': textXL2,
+    },
+    spacing: {
+      xs: 'space-x-1',
+      sm: 'space-x-2',
+      md: 'space-x-3',
+      lg: 'space-x-4',
+      xl: 'space-x-5',
+      '2xl': 'space-x-6',
+    },
+    leading: {
+      xs: 'leading-tight',
+      sm: 'leading-snug',
+      md: 'leading-normal',
+      lg: 'leading-relaxed',
+      xl: 'leading-loose',
+      '2xl': 'leading-loose',
+    },
+  },
+  li: {
+    fontSize: {
+      xs: textXS,
+      sm: textSmall,
+      md: textBase,
+      lg: textLarge,
+      xl: textXL,
+      '2xl': textXL2,
+    },
+    spacing: {
+      xs: 'space-x-1',
+      sm: 'space-x-2',
+      md: 'space-x-3',
+      lg: 'space-x-4',
+      xl: 'space-x-5',
+      '2xl': 'space-x-6',
+    },
+    leading: {
+      xs: 'leading-tight',
+      sm: 'leading-snug',
+      md: 'leading-normal',
+      lg: 'leading-relaxed',
+      xl: 'leading-loose',
+      '2xl': 'leading-loose',
+    },
+  },
+  ol: {
+    fontSize: {
+      xs: textXS,
+      sm: textSmall,
+      md: textBase,
+      lg: textLarge,
+      xl: textXL,
+      '2xl': textXL2,
+    },
+    spacing: {
+      xs: 'space-x-1',
+      sm: 'space-x-2',
+      md: 'space-x-3',
+      lg: 'space-x-4',
+      xl: 'space-x-5',
+      '2xl': 'space-x-6',
+    },
+    leading: {
+      xs: 'leading-tight',
+      sm: 'leading-snug',
+      md: 'leading-normal',
+      lg: 'leading-relaxed',
+      xl: 'leading-loose',
+      '2xl': 'leading-loose',
+    },
+  },
+  ul: {
+    fontSize: {
+      xs: textXS,
+      sm: textSmall,
+      md: textBase,
+      lg: textLarge,
+      xl: textXL,
+      '2xl': textXL2,
+    },
+    spacing: {
+      xs: 'space-x-1',
+      sm: 'space-x-2',
+      md: 'space-x-3',
+      lg: 'space-x-4',
+      xl: 'space-x-5',
+      '2xl': 'space-x-6',
+    },
+    leading: {
+      xs: 'leading-tight',
+      sm: 'leading-snug',
+      md: 'leading-normal',
+      lg: 'leading-relaxed',
+      xl: 'leading-loose',
+      '2xl': 'leading-loose',
+    },
+  },
+};
