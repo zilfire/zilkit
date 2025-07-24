@@ -1,4 +1,4 @@
-import type { Typography } from '@/data-types/utility/styling';
+import type { ComponentStyles } from '@/data-types/utility/styling';
 
 const textXS = 'text-xs md:text-sm';
 const textSmall = 'text-sm md:text-base';
@@ -11,7 +11,7 @@ const textXL4 = 'text-4xl md:text-5xl lg:text-6xl';
 const textXL5 = 'text-5xl md:text-6xl lg:text-7xl';
 const textXL6 = 'text-6xl md:text-7xl lg:text-8xl';
 
-export const typography: Typography = {
+export const componentStyles: ComponentStyles = {
   p: {
     fontSize: {
       xs: textXS,
@@ -36,6 +36,12 @@ export const typography: Typography = {
       lg: 'leading-snug md:leading-normal',
       xl: 'leading-snug md:leading-normal',
       '2xl': 'leading-snug md:leading-normal',
+    },
+    textAlign: {
+      left: 'text-left',
+      center: 'text-center',
+      right: 'text-right',
+      justify: 'text-justify',
     },
   },
   span: {
@@ -63,6 +69,12 @@ export const typography: Typography = {
       xl: 'leading-snug md:leading-normal',
       '2xl': 'leading-snug md:leading-normal',
     },
+    textAlign: {
+      left: 'text-left',
+      center: 'text-center',
+      right: 'text-right',
+      justify: 'text-justify',
+    },
   },
   h1: {
     fontSize: {
@@ -88,6 +100,12 @@ export const typography: Typography = {
       lg: 'leading-relaxed',
       xl: 'leading-loose',
       '2xl': 'leading-loose',
+    },
+    textAlign: {
+      left: 'text-left',
+      center: 'text-center',
+      right: 'text-right',
+      justify: 'text-justify',
     },
   },
   h2: {
@@ -115,6 +133,12 @@ export const typography: Typography = {
       xl: 'leading-loose',
       '2xl': 'leading-loose',
     },
+    textAlign: {
+      left: 'text-left',
+      center: 'text-center',
+      right: 'text-right',
+      justify: 'text-justify',
+    },
   },
   h3: {
     fontSize: {
@@ -140,6 +164,12 @@ export const typography: Typography = {
       lg: 'leading-relaxed',
       xl: 'leading-loose',
       '2xl': 'leading-loose',
+    },
+    textAlign: {
+      left: 'text-left',
+      center: 'text-center',
+      right: 'text-right',
+      justify: 'text-justify',
     },
   },
   h4: {
@@ -167,6 +197,12 @@ export const typography: Typography = {
       xl: 'leading-loose',
       '2xl': 'leading-loose',
     },
+    textAlign: {
+      left: 'text-left',
+      center: 'text-center',
+      right: 'text-right',
+      justify: 'text-justify',
+    },
   },
   h5: {
     fontSize: {
@@ -192,6 +228,12 @@ export const typography: Typography = {
       lg: 'leading-relaxed',
       xl: 'leading-loose',
       '2xl': 'leading-loose',
+    },
+    textAlign: {
+      left: 'text-left',
+      center: 'text-center',
+      right: 'text-right',
+      justify: 'text-justify',
     },
   },
   h6: {
@@ -219,6 +261,12 @@ export const typography: Typography = {
       xl: 'leading-loose',
       '2xl': 'leading-loose',
     },
+    textAlign: {
+      left: 'text-left',
+      center: 'text-center',
+      right: 'text-right',
+      justify: 'text-justify',
+    },
   },
   li: {
     fontSize: {
@@ -245,6 +293,12 @@ export const typography: Typography = {
       xl: 'leading-loose',
       '2xl': 'leading-loose',
     },
+    textAlign: {
+      left: 'text-left',
+      center: 'text-center',
+      right: 'text-right',
+      justify: 'text-justify',
+    },
   },
   ol: {
     fontSize: {
@@ -254,6 +308,12 @@ export const typography: Typography = {
       lg: textLarge,
       xl: textXL,
       '2xl': textXL2,
+    },
+    textAlign: {
+      left: 'text-left',
+      center: 'text-center',
+      right: 'text-right',
+      justify: 'text-justify',
     },
     spacing: {
       xs: 'space-x-1',
@@ -296,6 +356,12 @@ export const typography: Typography = {
       lg: 'leading-relaxed',
       xl: 'leading-loose',
       '2xl': 'leading-loose',
+    },
+    textAlign: {
+      left: 'text-left',
+      center: 'text-center',
+      right: 'text-right',
+      justify: 'text-justify',
     },
   },
 };

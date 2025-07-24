@@ -19,6 +19,7 @@ export type ColorMode =
 
 export type TextSize = 'xs' | 'sm' | 'md' | 'lg' | 'xl' | '2xl';
 export type TextAlign = 'left' | 'center' | 'right' | 'justify';
+export type Leading = 'none' | 'tight' | 'snug' | 'normal' | 'relaxed' | 'loose';
 
 export type TextComponents =
   | 'p'
@@ -33,30 +34,33 @@ export type TextComponents =
   | 'ol'
   | 'ul';
 
-export type Typography = Record<
+export type DefaultStyles = {
+  colorMode: ColorMode;
+  backgroundColor: ThemeColor;
+  textColor: ThemeColor;
+  componentStyles: Record<
+    TextComponents,
+    {
+      size: TextSize;
+      align: TextAlign;
+      color: ThemeColor;
+    }
+  >;
+};
+
+export type ComponentStyles = Record<
   TextComponents,
   {
     fontSize: Record<TextSize, string>;
     spacing: Record<TextSize, string>;
     leading: Record<TextSize, string>;
+    textAlign: Record<TextAlign, string>;
   }
 >;
 
 export type StyleGuide = {
-  defaults: {
-    colorMode: ColorMode;
-  } & {
-    [K in TextComponents]: {
-      size: TextSize;
-      align: TextAlign;
-      textColor: ThemeColor;
-      textAlign: TextAlign;
-      leading: 'snug' | 'normal';
-    };
-  };
+  defaultStyles: DefaultStyles;
   bgColor: Record<ThemeColor, Record<ColorMode, string>>;
   textColor: Record<ThemeColor, Record<ColorMode, string>>;
-  typography: Typography;
-  textAlign: Record<TextAlign, string>;
-  leading: Record<string, string>;
+  componentStyles: ComponentStyles;
 };

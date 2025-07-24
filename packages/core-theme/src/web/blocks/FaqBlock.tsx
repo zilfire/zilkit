@@ -9,8 +9,8 @@ import type { PortableTextBlock } from '@portabletext/types';
 import { portableTextComponents } from '../text';
 import { PortableText } from 'next-sanity';
 import type { ThemeColor, FontStyle, ColorMode } from '../../data-types/utility/styling';
-import { getBorderColor, getFontColor } from '../utils/stylingUtils';
 import { P } from '../text/P';
+import { styleGuide } from '../utils/style-guide';
 
 type FaqOptions = {
   colorMode?: ColorMode;
@@ -39,11 +39,12 @@ type FAQItemProps = {
 };
 
 export const FaqBlock: React.FC<FaqBlockProps> = ({ data, options }) => {
-  const { heading, description, faqs } = data;
+  const { heading, description, faqs, colorMode } = data;
   const { sidebarRuleColor, sidebarRule, descriptionFontStyle, headlineTextColor } = options || {};
   const sidebarRuleOn = typeof sidebarRule === 'boolean' ? sidebarRule : true;
   const italicDescription =
     descriptionFontStyle === 'italic' || typeof descriptionFontStyle === 'undefined';
+  const h2Color = styleGuide.textColor.default.default;
 
   return (
     <Section className="bg-stone-50 px-2" id="faq">
@@ -52,8 +53,8 @@ export const FaqBlock: React.FC<FaqBlockProps> = ({ data, options }) => {
           <div className="w-full lg:w-4/12 mb-8">
             {heading && (
               <h2
-                className={`w-100 text-3xl font-bold mb-4 ${getFontColor(
-                  headlineTextColor || 'black'
+                className={`w-100 text-3xl font-bold mb-4 
+
                 )}`}
               >
                 {heading}

@@ -1,5 +1,6 @@
 import { StyleGuide } from '@/data-types/utility/styling';
-import { typography } from './typography-style';
+import { componentStyles } from './element-styles';
+import { defaultStyles } from './default-styles';
 
 const primaryDarkestBg = 'bg-primary-950';
 const primaryDarkBg = 'bg-primary-900';
@@ -100,86 +101,7 @@ const blackTextSurface = 'text-black';
 const blackTextLight = 'text-black';
 
 export const styleGuide: StyleGuide = {
-  defaults: {
-    colorMode: 'light',
-    p: {
-      size: 'md',
-      align: 'left',
-      textColor: 'black',
-      textAlign: 'left',
-      leading: 'snug',
-    },
-    span: {
-      size: 'md',
-      align: 'left',
-      textColor: 'black',
-      textAlign: 'left',
-      leading: 'snug',
-    },
-    h1: {
-      size: 'xl',
-      align: 'left',
-      textColor: 'black',
-      textAlign: 'left',
-      leading: 'normal',
-    },
-    h2: {
-      size: 'lg',
-      align: 'left',
-      textColor: 'black',
-      textAlign: 'left',
-      leading: 'normal',
-    },
-    h3: {
-      size: 'md',
-      align: 'left',
-      textColor: 'black',
-      textAlign: 'left',
-      leading: 'normal',
-    },
-    h4: {
-      size: 'md',
-      align: 'left',
-      textColor: 'black',
-      textAlign: 'left',
-      leading: 'normal',
-    },
-    h5: {
-      size: 'sm',
-      align: 'left',
-      textColor: 'black',
-      textAlign: 'left',
-      leading: 'normal',
-    },
-    h6: {
-      size: 'sm',
-      align: 'left',
-      textColor: 'black',
-      textAlign: 'left',
-      leading: 'normal',
-    },
-    li: {
-      size: 'md',
-      align: 'left',
-      textColor: 'black',
-      textAlign: 'left',
-      leading: 'snug',
-    },
-    ol: {
-      size: 'md',
-      align: 'left',
-      textColor: 'black',
-      textAlign: 'left',
-      leading: 'snug',
-    },
-    ul: {
-      size: 'md',
-      align: 'left',
-      textColor: 'black',
-      textAlign: 'left',
-      leading: 'snug',
-    },
-  },
+  defaultStyles,
   bgColor: {
     primary: {
       darkest: primaryDarkestBg,
@@ -296,19 +218,5 @@ export const styleGuide: StyleGuide = {
       light: blackTextLight,
     },
   },
-  typography,
-  textAlign: {
-    left: 'text-left',
-    center: 'text-center',
-    right: 'text-right',
-    justify: 'text-justify',
-  },
-  leading: {
-    none: 'leading-none',
-    tight: 'leading-tight',
-    snug: 'leading-snug',
-    normal: 'leading-normal',
-    relaxed: 'leading-relaxed',
-    loose: 'leading-loose',
-  },
+  componentStyles,
 };
