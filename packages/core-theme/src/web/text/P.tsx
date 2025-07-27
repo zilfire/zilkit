@@ -6,6 +6,7 @@ import { TextComponentProps } from '../../data-types/blocks/text/text-components
 type ParagraphProps = TextComponentProps & HTMLAttributes<HTMLParagraphElement>;
 
 export const P: React.FC<ParagraphProps> = ({
+  as: Tag = 'p',
   children,
   className,
   size,
@@ -22,7 +23,7 @@ export const P: React.FC<ParagraphProps> = ({
   });
 
   return (
-    <p
+    <Tag
       className={clsx(
         typeof classOverride !== 'undefined'
           ? classOverride
@@ -30,6 +31,6 @@ export const P: React.FC<ParagraphProps> = ({
       )}
     >
       {children}
-    </p>
+    </Tag>
   );
 };
