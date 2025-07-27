@@ -23,20 +23,36 @@ export const Text: React.FC<TextComponentProps> = ({
   colorMode,
   themeColor,
   classOverride,
+  leading,
+  weight,
+  style,
 }) => {
-  const { textColor, fontSize, leading, textAlign, spacing } = getComponentClasses(Tag, {
-    size,
-    align,
-    themeColor,
-    colorMode,
-  });
+  const { textColor, fontSize, textLeading, fontStyle, fontWeight, textAlign, spacing } =
+    getComponentClasses(Tag, {
+      size,
+      align,
+      themeColor,
+      colorMode,
+      leading,
+      weight,
+      style,
+    });
 
   return (
     <Tag
       className={clsx(
         typeof classOverride !== 'undefined'
           ? classOverride
-          : clsx(fontSize, textColor, textAlign, leading, spacing, className)
+          : clsx(
+              fontSize,
+              textColor,
+              textAlign,
+              textLeading,
+              fontStyle,
+              fontWeight,
+              spacing,
+              className
+            )
       )}
     >
       {children}

@@ -14,20 +14,36 @@ export const P: React.FC<ParagraphProps> = ({
   colorMode,
   themeColor,
   classOverride,
+  leading,
+  weight,
+  style,
 }) => {
-  const { textColor, fontSize, leading, textAlign, spacing } = getComponentClasses('p', {
-    size,
-    align,
-    themeColor,
-    colorMode,
-  });
+  const { textColor, fontSize, textLeading, fontWeight, fontStyle, textAlign, spacing } =
+    getComponentClasses('p', {
+      size,
+      align,
+      themeColor,
+      colorMode,
+      leading,
+      weight,
+      style,
+    });
 
   return (
     <Tag
       className={clsx(
         typeof classOverride !== 'undefined'
           ? classOverride
-          : clsx(fontSize, textColor, textAlign, leading, spacing, className)
+          : clsx(
+              fontSize,
+              textColor,
+              textAlign,
+              textLeading,
+              fontWeight,
+              fontStyle,
+              spacing,
+              className
+            )
       )}
     >
       {children}

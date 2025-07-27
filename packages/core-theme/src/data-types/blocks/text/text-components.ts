@@ -4,6 +4,9 @@ import type {
   TextAlign,
   TextSize,
   TextComponent,
+  FontStyle,
+  FontWeight,
+  Leading,
 } from '../../utility/styling';
 
 export type TextComponentProps = {
@@ -15,4 +18,7 @@ export type TextComponentProps = {
   colorMode?: ColorMode;
   themeColor?: ThemeColor;
   classOverride?: string;
+  leading?: Leading;
+  weight?: FontWeight;
+  style?: FontStyle;
 };

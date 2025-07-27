@@ -218,5 +218,28 @@ export const styleGuide: StyleGuide = {
       light: blackTextLight,
     },
   },
+  fontWeight: {
+    thin: 'font-thin',
+    extralight: 'font-extralight',
+    light: 'font-light',
+    normal: 'font-normal',
+    medium: 'font-medium',
+    semibold: 'font-semibold',
+    bold: 'font-bold',
+    extrabold: 'font-extrabold',
+    black: 'font-black',
+  },
+  fontStyle: {
+    normal: 'font-normal',
+    italic: 'font-italic',
+  },
+  leading: {
+    none: 'leading-none',
+    tight: 'leading-tight',
+    snug: 'leading-snug',
+    normal: 'leading-normal',
+    relaxed: 'leading-relaxed',
+    loose: 'leading-loose',
+  },
   componentStyles,
 };

@@ -20,6 +20,16 @@ export type ColorMode =
 export type TextSize = 'xs' | 'sm' | 'md' | 'lg' | 'xl' | '2xl';
 export type TextAlign = 'left' | 'center' | 'right' | 'justify';
 export type Leading = 'none' | 'tight' | 'snug' | 'normal' | 'relaxed' | 'loose';
+export type FontWeight =
+  | 'thin'
+  | 'extralight'
+  | 'light'
+  | 'normal'
+  | 'medium'
+  | 'semibold'
+  | 'bold'
+  | 'extrabold'
+  | 'black';
 
 export type TextComponent =
   | 'p'
@@ -44,6 +54,9 @@ export type DefaultStyles = {
       size: TextSize;
       align: TextAlign;
       color: ThemeColor;
+      fontWeight: FontWeight;
+      fontStyle: FontStyle;
+      leading: Leading;
     }
   >;
 };
@@ -53,7 +66,7 @@ export type ComponentStyles = Record<
   {
     fontSize: Record<TextSize, string>;
     spacing: Record<TextSize, string>;
-    leading: Record<TextSize, string>;
+    // leading: Record<TextSize, string>;
     textAlign: Record<TextAlign, string>;
   }
 >;
@@ -62,5 +75,8 @@ export type StyleGuide = {
   defaultStyles: DefaultStyles;
   bgColor: Record<ThemeColor, Record<ColorMode, string>>;
   textColor: Record<ThemeColor, Record<ColorMode, string>>;
+  fontWeight: Record<FontWeight, string>;
+  fontStyle: Record<FontStyle, string>;
+  leading: Record<Leading, string>;
   componentStyles: ComponentStyles;
 };
