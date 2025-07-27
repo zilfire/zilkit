@@ -21,7 +21,7 @@ export type TextSize = 'xs' | 'sm' | 'md' | 'lg' | 'xl' | '2xl';
 export type TextAlign = 'left' | 'center' | 'right' | 'justify';
 export type Leading = 'none' | 'tight' | 'snug' | 'normal' | 'relaxed' | 'loose';
 
-export type TextComponents =
+export type TextComponent =
   | 'p'
   | 'span'
   | 'h1'
@@ -39,7 +39,7 @@ export type DefaultStyles = {
   backgroundColor: ThemeColor;
   textColor: ThemeColor;
   componentStyles: Record<
-    TextComponents,
+    TextComponent,
     {
       size: TextSize;
       align: TextAlign;
@@ -49,7 +49,7 @@ export type DefaultStyles = {
 };
 
 export type ComponentStyles = Record<
-  TextComponents,
+  TextComponent,
   {
     fontSize: Record<TextSize, string>;
     spacing: Record<TextSize, string>;

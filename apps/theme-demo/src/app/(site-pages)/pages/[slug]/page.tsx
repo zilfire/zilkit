@@ -54,7 +54,12 @@ export default async function Page({ params }: PageProps) {
             />
           )}
         </div>
-        {faqData && <FaqBlock data={faqData} options={{ headlineTextColor: 'black' }} />}
+        {faqData && (
+          <FaqBlock
+            data={faqData}
+            options={{ headlineTextColor: 'black', sidebarRuleColor: 'secondary' }}
+          />
+        )}
       </main>
     </div>
   );

@@ -1,4 +1,5 @@
 import { P, H1, H2, H3, H4, H5, LI, OL, UL, Span } from './index';
+import { TextSize, TextAlign, ColorMode, ThemeColor } from '../../data-types/utility/styling';
 import NextLink from 'next/link';
 
 import {
@@ -9,13 +10,29 @@ import {
 } from 'next-sanity';
 
 type PortableTextOptions = {
-  size?: 'sm' | 'md' | 'lg' | 'xl';
+  size?: TextSize;
   colorScheme?: 'light' | 'dark' | 'primary' | 'secondary' | 'accent';
   normalSpan?: boolean;
+  className?: string;
+  align?: TextAlign;
+  colorMode?: ColorMode;
+  themeColor?: ThemeColor;
+  classOverride?: string; // Optional class override
   p?: {
-    colorScheme?: 'light' | 'dark' | 'primary' | 'secondary' | 'accent';
-    size?: 'sm' | 'md' | 'lg' | 'xl';
-    align?: 'left' | 'center' | 'right' | 'justify';
+    size?: TextSize;
+    align?: TextAlign;
+    className?: string;
+    colorMode?: ColorMode;
+    themeColor?: ThemeColor;
+    classOverride?: string; // Optional class override
+  };
+  span?: {
+    size?: TextSize;
+    align?: TextAlign;
+    className?: string;
+    colorMode?: ColorMode;
+    themeColor?: ThemeColor;
+    classOverride?: string; // Optional class override
   };
 };
 
@@ -25,6 +42,10 @@ export const portableTextComponents = (
   const colorScheme = options.colorScheme || 'dark';
   const size = options.size || 'md';
   const normalSpan = options.normalSpan || false;
+  const colorMode = options.colorMode || 'light';
+  const themeColor = options.themeColor || 'black';
+  const classOverride = options.classOverride;
+  const className = options.className;
 
   return {
     types: {},
@@ -79,19 +100,43 @@ export const portableTextComponents = (
     },
     block: {
       normal: (props: PortableTextComponentProps<PortableTextBlock>) => {
+        const spanSize = options.span?.size || size;
+        const spanColorMode = options.span?.colorMode || colorMode;
+        const spanAlign = options.span?.align || undefined;
+        const spanThemeColor = options.span?.themeColor || themeColor;
+        const spanClassOverride = options.span?.classOverride || classOverride;
+        const spanClassName = options.span?.className || className;
+
         if (normalSpan === true) {
           return (
-            <Span colorScheme={colorScheme} size={size}>
+            <Span
+              size={spanSize}
+              align={spanAlign}
+              themeColor={spanThemeColor}
+              colorMode={spanColorMode}
+              className={spanClassName}
+              classOverride={spanClassOverride}
+            >
               {props.children}
             </Span>
           );
         }
         const pSize = options.p?.size || size;
-        const pColorScheme = options.p?.colorScheme || colorScheme;
+        const pColorMode = options.p?.colorMode || colorMode;
         const pAlign = options.p?.align || undefined;
+        const pThemeColor = options.p?.themeColor || themeColor;
+        const pClassOverride = options.p?.classOverride || classOverride;
+        const pClassName = options.p?.className || className;
 
         return (
-          <P colorScheme={pColorScheme} size={pSize} align={pAlign}>
+          <P
+            size={pSize}
+            align={pAlign}
+            themeColor={pThemeColor}
+            colorMode={pColorMode}
+            className={pClassName}
+            classOverride={pClassOverride}
+          >
             {props.children}
           </P>
         );

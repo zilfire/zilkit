@@ -10,7 +10,6 @@ import { portableTextComponents } from '../text';
 import { PortableText } from 'next-sanity';
 import type { ThemeColor, FontStyle, ColorMode } from '../../data-types/utility/styling';
 import { P } from '../text/P';
-import { styleGuide } from '../utils/style-guide';
 
 type FaqOptions = {
   colorMode?: ColorMode;
@@ -38,13 +37,20 @@ type FAQItemProps = {
   index: number;
 };
 
+const getBorderColor = (color: ThemeColor): string => {
+  return `border-${color}-500`;
+};
+
+const getFontColor = (color: ThemeColor): string => {
+  return `text-${color}-500`;
+};
+
 export const FaqBlock: React.FC<FaqBlockProps> = ({ data, options }) => {
-  const { heading, description, faqs, colorMode } = data;
+  const { heading, description, faqs } = data;
   const { sidebarRuleColor, sidebarRule, descriptionFontStyle, headlineTextColor } = options || {};
   const sidebarRuleOn = typeof sidebarRule === 'boolean' ? sidebarRule : true;
   const italicDescription =
     descriptionFontStyle === 'italic' || typeof descriptionFontStyle === 'undefined';
-  const h2Color = styleGuide.textColor.default.default;
 
   return (
     <Section className="bg-stone-50 px-2" id="faq">
@@ -72,7 +78,7 @@ export const FaqBlock: React.FC<FaqBlockProps> = ({ data, options }) => {
                 {description}
               </p>
             )}
-            <P colorMode={'light'} themeColor={'primary'} className="">
+            <P colorMode={'light'} themeColor={'secondary'}>
               test - {description}
             </P>
           </div>
@@ -136,7 +142,7 @@ const FaqItem = ({ qa, index, options }: FAQItemProps) => {
           <div className="mt-4 ml-2">
             <PortableText
               value={qa.answer}
-              components={portableTextComponents({ normalSpan: true })}
+              components={portableTextComponents({ normalSpan: false, colorScheme: 'dark' })}
             />
           </div>
         </div>
