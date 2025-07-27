@@ -1,8 +1,13 @@
-import type { ColorMode, ThemeColor, TextAlign, TextSize } from '../../utility/styling';
-import type { JSX } from 'react';
+import type {
+  ColorMode,
+  ThemeColor,
+  TextAlign,
+  TextSize,
+  TextComponent,
+} from '../../utility/styling';
 
 export type TextComponentProps = {
-  as?: keyof JSX.IntrinsicElements; // Allows specifying the HTML element type
+  as?: TextComponent;
   className?: string;
   children?: React.ReactNode;
   size?: TextSize;

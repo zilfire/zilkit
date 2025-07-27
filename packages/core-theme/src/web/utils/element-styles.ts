@@ -5,11 +5,12 @@ const textSmall = 'text-sm md:text-base';
 const textBase = 'text-base';
 const textLarge = 'text-lg md:text-xl';
 const textXL = 'text-xl md:text-2xl';
-const textXL2 = 'text-2xl md:text-3xl lg:text-4xl';
-const textXL3 = 'text-3xl md:text-4xl lg:text-5xl';
-const textXL4 = 'text-4xl md:text-5xl lg:text-6xl';
-const textXL5 = 'text-5xl md:text-6xl lg:text-7xl';
-const textXL6 = 'text-6xl md:text-7xl lg:text-8xl';
+const text2XL = 'text-2xl md:text-3xl lg:text-4xl';
+const text3XL = 'text-3xl md:text-4xl lg:text-5xl';
+const text4XL = 'text-4xl md:text-5xl lg:text-6xl';
+const text5XL = 'text-5xl md:text-6xl lg:text-7xl';
+const text6XL = 'text-6xl md:text-7xl lg:text-8xl';
+const text7XL = 'text-7xl md:text-8xl lg:text-9xl';
 
 export const componentStyles: ComponentStyles = {
   p: {
@@ -19,7 +20,7 @@ export const componentStyles: ComponentStyles = {
       md: textBase,
       lg: textLarge,
       xl: textXL,
-      '2xl': textXL2,
+      '2xl': text2XL,
     },
     spacing: {
       xs: 'mb-4 md:mb-6',
@@ -51,15 +52,15 @@ export const componentStyles: ComponentStyles = {
       md: textBase,
       lg: textLarge,
       xl: textXL,
-      '2xl': textXL2,
+      '2xl': text2XL,
     },
     spacing: {
-      xs: 'mb-4 md:mb-6',
-      sm: 'mb-4 md:mb-6',
-      md: 'mb-4 md:mb-6',
-      lg: 'mb-6 md:mb-8',
-      xl: 'mb-6 md:mb-8',
-      '2xl': 'mb-6 md:mb-8',
+      xs: 'mb-3',
+      sm: 'mb-3',
+      md: 'mb-3',
+      lg: 'mb-3',
+      xl: 'mb-3',
+      '2xl': 'mb-3',
     },
     leading: {
       xs: 'leading-snug md:leading-normal',
@@ -78,20 +79,20 @@ export const componentStyles: ComponentStyles = {
   },
   h1: {
     fontSize: {
-      xs: textXL,
-      sm: textXL2,
-      md: textXL3,
-      lg: textXL4,
-      xl: textXL5,
-      '2xl': textXL6,
+      xs: text2XL,
+      sm: text3XL,
+      md: text4XL,
+      lg: text5XL,
+      xl: text6XL,
+      '2xl': text7XL,
     },
     spacing: {
-      xs: 'space-x-1',
-      sm: 'space-x-2',
-      md: 'space-x-3',
-      lg: 'space-x-4',
-      xl: 'space-x-5',
-      '2xl': 'space-x-6',
+      xs: 'mb-3',
+      sm: 'mb-3',
+      md: 'mb-3',
+      lg: 'mb-3',
+      xl: 'mb-3',
+      '2xl': 'mb-3',
     },
     leading: {
       xs: 'leading-tight',
@@ -110,20 +111,20 @@ export const componentStyles: ComponentStyles = {
   },
   h2: {
     fontSize: {
-      xs: textLarge,
-      sm: textXL,
-      md: textXL2,
-      lg: textXL3,
-      xl: textXL4,
-      '2xl': textXL5,
+      xs: textXL,
+      sm: text2XL,
+      md: text3XL,
+      lg: text4XL,
+      xl: text5XL,
+      '2xl': text6XL,
     },
     spacing: {
-      xs: 'space-x-1',
-      sm: 'space-x-2',
-      md: 'space-x-3',
-      lg: 'space-x-4',
-      xl: 'space-x-5',
-      '2xl': 'space-x-6',
+      xs: 'mb-3',
+      sm: 'mb-3',
+      md: 'mb-3',
+      lg: 'mb-3',
+      xl: 'mb-3',
+      '2xl': 'mb-3',
     },
     leading: {
       xs: 'leading-tight',
@@ -142,20 +143,20 @@ export const componentStyles: ComponentStyles = {
   },
   h3: {
     fontSize: {
-      xs: textBase,
-      sm: textLarge,
-      md: textXL,
-      lg: textXL2,
-      xl: textXL3,
-      '2xl': textXL4,
+      xs: textLarge,
+      sm: textXL,
+      md: text2XL,
+      lg: text3XL,
+      xl: text4XL,
+      '2xl': text5XL,
     },
     spacing: {
-      xs: 'space-x-1',
-      sm: 'space-x-2',
-      md: 'space-x-3',
-      lg: 'space-x-4',
-      xl: 'space-x-5',
-      '2xl': 'space-x-6',
+      xs: 'mb-3',
+      sm: 'mb-3',
+      md: 'mb-3',
+      lg: 'mb-3',
+      xl: 'mb-3',
+      '2xl': 'mb-3',
     },
     leading: {
       xs: 'leading-tight',
@@ -174,20 +175,20 @@ export const componentStyles: ComponentStyles = {
   },
   h4: {
     fontSize: {
-      xs: textSmall,
-      sm: textBase,
-      md: textLarge,
-      lg: textXL,
-      xl: textXL2,
-      '2xl': textXL3,
+      xs: textBase,
+      sm: textLarge,
+      md: textXL,
+      lg: text2XL,
+      xl: text3XL,
+      '2xl': text4XL,
     },
     spacing: {
-      xs: 'space-x-1',
-      sm: 'space-x-2',
-      md: 'space-x-3',
-      lg: 'space-x-4',
-      xl: 'space-x-5',
-      '2xl': 'space-x-6',
+      xs: 'mb-3',
+      sm: 'mb-3',
+      md: 'mb-3',
+      lg: 'mb-3',
+      xl: 'mb-3',
+      '2xl': 'mb-3',
     },
     leading: {
       xs: 'leading-tight',
@@ -206,20 +207,20 @@ export const componentStyles: ComponentStyles = {
   },
   h5: {
     fontSize: {
-      xs: textSmall,
-      sm: textBase,
-      md: textLarge,
-      lg: textXL,
-      xl: textXL2,
-      '2xl': textXL3,
+      xs: textBase,
+      sm: textLarge,
+      md: textXL,
+      lg: text2XL,
+      xl: text3XL,
+      '2xl': text4XL,
     },
     spacing: {
-      xs: 'space-x-1',
-      sm: 'space-x-2',
-      md: 'space-x-3',
-      lg: 'space-x-4',
-      xl: 'space-x-5',
-      '2xl': 'space-x-6',
+      xs: 'mb-3',
+      sm: 'mb-3',
+      md: 'mb-3',
+      lg: 'mb-3',
+      xl: 'mb-3',
+      '2xl': 'mb-3',
     },
     leading: {
       xs: 'leading-tight',
@@ -238,20 +239,20 @@ export const componentStyles: ComponentStyles = {
   },
   h6: {
     fontSize: {
-      xs: textXS,
-      sm: textSmall,
-      md: textBase,
-      lg: textLarge,
-      xl: textXL,
-      '2xl': textXL2,
+      xs: textSmall,
+      sm: textBase,
+      md: textLarge,
+      lg: textXL,
+      xl: text2XL,
+      '2xl': text3XL,
     },
     spacing: {
-      xs: 'space-x-1',
-      sm: 'space-x-2',
-      md: 'space-x-3',
-      lg: 'space-x-4',
-      xl: 'space-x-5',
-      '2xl': 'space-x-6',
+      xs: 'mb-3',
+      sm: 'mb-3',
+      md: 'mb-3',
+      lg: 'mb-3',
+      xl: 'mb-3',
+      '2xl': 'mb-3',
     },
     leading: {
       xs: 'leading-tight',
@@ -275,15 +276,15 @@ export const componentStyles: ComponentStyles = {
       md: textBase,
       lg: textLarge,
       xl: textXL,
-      '2xl': textXL2,
+      '2xl': text2XL,
     },
     spacing: {
-      xs: 'space-x-1',
-      sm: 'space-x-2',
-      md: 'space-x-3',
-      lg: 'space-x-4',
-      xl: 'space-x-5',
-      '2xl': 'space-x-6',
+      xs: 'mb-3',
+      sm: 'mb-3',
+      md: 'mb-3',
+      lg: 'mb-3',
+      xl: 'mb-3',
+      '2xl': 'mb-3',
     },
     leading: {
       xs: 'leading-tight',
@@ -307,7 +308,7 @@ export const componentStyles: ComponentStyles = {
       md: textBase,
       lg: textLarge,
       xl: textXL,
-      '2xl': textXL2,
+      '2xl': text2XL,
     },
     textAlign: {
       left: 'text-left',
@@ -316,12 +317,12 @@ export const componentStyles: ComponentStyles = {
       justify: 'text-justify',
     },
     spacing: {
-      xs: 'space-x-1',
-      sm: 'space-x-2',
-      md: 'space-x-3',
-      lg: 'space-x-4',
-      xl: 'space-x-5',
-      '2xl': 'space-x-6',
+      xs: 'mb-4 md:mb-6',
+      sm: 'mb-4 md:mb-6',
+      md: 'mb-4 md:mb-6',
+      lg: 'mb-6 md:mb-8',
+      xl: 'mb-6 md:mb-8',
+      '2xl': 'mb-6 md:mb-8',
     },
     leading: {
       xs: 'leading-tight',
@@ -339,15 +340,15 @@ export const componentStyles: ComponentStyles = {
       md: textBase,
       lg: textLarge,
       xl: textXL,
-      '2xl': textXL2,
+      '2xl': text2XL,
     },
     spacing: {
-      xs: 'space-x-1',
-      sm: 'space-x-2',
-      md: 'space-x-3',
-      lg: 'space-x-4',
-      xl: 'space-x-5',
-      '2xl': 'space-x-6',
+      xs: 'mb-4 md:mb-6',
+      sm: 'mb-4 md:mb-6',
+      md: 'mb-4 md:mb-6',
+      lg: 'mb-6 md:mb-8',
+      xl: 'mb-6 md:mb-8',
+      '2xl': 'mb-6 md:mb-8',
     },
     leading: {
       xs: 'leading-tight',

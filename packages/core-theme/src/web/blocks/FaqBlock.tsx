@@ -9,7 +9,7 @@ import type { PortableTextBlock } from '@portabletext/types';
 import { portableTextComponents } from '../text';
 import { PortableText } from 'next-sanity';
 import type { ThemeColor, FontStyle, ColorMode } from '../../data-types/utility/styling';
-import { P } from '../text/P';
+import { Text } from '../text';
 
 type FaqOptions = {
   colorMode?: ColorMode;
@@ -58,13 +58,13 @@ export const FaqBlock: React.FC<FaqBlockProps> = ({ data, options }) => {
         <div className="flex flex-wrap lg:flex-nowrap gap-x-8">
           <div className="w-full lg:w-4/12 mb-8">
             {heading && (
-              <h2
-                className={`w-100 text-3xl font-bold mb-4 
-
-                )}`}
+              <Text
+                as="h2"
+                size="sm"
+                // className="w-100 text-3xl font-bold mb-4"
               >
                 {heading}
-              </h2>
+              </Text>
             )}
             {description && (
               <p
@@ -78,9 +78,6 @@ export const FaqBlock: React.FC<FaqBlockProps> = ({ data, options }) => {
                 {description}
               </p>
             )}
-            <P colorMode={'light'} themeColor={'secondary'}>
-              test - {description}
-            </P>
           </div>
           {faqs && faqs.length > 0 && (
             <div className="w-full lg:w-8/12 -mb-6 border-t">
@@ -142,7 +139,10 @@ const FaqItem = ({ qa, index, options }: FAQItemProps) => {
           <div className="mt-4 ml-2">
             <PortableText
               value={qa.answer}
-              components={portableTextComponents({ normalSpan: false, colorScheme: 'dark' })}
+              components={portableTextComponents({
+                normalSpan: true,
+                themeColor: 'neutral',
+              })}
             />
           </div>
         </div>

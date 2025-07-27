@@ -1,6 +1,13 @@
-import { P, H1, H2, H3, H4, H5, LI, OL, UL, Span } from './index';
-import { TextSize, TextAlign, ColorMode, ThemeColor } from '../../data-types/utility/styling';
+import { Text } from './';
+import {
+  TextSize,
+  TextAlign,
+  ColorMode,
+  ThemeColor,
+  TextComponent,
+} from '../../data-types/utility/styling';
 import NextLink from 'next/link';
+import clsx from 'clsx';
 
 import {
   PortableTextReactComponents,
@@ -9,43 +16,66 @@ import {
   PortableTextBlock,
 } from 'next-sanity';
 
+type ComponentOptions = {
+  size?: TextSize;
+  align?: TextAlign;
+  className?: string;
+  colorMode?: ColorMode;
+  themeColor?: ThemeColor;
+  classOverride?: string; // Optional class override
+};
+
 type PortableTextOptions = {
   size?: TextSize;
-  colorScheme?: 'light' | 'dark' | 'primary' | 'secondary' | 'accent';
   normalSpan?: boolean;
   className?: string;
   align?: TextAlign;
   colorMode?: ColorMode;
   themeColor?: ThemeColor;
   classOverride?: string; // Optional class override
-  p?: {
-    size?: TextSize;
-    align?: TextAlign;
-    className?: string;
-    colorMode?: ColorMode;
-    themeColor?: ThemeColor;
-    classOverride?: string; // Optional class override
-  };
-  span?: {
-    size?: TextSize;
-    align?: TextAlign;
-    className?: string;
-    colorMode?: ColorMode;
-    themeColor?: ThemeColor;
-    classOverride?: string; // Optional class override
-  };
+  componentOptions?: Partial<Record<TextComponent, ComponentOptions>>;
+};
+
+type RenderedTextProps = {
+  options: PortableTextOptions;
+  as: TextComponent;
+  children?: React.ReactNode;
+  renderClassName?: string;
+};
+
+const RenderedText: React.FC<RenderedTextProps> = ({ as, children, options, renderClassName }) => {
+  const size = options.size || 'md';
+  const colorMode = options.colorMode || 'light';
+  const themeColor = options.themeColor || 'black';
+  const classOverride = options.classOverride;
+  const className = options.className;
+
+  const textSize = options.componentOptions?.[as]?.size || size;
+  const textColorMode = options.componentOptions?.[as]?.colorMode || colorMode;
+  const textAlign = options.componentOptions?.[as]?.align || undefined;
+  const textThemeColor = options.componentOptions?.[as]?.themeColor || themeColor;
+  const textClassOverride = options.componentOptions?.[as]?.classOverride || classOverride;
+  const textClassName = options.componentOptions?.[as]?.className || className;
+
+  return (
+    <Text
+      as={as}
+      size={textSize}
+      align={textAlign}
+      themeColor={textThemeColor}
+      colorMode={textColorMode}
+      className={clsx(textClassName, renderClassName)}
+      classOverride={textClassOverride}
+    >
+      {children}
+    </Text>
+  );
 };
 
 export const portableTextComponents = (
   options: PortableTextOptions = {}
 ): PortableTextReactComponents => {
-  const colorScheme = options.colorScheme || 'dark';
-  const size = options.size || 'md';
   const normalSpan = options.normalSpan || false;
-  const colorMode = options.colorMode || 'light';
-  const themeColor = options.themeColor || 'black';
-  const classOverride = options.classOverride;
-  const className = options.className;
 
   return {
     types: {},
@@ -56,7 +86,7 @@ export const portableTextComponents = (
         const id = value?.id ? `#${value.id}` : '';
         const href = `${internalPath}${id}`;
 
-        console.log('internalLink props:', props);
+        // console.log('internalLink props:', props);
 
         return (
           <NextLink className="text-blue-600" href={href}>
@@ -77,121 +107,102 @@ export const portableTextComponents = (
     list: {
       bullet: (props: PortableTextComponentProps<PortableTextBlock>) => {
         return (
-          <UL colorScheme={colorScheme} size={size}>
+          <RenderedText as={'ul'} options={options}>
             {props.children}
-          </UL>
+          </RenderedText>
         );
       },
       number: (props: PortableTextComponentProps<PortableTextBlock>) => {
         return (
-          <OL colorScheme={colorScheme} size={size}>
+          <RenderedText as={'ol'} options={options}>
             {props.children}
-          </OL>
+          </RenderedText>
         );
       },
     },
     listItem: {
       bullet: (props: PortableTextComponentProps<PortableTextBlock>) => {
-        return <LI>{props.children}</LI>;
+        return (
+          <RenderedText as={'li'} options={options}>
+            {props.children}
+          </RenderedText>
+        );
       },
       number: (props: PortableTextComponentProps<PortableTextBlock>) => {
-        return <LI>{props.children}</LI>;
+        return (
+          <RenderedText as={'li'} options={options}>
+            {props.children}
+          </RenderedText>
+        );
       },
     },
     block: {
       normal: (props: PortableTextComponentProps<PortableTextBlock>) => {
-        const spanSize = options.span?.size || size;
-        const spanColorMode = options.span?.colorMode || colorMode;
-        const spanAlign = options.span?.align || undefined;
-        const spanThemeColor = options.span?.themeColor || themeColor;
-        const spanClassOverride = options.span?.classOverride || classOverride;
-        const spanClassName = options.span?.className || className;
-
         if (normalSpan === true) {
           return (
-            <Span
-              size={spanSize}
-              align={spanAlign}
-              themeColor={spanThemeColor}
-              colorMode={spanColorMode}
-              className={spanClassName}
-              classOverride={spanClassOverride}
-            >
+            <RenderedText as={'span'} options={options}>
               {props.children}
-            </Span>
+            </RenderedText>
           );
         }
-        const pSize = options.p?.size || size;
-        const pColorMode = options.p?.colorMode || colorMode;
-        const pAlign = options.p?.align || undefined;
-        const pThemeColor = options.p?.themeColor || themeColor;
-        const pClassOverride = options.p?.classOverride || classOverride;
-        const pClassName = options.p?.className || className;
 
         return (
-          <P
-            size={pSize}
-            align={pAlign}
-            themeColor={pThemeColor}
-            colorMode={pColorMode}
-            className={pClassName}
-            classOverride={pClassOverride}
-          >
+          <RenderedText as={'p'} options={options}>
             {props.children}
-          </P>
+          </RenderedText>
         );
       },
       h1: (props: PortableTextComponentProps<PortableTextBlock>) => {
         return (
-          <H1 colorScheme={colorScheme} size={size}>
+          <RenderedText as={'h1'} options={options}>
             {props.children}
-          </H1>
+          </RenderedText>
         );
       },
       h2: (props: PortableTextComponentProps<PortableTextBlock>) => {
         return (
-          <H2 colorScheme={colorScheme} size={size}>
+          <RenderedText as={'h2'} options={options}>
             {props.children}
-          </H2>
+          </RenderedText>
         );
       },
       h3: (props: PortableTextComponentProps<PortableTextBlock>) => {
         return (
-          <H3 colorScheme={colorScheme} size={size}>
+          <RenderedText as={'h3'} options={options}>
             {props.children}
-          </H3>
+          </RenderedText>
         );
       },
       h4: (props: PortableTextComponentProps<PortableTextBlock>) => {
         return (
-          <H4 colorScheme={colorScheme} size={size}>
+          <RenderedText as={'h4'} options={options}>
             {props.children}
-          </H4>
+          </RenderedText>
         );
       },
       h5: (props: PortableTextComponentProps<PortableTextBlock>) => {
         return (
-          <H5 colorScheme={colorScheme} size={size}>
+          <RenderedText as={'h5'} options={options}>
             {props.children}
-          </H5>
+          </RenderedText>
         );
       },
       blockquote: (props: PortableTextComponentProps<PortableTextBlock>) => {
         return (
-          <P
-            colorScheme={colorScheme}
-            size={size}
-            className="ml-4 border border-l-4 border-gray-300 pl-4"
+          <RenderedText
+            as={'h5'}
+            options={options}
+            renderClassName="ml-4 border border-l-4 border-gray-300 pl-4"
           >
             {props.children}
-          </P>
+          </RenderedText>
         );
       },
       indent: (props: PortableTextComponentProps<PortableTextBlock>) => {
         return (
-          <P colorScheme={colorScheme} size={size} className="ml-4">
+          <RenderedText as={'h5'} options={options} renderClassName="ml-4">
             {props.children}
-          </P>
+          </RenderedText>
         );
       },
     },
