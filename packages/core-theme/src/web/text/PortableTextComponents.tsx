@@ -5,6 +5,8 @@ import {
   ColorMode,
   ThemeColor,
   TextComponent,
+  FontStyle,
+  FontWeight,
 } from '../../data-types/utility/styling';
 import NextLink from 'next/link';
 import clsx from 'clsx';
@@ -16,6 +18,8 @@ import {
   PortableTextBlock,
 } from 'next-sanity';
 
+// @todo: Refactor to include font style (italic, normal) and weight.
+
 type ComponentOptions = {
   size?: TextSize;
   align?: TextAlign;
@@ -23,6 +27,8 @@ type ComponentOptions = {
   colorMode?: ColorMode;
   themeColor?: ThemeColor;
   classOverride?: string; // Optional class override
+  weight?: FontWeight;
+  style?: FontStyle;
 };
 
 type PortableTextOptions = {
@@ -33,6 +39,8 @@ type PortableTextOptions = {
   colorMode?: ColorMode;
   themeColor?: ThemeColor;
   classOverride?: string; // Optional class override
+  weight?: FontWeight;
+  style?: FontStyle;
   componentOptions?: Partial<Record<TextComponent, ComponentOptions>>;
 };
 
@@ -56,6 +64,8 @@ const RenderedText: React.FC<RenderedTextProps> = ({ as, children, options, rend
   const textThemeColor = options.componentOptions?.[as]?.themeColor || themeColor;
   const textClassOverride = options.componentOptions?.[as]?.classOverride || classOverride;
   const textClassName = options.componentOptions?.[as]?.className || className;
+  const textStyle = options.componentOptions?.[as]?.style || options.style;
+  const textWeight = options.componentOptions?.[as]?.weight || options.weight;
 
   return (
     <Text
@@ -66,6 +76,8 @@ const RenderedText: React.FC<RenderedTextProps> = ({ as, children, options, rend
       colorMode={textColorMode}
       className={clsx(textClassName, renderClassName)}
       classOverride={textClassOverride}
+      style={textStyle}
+      weight={textWeight}
     >
       {children}
     </Text>

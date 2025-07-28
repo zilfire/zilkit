@@ -61,6 +61,8 @@ export const FaqBlock: React.FC<FaqBlockProps> = ({ data, options }) => {
               <Text
                 as="h2"
                 size="sm"
+                weight="bold"
+                style="normal"
                 // className="w-100 text-3xl font-bold mb-4"
               >
                 {heading}
@@ -140,7 +142,6 @@ const FaqItem = ({ qa, index, options }: FAQItemProps) => {
             <PortableText
               value={qa.answer}
               components={portableTextComponents({
-                normalSpan: true,
                 themeColor: 'neutral',
               })}
             />

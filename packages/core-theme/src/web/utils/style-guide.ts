@@ -230,8 +230,8 @@ export const styleGuide: StyleGuide = {
     black: 'font-black',
   },
   fontStyle: {
-    normal: 'font-normal',
-    italic: 'font-italic',
+    normal: 'non-italic',
+    italic: 'italic',
   },
   leading: {
     none: 'leading-none',
