@@ -18,8 +18,6 @@ import {
   PortableTextBlock,
 } from 'next-sanity';
 
-// @todo: Refactor to include font style (italic, normal) and weight.
-
 type ComponentOptions = {
   size?: TextSize;
   align?: TextAlign;
