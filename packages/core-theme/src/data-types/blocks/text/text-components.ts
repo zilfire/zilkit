@@ -1,24 +1,25 @@
 import type {
   ColorMode,
-  ThemeColor,
-  TextAlign,
-  TextSize,
+  // ThemeColor,
+  // TextAlign,
+  // TextSize,
+  // FontStyle,
+  // FontWeight,
+  // Leading,
   TextComponent,
-  FontStyle,
-  FontWeight,
-  Leading,
+  TextComponentStyles,
 } from '../../utility/styling';
 
-export type TextComponentProps = {
+export type TextComponentProps = TextComponentStyles & {
   as?: TextComponent;
-  className?: string;
   children?: React.ReactNode;
-  size?: TextSize;
-  align?: TextAlign;
+  // className?: string;
+  // classOverride?: string;
+  // size?: TextSize;
+  // align?: TextAlign;
   colorMode?: ColorMode;
-  themeColor?: ThemeColor;
-  classOverride?: string;
-  leading?: Leading;
-  weight?: FontWeight;
-  style?: FontStyle;
+  // themeColor?: ThemeColor;
+  // leading?: Leading;
+  // weight?: FontWeight;
+  // style?: FontStyle;
 };

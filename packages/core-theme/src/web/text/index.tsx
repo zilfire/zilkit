@@ -18,25 +18,32 @@ export const Text: React.FC<TextComponentProps> = ({
   as: Tag = 'p',
   children,
   className,
-  size,
-  align,
+  textSize,
+  textAlign,
   colorMode,
-  themeColor,
+  textColor,
   classOverride,
   leading,
-  weight,
-  style,
+  fontWeight,
+  fontStyle,
 }) => {
-  const { textColor, fontSize, textLeading, fontStyle, fontWeight, textAlign, spacing } =
-    getComponentClasses(Tag, {
-      size,
-      align,
-      themeColor,
-      colorMode,
-      leading,
-      weight,
-      style,
-    });
+  const {
+    textColor: textColorClass,
+    fontSize: fontSizeClass,
+    textLeading: textLeadingClass,
+    fontStyle: fontStyleClass,
+    fontWeight: fontWeightClass,
+    textAlign: textAlignClass,
+    spacing: spacingClass,
+  } = getComponentClasses(Tag, {
+    size: textSize,
+    align: textAlign,
+    themeColor: textColor,
+    colorMode,
+    leading,
+    weight: fontWeight,
+    style: fontStyle,
+  });
 
   return (
     <Tag
@@ -44,13 +51,13 @@ export const Text: React.FC<TextComponentProps> = ({
         typeof classOverride !== 'undefined'
           ? classOverride
           : clsx(
-              fontSize,
-              textColor,
-              textAlign,
-              textLeading,
-              fontStyle,
-              fontWeight,
-              spacing,
+              fontSizeClass,
+              textColorClass,
+              textAlignClass,
+              textLeadingClass,
+              fontStyleClass,
+              fontWeightClass,
+              spacingClass,
               className
             )
       )}

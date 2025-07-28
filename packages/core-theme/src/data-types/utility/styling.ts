@@ -45,12 +45,14 @@ export type TextComponent =
   | 'ul';
 
 export type TextComponentStyles = {
-  textSize: TextSize;
-  textAlign: TextAlign;
-  textColor: ThemeColor;
-  fontWeight: FontWeight;
-  fontStyle: FontStyle;
-  leading: Leading;
+  textSize?: TextSize;
+  textAlign?: TextAlign;
+  textColor?: ThemeColor;
+  fontWeight?: FontWeight;
+  fontStyle?: FontStyle;
+  leading?: Leading;
+  className?: string;
+  classOverride?: string;
 };
 
 export type DefaultStyles = {
