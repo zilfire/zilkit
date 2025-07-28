@@ -124,7 +124,7 @@ export const FaqBlock: React.FC<FaqBlockProps> = ({ data, options }) => {
 
 const FaqItem = ({ qa, index, options }: FAQItemProps) => {
   const questionTextColor = options?.questionOptions?.textColor;
-  const answerTextColor = options?.answerOptions?.textColor;
+  // const answerTextColor = options?.answerOptions?.textColor;
   const plusIconColor = options?.plusIconOptions?.color;
 
   const [open, setOpen] = useState(false);
