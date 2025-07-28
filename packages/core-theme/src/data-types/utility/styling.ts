@@ -44,21 +44,20 @@ export type TextComponent =
   | 'ol'
   | 'ul';
 
+export type TextComponentStyles = {
+  textSize: TextSize;
+  textAlign: TextAlign;
+  textColor: ThemeColor;
+  fontWeight: FontWeight;
+  fontStyle: FontStyle;
+  leading: Leading;
+};
+
 export type DefaultStyles = {
   colorMode: ColorMode;
   backgroundColor: ThemeColor;
   textColor: ThemeColor;
-  componentStyles: Record<
-    TextComponent,
-    {
-      size: TextSize;
-      align: TextAlign;
-      color: ThemeColor;
-      fontWeight: FontWeight;
-      fontStyle: FontStyle;
-      leading: Leading;
-    }
-  >;
+  componentStyles: Record<TextComponent, TextComponentStyles>;
 };
 
 export type ComponentStyles = Record<

@@ -8,20 +8,44 @@ import type { FaqBlockData } from '../../data-types/blocks/faq-block';
 import type { PortableTextBlock } from '@portabletext/types';
 import { portableTextComponents } from '../text';
 import { PortableText } from 'next-sanity';
-import type { ThemeColor, FontStyle, ColorMode } from '../../data-types/utility/styling';
+import type {
+  ThemeColor,
+  // FontStyle,
+  ColorMode,
+  FontWeight,
+  // TextAlign,
+  TextSize,
+  TextComponentStyles,
+} from '../../data-types/utility/styling';
 import { Text } from '../text';
 
 type FaqOptions = {
   colorMode?: ColorMode;
-  sidebarRuleColor?: ThemeColor;
-  sidebarRule?: boolean;
-  descriptionFontStyle?: FontStyle;
-  descriptionTextColor?: ThemeColor;
-  headlineTextColor?: ThemeColor;
-  questionTextColor?: ThemeColor;
-  answerTextColor?: ThemeColor;
-  plusIconColor?: ThemeColor;
+  descriptionOptions?: TextComponentStyles & {
+    sidebarRuleColor?: ThemeColor;
+    sidebarRule?: boolean;
+  };
+  headlineOptions?: TextComponentStyles;
+  questionOptions?: TextComponentStyles;
+  answerOptions?: TextComponentStyles;
+  plusIconOptions?: {
+    color?: ThemeColor;
+    weight?: FontWeight;
+    size?: TextSize;
+  };
 };
+
+// type FaqOptions = {
+//   colorMode?: ColorMode;
+//   sidebarRuleColor?: ThemeColor;
+//   sidebarRule?: boolean;
+//   descriptionFontStyle?: FontStyle;
+//   descriptionTextColor?: ThemeColor;
+//   headlineTextColor?: ThemeColor;
+//   questionTextColor?: ThemeColor;
+//   answerTextColor?: ThemeColor;
+//   plusIconColor?: ThemeColor;
+// };
 
 type FaqBlockProps = {
   data: FaqBlockData;
@@ -47,7 +71,11 @@ const getFontColor = (color: ThemeColor): string => {
 
 export const FaqBlock: React.FC<FaqBlockProps> = ({ data, options }) => {
   const { heading, description, faqs } = data;
-  const { sidebarRuleColor, sidebarRule, descriptionFontStyle, headlineTextColor } = options || {};
+  const sidebarRuleColor = options?.descriptionOptions?.sidebarRuleColor;
+  const sidebarRule = options?.descriptionOptions?.sidebarRule;
+  const descriptionFontStyle = options?.descriptionOptions?.fontStyle;
+  const descriptionTextColor = options?.descriptionOptions?.textColor;
+  const headlineTextColor = options?.headlineOptions?.textColor;
   const sidebarRuleOn = typeof sidebarRule === 'boolean' ? sidebarRule : true;
   const italicDescription =
     descriptionFontStyle === 'italic' || typeof descriptionFontStyle === 'undefined';
@@ -95,7 +123,10 @@ export const FaqBlock: React.FC<FaqBlockProps> = ({ data, options }) => {
 };
 
 const FaqItem = ({ qa, index, options }: FAQItemProps) => {
-  const { questionTextColor, answerTextColor, plusIconColor } = options || {};
+  const questionTextColor = options?.questionOptions?.textColor;
+  const answerTextColor = options?.answerOptions?.textColor;
+  const plusIconColor = options?.plusIconOptions?.color;
+
   const [open, setOpen] = useState(false);
   const qaRef = useRef<HTMLDivElement>(null);
   const handleToggle = (): void => {
