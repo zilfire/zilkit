@@ -74,8 +74,8 @@ export const FaqBlock: React.FC<FaqBlockProps> = ({ data, options }) => {
   const sidebarRuleColor = options?.descriptionOptions?.sidebarRuleColor;
   const sidebarRule = options?.descriptionOptions?.sidebarRule;
   const descriptionFontStyle = options?.descriptionOptions?.fontStyle;
-  const descriptionTextColor = options?.descriptionOptions?.textColor;
-  const headlineTextColor = options?.headlineOptions?.textColor;
+  // const descriptionTextColor = options?.descriptionOptions?.textColor;
+  // const headlineTextColor = options?.headlineOptions?.textColor;
   const sidebarRuleOn = typeof sidebarRule === 'boolean' ? sidebarRule : true;
   const italicDescription =
     descriptionFontStyle === 'italic' || typeof descriptionFontStyle === 'undefined';
