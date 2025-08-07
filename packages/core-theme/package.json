@@ -10,6 +10,7 @@
     ".": "./dist/index.js",
     "./web/blocks": "./dist/web/blocks/index.js",
     "./web/components": "./dist/web/components/index.js",
+    "./web/text": "./dist/web/text/index.js",
     "./sanity-schema": "./dist/sanity/schema/index.js",
     "./data-types": "./dist/data-types/index.js"
   },

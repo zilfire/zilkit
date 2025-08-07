@@ -15,6 +15,7 @@ export * from './LI';
 export * from './PortableTextComponents';
 
 export const Text: React.FC<TextComponentProps> = ({
+  variant = 'p',
   as: Tag = 'p',
   children,
   className,
@@ -26,6 +27,8 @@ export const Text: React.FC<TextComponentProps> = ({
   leading,
   fontWeight,
   fontStyle,
+  border,
+  borderColor,
 }) => {
   const {
     textColor: textColorClass,
@@ -35,7 +38,9 @@ export const Text: React.FC<TextComponentProps> = ({
     fontWeight: fontWeightClass,
     textAlign: textAlignClass,
     spacing: spacingClass,
-  } = getComponentClasses(Tag, {
+    border: borderClass,
+    borderColor: borderColorClass,
+  } = getComponentClasses(variant, {
     size: textSize,
     align: textAlign,
     themeColor: textColor,
@@ -43,7 +48,10 @@ export const Text: React.FC<TextComponentProps> = ({
     leading,
     weight: fontWeight,
     style: fontStyle,
+    border,
+    borderColor,
   });
+  console.log('variant:', variant);
 
   return (
     <Tag
@@ -58,6 +66,8 @@ export const Text: React.FC<TextComponentProps> = ({
               fontStyleClass,
               fontWeightClass,
               spacingClass,
+              borderClass,
+              borderColorClass,
               className
             )
       )}

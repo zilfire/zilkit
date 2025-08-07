@@ -5,6 +5,7 @@ import {
   ColorMode,
   ThemeColor,
   TextComponent,
+  TextComponentVariant,
   FontStyle,
   FontWeight,
 } from '../../data-types/utility/styling';
@@ -44,12 +45,19 @@ type PortableTextOptions = {
 
 type RenderedTextProps = {
   options: PortableTextOptions;
-  as: TextComponent;
+  variant?: TextComponentVariant;
+  as?: TextComponent;
   children?: React.ReactNode;
   renderClassName?: string;
 };
 
-const RenderedText: React.FC<RenderedTextProps> = ({ as, children, options, renderClassName }) => {
+const RenderedText: React.FC<RenderedTextProps> = ({
+  as = 'p',
+  variant = 'p',
+  children,
+  options,
+  renderClassName,
+}) => {
   const size = options.size || 'md';
   const colorMode = options.colorMode || 'light';
   const themeColor = options.themeColor || 'black';
@@ -68,14 +76,14 @@ const RenderedText: React.FC<RenderedTextProps> = ({ as, children, options, rend
   return (
     <Text
       as={as}
-      size={textSize}
-      align={textAlign}
-      themeColor={textThemeColor}
+      textSize={textSize}
+      textAlign={textAlign}
+      textColor={textThemeColor}
       colorMode={textColorMode}
       className={clsx(textClassName, renderClassName)}
       classOverride={textClassOverride}
-      style={textStyle}
-      weight={textWeight}
+      fontStyle={textStyle}
+      fontWeight={textWeight}
     >
       {children}
     </Text>

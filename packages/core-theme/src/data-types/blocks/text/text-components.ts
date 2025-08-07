@@ -8,9 +8,11 @@ import type {
   // Leading,
   TextComponent,
   TextComponentStyles,
+  TextComponentVariant,
 } from '../../utility/styling';
 
 export type TextComponentProps = TextComponentStyles & {
+  variant?: TextComponentVariant;
   as?: TextComponent;
   children?: React.ReactNode;
   // className?: string;

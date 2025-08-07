@@ -4,6 +4,7 @@ import type {
   TextAlign,
   TextSize,
   TextComponent,
+  TextComponentVariant,
   FontStyle,
   FontWeight,
   Leading,
@@ -18,151 +19,99 @@ type DefaultStyles = {
   defaultLeading: Leading;
   defaultFontWeight?: FontWeight;
   defaultFontStyle?: FontStyle;
+  defaultBorder?: TextSize; // Optional border style
+  defaultBorderColor?: ThemeColor; // Optional border color
 };
 
-export const getDefaultStyles = (component: TextComponent): DefaultStyles => {
-  const defaultStyles: Record<TextComponent, DefaultStyles> = {
-    p: {
-      defaultSize: styleGuide.defaultStyles.componentStyles.p.size,
-      defaultTextAlign: styleGuide.defaultStyles.componentStyles.p.align,
-      defaultColor: styleGuide.defaultStyles.componentStyles.p.color,
-      defaultColorMode: styleGuide.defaultStyles.colorMode,
-      defaultLeading: styleGuide.defaultStyles.componentStyles.p.leading,
-      defaultFontWeight: styleGuide.defaultStyles.componentStyles.p.fontWeight,
-      defaultFontStyle: styleGuide.defaultStyles.componentStyles.p.fontStyle,
-    },
-    h1: {
-      defaultSize: styleGuide.defaultStyles.componentStyles.h1.size,
-      defaultTextAlign: styleGuide.defaultStyles.componentStyles.h1.align,
-      defaultColor: styleGuide.defaultStyles.componentStyles.h1.color,
-      defaultColorMode: styleGuide.defaultStyles.colorMode,
-      defaultLeading: styleGuide.defaultStyles.componentStyles.h1.leading,
-      defaultFontWeight: styleGuide.defaultStyles.componentStyles.h1.fontWeight,
-      defaultFontStyle: styleGuide.defaultStyles.componentStyles.h1.fontStyle,
-    },
-    h2: {
-      defaultSize: styleGuide.defaultStyles.componentStyles.h2.size,
-      defaultTextAlign: styleGuide.defaultStyles.componentStyles.h2.align,
-      defaultColor: styleGuide.defaultStyles.componentStyles.h2.color,
-      defaultColorMode: styleGuide.defaultStyles.colorMode,
-      defaultLeading: styleGuide.defaultStyles.componentStyles.h2.leading,
-      defaultFontWeight: styleGuide.defaultStyles.componentStyles.h2.fontWeight,
-      defaultFontStyle: styleGuide.defaultStyles.componentStyles.h2.fontStyle,
-    },
-    h3: {
-      defaultSize: styleGuide.defaultStyles.componentStyles.h3.size,
-      defaultTextAlign: styleGuide.defaultStyles.componentStyles.h3.align,
-      defaultColor: styleGuide.defaultStyles.componentStyles.h3.color,
-      defaultColorMode: styleGuide.defaultStyles.colorMode,
-      defaultLeading: styleGuide.defaultStyles.componentStyles.h3.leading,
-      defaultFontWeight: styleGuide.defaultStyles.componentStyles.h3.fontWeight,
-      defaultFontStyle: styleGuide.defaultStyles.componentStyles.h3.fontStyle,
-    },
-    h4: {
-      defaultSize: styleGuide.defaultStyles.componentStyles.h4.size,
-      defaultTextAlign: styleGuide.defaultStyles.componentStyles.h4.align,
-      defaultColor: styleGuide.defaultStyles.componentStyles.h4.color,
-      defaultColorMode: styleGuide.defaultStyles.colorMode,
-      defaultLeading: styleGuide.defaultStyles.componentStyles.h4.leading,
-      defaultFontWeight: styleGuide.defaultStyles.componentStyles.h4.fontWeight,
-      defaultFontStyle: styleGuide.defaultStyles.componentStyles.h4.fontStyle,
-    },
-    h5: {
-      defaultSize: styleGuide.defaultStyles.componentStyles.h5.size,
-      defaultTextAlign: styleGuide.defaultStyles.componentStyles.h5.align,
-      defaultColor: styleGuide.defaultStyles.componentStyles.h5.color,
-      defaultColorMode: styleGuide.defaultStyles.colorMode,
-      defaultLeading: styleGuide.defaultStyles.componentStyles.h5.leading,
-      defaultFontWeight: styleGuide.defaultStyles.componentStyles.h5.fontWeight,
-      defaultFontStyle: styleGuide.defaultStyles.componentStyles.h5.fontStyle,
-    },
-    h6: {
-      defaultSize: styleGuide.defaultStyles.componentStyles.h6.size,
-      defaultTextAlign: styleGuide.defaultStyles.componentStyles.h6.align,
-      defaultColor: styleGuide.defaultStyles.componentStyles.h6.color,
-      defaultColorMode: styleGuide.defaultStyles.colorMode,
-      defaultLeading: styleGuide.defaultStyles.componentStyles.h6.leading,
-      defaultFontWeight: styleGuide.defaultStyles.componentStyles.h6.fontWeight,
-      defaultFontStyle: styleGuide.defaultStyles.componentStyles.h6.fontStyle,
-    },
-    span: {
-      defaultSize: styleGuide.defaultStyles.componentStyles.span.size,
-      defaultTextAlign: styleGuide.defaultStyles.componentStyles.span.align,
-      defaultColor: styleGuide.defaultStyles.componentStyles.span.color,
-      defaultColorMode: styleGuide.defaultStyles.colorMode,
-      defaultLeading: styleGuide.defaultStyles.componentStyles.span.leading,
-      defaultFontWeight: styleGuide.defaultStyles.componentStyles.span.fontWeight,
-      defaultFontStyle: styleGuide.defaultStyles.componentStyles.span.fontStyle,
-    },
-    li: {
-      defaultSize: styleGuide.defaultStyles.componentStyles.li.size,
-      defaultTextAlign: styleGuide.defaultStyles.componentStyles.li.align,
-      defaultColor: styleGuide.defaultStyles.componentStyles.li.color,
-      defaultColorMode: styleGuide.defaultStyles.colorMode,
-      defaultLeading: styleGuide.defaultStyles.componentStyles.li.leading,
-      defaultFontWeight: styleGuide.defaultStyles.componentStyles.li.fontWeight,
-      defaultFontStyle: styleGuide.defaultStyles.componentStyles.li.fontStyle,
-    },
-    ol: {
-      defaultSize: styleGuide.defaultStyles.componentStyles.ol.size,
-      defaultTextAlign: styleGuide.defaultStyles.componentStyles.ol.align,
-      defaultColor: styleGuide.defaultStyles.componentStyles.ol.color,
-      defaultColorMode: styleGuide.defaultStyles.colorMode,
-      defaultLeading: styleGuide.defaultStyles.componentStyles.ol.leading,
-      defaultFontWeight: styleGuide.defaultStyles.componentStyles.ol.fontWeight,
-      defaultFontStyle: styleGuide.defaultStyles.componentStyles.ol.fontStyle,
-    },
-    ul: {
-      defaultSize: styleGuide.defaultStyles.componentStyles.ul.size,
-      defaultTextAlign: styleGuide.defaultStyles.componentStyles.ul.align,
-      defaultColor: styleGuide.defaultStyles.componentStyles.ul.color,
-      defaultColorMode: styleGuide.defaultStyles.colorMode,
-      defaultLeading: styleGuide.defaultStyles.componentStyles.ul.leading,
-      defaultFontWeight: styleGuide.defaultStyles.componentStyles.ul.fontWeight,
-      defaultFontStyle: styleGuide.defaultStyles.componentStyles.ul.fontStyle,
-    },
+export const getDefaultStyles = (component: TextComponentVariant): DefaultStyles => {
+  const buildDefaultStyles = (): Record<TextComponentVariant, DefaultStyles> => {
+    const components = Object.keys(
+      styleGuide.defaultStyles.componentStyles
+    ) as TextComponentVariant[];
+    const result: Record<TextComponentVariant, DefaultStyles> = {} as Record<
+      TextComponentVariant,
+      DefaultStyles
+    >;
+    for (const component of components) {
+      const compStyles = styleGuide.defaultStyles.componentStyles[component];
+      result[component] = {
+        defaultSize: compStyles.textSize,
+        defaultTextAlign: compStyles.textAlign,
+        defaultColor: compStyles.textColor,
+        defaultColorMode: styleGuide.defaultStyles.colorMode,
+        defaultLeading: compStyles.leading,
+        defaultFontWeight: compStyles.fontWeight,
+        defaultFontStyle: compStyles.fontStyle,
+        defaultBorder: compStyles.border,
+        defaultBorderColor: compStyles.borderColor,
+      };
+    }
+    return result;
   };
+
+  const defaultStyles = buildDefaultStyles();
 
   return defaultStyles[component] || defaultStyles.p; // Fallback to paragraph defaults
 };
 
 const getTextColorClass = (
-  component: TextComponent,
+  component: TextComponentVariant,
   themeColor: ThemeColor | undefined,
   colorMode: ColorMode | undefined
 ) => {
   const { defaultColor, defaultColorMode } = getDefaultStyles(component);
   return styleGuide.textColor[themeColor ?? defaultColor][colorMode ?? defaultColorMode];
 };
-const getFontSizeClass = (component: TextComponent, size: TextSize | undefined) => {
+const getFontSizeClass = (component: TextComponentVariant, size: TextSize | undefined) => {
   const defaultSize = getDefaultStyles(component).defaultSize;
   return styleGuide.componentStyles[component].fontSize[size ?? defaultSize];
 };
-const getLeadingClass = (component: TextComponent, leading: Leading | undefined) => {
+const getLeadingClass = (component: TextComponentVariant, leading: Leading | undefined) => {
   const defaultLeading = getDefaultStyles(component).defaultLeading;
   return styleGuide.leading[leading ?? defaultLeading];
 };
 
-const getTextAlignClass = (component: TextComponent, align: TextAlign | undefined) => {
+const getTextAlignClass = (component: TextComponentVariant, align: TextAlign | undefined) => {
   const defaultTextAlign = getDefaultStyles(component).defaultTextAlign;
   return styleGuide.componentStyles[component].textAlign[align ?? defaultTextAlign];
 };
-const getSpacingClass = (component: TextComponent, size: TextSize | undefined) => {
+const getSpacingClass = (component: TextComponentVariant, size: TextSize | undefined) => {
   const defaultSize = getDefaultStyles(component).defaultSize;
   return styleGuide.componentStyles[component].spacing[size ?? defaultSize];
 };
-const getFontWeightClass = (component: TextComponent, fontWeight: FontWeight | undefined) => {
+const getFontWeightClass = (
+  component: TextComponentVariant,
+  fontWeight: FontWeight | undefined
+) => {
   const weight = fontWeight ?? styleGuide.defaultStyles.componentStyles[component].fontWeight;
   return typeof weight !== 'undefined' ? styleGuide.fontWeight[weight] : undefined;
 };
 
-const getFontStyleClass = (component: TextComponent, fontStyle: FontStyle | undefined) => {
+const getFontStyleClass = (component: TextComponentVariant, fontStyle: FontStyle | undefined) => {
   const style = fontStyle ?? styleGuide.defaultStyles.componentStyles[component].fontStyle;
   return typeof style !== 'undefined' ? styleGuide.fontStyle[style] : undefined;
 };
 
+const getBorderClass = (component: TextComponentVariant, size: TextSize | undefined) => {
+  const defaultBorder = getDefaultStyles(component).defaultBorder;
+  const borderKey = size ?? defaultBorder ?? 'md';
+  if (!borderKey) return '';
+
+  const borderStyles = styleGuide.componentStyles[component].border;
+  return borderStyles ? borderStyles[borderKey] ?? '' : '';
+};
+
+const getBorderColorClass = (component: TextComponentVariant, color: ThemeColor | undefined) => {
+  const defaultColor = getDefaultStyles(component).defaultBorderColor;
+  const borderColorKey = color ?? defaultColor ?? 'neutral';
+  if (!borderColorKey) return '';
+
+  const borderColorStyles = styleGuide.componentStyles[component].borderColor;
+  return borderColorStyles ? borderColorStyles[borderColorKey] ?? '' : '';
+};
+
 export const getComponentClasses = (
-  component: TextComponent,
+  component: TextComponentVariant,
   options: {
     size?: TextSize;
     align?: TextAlign;
@@ -171,6 +120,8 @@ export const getComponentClasses = (
     weight?: FontWeight;
     style?: FontStyle;
     leading?: Leading;
+    border?: TextSize;
+    borderColor?: ThemeColor;
   } = {}
 ) => {
   return {
@@ -181,5 +132,7 @@ export const getComponentClasses = (
     spacing: getSpacingClass(component, options.size),
     fontWeight: getFontWeightClass(component, options.weight),
     fontStyle: getFontStyleClass(component, options.style),
+    border: getBorderClass(component, options.border),
+    borderColor: getBorderColorClass(component, options.borderColor),
   };
 };
