@@ -16,7 +16,7 @@ export * from './PortableTextComponents';
 
 export const Text: React.FC<TextComponentProps> = ({
   variant = 'p',
-  as: Tag = 'p',
+  as,
   children,
   className,
   textSize,
@@ -51,7 +51,12 @@ export const Text: React.FC<TextComponentProps> = ({
     border,
     borderColor,
   });
-  console.log('variant:', variant);
+
+  let variantTag = undefined;
+  if (typeof variant !== 'undefined' && variant !== 'indent') {
+    variantTag = as || variant;
+  }
+  const Tag = as || variantTag || 'p';
 
   return (
     <Tag

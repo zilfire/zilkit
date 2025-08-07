@@ -28,6 +28,8 @@ type ComponentOptions = {
   classOverride?: string; // Optional class override
   weight?: FontWeight;
   style?: FontStyle;
+  border?: TextSize; // Optional border style
+  borderColor?: ThemeColor; // Optional border color
 };
 
 type PortableTextOptions = {
@@ -44,7 +46,7 @@ type PortableTextOptions = {
 };
 
 type RenderedTextProps = {
-  options: PortableTextOptions;
+  options?: PortableTextOptions;
   variant?: TextComponentVariant;
   as?: TextComponent;
   children?: React.ReactNode;
@@ -58,23 +60,26 @@ const RenderedText: React.FC<RenderedTextProps> = ({
   options,
   renderClassName,
 }) => {
-  const size = options.size || 'md';
-  const colorMode = options.colorMode || 'light';
-  const themeColor = options.themeColor || 'black';
-  const classOverride = options.classOverride;
-  const className = options.className;
+  const size = options?.size || 'md';
+  const colorMode = options?.colorMode || 'light';
+  const themeColor = options?.themeColor || 'black';
+  const classOverride = options?.classOverride;
+  const className = options?.className;
 
-  const textSize = options.componentOptions?.[as]?.size || size;
-  const textColorMode = options.componentOptions?.[as]?.colorMode || colorMode;
-  const textAlign = options.componentOptions?.[as]?.align || undefined;
-  const textThemeColor = options.componentOptions?.[as]?.themeColor || themeColor;
-  const textClassOverride = options.componentOptions?.[as]?.classOverride || classOverride;
-  const textClassName = options.componentOptions?.[as]?.className || className;
-  const textStyle = options.componentOptions?.[as]?.style || options.style;
-  const textWeight = options.componentOptions?.[as]?.weight || options.weight;
+  const textSize = options?.componentOptions?.[as]?.size || size;
+  const textColorMode = options?.componentOptions?.[as]?.colorMode || colorMode;
+  const textAlign = options?.componentOptions?.[as]?.align || undefined;
+  const textThemeColor = options?.componentOptions?.[as]?.themeColor || themeColor;
+  const textClassOverride = options?.componentOptions?.[as]?.classOverride || classOverride;
+  const textClassName = options?.componentOptions?.[as]?.className || className;
+  const textStyle = options?.componentOptions?.[as]?.style || options?.style;
+  const textWeight = options?.componentOptions?.[as]?.weight || options?.weight;
+  const textBorder = options?.componentOptions?.[as]?.border || undefined;
+  const textBorderColor = options?.componentOptions?.[as]?.borderColor || undefined;
 
   return (
     <Text
+      variant={variant}
       as={as}
       textSize={textSize}
       textAlign={textAlign}
@@ -84,6 +89,8 @@ const RenderedText: React.FC<RenderedTextProps> = ({
       classOverride={textClassOverride}
       fontStyle={textStyle}
       fontWeight={textWeight}
+      border={textBorder}
+      borderColor={textBorderColor}
     >
       {children}
     </Text>
@@ -125,14 +132,14 @@ export const portableTextComponents = (
     list: {
       bullet: (props: PortableTextComponentProps<PortableTextBlock>) => {
         return (
-          <RenderedText as={'ul'} options={options}>
+          <RenderedText variant={'ul'} options={options}>
             {props.children}
           </RenderedText>
         );
       },
       number: (props: PortableTextComponentProps<PortableTextBlock>) => {
         return (
-          <RenderedText as={'ol'} options={options}>
+          <RenderedText variant={'ol'} options={options}>
             {props.children}
           </RenderedText>
         );
@@ -141,14 +148,14 @@ export const portableTextComponents = (
     listItem: {
       bullet: (props: PortableTextComponentProps<PortableTextBlock>) => {
         return (
-          <RenderedText as={'li'} options={options}>
+          <RenderedText variant={'li'} options={options}>
             {props.children}
           </RenderedText>
         );
       },
       number: (props: PortableTextComponentProps<PortableTextBlock>) => {
         return (
-          <RenderedText as={'li'} options={options}>
+          <RenderedText variant={'li'} options={options}>
             {props.children}
           </RenderedText>
         );
@@ -158,49 +165,49 @@ export const portableTextComponents = (
       normal: (props: PortableTextComponentProps<PortableTextBlock>) => {
         if (normalSpan === true) {
           return (
-            <RenderedText as={'span'} options={options}>
+            <RenderedText variant={'span'} options={options}>
               {props.children}
             </RenderedText>
           );
         }
 
         return (
-          <RenderedText as={'p'} options={options}>
+          <RenderedText variant={'p'} options={options}>
             {props.children}
           </RenderedText>
         );
       },
       h1: (props: PortableTextComponentProps<PortableTextBlock>) => {
         return (
-          <RenderedText as={'h1'} options={options}>
+          <RenderedText variant={'h1'} options={options}>
             {props.children}
           </RenderedText>
         );
       },
       h2: (props: PortableTextComponentProps<PortableTextBlock>) => {
         return (
-          <RenderedText as={'h2'} options={options}>
+          <RenderedText variant={'h2'} options={options}>
             {props.children}
           </RenderedText>
         );
       },
       h3: (props: PortableTextComponentProps<PortableTextBlock>) => {
         return (
-          <RenderedText as={'h3'} options={options}>
+          <RenderedText variant={'h3'} options={options}>
             {props.children}
           </RenderedText>
         );
       },
       h4: (props: PortableTextComponentProps<PortableTextBlock>) => {
         return (
-          <RenderedText as={'h4'} options={options}>
+          <RenderedText variant={'h4'} options={options}>
             {props.children}
           </RenderedText>
         );
       },
       h5: (props: PortableTextComponentProps<PortableTextBlock>) => {
         return (
-          <RenderedText as={'h5'} options={options}>
+          <RenderedText variant={'h5'} options={options}>
             {props.children}
           </RenderedText>
         );
@@ -208,7 +215,7 @@ export const portableTextComponents = (
       blockquote: (props: PortableTextComponentProps<PortableTextBlock>) => {
         return (
           <RenderedText
-            as={'h5'}
+            variant={'h5'}
             options={options}
             renderClassName="ml-4 border border-l-4 border-gray-300 pl-4"
           >
@@ -218,7 +225,7 @@ export const portableTextComponents = (
       },
       indent: (props: PortableTextComponentProps<PortableTextBlock>) => {
         return (
-          <RenderedText as={'h5'} options={options} renderClassName="ml-4">
+          <RenderedText variant={'h5'} options={options} renderClassName="ml-4">
             {props.children}
           </RenderedText>
         );
