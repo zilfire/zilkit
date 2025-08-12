@@ -1,24 +1,23 @@
-import { VisualEditing } from "next-sanity";
-import { draftMode } from "next/headers";
-import { DisableDraftMode } from "@/components/DisableDraftMode";
-import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
-import "../globals.css";
+import { VisualEditing } from 'next-sanity';
+import { draftMode } from 'next/headers';
+import { DisableDraftMode } from '@/components/DisableDraftMode';
+import type { Metadata } from 'next';
+import { Geist, Geist_Mono } from 'next/font/google';
+import '../globals.css';
 
 const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
+  variable: '--font-geist-sans',
+  subsets: ['latin'],
 });
 
 const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
+  variable: '--font-geist-mono',
+  subsets: ['latin'],
 });
 
 export const metadata: Metadata = {
-  title: "Theme Demo",
-  description:
-    "A Next.js application with TypeScript, TailwindCSS, and Sanity CMS",
+  title: 'Theme Demo',
+  description: 'A Next.js application with TypeScript, TailwindCSS, and Sanity CMS',
 };
 
 export default async function RootLayout({

@@ -13,16 +13,17 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        primary: colors.cyan,
-        secondary: colors.rose,
-        accent: colors.amber,
+        primary: colors.green,
+        secondary: colors.cyan,
+        accent: colors.rose,
         'secondary-accent': colors.violet,
         neutral: colors.gray,
       },
 
       fontFamily: {
-        sans: ['Inter', 'sans-serif'],
+        sans: ['var(--font-geist-sans)', 'sans-serif'],
         serif: ['Merriweather', 'serif'],
+        mono: ['var(--font-geist-mono)', 'sans-serif'],
       },
       boxShadow: {
         'outline-primary': '0 0 0 3px rgba(79, 70, 229, 0.5)',
