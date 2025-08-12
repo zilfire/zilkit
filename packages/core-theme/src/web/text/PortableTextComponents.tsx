@@ -214,18 +214,14 @@ export const portableTextComponents = (
       },
       blockquote: (props: PortableTextComponentProps<PortableTextBlock>) => {
         return (
-          <RenderedText
-            variant={'h5'}
-            options={options}
-            renderClassName="ml-4 border border-l-4 border-gray-300 pl-4"
-          >
+          <RenderedText variant={'blockquote'} options={options}>
             {props.children}
           </RenderedText>
         );
       },
       indent: (props: PortableTextComponentProps<PortableTextBlock>) => {
         return (
-          <RenderedText variant={'h5'} options={options} renderClassName="ml-4">
+          <RenderedText variant={'indent'} options={options}>
             {props.children}
           </RenderedText>
         );
