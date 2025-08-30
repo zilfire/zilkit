@@ -3,11 +3,13 @@ import type {
   ColorMode,
   TextAlign,
   TextSize,
-  TextComponent,
+  // TextComponent,
   TextComponentVariant,
   FontStyle,
   FontWeight,
   Leading,
+  ListType,
+  ListPosition,
 } from '../../data-types/utility/styling';
 import { styleGuide } from '../utils/style-guide';
 
@@ -21,6 +23,8 @@ type DefaultStyles = {
   defaultFontStyle?: FontStyle;
   defaultBorder?: TextSize; // Optional border style
   defaultBorderColor?: ThemeColor; // Optional border color
+  defaultListType?: ListType; // Optional list type
+  defaultListPosition?: ListPosition; // Optional list position
 };
 
 export const getDefaultStyles = (component: TextComponentVariant): DefaultStyles => {
@@ -44,6 +48,8 @@ export const getDefaultStyles = (component: TextComponentVariant): DefaultStyles
         defaultFontStyle: compStyles.fontStyle,
         defaultBorder: compStyles.border,
         defaultBorderColor: compStyles.borderColor,
+        defaultListType: compStyles.listType,
+        defaultListPosition: compStyles.listPosition,
       };
     }
     return result;
@@ -110,6 +116,21 @@ const getBorderColorClass = (component: TextComponentVariant, color: ThemeColor 
   return borderColorStyles ? borderColorStyles[borderColorKey] ?? '' : '';
 };
 
+const getListTypeClass = (component: TextComponentVariant, listType: ListType | undefined) => {
+  const defaultListType = getDefaultStyles(component).defaultListType;
+  if (!listType && !defaultListType) return undefined;
+  return listType ? listType : styleGuide.listType[defaultListType ?? 'disc'];
+};
+
+const getListPositionClass = (
+  component: TextComponentVariant,
+  listPosition: ListPosition | undefined
+) => {
+  const defaultListPosition = getDefaultStyles(component).defaultListPosition;
+  if (!listPosition && !defaultListPosition) return undefined;
+  return listPosition ? listPosition : styleGuide.listPosition[defaultListPosition ?? 'inside'];
+};
+
 export const getComponentClasses = (
   component: TextComponentVariant,
   options: {
@@ -122,6 +143,8 @@ export const getComponentClasses = (
     leading?: Leading;
     border?: TextSize;
     borderColor?: ThemeColor;
+    listType?: ListType;
+    listPosition?: ListPosition;
   } = {}
 ) => {
   return {
@@ -134,5 +157,7 @@ export const getComponentClasses = (
     fontStyle: getFontStyleClass(component, options.style),
     border: getBorderClass(component, options.border),
     borderColor: getBorderColorClass(component, options.borderColor),
+    listType: getListTypeClass(component, options.listType),
+    listPosition: getListPositionClass(component, options.listPosition),
   };
 };

@@ -44,6 +44,10 @@ export type TextComponent =
   | 'ol'
   | 'ul';
 
+export type ListType = 'none' | 'disc' | 'decimal';
+
+export type ListPosition = 'inside' | 'outside';
+
 export type TextComponentVariant = TextComponent | 'indent' | 'blockquote';
 
 export type TextComponentStyles = {
@@ -57,6 +61,8 @@ export type TextComponentStyles = {
   classOverride?: string;
   border?: TextSize; // Optional border style
   borderColor?: ThemeColor; // Optional border color
+  listType?: ListType; // Optional list type
+  listPosition?: ListPosition; // Optional list position
 };
 
 export type DefaultTextComponentStyles = {
@@ -68,6 +74,8 @@ export type DefaultTextComponentStyles = {
   leading: Leading;
   border?: TextSize; // Optional border style
   borderColor?: ThemeColor; // Optional border color
+  listType?: ListType; // Optional list type
+  listPosition?: ListPosition; // Optional list position
 };
 
 export type DefaultStyles = {
@@ -97,4 +105,6 @@ export type StyleGuide = {
   fontStyle: Record<FontStyle, string>;
   leading: Record<Leading, string>;
   componentStyles: ComponentStyles;
+  listType: Record<ListType, string>;
+  listPosition: Record<ListPosition, string>;
 };

@@ -84,6 +84,8 @@ export const defaultStyles: DefaultStyles = {
       fontWeight: 'normal',
       fontStyle: 'normal',
       leading: 'snug',
+      listPosition: 'inside',
+      listType: 'decimal',
     },
     ul: {
       textSize: 'md',
@@ -92,6 +94,8 @@ export const defaultStyles: DefaultStyles = {
       fontWeight: 'normal',
       fontStyle: 'normal',
       leading: 'snug',
+      listPosition: 'inside',
+      listType: 'disc',
     },
     indent: {
       textSize: 'md',

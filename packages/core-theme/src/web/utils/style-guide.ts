@@ -241,5 +241,14 @@ export const styleGuide: StyleGuide = {
     relaxed: 'leading-relaxed',
     loose: 'leading-loose',
   },
+  listType: {
+    none: 'list-none',
+    disc: 'list-disc',
+    decimal: 'list-decimal',
+  },
+  listPosition: {
+    inside: 'list-inside',
+    outside: 'list-outside',
+  },
   componentStyles,
 };
