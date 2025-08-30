@@ -1,5 +1,7 @@
 import type { DefaultStyles } from '../../data-types/utility/styling';
 
+const headingFont = 'font-heading';
+
 export const defaultStyles: DefaultStyles = {
   colorMode: 'light',
   backgroundColor: 'white',
@@ -26,6 +28,7 @@ export const defaultStyles: DefaultStyles = {
       textAlign: 'left',
       textColor: 'black',
       fontWeight: 'bold',
+      fontFamily: headingFont,
       fontStyle: 'normal',
       leading: 'snug',
     },
@@ -34,6 +37,7 @@ export const defaultStyles: DefaultStyles = {
       textAlign: 'left',
       textColor: 'black',
       fontWeight: 'bold',
+      fontFamily: headingFont,
       fontStyle: 'normal',
       leading: 'snug',
     },
@@ -42,6 +46,7 @@ export const defaultStyles: DefaultStyles = {
       textAlign: 'left',
       textColor: 'black',
       fontWeight: 'bold',
+      fontFamily: headingFont,
       fontStyle: 'normal',
       leading: 'snug',
     },
@@ -50,6 +55,7 @@ export const defaultStyles: DefaultStyles = {
       textAlign: 'left',
       textColor: 'black',
       fontWeight: 'semibold',
+      fontFamily: headingFont,
       fontStyle: 'normal',
       leading: 'snug',
     },
@@ -58,6 +64,7 @@ export const defaultStyles: DefaultStyles = {
       textAlign: 'left',
       textColor: 'black',
       fontWeight: 'semibold',
+      fontFamily: headingFont,
       fontStyle: 'normal',
       leading: 'snug',
     },
@@ -66,6 +73,7 @@ export const defaultStyles: DefaultStyles = {
       textAlign: 'left',
       textColor: 'black',
       fontWeight: 'semibold',
+      fontFamily: headingFont,
       fontStyle: 'normal',
       leading: 'snug',
     },

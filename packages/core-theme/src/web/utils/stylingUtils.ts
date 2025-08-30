@@ -24,6 +24,7 @@ type DefaultStyles = {
   defaultBorderColor?: ThemeColor; // Optional border color
   defaultListType?: ListType; // Optional list type
   defaultListPosition?: ListPosition; // Optional list position
+  defaultFontFamily?: string; // Optional font family
 };
 
 type StyleOptions = {
@@ -38,6 +39,7 @@ type StyleOptions = {
   borderColor?: ThemeColor;
   listType?: ListType;
   listPosition?: ListPosition;
+  fontFamily?: string;
 };
 
 // Cache
@@ -84,6 +86,7 @@ export const getDefaultStyles = (component: TextComponentVariant): DefaultStyles
         defaultBorderColor: compStyles.borderColor,
         defaultListType: compStyles.listType,
         defaultListPosition: compStyles.listPosition,
+        defaultFontFamily: compStyles.fontFamily,
       });
     } catch (error) {
       console.error(`Error creating default styles for ${component}:`, error);
@@ -178,6 +181,11 @@ const getListPositionClass = (
   return listPosition ? listPosition : styleGuide.listPosition[defaultListPosition ?? 'inside'];
 };
 
+const getFontFamilyClass = (component: TextComponentVariant, fontFamily: string | undefined) => {
+  if (fontFamily) return fontFamily;
+  return getDefaultStyles(component).defaultFontFamily;
+};
+
 export const getComponentClasses = (
   component: TextComponentVariant,
   options: StyleOptions = {}
@@ -197,6 +205,7 @@ export const getComponentClasses = (
       borderColor: getBorderColorClass(component, options.borderColor),
       listType: getListTypeClass(component, options.listType),
       listPosition: getListPositionClass(component, options.listPosition),
+      fontFamily: getFontFamilyClass(component, options.fontFamily),
     };
 
     componentClassCache.set(cacheKey, classes);

@@ -54,6 +54,7 @@ export type TextComponentStyles = {
   textSize?: TextSize;
   textAlign?: TextAlign;
   textColor?: ThemeColor;
+  fontFamily?: string;
   fontWeight?: FontWeight;
   fontStyle?: FontStyle;
   leading?: Leading;
@@ -69,6 +70,7 @@ export type DefaultTextComponentStyles = {
   textSize: TextSize;
   textAlign: TextAlign;
   textColor: ThemeColor;
+  fontFamily?: string; // Optional font family
   fontWeight: FontWeight;
   fontStyle: FontStyle;
   leading: Leading;

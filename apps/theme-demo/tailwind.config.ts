@@ -24,6 +24,8 @@ const config: Config = {
         sans: ['var(--font-geist-sans)', 'sans-serif'],
         serif: ['Merriweather', 'serif'],
         mono: ['var(--font-geist-mono)', 'sans-serif'],
+        heading: ['Merriweather', 'serif'],
+        body: ['var(--font-geist-sans)', 'sans-serif'],
       },
       boxShadow: {
         'outline-primary': '0 0 0 3px rgba(79, 70, 229, 0.5)',

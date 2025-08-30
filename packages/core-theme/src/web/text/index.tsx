@@ -31,6 +31,7 @@ export const Text: React.FC<TextComponentProps> = ({
   borderColor,
   listType,
   listPosition,
+  fontFamily,
 }) => {
   const {
     textColor: textColorClass,
@@ -44,6 +45,7 @@ export const Text: React.FC<TextComponentProps> = ({
     borderColor: borderColorClass,
     listType: listTypeClass,
     listPosition: listPositionClass,
+    fontFamily: fontFamilyClass,
   } = getComponentClasses(variant, {
     size: textSize,
     align: textAlign,
@@ -56,6 +58,7 @@ export const Text: React.FC<TextComponentProps> = ({
     borderColor,
     listType,
     listPosition,
+    fontFamily,
   });
 
   let variantTag = undefined;
@@ -81,6 +84,7 @@ export const Text: React.FC<TextComponentProps> = ({
               borderColorClass,
               listTypeClass,
               listPositionClass,
+              fontFamilyClass,
               className
             )
       )}
