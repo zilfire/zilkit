@@ -3,7 +3,6 @@ import type {
   ColorMode,
   TextAlign,
   TextSize,
-  // TextComponent,
   TextComponentVariant,
   FontStyle,
   FontWeight,
@@ -27,18 +26,53 @@ type DefaultStyles = {
   defaultListPosition?: ListPosition; // Optional list position
 };
 
+type StyleOptions = {
+  size?: TextSize;
+  align?: TextAlign;
+  themeColor?: ThemeColor;
+  colorMode?: ColorMode;
+  weight?: FontWeight;
+  style?: FontStyle;
+  leading?: Leading;
+  border?: TextSize;
+  borderColor?: ThemeColor;
+  listType?: ListType;
+  listPosition?: ListPosition;
+};
+
+// Cache
+const styleCache = new Map<TextComponentVariant, DefaultStyles>();
+const componentClassCache = new Map<string, ReturnType<typeof getComponentClasses>>();
+
+// Validation
+function isValidComponent(component: TextComponentVariant): boolean {
+  return component in styleGuide.defaultStyles.componentStyles;
+}
+
+// Cache Management
+export const clearStyleCache = (): void => {
+  styleCache.clear();
+  componentClassCache.clear();
+};
+
+export const preloadComponentStyles = (components: TextComponentVariant[]): void => {
+  components.forEach(getDefaultStyles);
+};
+
+/**
+ * Gets the default styles for a component
+ * @param component The component variant to get styles for
+ * @throws Error if component variant is invalid
+ */
 export const getDefaultStyles = (component: TextComponentVariant): DefaultStyles => {
-  const buildDefaultStyles = (): Record<TextComponentVariant, DefaultStyles> => {
-    const components = Object.keys(
-      styleGuide.defaultStyles.componentStyles
-    ) as TextComponentVariant[];
-    const result: Record<TextComponentVariant, DefaultStyles> = {} as Record<
-      TextComponentVariant,
-      DefaultStyles
-    >;
-    for (const component of components) {
+  if (!isValidComponent(component)) {
+    throw new Error(`Invalid component: ${component}`);
+  }
+
+  if (!styleCache.has(component)) {
+    try {
       const compStyles = styleGuide.defaultStyles.componentStyles[component];
-      result[component] = {
+      styleCache.set(component, {
         defaultSize: compStyles.textSize,
         defaultTextAlign: compStyles.textAlign,
         defaultColor: compStyles.textColor,
@@ -50,24 +84,37 @@ export const getDefaultStyles = (component: TextComponentVariant): DefaultStyles
         defaultBorderColor: compStyles.borderColor,
         defaultListType: compStyles.listType,
         defaultListPosition: compStyles.listPosition,
-      };
+      });
+    } catch (error) {
+      console.error(`Error creating default styles for ${component}:`, error);
+      throw new Error(`Failed to create default styles for ${component}`);
     }
-    return result;
-  };
+  }
 
-  const defaultStyles = buildDefaultStyles();
-
-  return defaultStyles[component] || defaultStyles.p; // Fallback to paragraph defaults
+  return styleCache.get(component)!;
 };
 
 const getTextColorClass = (
   component: TextComponentVariant,
   themeColor: ThemeColor | undefined,
   colorMode: ColorMode | undefined
-) => {
-  const { defaultColor, defaultColorMode } = getDefaultStyles(component);
-  return styleGuide.textColor[themeColor ?? defaultColor][colorMode ?? defaultColorMode];
+): string => {
+  try {
+    const { defaultColor, defaultColorMode } = getDefaultStyles(component);
+    const color = themeColor ?? defaultColor;
+    const mode = colorMode ?? defaultColorMode;
+
+    if (!(color in styleGuide.textColor)) {
+      throw new Error(`Invalid theme color: ${color}`);
+    }
+
+    return styleGuide.textColor[color][mode];
+  } catch (error) {
+    console.error(`Error getting text color class:`, error);
+    return styleGuide.textColor.neutral.medium; // Fallback
+  }
 };
+
 const getFontSizeClass = (component: TextComponentVariant, size: TextSize | undefined) => {
   const defaultSize = getDefaultStyles(component).defaultSize;
   return styleGuide.componentStyles[component].fontSize[size ?? defaultSize];
@@ -89,12 +136,12 @@ const getFontWeightClass = (
   component: TextComponentVariant,
   fontWeight: FontWeight | undefined
 ) => {
-  const weight = fontWeight ?? styleGuide.defaultStyles.componentStyles[component].fontWeight;
+  const weight = fontWeight ?? getDefaultStyles(component).defaultFontWeight;
   return typeof weight !== 'undefined' ? styleGuide.fontWeight[weight] : undefined;
 };
 
 const getFontStyleClass = (component: TextComponentVariant, fontStyle: FontStyle | undefined) => {
-  const style = fontStyle ?? styleGuide.defaultStyles.componentStyles[component].fontStyle;
+  const style = fontStyle ?? getDefaultStyles(component).defaultFontStyle;
   return typeof style !== 'undefined' ? styleGuide.fontStyle[style] : undefined;
 };
 
@@ -133,31 +180,27 @@ const getListPositionClass = (
 
 export const getComponentClasses = (
   component: TextComponentVariant,
-  options: {
-    size?: TextSize;
-    align?: TextAlign;
-    themeColor?: ThemeColor;
-    colorMode?: ColorMode;
-    weight?: FontWeight;
-    style?: FontStyle;
-    leading?: Leading;
-    border?: TextSize;
-    borderColor?: ThemeColor;
-    listType?: ListType;
-    listPosition?: ListPosition;
-  } = {}
-) => {
-  return {
-    textColor: getTextColorClass(component, options.themeColor, options.colorMode),
-    fontSize: getFontSizeClass(component, options.size),
-    textLeading: getLeadingClass(component, options.leading),
-    textAlign: getTextAlignClass(component, options.align),
-    spacing: getSpacingClass(component, options.size),
-    fontWeight: getFontWeightClass(component, options.weight),
-    fontStyle: getFontStyleClass(component, options.style),
-    border: getBorderClass(component, options.border),
-    borderColor: getBorderColorClass(component, options.borderColor),
-    listType: getListTypeClass(component, options.listType),
-    listPosition: getListPositionClass(component, options.listPosition),
-  };
+  options: StyleOptions = {}
+): Record<string, string | undefined> => {
+  const cacheKey = `${component}-${JSON.stringify(options)}`;
+
+  if (!componentClassCache.has(cacheKey)) {
+    const classes = {
+      textColor: getTextColorClass(component, options.themeColor, options.colorMode),
+      fontSize: getFontSizeClass(component, options.size),
+      textLeading: getLeadingClass(component, options.leading),
+      textAlign: getTextAlignClass(component, options.align),
+      spacing: getSpacingClass(component, options.size),
+      fontWeight: getFontWeightClass(component, options.weight),
+      fontStyle: getFontStyleClass(component, options.style),
+      border: getBorderClass(component, options.border),
+      borderColor: getBorderColorClass(component, options.borderColor),
+      listType: getListTypeClass(component, options.listType),
+      listPosition: getListPositionClass(component, options.listPosition),
+    };
+
+    componentClassCache.set(cacheKey, classes);
+  }
+
+  return componentClassCache.get(cacheKey)!;
 };

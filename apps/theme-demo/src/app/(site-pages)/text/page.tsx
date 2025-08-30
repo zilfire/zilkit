@@ -1,11 +1,12 @@
 import { Section, Container } from '@zilfire/core-theme/web/components';
-import { Text, P, UL, OL, LI } from '@zilfire/core-theme/web/text';
+import { Text, P, UL, OL, LI, H1 } from '@zilfire/core-theme/web/text';
 
 export default function TextPage() {
   return (
     <Section>
       <Container>
-        <h1>Text Component</h1>
+        <H1>Text Component</H1>
+        <P>Paragraph text goes here.</P>
         <Text variant="blockquote" border="md">
           This is a sample text component.
         </Text>
