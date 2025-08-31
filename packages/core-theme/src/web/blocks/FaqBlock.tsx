@@ -4,7 +4,7 @@ import clsx from 'clsx';
 import { Section } from '../components/Section';
 import { Container } from '../components/Container';
 import { FaPlus as PlusIcon, FaMinus as MinusIcon } from 'react-icons/fa6';
-import type { FaqBlockData } from '../../data-types/blocks/faq-block';
+import type { FaqBlockData } from '../../sanity/data-types/blocks/faq-block';
 import type { PortableTextBlock } from '@portabletext/types';
 import { portableTextComponents } from '../text';
 import { PortableText } from 'next-sanity';
@@ -16,7 +16,7 @@ import type {
   // TextAlign,
   TextSize,
   TextComponentStyles,
-} from '../../data-types/utility/styling';
+} from '../style/style-types';
 import { Text } from '../text';
 
 type FaqOptions = {

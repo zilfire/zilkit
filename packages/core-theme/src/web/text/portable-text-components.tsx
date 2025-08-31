@@ -1,4 +1,4 @@
-import { Text } from './';
+import { Text } from '.';
 import {
   TextSize,
   TextAlign,
@@ -8,7 +8,7 @@ import {
   TextComponentVariant,
   FontStyle,
   FontWeight,
-} from '../../data-types/utility/styling';
+} from '../style/style-types';
 import NextLink from 'next/link';
 import clsx from 'clsx';
 

@@ -1,5 +1,5 @@
 import { Text } from './index';
-import { TextComponentProps } from '../../data-types/blocks/text/text-components';
+import { TextComponentProps } from './';
 import clsx from 'clsx';
 
 export const UL: React.FC<TextComponentProps> = (props) => {

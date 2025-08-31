@@ -9,8 +9,8 @@ import type {
   Leading,
   ListType,
   ListPosition,
-} from '../../data-types/utility/styling';
-import { styleGuide } from '../utils/style-guide';
+} from '../style/style-types';
+import { styleGuide } from '../style/style-guide';
 
 type DefaultStyles = {
   defaultSize: TextSize;
@@ -20,11 +20,11 @@ type DefaultStyles = {
   defaultLeading: Leading;
   defaultFontWeight?: FontWeight;
   defaultFontStyle?: FontStyle;
-  defaultBorder?: TextSize; // Optional border style
-  defaultBorderColor?: ThemeColor; // Optional border color
-  defaultListType?: ListType; // Optional list type
-  defaultListPosition?: ListPosition; // Optional list position
-  defaultFontFamily?: string; // Optional font family
+  defaultBorder?: TextSize;
+  defaultBorderColor?: ThemeColor;
+  defaultListType?: ListType;
+  defaultListPosition?: ListPosition;
+  defaultFontFamily?: string;
 };
 
 type StyleOptions = {
@@ -44,7 +44,7 @@ type StyleOptions = {
 
 // Cache
 const styleCache = new Map<TextComponentVariant, DefaultStyles>();
-const componentClassCache = new Map<string, ReturnType<typeof getComponentClasses>>();
+const componentClassCache = new Map<string, ReturnType<typeof getTextComponentClasses>>();
 
 // Validation
 function isValidComponent(component: TextComponentVariant): boolean {
@@ -186,7 +186,7 @@ const getFontFamilyClass = (component: TextComponentVariant, fontFamily: string 
   return getDefaultStyles(component).defaultFontFamily;
 };
 
-export const getComponentClasses = (
+export const getTextComponentClasses = (
   component: TextComponentVariant,
   options: StyleOptions = {}
 ): Record<string, string | undefined> => {

@@ -1,5 +1,10 @@
-import { TextComponentProps } from '../../data-types/blocks/text/text-components';
-import { getComponentClasses } from '../utils/stylingUtils';
+import type {
+  ColorMode,
+  TextComponent,
+  TextComponentStyles,
+  TextComponentVariant,
+} from '../style/style-types';
+import { getTextComponentClasses } from './text-utils';
 import clsx from 'clsx';
 
 export * from './P';
@@ -12,7 +17,14 @@ export * from './Span';
 export * from './OL';
 export * from './UL';
 export * from './LI';
-export * from './PortableTextComponents';
+export * from './portable-text-components';
+
+export type TextComponentProps = TextComponentStyles & {
+  variant?: TextComponentVariant;
+  as?: TextComponent;
+  children?: React.ReactNode;
+  colorMode?: ColorMode;
+};
 
 export const Text: React.FC<TextComponentProps> = ({
   variant = 'p',
@@ -46,7 +58,7 @@ export const Text: React.FC<TextComponentProps> = ({
     listType: listTypeClass,
     listPosition: listPositionClass,
     fontFamily: fontFamilyClass,
-  } = getComponentClasses(variant, {
+  } = getTextComponentClasses(variant, {
     size: textSize,
     align: textAlign,
     themeColor: textColor,

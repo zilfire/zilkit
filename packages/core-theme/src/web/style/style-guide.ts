@@ -1,4 +1,4 @@
-import { StyleGuide } from '@/data-types/utility/styling';
+import { StyleGuide } from '@/web/style/style-types';
 import { componentStyles } from './element-styles';
 import { defaultStyles } from './default-styles';
 
