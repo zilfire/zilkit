@@ -1,16 +1,14 @@
-// import { getPageBySlug } from "../../../../lib/queries";
 import { client } from '@/sanity/client';
 import { draftMode } from 'next/headers';
-import PortableTextComponent from '../../../../../components/PortableText';
 import { notFound } from 'next/navigation';
 import { FaqBlock } from '@zilfire/core-theme/web/blocks';
 import { FaqBlockData } from '@zilfire/core-theme/data-types';
 import { Section } from '@zilfire/core-theme/web/components';
 
 interface PageProps {
-  params: {
+  params: Promise<{
     slug: string;
-  };
+  }>;
 }
 
 export default async function Page({ params }: PageProps) {
@@ -46,12 +44,6 @@ export default async function Page({ params }: PageProps) {
           <Section className="mb-8">
             <p>section content</p>
           </Section>
-          {data.content && (
-            <PortableTextComponent
-              value={data.content}
-              className="text-gray-700 dark:text-gray-200"
-            />
-          )}
         </div>
         {faqData && <FaqBlock data={faqData} options={{}} />}
       </main>

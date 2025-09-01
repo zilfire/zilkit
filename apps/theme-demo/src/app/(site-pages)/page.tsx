@@ -12,12 +12,13 @@ export default async function Home() {
   );
 
   console.log('homeData:', homeData);
+  const { hero: heroData } = homeData;
 
   return (
     <>
       <header className="my-12">Header</header>
       <main className="grow flex flex-col">
-        <HeroBlock />
+        {heroData && <HeroBlock data={heroData} />}
         <div className="container mx-auto px-4 py-16 flex flex-col grow">
           <h1 className="text-4xl font-bold mb-4">Welcome to the Theme Demo</h1>
           <p className="text-lg mb-8">This is a demonstration of the theme capabilities.</p>

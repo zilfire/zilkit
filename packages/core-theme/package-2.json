@@ -8,34 +8,39 @@
   ],
   "exports": {
     ".": {
-      "types": "./dist/index.d.ts",
       "import": "./dist/index.js",
-      "default": "./dist/index.js"
+      "default": "./dist/index.js",
+      "types": "./dist/types.d.ts"
     },
     "./web/blocks": {
       "types": "./dist/web/blocks/index.d.ts",
-      "import": "./dist/web/blocks/index.js"
+      "import": "./dist/web/blocks/index.js",
+      "default": "./dist/web/blocks/index.js"
     },
     "./web/components": {
       "types": "./dist/web/components/index.d.ts",
-      "import": "./dist/web/components/index.js"
+      "import": "./dist/web/components/index.js",
+      "default": "./dist/web/components/index.js"
     },
     "./web/text": {
       "types": "./dist/web/text/index.d.ts",
-      "import": "./dist/web/text/index.js"
+      "import": "./dist/web/text/index.js",
+      "default": "./dist/web/text/index.js"
     },
     "./sanity-schema": {
       "types": "./dist/sanity/schema/index.d.ts",
-      "import": "./dist/sanity/schema/index.js"
+      "import": "./dist/sanity/schema/index.js",
+      "default": "./dist/sanity/schema/index.js"
     },
     "./data-types": {
       "types": "./dist/sanity/data-types/index.d.ts",
-      "import": "./dist/sanity/data-types/index.js"
+      "import": "./dist/sanity/data-types/index.js",
+      "default": "./dist/sanity/data-types/index.js"
     }
   },
   "types": "./dist/index.d.ts",
   "main": "./dist/index.js",
-  "module": "./dist/index.js",
+  "default": "./dist/index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "tsc",
