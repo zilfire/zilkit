@@ -7,13 +7,17 @@
     "dist"
   ],
   "exports": {
-    ".": "./dist/index.js",
+    ".": {
+      "import": "./dist/index.js",
+      "types": "./dist/types.d.ts"
+    },
     "./web/blocks": "./dist/web/blocks/index.js",
     "./web/components": "./dist/web/components/index.js",
     "./web/text": "./dist/web/text/index.js",
     "./sanity-schema": "./dist/sanity/schema/index.js",
-    "./data-types": "./dist/data-types/index.js"
+    "./data-types": "./dist/sanity/data-types/index.d.ts"
   },
+  "types": "./dist/types.d.ts",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "tsc",

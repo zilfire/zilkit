@@ -1,6 +1,18 @@
 import { HeroBlock } from '@zilfire/core-theme/web/blocks';
+import { HOME_QUERY, HomeQueryData } from '@/sanity/queries';
+import { client } from '@/sanity/client';
+import { draftMode } from 'next/headers';
 
-export default function Home() {
+export default async function Home() {
+  const { isEnabled } = await draftMode();
+  const homeData: HomeQueryData = await client.fetch(
+    HOME_QUERY,
+    {},
+    { perspective: isEnabled ? 'drafts' : 'published' }
+  );
+
+  console.log('homeData:', homeData);
+
   return (
     <>
       <header className="my-12">Header</header>

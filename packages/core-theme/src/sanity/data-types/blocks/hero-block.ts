@@ -1,7 +1,7 @@
 // import { PortableTextBlock } from '@portabletext/types';
 import type { SanityImageWithAlt } from '@zilfire/next-sanity-image';
 
-export type HeroBlock = {
+export type HeroBlockData = {
   _type: 'heroBlock';
   heading?: string;
   description?: string;
