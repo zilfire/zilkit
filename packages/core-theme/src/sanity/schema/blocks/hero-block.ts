@@ -1,0 +1,24 @@
+import { defineField, defineType } from 'sanity';
+
+export const heroBlock = defineType({
+  name: 'heroBlock',
+  title: 'Hero Block',
+  type: 'object',
+  fields: [
+    defineField({
+      name: 'heading',
+      title: 'Heading',
+      type: 'string',
+    }),
+    defineField({
+      name: 'description',
+      title: 'Description',
+      type: 'text',
+    }),
+    defineField({
+      name: 'backgroundImage',
+      title: 'Background Image',
+      type: 'figure',
+    }),
+  ],
+});

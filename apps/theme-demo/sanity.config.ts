@@ -2,16 +2,17 @@ import { defineConfig } from 'sanity';
 import { structureTool } from 'sanity/structure';
 import { presentationTool, defineDocuments } from 'sanity/presentation';
 import { visionTool } from '@sanity/vision';
-import { faqBlock, blockContent, richText, figure } from '@zilfire/core-theme/sanity-schema';
+
 import { colorInput } from '@sanity/color-input';
 import navMenu from '@zilfire/sanity-nav-menu';
 import form from '@zilfire/sanity-form';
+import schema from '@/sanity/schema';
 
 // Define the actions that should be available for singleton documents
 const singletonActions = new Set(['publish', 'discardChanges', 'restore']);
 
 // Define the singleton document types
-const singletonTypes = new Set(['settings']);
+const singletonTypes = new Set(['settings', 'homePage']);
 
 export default defineConfig({
   name: 'default',
@@ -33,6 +34,10 @@ export default defineConfig({
               .title('Settings')
               .id('settings')
               .child(S.document().schemaType('settings').documentId('settings')),
+            S.listItem()
+              .title('HomePage')
+              .id('siteHome')
+              .child(S.document().schemaType('homePage').documentId('siteHome')),
             // Regular documents
             S.divider(),
             ...S.documentTypeListItems().filter(
@@ -61,188 +66,7 @@ export default defineConfig({
     navMenu(),
     form(),
   ],
-
-  schema: {
-    types: [
-      faqBlock,
-      blockContent,
-      richText,
-      figure,
-      {
-        name: 'settings',
-        title: 'Settings',
-        type: 'document',
-        fields: [
-          {
-            name: 'title',
-            title: 'Site Title',
-            type: 'string',
-            validation: (Rule) => Rule.required(),
-          },
-          {
-            name: 'description',
-            title: 'Site Description',
-            type: 'text',
-            rows: 3,
-          },
-          {
-            name: 'logo',
-            title: 'Logo',
-            type: 'image',
-            options: {
-              hotspot: true,
-            },
-          },
-        ],
-      },
-      {
-        name: 'page',
-        title: 'Page',
-        type: 'document',
-        fields: [
-          {
-            name: 'title',
-            title: 'Title',
-            type: 'string',
-            validation: (Rule) => Rule.required(),
-          },
-          {
-            name: 'slug',
-            title: 'Slug',
-            type: 'slug',
-            options: {
-              source: 'title',
-              maxLength: 96,
-            },
-            validation: (Rule) => Rule.required(),
-          },
-          {
-            name: 'content',
-            title: 'Content',
-            type: 'array',
-            of: [
-              {
-                type: 'block',
-              },
-              {
-                type: 'image',
-                options: {
-                  hotspot: true,
-                },
-              },
-            ],
-          },
-          {
-            name: 'faq',
-            title: 'FAQ',
-            type: 'faqBlock',
-          },
-        ],
-        preview: {
-          select: {
-            title: 'title',
-            slug: 'slug',
-          },
-          prepare({ title, slug }) {
-            return {
-              title,
-              subtitle: slug?.current ? `/pages/${slug.current}` : 'No slug',
-            };
-          },
-        },
-      },
-      {
-        name: 'post',
-        title: 'Blog Post',
-        type: 'document',
-        fields: [
-          {
-            name: 'title',
-            title: 'Title',
-            type: 'string',
-            validation: (Rule) => Rule.required(),
-          },
-          {
-            name: 'slug',
-            title: 'Slug',
-            type: 'slug',
-            options: {
-              source: 'title',
-              maxLength: 96,
-            },
-            validation: (Rule) => Rule.required(),
-          },
-          {
-            name: 'excerpt',
-            title: 'Excerpt',
-            type: 'text',
-            rows: 3,
-          },
-          {
-            name: 'featuredImage',
-            title: 'Featured Image',
-            type: 'image',
-            options: {
-              hotspot: true,
-            },
-          },
-          {
-            name: 'content',
-            title: 'Content',
-            type: 'array',
-            of: [
-              {
-                type: 'block',
-              },
-              {
-                type: 'image',
-                options: {
-                  hotspot: true,
-                },
-              },
-            ],
-          },
-          {
-            name: 'publishedAt',
-            title: 'Published at',
-            type: 'datetime',
-            initialValue: () => new Date().toISOString(),
-          },
-          {
-            name: 'tags',
-            title: 'Tags',
-            type: 'array',
-            of: [{ type: 'string' }],
-            options: {
-              layout: 'tags',
-            },
-          },
-        ],
-        preview: {
-          select: {
-            title: 'title',
-            media: 'featuredImage',
-            slug: 'slug',
-          },
-          prepare({ title, media, slug }) {
-            return {
-              title,
-              media,
-              subtitle: slug?.current ? `/blog/${slug.current}` : 'No slug',
-            };
-          },
-        },
-        orderings: [
-          {
-            title: 'Published at, new',
-            name: 'publishedAtDesc',
-            by: [{ field: 'publishedAt', direction: 'desc' }],
-          },
-        ],
-      },
-    ],
-  },
-
+  schema,
   document: {
     // For singleton types, filter out actions that are not applicable
     actions: (input, context) =>

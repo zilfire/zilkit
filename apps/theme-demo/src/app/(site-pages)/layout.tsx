@@ -27,7 +27,7 @@ export default async function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${geistSans.variable} ${geistMono.variable}`}>
+      <body className={`${geistSans.variable} ${geistMono.variable} min-h-screen flex flex-col`}>
         {children}
         {(await draftMode()).isEnabled && (
           <>
