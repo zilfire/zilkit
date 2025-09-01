@@ -3,7 +3,7 @@ import { client } from '@/sanity/client';
 import { draftMode } from 'next/headers';
 import PortableTextComponent from '../../../../../components/PortableText';
 import { notFound } from 'next/navigation';
-import { TestBlock, FaqBlock } from '@zilfire/core-theme/web/blocks';
+import { FaqBlock } from '@zilfire/core-theme/web/blocks';
 import { FaqBlockData } from '@zilfire/core-theme/data-types';
 import { Section } from '@zilfire/core-theme/web/components';
 
@@ -46,7 +46,6 @@ export default async function Page({ params }: PageProps) {
           <Section className="mb-8">
             <p>section content</p>
           </Section>
-          <TestBlock data={{ title: 'test block title', content: 'test block content' }} />
           {data.content && (
             <PortableTextComponent
               value={data.content}
@@ -54,12 +53,7 @@ export default async function Page({ params }: PageProps) {
             />
           )}
         </div>
-        {faqData && (
-          <FaqBlock
-            data={faqData}
-            options={{ headlineTextColor: 'black', sidebarRuleColor: 'secondary' }}
-          />
-        )}
+        {faqData && <FaqBlock data={faqData} options={{}} />}
       </main>
     </div>
   );
