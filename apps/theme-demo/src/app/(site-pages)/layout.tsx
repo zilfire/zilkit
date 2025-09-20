@@ -2,7 +2,7 @@ import { VisualEditing } from 'next-sanity';
 import { draftMode } from 'next/headers';
 import { DisableDraftMode } from '@/components/DisableDraftMode';
 import type { Metadata } from 'next';
-import { Geist, Geist_Mono } from 'next/font/google';
+import { Geist, Geist_Mono, Merriweather } from 'next/font/google';
 import '../globals.css';
 
 const geistSans = Geist({
@@ -12,6 +12,11 @@ const geistSans = Geist({
 
 const geistMono = Geist_Mono({
   variable: '--font-geist-mono',
+  subsets: ['latin'],
+});
+
+const merriweather = Merriweather({
+  variable: '--font-merriweather',
   subsets: ['latin'],
 });
 
@@ -27,7 +32,9 @@ export default async function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${geistSans.variable} ${geistMono.variable} min-h-screen flex flex-col`}>
+      <body
+        className={`${geistSans.variable} ${geistMono.variable} ${merriweather.variable} min-h-screen flex flex-col`}
+      >
         {children}
         {(await draftMode()).isEnabled && (
           <>
