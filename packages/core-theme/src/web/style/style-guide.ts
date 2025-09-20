@@ -1,6 +1,7 @@
 import { StyleGuide } from '@/web/style/style-types.js';
 import { componentStyles } from './element-styles.js';
 import { defaultStyles } from './default-styles.js';
+import { spacingStyles } from './spacing-styles.js';
 
 const primaryDarkestBg = 'bg-primary-950';
 const primaryDarkBg = 'bg-primary-900';
@@ -258,4 +259,5 @@ export const styleGuide: StyleGuide = {
     lg: 'rounded-lg',
     full: 'rounded-full',
   },
+  spacing: spacingStyles,
 };

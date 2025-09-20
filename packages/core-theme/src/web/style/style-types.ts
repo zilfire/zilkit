@@ -130,6 +130,12 @@ export type ComponentStyles =
         }
       >;
 
+export type spacingStyles = {
+  line: Record<TextSize, string>;
+  section: Record<TextSize, string>;
+  containerPadding: string;
+};
+
 export type StyleGuide = {
   defaultStyles: DefaultStyles;
   bgColor: Record<ThemeColor, Record<ColorMode, string>>;
@@ -141,4 +147,5 @@ export type StyleGuide = {
   listType: Record<ListType, string>;
   listPosition: Record<ListPosition, string>;
   rounding: Record<RoundingSize, string>;
+  spacing: spacingStyles;
 };

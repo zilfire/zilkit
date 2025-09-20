@@ -27,12 +27,14 @@ export const HeroBlock: React.FC<HeroBlockProps> = ({
         </div>
       )}
       {backgroundImage && <div className="absolute inset-0 bg-white opacity-60 z-5"></div>}
-      <div className="container mx-auto px-4 py-48 text-center z-10 relative">
+      <div className="container mx-auto px-4 py-48 text-center lg:text-left z-10 relative">
         <div className="w-1/2">
-          <H1 textSize="lg" textColor="primary" styleOverride={['textColor']}>
+          <H1 textSize="lg" textColor="primary" styleOverride={['textAlign', 'spacing']}>
             {heading}
           </H1>
-          <P textSize="lg">{description}</P>
+          <P textSize="lg" styleOverride={['textAlign', 'spacing']}>
+            {description}
+          </P>
           <div className="text-left">
             <Button
               path="/some-internal-path"
