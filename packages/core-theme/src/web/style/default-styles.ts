@@ -1,4 +1,4 @@
-import type { DefaultStyles } from './style-types';
+import type { DefaultStyles } from './style-types.js';
 
 const headingFont = 'font-heading';
 

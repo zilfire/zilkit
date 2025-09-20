@@ -1,12 +1,12 @@
 'use client';
 import { useRef, useState } from 'react';
 import clsx from 'clsx';
-import { Section } from '../components/Section';
-import { Container } from '../components/Container';
+import { Section } from '../components/Section.js';
+import { Container } from '../components/Container.js';
 import { FaPlus as PlusIcon, FaMinus as MinusIcon } from 'react-icons/fa6';
-import type { FaqBlockData } from '../../sanity/data-types/blocks/faq-block';
+import type { FaqBlockData } from '../../sanity/data-types/blocks/faq-block.js';
 import type { PortableTextBlock } from '@portabletext/types';
-import { portableTextComponents } from '../text';
+import { portableTextComponents } from '../text/index.js';
 import { PortableText } from 'next-sanity';
 import type {
   ThemeColor,
@@ -16,8 +16,8 @@ import type {
   // TextAlign,
   TextSize,
   TextComponentStyles,
-} from '../style/style-types';
-import { Text } from '../text';
+} from '../style/style-types.js';
+import { Text } from '../text/index.js';
 
 type FaqOptions = {
   colorMode?: ColorMode;

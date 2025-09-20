@@ -1,5 +1,5 @@
-import { Text } from './index';
-import { TextComponentProps } from './';
+import { Text } from './index.js';
+import type { TextComponentProps } from './index.js';
 import clsx from 'clsx';
 
 export const OL: React.FC<TextComponentProps> = (props) => {

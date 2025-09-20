@@ -1,4 +1,4 @@
-import type { ComponentStyles } from '@/web/style/style-types';
+import type { ComponentStyles } from '@/web/style/style-types.js';
 
 const textXS = 'text-xs md:text-sm';
 const textSmall = 'text-sm md:text-base';

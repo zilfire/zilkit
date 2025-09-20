@@ -1,6 +1,6 @@
-import { StyleGuide } from '@/web/style/style-types';
-import { componentStyles } from './element-styles';
-import { defaultStyles } from './default-styles';
+import { StyleGuide } from '@/web/style/style-types.js';
+import { componentStyles } from './element-styles.js';
+import { defaultStyles } from './default-styles.js';
 
 const primaryDarkestBg = 'bg-primary-950';
 const primaryDarkBg = 'bg-primary-900';

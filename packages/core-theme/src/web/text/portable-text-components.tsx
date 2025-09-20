@@ -1,4 +1,4 @@
-import { Text } from '.';
+import { Text } from './index.js';
 import {
   TextSize,
   TextAlign,
@@ -8,7 +8,9 @@ import {
   TextComponentVariant,
   FontStyle,
   FontWeight,
-} from '../style/style-types';
+} from '../style/style-types.js';
+// @ todo: fix the ts-ignore
+// @ts-ignore
 import NextLink from 'next/link';
 import clsx from 'clsx';
 

@@ -3,21 +3,21 @@ import type {
   TextComponent,
   TextComponentStyles,
   TextComponentVariant,
-} from '../style/style-types';
-import { getTextComponentClasses } from './text-utils';
+} from '../style/style-types.js';
+import { getTextComponentClasses } from './text-utils.js';
 import clsx from 'clsx';
 
-export * from './P';
-export * from './H5';
-export * from './H4';
-export * from './H3';
-export * from './H2';
-export * from './H1';
-export * from './Span';
-export * from './OL';
-export * from './UL';
-export * from './LI';
-export * from './portable-text-components';
+export * from './P.js';
+export * from './H5.js';
+export * from './H4.js';
+export * from './H3.js';
+export * from './H2.js';
+export * from './H1.js';
+export * from './Span.js';
+export * from './OL.js';
+export * from './UL.js';
+export * from './LI.js';
+export * from './portable-text-components.js';
 
 export type TextComponentProps = TextComponentStyles & {
   variant?: TextComponentVariant;

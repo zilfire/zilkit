@@ -1,2 +1,2 @@
-export * from './FaqBlock';
-export * from './HeroBlock';
+export * from './FaqBlock.js';
+export * from './HeroBlock.js';

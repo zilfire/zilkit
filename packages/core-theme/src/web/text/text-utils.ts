@@ -9,8 +9,8 @@ import type {
   Leading,
   ListType,
   ListPosition,
-} from '../style/style-types';
-import { styleGuide } from '../style/style-guide';
+} from '../style/style-types.js';
+import { styleGuide } from '../style/style-guide.js';
 
 type DefaultStyles = {
   defaultSize: TextSize;

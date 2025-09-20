@@ -1,4 +1,6 @@
-import NextLink from "next/link";
+// @todo: fix next-link
+// @ts-ignore
+import NextLink from 'next/link';
 
 type Props = {
   children: React.ReactNode;
@@ -7,11 +9,7 @@ type Props = {
   href?: string;
 };
 
-export const Link: React.FunctionComponent<Props> = ({
-  children,
-  href,
-  className,
-}) => {
+export const Link: React.FunctionComponent<Props> = ({ children, href, className }) => {
   if (href)
     return (
       <NextLink href={href} className={className}>
@@ -20,7 +18,7 @@ export const Link: React.FunctionComponent<Props> = ({
     );
 
   return (
-    <NextLink href={"#"} className={className}>
+    <NextLink href={'#'} className={className}>
       {children}
     </NextLink>
   );
