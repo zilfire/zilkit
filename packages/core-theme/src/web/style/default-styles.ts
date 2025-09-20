@@ -1,6 +1,5 @@
 import type { DefaultStyles } from './style-types.js';
-
-const headingFont = 'font-heading';
+import { headingFont } from './style-variables.js';
 
 export const defaultStyles: DefaultStyles = {
   colorMode: 'light',

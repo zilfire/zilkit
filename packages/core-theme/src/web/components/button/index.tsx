@@ -53,7 +53,7 @@ export const Button: React.FC<ButtonProps> = ({ onClick, children, path, options
           spacingClass,
           roundingClass,
           fontWeightClass,
-          'hover:brightness-90'
+          'hover:brightness-90 inline-block'
         )}
       >
         {children}

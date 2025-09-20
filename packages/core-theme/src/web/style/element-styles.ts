@@ -1,16 +1,37 @@
 import type { ComponentStyles } from '@/web/style/style-types.js';
+import clsx from 'clsx';
 
-const textXS = 'text-xs';
-const textSmall = 'text-sm';
-const textBase = 'text-base';
-const textLarge = 'text-lg md:text-xl';
-const textXL = 'text-xl md:text-2xl';
-const text2XL = 'text-2xl md:text-3xl lg:text-4xl';
-const text3XL = 'text-3xl md:text-4xl lg:text-5xl';
-const text4XL = 'text-4xl md:text-5xl lg:text-6xl';
-const text5XL = 'text-5xl md:text-6xl lg:text-7xl';
-const text6XL = 'text-6xl md:text-7xl lg:text-8xl';
-const text7XL = 'text-7xl md:text-8xl lg:text-9xl';
+import {
+  textXS,
+  textSmall,
+  textBase,
+  textLarge,
+  textXL,
+  text2XL,
+  text3XL,
+  text4XL,
+  text5XL,
+  text6XL,
+  text7XL,
+  lineSpacingXS,
+  lineSpacingSM,
+  lineSpacingMD,
+  lineSpacingLG,
+  lineSpacingXL,
+  lineSpacing2XL,
+  lineIndentXS,
+  lineIndentSM,
+  lineIndentMD,
+  lineIndentLG,
+  lineIndentXL,
+  lineIndent2XL,
+  blockquotePaddingXS,
+  blockquotePaddingSM,
+  blockquotePaddingMD,
+  blockquotePaddingLG,
+  blockquotePaddingXL,
+  blockquotePadding2XL,
+} from './style-variables.js';
 
 export const componentStyles: ComponentStyles = {
   p: {
@@ -23,12 +44,12 @@ export const componentStyles: ComponentStyles = {
       '2xl': text2XL,
     },
     spacing: {
-      xs: 'mb-4 md:mb-6',
-      sm: 'mb-4 md:mb-6',
-      md: 'mb-4 md:mb-6',
-      lg: 'mb-6 md:mb-8',
-      xl: 'mb-6 md:mb-8',
-      '2xl': 'mb-6 md:mb-8',
+      xs: lineSpacingXS,
+      sm: lineSpacingSM,
+      md: lineSpacingMD,
+      lg: lineSpacingLG,
+      xl: lineSpacingXL,
+      '2xl': lineSpacing2XL,
     },
     // leading: {
     //   xs: 'leading-snug md:leading-normal',
@@ -55,12 +76,12 @@ export const componentStyles: ComponentStyles = {
       '2xl': text2XL,
     },
     spacing: {
-      xs: 'mb-4 md:mb-6 ml-4',
-      sm: 'mb-4 md:mb-6 ml-4',
-      md: 'mb-4 md:mb-6 ml-4',
-      lg: 'mb-6 md:mb-8 ml-4',
-      xl: 'mb-6 md:mb-8 ml-4',
-      '2xl': 'mb-6 md:mb-8 ml-4',
+      xs: clsx(lineSpacingXS, lineIndentXS),
+      sm: clsx(lineSpacingSM, lineIndentSM),
+      md: clsx(lineSpacingMD, lineIndentMD),
+      lg: clsx(lineSpacingLG, lineIndentLG),
+      xl: clsx(lineSpacingXL, lineIndentXL),
+      '2xl': clsx(lineSpacing2XL, lineIndent2XL),
     },
     // leading: {
     //   xs: 'leading-snug md:leading-normal',
@@ -87,12 +108,12 @@ export const componentStyles: ComponentStyles = {
       '2xl': text2XL,
     },
     spacing: {
-      xs: 'mb-4 md:mb-6 pl-2 ml-1',
-      sm: 'mb-4 md:mb-6 pl-2 ml-1',
-      md: 'mb-4 md:mb-6 pl-3 ml-1',
-      lg: 'mb-6 md:mb-8 pl-3 ml-1',
-      xl: 'mb-6 md:mb-8 pl-3 ml-1',
-      '2xl': 'mb-6 md:mb-8 pl-3 ml-1',
+      xs: clsx(lineSpacingXS, lineIndentXS, blockquotePaddingXS),
+      sm: clsx(lineSpacingSM, lineIndentSM, blockquotePaddingSM),
+      md: clsx(lineSpacingMD, lineIndentMD, blockquotePaddingMD),
+      lg: clsx(lineSpacingLG, lineIndentLG, blockquotePaddingLG),
+      xl: clsx(lineSpacingXL, lineIndentXL, blockquotePaddingXL),
+      '2xl': clsx(lineSpacing2XL, lineIndent2XL, blockquotePadding2XL),
     },
     border: {
       xs: 'border-l-2',
@@ -128,12 +149,12 @@ export const componentStyles: ComponentStyles = {
       '2xl': text2XL,
     },
     spacing: {
-      xs: 'mb-3',
-      sm: 'mb-3',
-      md: 'mb-3',
-      lg: 'mb-3',
-      xl: 'mb-3',
-      '2xl': 'mb-3',
+      xs: '',
+      sm: '',
+      md: '',
+      lg: '',
+      xl: '',
+      '2xl': '',
     },
     // leading: {
     //   xs: 'leading-snug md:leading-normal',
