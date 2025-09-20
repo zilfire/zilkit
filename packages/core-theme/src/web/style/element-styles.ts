@@ -1,7 +1,7 @@
 import type { ComponentStyles } from '@/web/style/style-types.js';
 
-const textXS = 'text-xs md:text-sm';
-const textSmall = 'text-sm md:text-base';
+const textXS = 'text-xs';
+const textSmall = 'text-sm';
 const textBase = 'text-base';
 const textLarge = 'text-lg md:text-xl';
 const textXL = 'text-xl md:text-2xl';
@@ -150,6 +150,7 @@ export const componentStyles: ComponentStyles = {
       justify: 'text-justify',
     },
   },
+
   h1: {
     fontSize: {
       xs: text2XL,
@@ -436,6 +437,18 @@ export const componentStyles: ComponentStyles = {
       center: 'text-center',
       right: 'text-right',
       justify: 'text-justify',
+    },
+  },
+  button: {
+    fontSize: {
+      sm: textSmall,
+      md: textBase,
+      lg: textLarge,
+    },
+    spacing: {
+      sm: 'px-4 py-2',
+      md: 'px-4 py-2',
+      lg: 'px-6 py-2',
     },
   },
 };

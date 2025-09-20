@@ -18,6 +18,7 @@ export type ColorMode =
   | 'light'; //50 | 800 - Standard light backgrounds.
 
 export type TextSize = 'xs' | 'sm' | 'md' | 'lg' | 'xl' | '2xl';
+export type ButtonSize = 'sm' | 'md' | 'lg';
 export type TextAlign = 'left' | 'center' | 'right' | 'justify';
 export type Leading = 'none' | 'tight' | 'snug' | 'normal' | 'relaxed' | 'loose';
 export type FontWeight =
@@ -47,6 +48,8 @@ export type TextComponent =
 export type ListType = 'none' | 'disc' | 'decimal';
 
 export type ListPosition = 'inside' | 'outside';
+
+export type RoundingSize = 'none' | 'sm' | 'md' | 'lg' | 'full';
 
 export type TextComponentVariant = TextComponent | 'indent' | 'blockquote';
 
@@ -87,17 +90,29 @@ export type DefaultStyles = {
   componentStyles: Record<TextComponentVariant, DefaultTextComponentStyles>;
 };
 
-export type ComponentStyles = Record<
-  TextComponentVariant,
-  {
-    fontSize: Record<TextSize, string>;
-    spacing: Record<TextSize, string>;
-    // leading: Record<TextSize, string>;
-    textAlign: Record<TextAlign, string>;
-    border?: Record<TextSize, string>;
-    borderColor?: Record<ThemeColor, string>;
-  }
->;
+export type ComponentStyles =
+  | Record<
+      TextComponentVariant,
+      {
+        fontSize: Record<TextSize, string>;
+        spacing: Record<TextSize, string>;
+        // leading: Record<TextSize, string>;
+        textAlign?: Record<TextAlign, string>;
+        border?: Record<TextSize | ButtonSize, string>;
+        borderColor?: Record<ThemeColor, string>;
+      }
+    > &
+      Record<
+        'button',
+        {
+          fontSize: Record<ButtonSize, string>;
+          spacing: Record<ButtonSize, string>;
+          // leading: Record<TextSize, string>;
+          // textAlign?: Record<TextAlign, string>;
+          border?: Record<TextSize | ButtonSize, string>;
+          borderColor?: Record<ThemeColor, string>;
+        }
+      >;
 
 export type StyleGuide = {
   defaultStyles: DefaultStyles;
@@ -109,4 +124,5 @@ export type StyleGuide = {
   componentStyles: ComponentStyles;
   listType: Record<ListType, string>;
   listPosition: Record<ListPosition, string>;
+  rounding: Record<RoundingSize, string>;
 };

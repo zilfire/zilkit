@@ -251,4 +251,11 @@ export const styleGuide: StyleGuide = {
     outside: 'list-outside',
   },
   componentStyles,
+  rounding: {
+    none: 'rounded-none',
+    sm: 'rounded',
+    md: 'rounded-md',
+    lg: 'rounded-lg',
+    full: 'rounded-full',
+  },
 };

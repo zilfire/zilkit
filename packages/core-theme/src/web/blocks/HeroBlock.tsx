@@ -34,7 +34,17 @@ export const HeroBlock: React.FC<HeroBlockProps> = ({
           </H1>
           <P textSize="lg">{description}</P>
           <div className="text-left">
-            <Button path="/some-internal-path">Click me</Button>
+            <Button
+              path="/some-internal-path"
+              options={{
+                backgroundColor: 'primary',
+                textColor: 'white',
+                size: 'md',
+                rounding: 'sm',
+              }}
+            >
+              Click me
+            </Button>
           </div>
         </div>
       </div>
