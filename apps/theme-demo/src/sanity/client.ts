@@ -1,16 +1,24 @@
-import { createClient } from "next-sanity";
+import { createClient } from 'next-sanity';
+import type { SanityConfig, ThemeContext } from '@zilfire/core-theme/types';
 
-import { apiVersion, dataset, projectId, readToken } from "./env";
+import { apiVersion, dataset, projectId, readToken } from './env';
 
 export const client = createClient({
   projectId,
   dataset,
   apiVersion,
   useCdn: false, // Set to false if statically generating pages, using ISR or tag-based revalidation
-  stega: { studioUrl: "/studio" },
+  stega: { studioUrl: '/studio' },
   token: readToken,
-  perspective: "published",
+  perspective: 'published',
 });
+
+export const sanityConfig: SanityConfig = {
+  sanityProjectId: projectId,
+  sanityDataset: dataset,
+  sanityApiVersion: apiVersion,
+  sanityUseCdn: true,
+};
 
 // export const client = createClient({
 //   projectId,

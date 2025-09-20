@@ -1,19 +1,15 @@
 import type { HeroBlockData } from '../../types/sanity-data-types/blocks/index.js';
+import type { ThemeContext } from '../../types/context/index.js';
 import SanityImage from '@zilfire/next-sanity-image';
 
 type HeroBlockProps = {
   data: HeroBlockData;
-};
-
-export const sanityConfig = {
-  sanityProjectId: '1b3whd1p',
-  sanityDataset: 'production',
-  sanityApiVersion: '2025-07-16',
-  sanityUseCdn: true,
+  context: ThemeContext;
 };
 
 export const HeroBlock: React.FC<HeroBlockProps> = ({
   data: { heading, description, backgroundImage },
+  context: { sanityConfig },
 }) => {
   console.log('HeroBlock data:', { heading, description, backgroundImage });
   return (

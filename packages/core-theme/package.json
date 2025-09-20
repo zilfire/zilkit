@@ -31,6 +31,10 @@
     "./data-types": {
       "types": "./dist/types/sanity-data-types/index.d.ts",
       "import": "./dist/types/sanity-data-types/index.js"
+    },
+    "./types": {
+      "types": "./dist/types/index.d.ts",
+      "import": "./dist/types/index.js"
     }
   },
   "types": "./dist/index.d.ts",
