@@ -1,4 +1,4 @@
-import type { HeroBlockData } from '../../sanity/data-types/blocks/index.js';
+import type { HeroBlockData } from '../../types/sanity-data-types/blocks/index.js';
 import SanityImage from '@zilfire/next-sanity-image';
 
 type HeroBlockProps = {

@@ -29,8 +29,8 @@
       "import": "./dist/sanity/schema/index.js"
     },
     "./data-types": {
-      "types": "./dist/sanity/data-types/index.d.ts",
-      "import": "./dist/sanity/data-types/index.js"
+      "types": "./dist/types/sanity-data-types/index.d.ts",
+      "import": "./dist/types/sanity-data-types/index.js"
     }
   },
   "types": "./dist/index.d.ts",

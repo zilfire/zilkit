@@ -4,7 +4,7 @@ import clsx from 'clsx';
 import { Section } from '../components/Section.js';
 import { Container } from '../components/Container.js';
 import { FaPlus as PlusIcon, FaMinus as MinusIcon } from 'react-icons/fa6';
-import type { FaqBlockData } from '../../sanity/data-types/blocks/faq-block.js';
+import type { FaqBlockData } from '../../types/sanity-data-types/blocks/index.js';
 import type { PortableTextBlock } from '@portabletext/types';
 import { portableTextComponents } from '../text/index.js';
 import { PortableText } from 'next-sanity';
