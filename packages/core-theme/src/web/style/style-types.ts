@@ -53,6 +53,21 @@ export type RoundingSize = 'none' | 'sm' | 'md' | 'lg' | 'full';
 
 export type TextComponentVariant = TextComponent | 'indent' | 'blockquote';
 
+export type TextStylesForOverride =
+  | 'textSize'
+  | 'textAlign'
+  | 'textColor'
+  | 'leading'
+  | 'fontWeight'
+  | 'fontStyle'
+  | 'fontFamily'
+  | 'listType'
+  | 'listPosition'
+  | 'spacing'
+  | 'border';
+
+export type TextStylesOverride = TextStylesForOverride | TextStylesForOverride[];
+
 export type TextComponentStyles = {
   textSize?: TextSize;
   textAlign?: TextAlign;
@@ -67,6 +82,7 @@ export type TextComponentStyles = {
   borderColor?: ThemeColor; // Optional border color
   listType?: ListType; // Optional list type
   listPosition?: ListPosition; // Optional list position
+  styleOverride?: TextStylesOverride;
 };
 
 export type DefaultTextComponentStyles = {

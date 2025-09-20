@@ -9,8 +9,11 @@ import type {
   Leading,
   ListType,
   ListPosition,
+  TextStylesOverride,
+  TextStylesForOverride,
 } from '../style/style-types.js';
 import { styleGuide } from '../style/style-guide.js';
+import { isArray } from 'sanity';
 
 type DefaultStyles = {
   defaultSize: TextSize;
@@ -40,6 +43,7 @@ type StyleOptions = {
   listType?: ListType;
   listPosition?: ListPosition;
   fontFamily?: string;
+  styleOverride?: TextStylesOverride;
 };
 
 // Cache
@@ -97,12 +101,26 @@ export const getDefaultStyles = (component: TextComponentVariant): DefaultStyles
   return styleCache.get(component)!;
 };
 
-const getTextColorClass = (
-  component: TextComponentVariant,
-  themeColor: ThemeColor | undefined,
-  colorMode: ColorMode | undefined
-): string => {
+const checkOverride = (
+  stylesOverride: TextStylesOverride | undefined,
+  override: TextStylesForOverride
+): boolean => {
+  if (
+    typeof stylesOverride !== 'undefined' &&
+    (stylesOverride == override ||
+      (Array.isArray(stylesOverride) && stylesOverride.includes(override)))
+  ) {
+    return true;
+  }
+  return false;
+};
+
+const getTextColorClass = (component: TextComponentVariant, options: StyleOptions = {}): string => {
   try {
+    const { themeColor, colorMode, styleOverride } = options;
+
+    if (checkOverride(styleOverride, 'textColor')) return '';
+
     const { defaultColor, defaultColorMode } = getDefaultStyles(component);
     const color = themeColor ?? defaultColor;
     const mode = colorMode ?? defaultColorMode;
@@ -118,37 +136,67 @@ const getTextColorClass = (
   }
 };
 
-const getFontSizeClass = (component: TextComponentVariant, size: TextSize | undefined) => {
+const getFontSizeClass = (component: TextComponentVariant, options: StyleOptions = {}) => {
+  const { size, styleOverride } = options;
+
+  if (checkOverride(styleOverride, 'textSize')) return '';
+
   const defaultSize = getDefaultStyles(component).defaultSize;
   return styleGuide.componentStyles[component].fontSize[size ?? defaultSize];
 };
-const getLeadingClass = (component: TextComponentVariant, leading: Leading | undefined) => {
+
+const getLeadingClass = (component: TextComponentVariant, options: StyleOptions = {}) => {
+  const { leading, styleOverride } = options;
+
+  if (checkOverride(styleOverride, 'leading')) return '';
+
   const defaultLeading = getDefaultStyles(component).defaultLeading;
   return styleGuide.leading[leading ?? defaultLeading];
 };
 
-const getTextAlignClass = (component: TextComponentVariant, align: TextAlign | undefined) => {
+const getTextAlignClass = (component: TextComponentVariant, options: StyleOptions = {}) => {
+  const { align, styleOverride } = options;
+
+  if (checkOverride(styleOverride, 'textAlign')) return '';
+
   const defaultTextAlign = getDefaultStyles(component).defaultTextAlign;
-  return styleGuide.componentStyles[component].textAlign[align ?? defaultTextAlign];
+  const compStyles = styleGuide.componentStyles[component];
+  if (compStyles && compStyles.textAlign) {
+    return compStyles.textAlign[align ?? defaultTextAlign];
+  }
+  return '';
 };
-const getSpacingClass = (component: TextComponentVariant, size: TextSize | undefined) => {
+const getSpacingClass = (component: TextComponentVariant, options: StyleOptions = {}) => {
+  const { size, styleOverride } = options;
+
+  if (checkOverride(styleOverride, 'spacing')) return '';
+
   const defaultSize = getDefaultStyles(component).defaultSize;
   return styleGuide.componentStyles[component].spacing[size ?? defaultSize];
 };
-const getFontWeightClass = (
-  component: TextComponentVariant,
-  fontWeight: FontWeight | undefined
-) => {
+const getFontWeightClass = (component: TextComponentVariant, options: StyleOptions = {}) => {
+  const { weight: fontWeight, styleOverride } = options;
+
+  if (checkOverride(styleOverride, 'fontWeight')) return '';
+
   const weight = fontWeight ?? getDefaultStyles(component).defaultFontWeight;
   return typeof weight !== 'undefined' ? styleGuide.fontWeight[weight] : undefined;
 };
 
-const getFontStyleClass = (component: TextComponentVariant, fontStyle: FontStyle | undefined) => {
+const getFontStyleClass = (component: TextComponentVariant, options: StyleOptions = {}) => {
+  const { style: fontStyle, styleOverride } = options;
+
+  if (checkOverride(styleOverride, 'fontStyle')) return '';
+
   const style = fontStyle ?? getDefaultStyles(component).defaultFontStyle;
   return typeof style !== 'undefined' ? styleGuide.fontStyle[style] : undefined;
 };
 
-const getBorderClass = (component: TextComponentVariant, size: TextSize | undefined) => {
+const getBorderClass = (component: TextComponentVariant, options: StyleOptions = {}) => {
+  const { size, styleOverride } = options;
+
+  if (checkOverride(styleOverride, 'border')) return '';
+
   const defaultBorder = getDefaultStyles(component).defaultBorder;
   const borderKey = size ?? defaultBorder ?? 'md';
   if (!borderKey) return '';
@@ -157,33 +205,45 @@ const getBorderClass = (component: TextComponentVariant, size: TextSize | undefi
   return borderStyles ? borderStyles[borderKey] ?? '' : '';
 };
 
-const getBorderColorClass = (component: TextComponentVariant, color: ThemeColor | undefined) => {
+const getBorderColorClass = (component: TextComponentVariant, options: StyleOptions = {}) => {
+  const { borderColor, styleOverride } = options;
+
+  if (checkOverride(styleOverride, 'border')) return '';
+
   const defaultColor = getDefaultStyles(component).defaultBorderColor;
-  const borderColorKey = color ?? defaultColor ?? 'neutral';
+  const borderColorKey = borderColor ?? defaultColor ?? 'neutral';
   if (!borderColorKey) return '';
 
   const borderColorStyles = styleGuide.componentStyles[component].borderColor;
   return borderColorStyles ? borderColorStyles[borderColorKey] ?? '' : '';
 };
 
-const getListTypeClass = (component: TextComponentVariant, listType: ListType | undefined) => {
+const getListTypeClass = (component: TextComponentVariant, options: StyleOptions = {}) => {
+  const { listType, styleOverride } = options;
+
+  if (checkOverride(styleOverride, 'listType')) return '';
+
   const defaultListType = getDefaultStyles(component).defaultListType;
   if (!listType && !defaultListType) return undefined;
   return listType ? listType : styleGuide.listType[defaultListType ?? 'disc'];
 };
 
-const getListPositionClass = (
-  component: TextComponentVariant,
-  listPosition: ListPosition | undefined
-) => {
+const getListPositionClass = (component: TextComponentVariant, options: StyleOptions = {}) => {
+  const { listPosition, styleOverride } = options;
+
+  if (checkOverride(styleOverride, 'listPosition')) return '';
+
   const defaultListPosition = getDefaultStyles(component).defaultListPosition;
   if (!listPosition && !defaultListPosition) return undefined;
   return listPosition ? listPosition : styleGuide.listPosition[defaultListPosition ?? 'inside'];
 };
 
-const getFontFamilyClass = (component: TextComponentVariant, fontFamily: string | undefined) => {
-  if (fontFamily) return fontFamily;
-  return getDefaultStyles(component).defaultFontFamily;
+const getFontFamilyClass = (component: TextComponentVariant, options: StyleOptions = {}) => {
+  const { fontFamily, styleOverride } = options;
+
+  if (checkOverride(styleOverride, 'fontFamily')) return '';
+
+  return fontFamily ?? getDefaultStyles(component).defaultFontFamily;
 };
 
 export const getTextComponentClasses = (
@@ -194,18 +254,18 @@ export const getTextComponentClasses = (
 
   if (!componentClassCache.has(cacheKey)) {
     const classes = {
-      textColor: getTextColorClass(component, options.themeColor, options.colorMode),
-      fontSize: getFontSizeClass(component, options.size),
-      textLeading: getLeadingClass(component, options.leading),
-      textAlign: getTextAlignClass(component, options.align),
-      spacing: getSpacingClass(component, options.size),
-      fontWeight: getFontWeightClass(component, options.weight),
-      fontStyle: getFontStyleClass(component, options.style),
-      border: getBorderClass(component, options.border),
-      borderColor: getBorderColorClass(component, options.borderColor),
-      listType: getListTypeClass(component, options.listType),
-      listPosition: getListPositionClass(component, options.listPosition),
-      fontFamily: getFontFamilyClass(component, options.fontFamily),
+      textColor: getTextColorClass(component, options),
+      fontSize: getFontSizeClass(component, options),
+      textLeading: getLeadingClass(component, options),
+      textAlign: getTextAlignClass(component, options),
+      spacing: getSpacingClass(component, options),
+      fontWeight: getFontWeightClass(component, options),
+      fontStyle: getFontStyleClass(component, options),
+      border: getBorderClass(component, options),
+      borderColor: getBorderColorClass(component, options),
+      listType: getListTypeClass(component, options),
+      listPosition: getListPositionClass(component, options),
+      fontFamily: getFontFamilyClass(component, options),
     };
 
     componentClassCache.set(cacheKey, classes);

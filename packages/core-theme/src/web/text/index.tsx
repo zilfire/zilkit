@@ -44,6 +44,7 @@ export const Text: React.FC<TextComponentProps> = ({
   listType,
   listPosition,
   fontFamily,
+  styleOverride,
 }) => {
   const {
     textColor: textColorClass,
@@ -71,6 +72,7 @@ export const Text: React.FC<TextComponentProps> = ({
     listType,
     listPosition,
     fontFamily,
+    styleOverride,
   });
 
   let variantTag = undefined;

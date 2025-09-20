@@ -29,7 +29,7 @@ export const HeroBlock: React.FC<HeroBlockProps> = ({
       {backgroundImage && <div className="absolute inset-0 bg-white opacity-60 z-5"></div>}
       <div className="container mx-auto px-4 py-48 text-center z-10 relative">
         <div className="w-1/2">
-          <H1 textSize="lg" textColor="primary">
+          <H1 textSize="lg" textColor="primary" styleOverride={['textColor']}>
             {heading}
           </H1>
           <P textSize="lg">{description}</P>
