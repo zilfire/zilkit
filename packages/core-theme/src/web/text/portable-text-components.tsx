@@ -2,7 +2,7 @@ import { Text } from './index.js';
 import type {
   TextSize,
   TextAlign,
-  ColorShade,
+  ColorTone,
   ThemeColor,
   TextComponent,
   TextComponentVariant,
@@ -23,7 +23,7 @@ type ComponentOptions = {
   size?: TextSize;
   align?: TextAlign;
   className?: string;
-  colorShade?: ColorShade;
+  colorTone?: ColorTone;
   themeColor?: ThemeColor;
   classOverride?: string; // Optional class override
   weight?: FontWeight;
@@ -37,7 +37,7 @@ type PortableTextOptions = {
   normalSpan?: boolean;
   className?: string;
   align?: TextAlign;
-  colorShade?: ColorShade;
+  colorTone?: ColorTone;
   themeColor?: ThemeColor;
   classOverride?: string; // Optional class override
   weight?: FontWeight;
@@ -61,13 +61,13 @@ const RenderedText: React.FC<RenderedTextProps> = ({
   renderClassName,
 }) => {
   const size = options?.size || 'md';
-  const colorShade = options?.colorShade || 'light';
+  const colorTone = options?.colorTone || 'light';
   const themeColor = options?.themeColor || 'black';
   const classOverride = options?.classOverride;
   const className = options?.className;
 
   const textSize = options?.componentOptions?.[as]?.size || size;
-  const textColorShade = options?.componentOptions?.[as]?.colorShade || colorShade;
+  const textColorTone = options?.componentOptions?.[as]?.colorTone || colorTone;
   const textAlign = options?.componentOptions?.[as]?.align || undefined;
   const textThemeColor = options?.componentOptions?.[as]?.themeColor || themeColor;
   const textClassOverride = options?.componentOptions?.[as]?.classOverride || classOverride;
@@ -84,7 +84,7 @@ const RenderedText: React.FC<RenderedTextProps> = ({
       textSize={textSize}
       textAlign={textAlign}
       textColor={textThemeColor}
-      colorShade={textColorShade}
+      colorTone={textColorTone}
       className={clsx(textClassName, renderClassName)}
       classOverride={textClassOverride}
       fontStyle={textStyle}

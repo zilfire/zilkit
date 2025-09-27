@@ -9,13 +9,16 @@ export type ThemeColor =
 
 export type FontStyle = 'normal' | 'italic';
 
-export type ColorShade =
-  | 'darkest' //950 | 200 - The deepest, almost black.
-  | 'dark' //900 | 200 - Standard dark backgrounds.
-  | 'deep' //700 | 200- A deeper shade of color, used for emphasis.
-  | 'medium' //500 | 950 or 50 - Mid backbground color
-  | 'surface' //200 | 800 - Used for cards, sheets, or surfaces above the background.
-  | 'light'; //50 | 800 - Standard light backgrounds.
+// @todo: Consider renaming ColorTone for better clarity.
+// @todo: add color shade to scale
+export type ColorTone =
+  | 'darkest' //950 - The deepest, almost black.
+  | 'dark' //800 - Standard dark backgrounds.
+  | 'shade' //600 - A deeper shade of color, used for emphasis.
+  | 'medium' //500 - Mid background color
+  | 'soft' //300 - Used for cards, sheets, or surfaces above the background.
+  | 'light' //200 - Standard light backgrounds.
+  | 'lightest'; //50 - Standard light backgrounds.
 
 export type TextSize = 'xs' | 'sm' | 'md' | 'lg' | 'xl' | '2xl';
 export type ButtonSize = 'sm' | 'md' | 'lg';
@@ -89,7 +92,7 @@ export type DefaultTextComponentStyles = {
   textSize: TextSize;
   textAlign: TextAlign;
   textColor: ThemeColor;
-  colorShade: ColorShade;
+  colorTone: ColorTone;
   fontFamily?: string; // Optional font family
   fontWeight: FontWeight;
   fontStyle: FontStyle;
@@ -101,7 +104,7 @@ export type DefaultTextComponentStyles = {
 };
 
 export type DefaultStyles = {
-  colorShade: ColorShade;
+  colorTones: ColorTone;
   backgroundColor: ThemeColor;
   textColor: ThemeColor;
   componentStyles: Record<TextComponentVariant, DefaultTextComponentStyles>;
@@ -139,8 +142,8 @@ export type spacingStyles = {
 
 export type StyleGuide = {
   defaultStyles: DefaultStyles;
-  bgColor: Record<ThemeColor, Record<ColorShade, string>>;
-  textColor: Record<ThemeColor, Record<ColorShade, string>>;
+  bgColor: Record<ThemeColor, Record<ColorTone, string>>;
+  textColor: Record<ThemeColor, Record<ColorTone, string>>;
   fontWeight: Record<FontWeight, string>;
   fontStyle: Record<FontStyle, string>;
   leading: Record<Leading, string>;

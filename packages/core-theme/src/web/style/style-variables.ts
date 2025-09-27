@@ -49,112 +49,102 @@ export const containerPadding = 'px-4 md:px-6 lg:px-8';
 
 // Background color variables - Primary
 export const primaryDarkestBg = 'bg-primary-950';
-export const primaryDarkBg = 'bg-primary-900';
-export const primaryDeepBg = 'bg-primary-700';
+export const primaryDarkBg = 'bg-primary-800';
+export const primaryShadeBg = 'bg-primary-600';
 export const primaryMediumBg = 'bg-primary-500';
-export const primarySurfaceBg = 'bg-primary-200';
-export const primaryLightBg = 'bg-primary-50';
+export const primarySoftBg = 'bg-primary-300';
+export const primaryLightBg = 'bg-primary-200';
+export const primaryLightestBg = 'bg-primary-50';
 
 // Background color variables - Secondary
 export const secondaryDarkestBg = 'bg-secondary-950';
-export const secondaryDarkBg = 'bg-secondary-900';
-export const secondaryDeepBg = 'bg-secondary-700';
+export const secondaryDarkBg = 'bg-secondary-800';
+export const secondaryShadeBg = 'bg-secondary-600';
 export const secondaryMediumBg = 'bg-secondary-500';
-export const secondarySurfaceBg = 'bg-secondary-200';
-export const secondaryLightBg = 'bg-secondary-50';
+export const secondarySoftBg = 'bg-secondary-300';
+export const secondaryLightBg = 'bg-secondary-200';
+export const secondaryLightestBg = 'bg-secondary-50';
 
 // Background color variables - Accent
 export const accentDarkestBg = 'bg-accent-950';
-export const accentDarkBg = 'bg-accent-900';
-export const accentDeepBg = 'bg-accent-700';
+export const accentDarkBg = 'bg-accent-800';
+export const accentShadeBg = 'bg-accent-600';
 export const accentMediumBg = 'bg-accent-500';
-export const accentSurfaceBg = 'bg-accent-200';
-export const accentLightBg = 'bg-accent-50';
+export const accentSoftBg = 'bg-accent-300';
+export const accentLightBg = 'bg-accent-200';
+export const accentLightestBg = 'bg-accent-50';
 
 // Background color variables - Secondary Accent
 export const secondaryAccentDarkestBg = 'bg-secondary-accent-950';
-export const secondaryAccentDarkBg = 'bg-secondary-accent-900';
-export const secondaryAccentDeepBg = 'bg-secondary-accent-700';
+export const secondaryAccentDarkBg = 'bg-secondary-accent-800';
+export const secondaryAccentShadeBg = 'bg-secondary-accent-600';
 export const secondaryAccentMediumBg = 'bg-secondary-accent-500';
-export const secondaryAccentSurfaceBg = 'bg-secondary-accent-200';
-export const secondaryAccentLightBg = 'bg-secondary-accent-50';
+export const secondaryAccentSoftBg = 'bg-secondary-accent-300';
+export const secondaryAccentLightBg = 'bg-secondary-accent-200';
+export const secondaryAccentLightestBg = 'bg-secondary-accent-50';
 
 // Background color variables - Neutral
 export const neutralDarkestBg = 'bg-neutral-950';
-export const neutralDarkBg = 'bg-neutral-900';
-export const neutralDeepBg = 'bg-neutral-700';
+export const neutralDarkBg = 'bg-neutral-800';
+export const neutralShadeBg = 'bg-neutral-600';
 export const neutralMediumBg = 'bg-neutral-500';
-export const neutralSurfaceBg = 'bg-neutral-200';
-export const neutralLightBg = 'bg-neutral-50';
+export const neutralSoftBg = 'bg-neutral-300';
+export const neutralLightBg = 'bg-neutral-200';
+export const neutralLightestBg = 'bg-neutral-50';
 
 // Background color variables - White
-export const whiteDarkestBg = 'bg-white';
-export const whiteDarkBg = 'bg-white';
-export const whiteDeepBg = 'bg-white';
-export const whiteMediumBg = 'bg-white';
-export const whiteSurfaceBg = 'bg-white';
-export const whiteLightBg = 'bg-white';
+export const whiteBg = 'bg-white';
 
 // Background color variables - Black
-export const blackDarkestBg = 'bg-black';
-export const blackDarkBg = 'bg-black';
-export const blackDeepBg = 'bg-black';
-export const blackMediumBg = 'bg-black';
-export const blackSurfaceBg = 'bg-black';
-export const blackLightBg = 'bg-black';
+export const blackBg = 'bg-black';
 
 // Text color variables - Primary
-export const primaryTextDarkest = 'text-primary-900';
+export const primaryTextDarkest = 'text-primary-950';
 export const primaryTextDark = 'text-primary-800';
-export const primaryTextDeep = 'text-primary-700';
+export const primaryTextShade = 'text-primary-600';
 export const primaryTextMedium = 'text-primary-500';
-export const primaryTextSurface = 'text-primary-300';
+export const primaryTextSoft = 'text-primary-300';
 export const primaryTextLight = 'text-primary-200';
+export const primaryTextLightest = 'text-primary-50';
 
 // Text color variables - Secondary
-export const secondaryTextDarkest = 'text-secondary-900';
+export const secondaryTextDarkest = 'text-secondary-950';
 export const secondaryTextDark = 'text-secondary-800';
-export const secondaryTextDeep = 'text-secondary-700';
+export const secondaryTextShade = 'text-secondary-600';
 export const secondaryTextMedium = 'text-secondary-500';
-export const secondaryTextSurface = 'text-secondary-300';
+export const secondaryTextSoft = 'text-secondary-300';
 export const secondaryTextLight = 'text-secondary-200';
+export const secondaryTextLightest = 'text-secondary-50';
 
 // Text color variables - Accent
-export const accentTextDarkest = 'text-accent-900';
+export const accentTextDarkest = 'text-accent-950';
 export const accentTextDark = 'text-accent-800';
-export const accentTextDeep = 'text-accent-700';
+export const accentTextShade = 'text-accent-600';
 export const accentTextMedium = 'text-accent-500';
-export const accentTextSurface = 'text-accent-300';
+export const accentTextSoft = 'text-accent-300';
 export const accentTextLight = 'text-accent-200';
+export const accentTextLightest = 'text-accent-50';
 
 // Text color variables - Secondary Accent
-export const secondaryAccentTextDarkest = 'text-secondary-accent-900';
+export const secondaryAccentTextDarkest = 'text-secondary-accent-950';
 export const secondaryAccentTextDark = 'text-secondary-accent-800';
-export const secondaryAccentTextDeep = 'text-secondary-accent-700';
+export const secondaryAccentTextShade = 'text-secondary-accent-600';
 export const secondaryAccentTextMedium = 'text-secondary-accent-500';
-export const secondaryAccentTextSurface = 'text-secondary-accent-300';
+export const secondaryAccentTextSoft = 'text-secondary-accent-300';
 export const secondaryAccentTextLight = 'text-secondary-accent-200';
+export const secondaryAccentTextLightest = 'text-secondary-accent-50';
 
 // Text color variables - Neutral
-export const neutralTextDarkest = 'text-neutral-900';
+export const neutralTextDarkest = 'text-neutral-950';
 export const neutralTextDark = 'text-neutral-800';
-export const neutralTextDeep = 'text-neutral-700';
+export const neutralTextShade = 'text-neutral-600';
 export const neutralTextMedium = 'text-neutral-500';
-export const neutralTextSurface = 'text-neutral-300';
+export const neutralTextSoft = 'text-neutral-300';
 export const neutralTextLight = 'text-neutral-200';
+export const neutralTextLightest = 'text-neutral-50';
 
 // Text color variables - White
-export const whiteTextDarkest = 'text-white';
-export const whiteTextDark = 'text-white';
-export const whiteTextDeep = 'text-white';
-export const whiteTextMedium = 'text-white';
-export const whiteTextSurface = 'text-white';
-export const whiteTextLight = 'text-white';
+export const whiteText = 'text-white';
 
 // Text color variables - Black
-export const blackTextDarkest = 'text-black';
-export const blackTextDark = 'text-black';
-export const blackTextDeep = 'text-black';
-export const blackTextMedium = 'text-black';
-export const blackTextSurface = 'text-black';
-export const blackTextLight = 'text-black';
+export const blackText = 'text-black';

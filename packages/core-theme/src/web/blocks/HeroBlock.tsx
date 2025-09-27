@@ -40,7 +40,7 @@ export const HeroBlock: React.FC<HeroBlockProps> = ({ data, context }) => {
             textColor="primary"
             styleOverride={['textAlign', 'spacing']}
             className={textBlockSpacing}
-            colorShade="medium"
+            colorTone="medium"
           >
             {heading}
           </H1>
@@ -59,7 +59,7 @@ export const HeroBlock: React.FC<HeroBlockProps> = ({ data, context }) => {
                 data={primaryButton!}
                 options={{
                   backgroundColor: 'primary',
-                  colorShade: 'medium',
+                  colorTone: 'medium',
                   textColor: 'black',
                   fontWeight: 'medium',
                   size: 'lg',

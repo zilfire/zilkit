@@ -1,6 +1,6 @@
 import type {
   ThemeColor,
-  ColorShade,
+  ColorTone,
   TextAlign,
   TextSize,
   TextComponentVariant,
@@ -19,7 +19,7 @@ type DefaultStyles = {
   defaultSize: TextSize;
   defaultTextAlign: TextAlign;
   defaultColor: ThemeColor;
-  defaultColorShade: ColorShade;
+  defaultColorTone: ColorTone;
   defaultLeading: Leading;
   defaultFontWeight?: FontWeight;
   defaultFontStyle?: FontStyle;
@@ -34,7 +34,7 @@ type StyleOptions = {
   size?: TextSize;
   align?: TextAlign;
   themeColor?: ThemeColor;
-  colorShade?: ColorShade;
+  colorTone?: ColorTone;
   weight?: FontWeight;
   style?: FontStyle;
   leading?: Leading;
@@ -82,7 +82,7 @@ export const getDefaultStyles = (component: TextComponentVariant): DefaultStyles
         defaultSize: compStyles.textSize,
         defaultTextAlign: compStyles.textAlign,
         defaultColor: compStyles.textColor,
-        defaultColorShade: compStyles.colorShade,
+        defaultColorTone: compStyles.colorTone,
         defaultLeading: compStyles.leading,
         defaultFontWeight: compStyles.fontWeight,
         defaultFontStyle: compStyles.fontStyle,
@@ -117,20 +117,20 @@ const checkOverride = (
 
 const getTextColorClass = (component: TextComponentVariant, options: StyleOptions = {}): string => {
   try {
-    const { themeColor, colorShade, styleOverride } = options;
+    const { themeColor, colorTone, styleOverride } = options;
 
     if (checkOverride(styleOverride, 'textColor')) return '';
 
-    const { defaultColor, defaultColorShade } = getDefaultStyles(component);
+    const { defaultColor, defaultColorTone } = getDefaultStyles(component);
     const color = themeColor ?? defaultColor;
-    const shade = colorShade ?? defaultColorShade;
-    console.log('getTextColorClass:', { component, color, shade });
+    const tone = colorTone ?? defaultColorTone;
+    console.log('getTextColorClass:', { component, color, tone });
 
     if (!(color in styleGuide.textColor)) {
       throw new Error(`Invalid theme color: ${color}`);
     }
 
-    return styleGuide.textColor[color][shade];
+    return styleGuide.textColor[color][tone];
   } catch (error) {
     console.error(`Error getting text color class:`, error);
     return styleGuide.textColor.neutral.medium; // Fallback

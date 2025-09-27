@@ -1,7 +1,7 @@
 import { styleGuide } from '../style/style-guide.js';
 import type {
   ThemeColor,
-  ColorShade,
+  ColorTone,
   ButtonSize,
   RoundingSize,
   FontWeight,
@@ -12,7 +12,7 @@ import { ThemeContext } from '../../types/context/index.js';
 import { renderLinkPath } from '../../utils/render-link-path.js';
 
 export type ButtonOptions = {
-  colorShade?: ColorShade;
+  colorTone?: ColorTone;
   backgroundColor?: ThemeColor;
   textColor?: ThemeColor;
   size?: ButtonSize;
@@ -33,7 +33,7 @@ export const Button: React.FC<ButtonProps> = ({ onClick, children, options, cont
   const content = data.text || children;
   const Link = context.LinkComponent;
   const {
-    colorShade = 'medium',
+    colorTone = 'medium',
     backgroundColor = 'primary',
     textColor = 'black',
     size = 'md',
@@ -41,8 +41,8 @@ export const Button: React.FC<ButtonProps> = ({ onClick, children, options, cont
     fontWeight = 'normal',
   } = options || {};
 
-  const backgroundClass = styleGuide.bgColor[backgroundColor][colorShade];
-  const textClass = styleGuide.textColor[textColor][colorShade];
+  const backgroundClass = styleGuide.bgColor[backgroundColor][colorTone];
+  const textClass = styleGuide.textColor[textColor][colorTone];
   const fontSizeClass = styleGuide.componentStyles.button.fontSize[size];
   const spacingClass = styleGuide.componentStyles.button.spacing[size];
   const roundingClass = styleGuide.rounding[rounding];
