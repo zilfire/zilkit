@@ -19,7 +19,7 @@ export default async function Home() {
     overlayOptions: {
       themeColor: 'secondary',
       colorTone: 'darkest',
-      opacity: 'medium',
+      opacity: 'dark',
     },
   };
 
