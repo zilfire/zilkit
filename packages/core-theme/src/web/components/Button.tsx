@@ -1,14 +1,15 @@
-// @ts-ignore
-import Link from 'next/link';
-import { styleGuide } from '../../style/style-guide.js';
+import { styleGuide } from '../style/style-guide.js';
 import {
   ThemeColor,
   ColorMode,
   ButtonSize,
   RoundingSize,
   FontWeight,
-} from '../../style/style-types.js';
+} from '../style/style-types.js';
 import clsx from 'clsx';
+import { ButtonData } from '../../types/sanity-data-types/index.js';
+import { ThemeContext } from '../../types/context/index.js';
+import { renderLinkPath } from '../../utils/render-link-path.js';
 
 export type ButtonOptions = {
   colorMode?: ColorMode;
@@ -22,11 +23,15 @@ export type ButtonOptions = {
 export type ButtonProps = {
   onClick?: () => void;
   children?: React.ReactNode;
-  path: string;
   options?: ButtonOptions;
+  data: ButtonData;
+  context: ThemeContext;
 };
 
-export const Button: React.FC<ButtonProps> = ({ onClick, children, path, options }) => {
+export const Button: React.FC<ButtonProps> = ({ onClick, children, options, context, data }) => {
+  const path = data.link ? renderLinkPath(data.link) : '';
+  const content = data.text || children;
+  const Link = context.LinkComponent;
   const {
     colorMode = 'dark',
     backgroundColor = 'primary',
@@ -56,7 +61,7 @@ export const Button: React.FC<ButtonProps> = ({ onClick, children, path, options
           'hover:brightness-90 inline-block'
         )}
       >
-        {children}
+        {content}
       </button>
     </Link>
   );

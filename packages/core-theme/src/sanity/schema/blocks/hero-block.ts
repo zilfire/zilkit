@@ -20,5 +20,23 @@ export const heroBlock = defineType({
       title: 'Background Image',
       type: 'figure',
     }),
+    defineField({
+      name: 'primaryButton',
+      title: 'Primary Button',
+      type: 'button',
+      options: {
+        collapsable: true,
+        collapsed: false,
+      },
+    }),
+    defineField({
+      name: 'secondaryButton',
+      title: 'Secondary Button',
+      type: 'button',
+      options: {
+        collapsable: true,
+        collapsed: false,
+      },
+    }),
   ],
 });

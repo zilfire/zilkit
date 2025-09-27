@@ -2,7 +2,7 @@ import type { HeroBlockData } from '../../types/sanity-data-types/blocks/index.j
 import type { ThemeContext } from '../../types/context/index.js';
 import { H1, P } from '../text/index.js';
 import SanityImage from '@zilfire/next-sanity-image';
-import { Button } from '../components/button/index.js';
+import { Button } from '../components/Button.js';
 import { styleGuide } from '../style/style-guide.js';
 import clsx from 'clsx';
 
@@ -14,11 +14,10 @@ export type HeroBlockProps = {
 const textBlockSpacing = styleGuide.spacing.line.lg;
 const sectionPadding = styleGuide.spacing.section.xl;
 
-export const HeroBlock: React.FC<HeroBlockProps> = ({
-  data: { heading, description, backgroundImage },
-  context: { sanityConfig },
-}) => {
-  console.log('HeroBlock data:', { heading, description, backgroundImage });
+export const HeroBlock: React.FC<HeroBlockProps> = ({ data, context }) => {
+  const { sanityConfig } = context;
+  const { heading, description, backgroundImage, primaryButton } = data;
+  console.log('HeroBlock data:', data);
   return (
     <div className="bg-gray-300 relative overflow-hidden">
       {backgroundImage && (
@@ -48,17 +47,20 @@ export const HeroBlock: React.FC<HeroBlockProps> = ({
             {description}
           </P>
           <div className="lg:text-left text-center">
-            <Button
-              path="/some-internal-path"
-              options={{
-                backgroundColor: 'primary',
-                textColor: 'white',
-                size: 'lg',
-                rounding: 'sm',
-              }}
-            >
-              Click me
-            </Button>
+            {primaryButton && (
+              <Button
+                context={context}
+                data={primaryButton!}
+                options={{
+                  backgroundColor: 'primary',
+                  textColor: 'white',
+                  size: 'lg',
+                  rounding: 'sm',
+                }}
+              >
+                Click me
+              </Button>
+            )}
           </div>
         </div>
       </div>

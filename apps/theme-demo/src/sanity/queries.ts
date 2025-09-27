@@ -5,4 +5,21 @@ export type HomeQueryData = SanityDocument & {
   hero?: HeroBlockData;
 };
 
-export const HOME_QUERY = defineQuery(`*[_type == "homePage" && _id == "siteHome"][0]`);
+const navLinkProjection = `
+  ...,
+  defined(useInternalPath) && useInternalPath == true => {"internalPath": internalLink.path->path}
+`;
+
+export const HOME_QUERY = defineQuery(`
+  *[_type == "homePage" && _id == "siteHome"][0]{
+    ...,
+    hero {
+      ...,
+      primaryButton {
+        ...,
+        link {${navLinkProjection}}
+      }
+      
+    }
+  }
+  `);

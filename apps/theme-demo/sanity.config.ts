@@ -2,17 +2,19 @@ import { defineConfig } from 'sanity';
 import { structureTool } from 'sanity/structure';
 import { presentationTool, defineDocuments } from 'sanity/presentation';
 import { visionTool } from '@sanity/vision';
-
+import { UpdatePathFromSlugAction } from '@/sanity/utils/update-path-action';
 import { colorInput } from '@sanity/color-input';
 import navMenu from '@zilfire/sanity-nav-menu';
 import form from '@zilfire/sanity-form';
 import schema from '@/sanity/schema';
 
 // Define the actions that should be available for singleton documents
-const singletonActions = new Set(['publish', 'discardChanges', 'restore']);
+// const singletonActions = new Set(['publish', 'discardChanges', 'restore']);
 
 // Define the singleton document types
-const singletonTypes = new Set(['settings', 'homePage']);
+const singletonTypes = new Set(['settings', 'homePage', 'linkPlaceholder']);
+
+// const sitePageDocumentTypes = ['homePage', 'page', 'service'];
 
 export default defineConfig({
   name: 'default',
@@ -63,15 +65,18 @@ export default defineConfig({
       },
     }),
     colorInput(),
-    navMenu(),
+    navMenu([{ type: 'page' }, { type: 'homePage' }]),
     form(),
   ],
   schema,
   document: {
     // For singleton types, filter out actions that are not applicable
-    actions: (input, context) =>
-      singletonTypes.has(context.schemaType)
-        ? input.filter(({ action }) => action && singletonActions.has(action))
-        : input,
+    //   actions: (input, context) =>
+    //     singletonTypes.has(context.schemaType)
+    //       ? input.filter(({ action }) => action && singletonActions.has(action))
+    //       : input,
+    actions: (prev) => {
+      return [(props) => UpdatePathFromSlugAction(props as any), ...prev];
+    },
   },
 });

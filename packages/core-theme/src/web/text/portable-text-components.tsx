@@ -9,9 +9,7 @@ import {
   FontStyle,
   FontWeight,
 } from '../style/style-types.js';
-// @ todo: fix the ts-ignore
-// @ts-ignore
-import NextLink from 'next/link';
+import { ThemeContext } from '../../types/context/index.js';
 import clsx from 'clsx';
 
 import {
@@ -100,9 +98,11 @@ const RenderedText: React.FC<RenderedTextProps> = ({
 };
 
 export const portableTextComponents = (
-  options: PortableTextOptions = {}
+  options: PortableTextOptions = {},
+  context: ThemeContext
 ): PortableTextReactComponents => {
   const normalSpan = options.normalSpan || false;
+  const { LinkComponent } = context;
 
   return {
     types: {},
@@ -116,18 +116,18 @@ export const portableTextComponents = (
         // console.log('internalLink props:', props);
 
         return (
-          <NextLink className="text-blue-600" href={href}>
+          <LinkComponent className="text-blue-600" href={href}>
             {children}
-          </NextLink>
+          </LinkComponent>
         );
       },
       link: (props: PortableTextMarkComponentProps<any>) => {
         const { children, value } = props;
         const href = value?.href || '#';
         return (
-          <NextLink className="text-blue-600" href={href}>
+          <LinkComponent className="text-blue-600" href={href}>
             {children}
-          </NextLink>
+          </LinkComponent>
         );
       },
     },

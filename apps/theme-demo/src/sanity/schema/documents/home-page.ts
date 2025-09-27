@@ -1,3 +1,4 @@
+import { de } from 'date-fns/locale';
 import { defineField, defineType } from 'sanity';
 
 export default defineType({
@@ -20,6 +21,12 @@ export default defineType({
         maxLength: 96,
       },
       validation: (Rule) => Rule.required(),
+    }),
+    defineField({
+      name: 'path',
+      title: 'Path',
+      type: 'string',
+      hidden: true,
     }),
     defineField({
       name: 'hero',

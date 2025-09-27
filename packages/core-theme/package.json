@@ -57,7 +57,6 @@
     "@types/react": "^19.1.8",
     "@types/react-dom": "^19.1.6",
     "@zilfire/sanity-nav-menu": "^0.0.2",
-    "next": "^15.0.0",
     "next-sanity": "^10.0.0",
     "react": "19.1.0",
     "react-dom": "19.1.0",
@@ -66,7 +65,6 @@
     "typescript-config": "workspace:^"
   },
   "peerDependencies": {
-    "next": "^15.0.0",
     "next-sanity": ">=10.0.0",
     "react": ">=19.0.0",
     "react-dom": ">=19.0.0",

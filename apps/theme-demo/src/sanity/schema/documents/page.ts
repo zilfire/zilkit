@@ -22,6 +22,12 @@ export default defineType({
       validation: (Rule) => Rule.required(),
     }),
     defineField({
+      name: 'path',
+      title: 'Path',
+      type: 'string',
+      hidden: true,
+    }),
+    defineField({
       name: 'content',
       title: 'Content',
       type: 'array',
