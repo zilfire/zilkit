@@ -79,6 +79,12 @@ import {
   neutralTextLightest,
   whiteText,
   blackText,
+  leadingNone,
+  leadingTight,
+  leadingSnug,
+  leadingNormal,
+  leadingRelaxed,
+  leadingLoose,
 } from './style-variables.js';
 
 export const styleGuide: StyleGuide = {
@@ -229,12 +235,12 @@ export const styleGuide: StyleGuide = {
     italic: 'italic',
   },
   leading: {
-    none: 'leading-none',
-    tight: 'leading-tight',
-    snug: 'leading-snug',
-    normal: 'leading-normal',
-    relaxed: 'leading-relaxed',
-    loose: 'leading-loose',
+    none: leadingNone,
+    tight: leadingTight,
+    snug: leadingSnug,
+    normal: leadingNormal,
+    relaxed: leadingRelaxed,
+    loose: leadingLoose,
   },
   listType: {
     none: 'list-none',

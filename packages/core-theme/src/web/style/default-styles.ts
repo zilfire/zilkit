@@ -13,7 +13,6 @@ export const defaultStyles: DefaultStyles = {
       colorTone: 'dark',
       fontWeight: 'normal',
       fontStyle: 'normal',
-      leading: 'snug',
     },
     span: {
       textSize: 'md',
@@ -22,7 +21,6 @@ export const defaultStyles: DefaultStyles = {
       colorTone: 'dark',
       fontWeight: 'normal',
       fontStyle: 'normal',
-      leading: 'snug',
     },
     h1: {
       textSize: 'md',
@@ -32,7 +30,6 @@ export const defaultStyles: DefaultStyles = {
       fontWeight: 'bold',
       fontFamily: headingFont,
       fontStyle: 'normal',
-      leading: 'snug',
     },
     h2: {
       textSize: 'md',
@@ -42,7 +39,6 @@ export const defaultStyles: DefaultStyles = {
       fontWeight: 'bold',
       fontFamily: headingFont,
       fontStyle: 'normal',
-      leading: 'snug',
     },
     h3: {
       textSize: 'md',
@@ -52,7 +48,6 @@ export const defaultStyles: DefaultStyles = {
       fontWeight: 'bold',
       fontFamily: headingFont,
       fontStyle: 'normal',
-      leading: 'snug',
     },
     h4: {
       textSize: 'md',
@@ -62,7 +57,6 @@ export const defaultStyles: DefaultStyles = {
       fontWeight: 'semibold',
       fontFamily: headingFont,
       fontStyle: 'normal',
-      leading: 'snug',
     },
     h5: {
       textSize: 'md',
@@ -72,7 +66,6 @@ export const defaultStyles: DefaultStyles = {
       fontWeight: 'semibold',
       fontFamily: headingFont,
       fontStyle: 'normal',
-      leading: 'snug',
     },
     h6: {
       textSize: 'md',
@@ -82,7 +75,6 @@ export const defaultStyles: DefaultStyles = {
       fontWeight: 'semibold',
       fontFamily: headingFont,
       fontStyle: 'normal',
-      leading: 'snug',
     },
     li: {
       textSize: 'md',
@@ -91,7 +83,6 @@ export const defaultStyles: DefaultStyles = {
       colorTone: 'dark',
       fontWeight: 'normal',
       fontStyle: 'normal',
-      leading: 'snug',
     },
     ol: {
       textSize: 'md',
@@ -100,7 +91,6 @@ export const defaultStyles: DefaultStyles = {
       colorTone: 'dark',
       fontWeight: 'normal',
       fontStyle: 'normal',
-      leading: 'snug',
       listPosition: 'inside',
       listType: 'decimal',
     },
@@ -111,7 +101,6 @@ export const defaultStyles: DefaultStyles = {
       colorTone: 'dark',
       fontWeight: 'normal',
       fontStyle: 'normal',
-      leading: 'snug',
       listPosition: 'inside',
       listType: 'disc',
     },
@@ -121,7 +110,6 @@ export const defaultStyles: DefaultStyles = {
       textColor: 'black',
       fontWeight: 'normal',
       fontStyle: 'normal',
-      leading: 'snug',
       colorTone: 'dark',
     },
     blockquote: {
@@ -131,7 +119,6 @@ export const defaultStyles: DefaultStyles = {
       colorTone: 'dark',
       fontWeight: 'normal',
       fontStyle: 'normal',
-      leading: 'snug',
       border: 'md',
       borderColor: 'neutral',
     },

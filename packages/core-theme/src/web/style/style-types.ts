@@ -96,7 +96,6 @@ export type DefaultTextComponentStyles = {
   fontFamily?: string; // Optional font family
   fontWeight: FontWeight;
   fontStyle: FontStyle;
-  leading: Leading;
   border?: TextSize; // Optional border style
   borderColor?: ThemeColor; // Optional border color
   listType?: ListType; // Optional list type
@@ -116,7 +115,7 @@ export type ComponentStyles =
       {
         fontSize: Record<TextSize, string>;
         spacing: Record<TextSize, string>;
-        // leading: Record<TextSize, string>;
+        leading: Record<TextSize, string>;
         textAlign?: Record<TextAlign, string>;
         border?: Record<TextSize | ButtonSize, string>;
         borderColor?: Record<ThemeColor, string>;

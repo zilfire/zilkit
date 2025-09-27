@@ -20,7 +20,6 @@ type DefaultStyles = {
   defaultTextAlign: TextAlign;
   defaultColor: ThemeColor;
   defaultColorTone: ColorTone;
-  defaultLeading: Leading;
   defaultFontWeight?: FontWeight;
   defaultFontStyle?: FontStyle;
   defaultBorder?: TextSize;
@@ -83,7 +82,6 @@ export const getDefaultStyles = (component: TextComponentVariant): DefaultStyles
         defaultTextAlign: compStyles.textAlign,
         defaultColor: compStyles.textColor,
         defaultColorTone: compStyles.colorTone,
-        defaultLeading: compStyles.leading,
         defaultFontWeight: compStyles.fontWeight,
         defaultFontStyle: compStyles.fontStyle,
         defaultBorder: compStyles.border,
@@ -147,12 +145,25 @@ const getFontSizeClass = (component: TextComponentVariant, options: StyleOptions
 };
 
 const getLeadingClass = (component: TextComponentVariant, options: StyleOptions = {}) => {
-  const { leading, styleOverride } = options;
+  const { leading, styleOverride, size } = options;
 
   if (checkOverride(styleOverride, 'leading')) return '';
 
-  const defaultLeading = getDefaultStyles(component).defaultLeading;
-  return styleGuide.leading[leading ?? defaultLeading];
+  if (leading) {
+    return styleGuide.leading[leading];
+  }
+
+  const fontSize = size ?? getDefaultStyles(component).defaultSize;
+  const leadingClass = styleGuide.componentStyles[component].leading[fontSize];
+
+  console.log('getLeadingClass:', {
+    component,
+    leading,
+    styleOverride,
+    fontSize,
+    leadingClass,
+  });
+  return leadingClass;
 };
 
 const getTextAlignClass = (component: TextComponentVariant, options: StyleOptions = {}) => {

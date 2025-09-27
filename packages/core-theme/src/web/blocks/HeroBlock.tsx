@@ -37,14 +37,14 @@ export const HeroBlock: React.FC<HeroBlockProps> = ({ data, context }) => {
         <div className="lg:w-1/2 w-full">
           <H1
             textSize="lg"
-            textColor="secondary"
+            textColor="white"
             styleOverride={['textAlign', 'spacing']}
             className={textBlockSpacing}
             colorTone="medium"
           >
             {heading}
           </H1>
-          <P textSize="lg" styleOverride={[]} className={textBlockSpacing} textColor="secondary">
+          <P textSize="lg" styleOverride={[]} className={textBlockSpacing} textColor="white">
             {description}
           </P>
           <div className="lg:text-left text-center">
