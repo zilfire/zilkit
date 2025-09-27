@@ -1,5 +1,5 @@
 import type {
-  ColorMode,
+  ColorShade,
   TextComponent,
   TextComponentStyles,
   TextComponentVariant,
@@ -23,7 +23,7 @@ export type TextComponentProps = TextComponentStyles & {
   variant?: TextComponentVariant;
   as?: TextComponent;
   children?: React.ReactNode;
-  colorMode?: ColorMode;
+  colorShade?: ColorShade;
 };
 
 export const Text: React.FC<TextComponentProps> = ({
@@ -33,7 +33,7 @@ export const Text: React.FC<TextComponentProps> = ({
   className,
   textSize,
   textAlign,
-  colorMode,
+  colorShade,
   textColor,
   classOverride,
   leading,
@@ -63,7 +63,7 @@ export const Text: React.FC<TextComponentProps> = ({
     size: textSize,
     align: textAlign,
     themeColor: textColor,
-    colorMode,
+    colorShade,
     leading,
     weight: fontWeight,
     style: fontStyle,

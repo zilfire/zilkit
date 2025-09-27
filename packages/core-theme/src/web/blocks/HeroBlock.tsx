@@ -40,6 +40,7 @@ export const HeroBlock: React.FC<HeroBlockProps> = ({ data, context }) => {
             textColor="primary"
             styleOverride={['textAlign', 'spacing']}
             className={textBlockSpacing}
+            colorShade="light"
           >
             {heading}
           </H1>
@@ -47,7 +48,6 @@ export const HeroBlock: React.FC<HeroBlockProps> = ({ data, context }) => {
             textSize="lg"
             styleOverride={['textAlign', 'spacing']}
             className={textBlockSpacing}
-            colorMode="dark"
             textColor="white"
           >
             {description}

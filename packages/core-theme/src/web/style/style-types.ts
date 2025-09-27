@@ -9,7 +9,7 @@ export type ThemeColor =
 
 export type FontStyle = 'normal' | 'italic';
 
-export type ColorMode =
+export type ColorShade =
   | 'darkest' //950 | 200 - The deepest, almost black.
   | 'dark' //900 | 200 - Standard dark backgrounds.
   | 'deep' //700 | 200- A deeper shade of color, used for emphasis.
@@ -89,7 +89,7 @@ export type DefaultTextComponentStyles = {
   textSize: TextSize;
   textAlign: TextAlign;
   textColor: ThemeColor;
-  colorMode: ColorMode;
+  colorShade: ColorShade;
   fontFamily?: string; // Optional font family
   fontWeight: FontWeight;
   fontStyle: FontStyle;
@@ -101,7 +101,7 @@ export type DefaultTextComponentStyles = {
 };
 
 export type DefaultStyles = {
-  colorMode: ColorMode;
+  colorShade: ColorShade;
   backgroundColor: ThemeColor;
   textColor: ThemeColor;
   componentStyles: Record<TextComponentVariant, DefaultTextComponentStyles>;
@@ -139,8 +139,8 @@ export type spacingStyles = {
 
 export type StyleGuide = {
   defaultStyles: DefaultStyles;
-  bgColor: Record<ThemeColor, Record<ColorMode, string>>;
-  textColor: Record<ThemeColor, Record<ColorMode, string>>;
+  bgColor: Record<ThemeColor, Record<ColorShade, string>>;
+  textColor: Record<ThemeColor, Record<ColorShade, string>>;
   fontWeight: Record<FontWeight, string>;
   fontStyle: Record<FontStyle, string>;
   leading: Record<Leading, string>;
