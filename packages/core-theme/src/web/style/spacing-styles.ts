@@ -4,13 +4,13 @@ import {
   lineSpacingMD,
   lineSpacingLG,
   lineSpacingXL,
-  lineSpacing2XL,
+  lineSpacingxxl,
   sectionSpacingXS,
   sectionSpacingSM,
   sectionSpacingMD,
   sectionSpacingLG,
   sectionSpacingXL,
-  sectionSpacing2XL,
+  sectionSpacingxxl,
   containerPadding,
 } from './style-variables.js';
 
@@ -21,7 +21,7 @@ export const spacingStyles = {
     md: lineSpacingMD,
     lg: lineSpacingLG,
     xl: lineSpacingXL,
-    '2xl': lineSpacing2XL,
+    xxl: lineSpacingxxl,
   },
   section: {
     xs: sectionSpacingXS,
@@ -29,7 +29,7 @@ export const spacingStyles = {
     md: sectionSpacingMD,
     lg: sectionSpacingLG,
     xl: sectionSpacingXL,
-    '2xl': sectionSpacing2XL,
+    xxl: sectionSpacingxxl,
   },
   containerPadding,
 };

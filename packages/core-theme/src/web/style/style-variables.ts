@@ -3,8 +3,8 @@ export const textXS = 'text-xs';
 export const textSmall = 'text-sm';
 export const textBase = 'text-base';
 export const textLarge = 'text-lg md:text-xl';
-export const textXL = 'text-xl md:text-2xl';
-export const text2XL = 'text-2xl md:text-3xl lg:text-4xl';
+export const textXL = 'text-xl md:text-xxl';
+export const textxxl = 'text-xxl md:text-3xl lg:text-4xl';
 export const text3XL = 'text-3xl md:text-4xl lg:text-5xl';
 export const text4XL = 'text-4xl md:text-5xl lg:text-6xl';
 export const text5XL = 'text-4xl md:text-6xl lg:text-7xl';
@@ -21,21 +21,21 @@ export const lineSpacingSM = 'mb-2 md:mb-4';
 export const lineSpacingMD = lineSpacing;
 export const lineSpacingLG = 'mb-4 md:mb-8';
 export const lineSpacingXL = 'mb-6 md:mb-12';
-export const lineSpacing2XL = 'mb-8 md:mb-16';
+export const lineSpacingxxl = 'mb-8 md:mb-16';
 
 export const lineIndentXS = 'ml-3';
 export const lineIndentSM = 'ml-4';
 export const lineIndentMD = 'ml-4';
 export const lineIndentLG = 'ml-4';
 export const lineIndentXL = 'ml-5';
-export const lineIndent2XL = 'ml-5';
+export const lineIndentxxl = 'ml-5';
 
 export const blockquotePaddingXS = 'pl-3';
 export const blockquotePaddingSM = 'pl-2';
 export const blockquotePaddingMD = 'pl-3';
 export const blockquotePaddingLG = 'pl-4';
 export const blockquotePaddingXL = 'pl-5';
-export const blockquotePadding2XL = 'pl-5';
+export const blockquotePaddingxxl = 'pl-5';
 
 export const sectionSpacing = 'py-20 md:py-32';
 export const sectionSpacingXS = 'py-10 md:py-18';
@@ -43,7 +43,7 @@ export const sectionSpacingSM = 'py-16 md:py-24';
 export const sectionSpacingMD = sectionSpacing;
 export const sectionSpacingLG = 'py-24 md:py-36';
 export const sectionSpacingXL = 'py-32 md:py-40';
-export const sectionSpacing2XL = 'py-36 md:py-48';
+export const sectionSpacingxxl = 'py-40 md:py-64';
 
 export const containerPadding = 'px-4 md:px-6 lg:px-8';
 

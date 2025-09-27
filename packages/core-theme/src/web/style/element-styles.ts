@@ -7,7 +7,7 @@ import {
   textBase,
   textLarge,
   textXL,
-  text2XL,
+  textxxl,
   text3XL,
   text4XL,
   text5XL,
@@ -18,19 +18,19 @@ import {
   lineSpacingMD,
   lineSpacingLG,
   lineSpacingXL,
-  lineSpacing2XL,
+  lineSpacingxxl,
   lineIndentXS,
   lineIndentSM,
   lineIndentMD,
   lineIndentLG,
   lineIndentXL,
-  lineIndent2XL,
+  lineIndentxxl,
   blockquotePaddingXS,
   blockquotePaddingSM,
   blockquotePaddingMD,
   blockquotePaddingLG,
   blockquotePaddingXL,
-  blockquotePadding2XL,
+  blockquotePaddingxxl,
   leadingSnug,
   leadingNormal,
 } from './style-variables.js';
@@ -43,7 +43,7 @@ export const componentStyles: ComponentStyles = {
       md: textBase,
       lg: textLarge,
       xl: textXL,
-      '2xl': text2XL,
+      xxl: textxxl,
     },
     spacing: {
       xs: lineSpacingXS,
@@ -51,7 +51,7 @@ export const componentStyles: ComponentStyles = {
       md: lineSpacingMD,
       lg: lineSpacingLG,
       xl: lineSpacingXL,
-      '2xl': lineSpacing2XL,
+      xxl: lineSpacingxxl,
     },
     leading: {
       xs: leadingNormal,
@@ -59,7 +59,7 @@ export const componentStyles: ComponentStyles = {
       md: leadingNormal,
       lg: leadingSnug,
       xl: leadingSnug,
-      '2xl': leadingSnug,
+      xxl: leadingSnug,
     },
     textAlign: {
       left: 'text-left',
@@ -75,7 +75,7 @@ export const componentStyles: ComponentStyles = {
       md: textBase,
       lg: textLarge,
       xl: textXL,
-      '2xl': text2XL,
+      xxl: textxxl,
     },
     spacing: {
       xs: clsx(lineSpacingXS, lineIndentXS),
@@ -83,7 +83,7 @@ export const componentStyles: ComponentStyles = {
       md: clsx(lineSpacingMD, lineIndentMD),
       lg: clsx(lineSpacingLG, lineIndentLG),
       xl: clsx(lineSpacingXL, lineIndentXL),
-      '2xl': clsx(lineSpacing2XL, lineIndent2XL),
+      xxl: clsx(lineSpacingxxl, lineIndentxxl),
     },
     leading: {
       xs: leadingNormal,
@@ -91,7 +91,7 @@ export const componentStyles: ComponentStyles = {
       md: leadingNormal,
       lg: leadingSnug,
       xl: leadingSnug,
-      '2xl': leadingSnug,
+      xxl: leadingSnug,
     },
     textAlign: {
       left: 'text-left',
@@ -107,7 +107,7 @@ export const componentStyles: ComponentStyles = {
       md: textBase,
       lg: textLarge,
       xl: textXL,
-      '2xl': text2XL,
+      xxl: textxxl,
     },
     spacing: {
       xs: clsx(lineSpacingXS, lineIndentXS, blockquotePaddingXS),
@@ -115,7 +115,7 @@ export const componentStyles: ComponentStyles = {
       md: clsx(lineSpacingMD, lineIndentMD, blockquotePaddingMD),
       lg: clsx(lineSpacingLG, lineIndentLG, blockquotePaddingLG),
       xl: clsx(lineSpacingXL, lineIndentXL, blockquotePaddingXL),
-      '2xl': clsx(lineSpacing2XL, lineIndent2XL, blockquotePadding2XL),
+      xxl: clsx(lineSpacingxxl, lineIndentxxl, blockquotePaddingxxl),
     },
     leading: {
       xs: leadingNormal,
@@ -123,7 +123,7 @@ export const componentStyles: ComponentStyles = {
       md: leadingNormal,
       lg: leadingSnug,
       xl: leadingSnug,
-      '2xl': leadingSnug,
+      xxl: leadingSnug,
     },
     border: {
       xs: 'border-l-2',
@@ -131,7 +131,7 @@ export const componentStyles: ComponentStyles = {
       md: 'border-l-4',
       lg: 'border-l-4',
       xl: 'border-l-6',
-      '2xl': 'border-l-4',
+      xxl: 'border-l-4',
     },
     borderColor: {
       primary: 'border-primary-300',
@@ -156,7 +156,7 @@ export const componentStyles: ComponentStyles = {
       md: textBase,
       lg: textLarge,
       xl: textXL,
-      '2xl': text2XL,
+      xxl: textxxl,
     },
     spacing: {
       xs: '',
@@ -164,7 +164,7 @@ export const componentStyles: ComponentStyles = {
       md: '',
       lg: '',
       xl: '',
-      '2xl': '',
+      xxl: '',
     },
     leading: {
       xs: leadingNormal,
@@ -172,7 +172,7 @@ export const componentStyles: ComponentStyles = {
       md: leadingNormal,
       lg: leadingSnug,
       xl: leadingSnug,
-      '2xl': leadingSnug,
+      xxl: leadingSnug,
     },
     textAlign: {
       left: 'text-left',
@@ -184,12 +184,12 @@ export const componentStyles: ComponentStyles = {
 
   h1: {
     fontSize: {
-      xs: text2XL,
+      xs: textxxl,
       sm: text3XL,
       md: text4XL,
       lg: text5XL,
       xl: text6XL,
-      '2xl': text7XL,
+      xxl: text7XL,
     },
     spacing: {
       xs: 'mb-3',
@@ -197,7 +197,7 @@ export const componentStyles: ComponentStyles = {
       md: 'mb-3',
       lg: 'mb-3',
       xl: 'mb-3',
-      '2xl': 'mb-3',
+      xxl: 'mb-3',
     },
     leading: {
       xs: leadingNormal,
@@ -205,7 +205,7 @@ export const componentStyles: ComponentStyles = {
       md: leadingSnug,
       lg: leadingSnug,
       xl: leadingSnug,
-      '2xl': leadingSnug,
+      xxl: leadingSnug,
     },
     textAlign: {
       left: 'text-left',
@@ -217,11 +217,11 @@ export const componentStyles: ComponentStyles = {
   h2: {
     fontSize: {
       xs: textXL,
-      sm: text2XL,
+      sm: textxxl,
       md: text3XL,
       lg: text4XL,
       xl: text5XL,
-      '2xl': text6XL,
+      xxl: text6XL,
     },
     spacing: {
       xs: 'mb-3',
@@ -229,7 +229,7 @@ export const componentStyles: ComponentStyles = {
       md: 'mb-3',
       lg: 'mb-3',
       xl: 'mb-3',
-      '2xl': 'mb-3',
+      xxl: 'mb-3',
     },
     leading: {
       xs: leadingNormal,
@@ -237,7 +237,7 @@ export const componentStyles: ComponentStyles = {
       md: leadingSnug,
       lg: leadingSnug,
       xl: leadingSnug,
-      '2xl': leadingSnug,
+      xxl: leadingSnug,
     },
     textAlign: {
       left: 'text-left',
@@ -250,10 +250,10 @@ export const componentStyles: ComponentStyles = {
     fontSize: {
       xs: textLarge,
       sm: textXL,
-      md: text2XL,
+      md: textxxl,
       lg: text3XL,
       xl: text4XL,
-      '2xl': text5XL,
+      xxl: text5XL,
     },
     spacing: {
       xs: 'mb-3',
@@ -261,7 +261,7 @@ export const componentStyles: ComponentStyles = {
       md: 'mb-3',
       lg: 'mb-3',
       xl: 'mb-3',
-      '2xl': 'mb-3',
+      xxl: 'mb-3',
     },
     leading: {
       xs: leadingNormal,
@@ -269,7 +269,7 @@ export const componentStyles: ComponentStyles = {
       md: leadingNormal,
       lg: leadingSnug,
       xl: leadingSnug,
-      '2xl': leadingSnug,
+      xxl: leadingSnug,
     },
     textAlign: {
       left: 'text-left',
@@ -283,9 +283,9 @@ export const componentStyles: ComponentStyles = {
       xs: textBase,
       sm: textLarge,
       md: textXL,
-      lg: text2XL,
+      lg: textxxl,
       xl: text3XL,
-      '2xl': text4XL,
+      xxl: text4XL,
     },
     spacing: {
       xs: 'mb-3',
@@ -293,7 +293,7 @@ export const componentStyles: ComponentStyles = {
       md: 'mb-3',
       lg: 'mb-3',
       xl: 'mb-3',
-      '2xl': 'mb-3',
+      xxl: 'mb-3',
     },
     leading: {
       xs: leadingNormal,
@@ -301,7 +301,7 @@ export const componentStyles: ComponentStyles = {
       md: leadingNormal,
       lg: leadingSnug,
       xl: leadingSnug,
-      '2xl': leadingSnug,
+      xxl: leadingSnug,
     },
     textAlign: {
       left: 'text-left',
@@ -315,9 +315,9 @@ export const componentStyles: ComponentStyles = {
       xs: textBase,
       sm: textLarge,
       md: textXL,
-      lg: text2XL,
+      lg: textxxl,
       xl: text3XL,
-      '2xl': text4XL,
+      xxl: text4XL,
     },
     spacing: {
       xs: 'mb-3',
@@ -325,7 +325,7 @@ export const componentStyles: ComponentStyles = {
       md: 'mb-3',
       lg: 'mb-3',
       xl: 'mb-3',
-      '2xl': 'mb-3',
+      xxl: 'mb-3',
     },
     leading: {
       xs: leadingNormal,
@@ -333,7 +333,7 @@ export const componentStyles: ComponentStyles = {
       md: leadingNormal,
       lg: leadingSnug,
       xl: leadingSnug,
-      '2xl': leadingSnug,
+      xxl: leadingSnug,
     },
     textAlign: {
       left: 'text-left',
@@ -348,8 +348,8 @@ export const componentStyles: ComponentStyles = {
       sm: textBase,
       md: textLarge,
       lg: textXL,
-      xl: text2XL,
-      '2xl': text3XL,
+      xl: textxxl,
+      xxl: text3XL,
     },
     spacing: {
       xs: 'mb-3',
@@ -357,7 +357,7 @@ export const componentStyles: ComponentStyles = {
       md: 'mb-3',
       lg: 'mb-3',
       xl: 'mb-3',
-      '2xl': 'mb-3',
+      xxl: 'mb-3',
     },
     leading: {
       xs: leadingNormal,
@@ -365,7 +365,7 @@ export const componentStyles: ComponentStyles = {
       md: leadingNormal,
       lg: leadingSnug,
       xl: leadingSnug,
-      '2xl': leadingSnug,
+      xxl: leadingSnug,
     },
     textAlign: {
       left: 'text-left',
@@ -381,7 +381,7 @@ export const componentStyles: ComponentStyles = {
       md: textBase,
       lg: textLarge,
       xl: textXL,
-      '2xl': text2XL,
+      xxl: textxxl,
     },
     spacing: {
       xs: 'mb-3',
@@ -389,7 +389,7 @@ export const componentStyles: ComponentStyles = {
       md: 'mb-3',
       lg: 'mb-3',
       xl: 'mb-3',
-      '2xl': 'mb-3',
+      xxl: 'mb-3',
     },
     leading: {
       xs: leadingNormal,
@@ -397,7 +397,7 @@ export const componentStyles: ComponentStyles = {
       md: leadingNormal,
       lg: leadingSnug,
       xl: leadingSnug,
-      '2xl': leadingSnug,
+      xxl: leadingSnug,
     },
     textAlign: {
       left: 'text-left',
@@ -413,7 +413,7 @@ export const componentStyles: ComponentStyles = {
       md: textBase,
       lg: textLarge,
       xl: textXL,
-      '2xl': text2XL,
+      xxl: textxxl,
     },
     textAlign: {
       left: 'text-left',
@@ -427,7 +427,7 @@ export const componentStyles: ComponentStyles = {
       md: 'mb-4 md:mb-6',
       lg: 'mb-6 md:mb-8',
       xl: 'mb-6 md:mb-8',
-      '2xl': 'mb-6 md:mb-8',
+      xxl: 'mb-6 md:mb-8',
     },
     leading: {
       xs: leadingNormal,
@@ -435,7 +435,7 @@ export const componentStyles: ComponentStyles = {
       md: leadingNormal,
       lg: leadingSnug,
       xl: leadingSnug,
-      '2xl': leadingSnug,
+      xxl: leadingSnug,
     },
   },
   ul: {
@@ -445,7 +445,7 @@ export const componentStyles: ComponentStyles = {
       md: textBase,
       lg: textLarge,
       xl: textXL,
-      '2xl': text2XL,
+      xxl: textxxl,
     },
     spacing: {
       xs: 'mb-4 md:mb-6',
@@ -453,7 +453,7 @@ export const componentStyles: ComponentStyles = {
       md: 'mb-4 md:mb-6',
       lg: 'mb-6 md:mb-8',
       xl: 'mb-6 md:mb-8',
-      '2xl': 'mb-6 md:mb-8',
+      xxl: 'mb-6 md:mb-8',
     },
     leading: {
       xs: leadingNormal,
@@ -461,7 +461,7 @@ export const componentStyles: ComponentStyles = {
       md: leadingNormal,
       lg: leadingSnug,
       xl: leadingSnug,
-      '2xl': leadingSnug,
+      xxl: leadingSnug,
     },
     textAlign: {
       left: 'text-left',
@@ -477,7 +477,7 @@ export const componentStyles: ComponentStyles = {
       md: textBase,
       lg: textLarge,
       xl: textXL,
-      '2xl': text2XL,
+      xxl: textxxl,
     },
     spacing: {
       xs: 'px-3 py-2',
@@ -485,7 +485,7 @@ export const componentStyles: ComponentStyles = {
       md: 'px-4 py-2',
       lg: 'px-6 py-2',
       xl: 'px-6 py-3',
-      '2xl': 'px-8 py-3',
+      xxl: 'px-8 py-3',
     },
   },
 };

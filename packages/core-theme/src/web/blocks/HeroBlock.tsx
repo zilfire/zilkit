@@ -5,19 +5,68 @@ import SanityImage from '@zilfire/next-sanity-image';
 import { Button } from '../components/Button.js';
 import { styleGuide } from '../style/style-guide.js';
 import clsx from 'clsx';
+import type { ThemeColor, ColorTone, StyleGuide } from '../style/style-types.js';
+
+type OverlayOptions = {
+  themeColor?: ThemeColor;
+  colorTone?: ColorTone;
+  opacity?: '0' | '40' | '50' | '60' | '100';
+};
+
+export type HeroBlockOptions = {
+  overlayOptions?: OverlayOptions;
+};
 
 export type HeroBlockProps = {
   data: HeroBlockData;
   context: ThemeContext;
+  options?: HeroBlockOptions;
 };
 
 const textBlockSpacing = styleGuide.spacing.line.lg;
-const sectionPadding = styleGuide.spacing.section.xl;
+const sectionPadding = styleGuide.spacing.section.xxl;
 
-export const HeroBlock: React.FC<HeroBlockProps> = ({ data, context }) => {
+const getBGColorClass = (themeColor: ThemeColor, colorTone: ColorTone, styleGuide: StyleGuide) => {
+  const colorClass = styleGuide.bgColor[themeColor]?.[colorTone];
+  return colorClass || '';
+};
+
+const defaultOverlayColor = 'black';
+const defaultOverlayTone = 'medium';
+const defaultOverlayOpacity = '40';
+
+export const HeroBlock: React.FC<HeroBlockProps> = ({ data, context, options }) => {
   const { sanityConfig } = context;
   const { heading, description, backgroundImage, primaryButton } = data;
-  // console.log('HeroBlock data:', data);
+  const { overlayOptions = {} }: HeroBlockOptions = options || {};
+  const {
+    themeColor: overlayThemeColor = defaultOverlayColor,
+    colorTone: overlayColorTone = defaultOverlayTone,
+  } = overlayOptions;
+
+  const overlayOpacity = overlayOptions.opacity ? overlayOptions.opacity : defaultOverlayOpacity;
+  let overlayOpacityClass: string = '';
+
+  switch (overlayOpacity) {
+    case '0':
+      overlayOpacityClass = 'opacity-0';
+      break;
+    case '40':
+      overlayOpacityClass = 'opacity-40';
+      break;
+    case '50':
+      overlayOpacityClass = 'opacity-50';
+      break;
+    case '60':
+      overlayOpacityClass = 'opacity-60';
+      break;
+    case '100':
+      overlayOpacityClass = 'opacity-100';
+      break;
+  }
+
+  const overlayBgClass = getBGColorClass(overlayThemeColor, overlayColorTone, styleGuide);
+
   return (
     <div className="bg-gray-300 relative overflow-hidden">
       {backgroundImage && (
@@ -30,7 +79,9 @@ export const HeroBlock: React.FC<HeroBlockProps> = ({ data, context }) => {
           />
         </div>
       )}
-      {backgroundImage && <div className="absolute inset-0 bg-black opacity-40 z-5"></div>}
+      {backgroundImage && (
+        <div className={clsx('absolute inset-0 z-5', overlayOpacityClass, overlayBgClass)}></div>
+      )}
       <div
         className={clsx('container mx-auto text-center lg:text-left z-10 relative', sectionPadding)}
       >
@@ -44,7 +95,12 @@ export const HeroBlock: React.FC<HeroBlockProps> = ({ data, context }) => {
           >
             {heading}
           </H1>
-          <P textSize="lg" styleOverride={[]} className={textBlockSpacing} textColor="white">
+          <P
+            textSize="lg"
+            styleOverride={['spacing']}
+            className={textBlockSpacing}
+            textColor="white"
+          >
             {description}
           </P>
           <div className="lg:text-left text-center">

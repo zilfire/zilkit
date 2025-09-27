@@ -20,7 +20,7 @@ export type ColorTone =
   | 'light' //200 - Standard light backgrounds.
   | 'lightest'; //50 - Standard light backgrounds.
 
-export type TextSize = 'xs' | 'sm' | 'md' | 'lg' | 'xl' | '2xl';
+export type TextSize = 'xs' | 'sm' | 'md' | 'lg' | 'xl' | 'xxl';
 export type ButtonSize = TextSize;
 export type TextAlign = 'left' | 'center' | 'right' | 'justify';
 export type Leading = 'none' | 'tight' | 'snug' | 'normal' | 'relaxed' | 'loose';
