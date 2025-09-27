@@ -30,7 +30,7 @@ export const HeroBlock: React.FC<HeroBlockProps> = ({ data, context }) => {
           />
         </div>
       )}
-      {backgroundImage && <div className="absolute inset-0 bg-white opacity-60 z-5"></div>}
+      {backgroundImage && <div className="absolute inset-0 bg-black opacity-30 z-5"></div>}
       <div
         className={clsx('container mx-auto text-center lg:text-left z-10 relative', sectionPadding)}
       >
@@ -43,7 +43,13 @@ export const HeroBlock: React.FC<HeroBlockProps> = ({ data, context }) => {
           >
             {heading}
           </H1>
-          <P textSize="lg" styleOverride={['textAlign', 'spacing']} className={textBlockSpacing}>
+          <P
+            textSize="lg"
+            styleOverride={['textAlign', 'spacing']}
+            className={textBlockSpacing}
+            colorMode="dark"
+            textColor="white"
+          >
             {description}
           </P>
           <div className="lg:text-left text-center">
@@ -56,6 +62,7 @@ export const HeroBlock: React.FC<HeroBlockProps> = ({ data, context }) => {
                   textColor: 'white',
                   size: 'lg',
                   rounding: 'sm',
+                  colorMode: 'medium',
                 }}
               >
                 Click me

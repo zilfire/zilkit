@@ -82,7 +82,7 @@ export const getDefaultStyles = (component: TextComponentVariant): DefaultStyles
         defaultSize: compStyles.textSize,
         defaultTextAlign: compStyles.textAlign,
         defaultColor: compStyles.textColor,
-        defaultColorMode: styleGuide.defaultStyles.colorMode,
+        defaultColorMode: compStyles.colorMode,
         defaultLeading: compStyles.leading,
         defaultFontWeight: compStyles.fontWeight,
         defaultFontStyle: compStyles.fontStyle,

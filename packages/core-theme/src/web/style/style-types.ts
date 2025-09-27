@@ -89,6 +89,7 @@ export type DefaultTextComponentStyles = {
   textSize: TextSize;
   textAlign: TextAlign;
   textColor: ThemeColor;
+  colorMode: ColorMode;
   fontFamily?: string; // Optional font family
   fontWeight: FontWeight;
   fontStyle: FontStyle;

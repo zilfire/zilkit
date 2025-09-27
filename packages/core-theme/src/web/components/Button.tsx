@@ -35,7 +35,7 @@ export const Button: React.FC<ButtonProps> = ({ onClick, children, options, cont
   const {
     colorMode = 'dark',
     backgroundColor = 'primary',
-    textColor = 'white',
+    textColor = 'black',
     size = 'md',
     rounding = 'md',
     fontWeight = 'normal',
@@ -58,7 +58,7 @@ export const Button: React.FC<ButtonProps> = ({ onClick, children, options, cont
           spacingClass,
           roundingClass,
           fontWeightClass,
-          'hover:brightness-90 inline-block'
+          'hover:brightness-95 inline-block'
         )}
       >
         {content}

@@ -107,7 +107,7 @@ export const blackLightBg = 'bg-black';
 export const primaryTextDarkest = 'text-primary-200';
 export const primaryTextDark = 'text-primary-200';
 export const primaryTextDeep = 'text-primary-200';
-export const primaryTextMedium = 'text-primary-50';
+export const primaryTextMedium = 'text-primary-500';
 export const primaryTextSurface = 'text-primary-800';
 export const primaryTextLight = 'text-primary-800';
 
@@ -115,7 +115,7 @@ export const primaryTextLight = 'text-primary-800';
 export const secondaryTextDarkest = 'text-secondary-200';
 export const secondaryTextDark = 'text-secondary-200';
 export const secondaryTextDeep = 'text-secondary-200';
-export const secondaryTextMedium = 'text-secondary-50';
+export const secondaryTextMedium = 'text-secondary-500';
 export const secondaryTextSurface = 'text-secondary-800';
 export const secondaryTextLight = 'text-secondary-800';
 
@@ -123,7 +123,7 @@ export const secondaryTextLight = 'text-secondary-800';
 export const accentTextDarkest = 'text-accent-200';
 export const accentTextDark = 'text-accent-200';
 export const accentTextDeep = 'text-accent-200';
-export const accentTextMedium = 'text-accent-50';
+export const accentTextMedium = 'text-accent-500';
 export const accentTextSurface = 'text-accent-800';
 export const accentTextLight = 'text-accent-800';
 
@@ -131,7 +131,7 @@ export const accentTextLight = 'text-accent-800';
 export const secondaryAccentTextDarkest = 'text-secondary-accent-200';
 export const secondaryAccentTextDark = 'text-secondary-accent-200';
 export const secondaryAccentTextDeep = 'text-secondary-accent-200';
-export const secondaryAccentTextMedium = 'text-secondary-accent-50';
+export const secondaryAccentTextMedium = 'text-secondary-accent-500';
 export const secondaryAccentTextSurface = 'text-secondary-accent-800';
 export const secondaryAccentTextLight = 'text-secondary-accent-800';
 
@@ -139,7 +139,7 @@ export const secondaryAccentTextLight = 'text-secondary-accent-800';
 export const neutralTextDarkest = 'text-neutral-200';
 export const neutralTextDark = 'text-neutral-200';
 export const neutralTextDeep = 'text-neutral-200';
-export const neutralTextMedium = 'text-neutral-50';
+export const neutralTextMedium = 'text-neutral-500';
 export const neutralTextSurface = 'text-neutral-800';
 export const neutralTextLight = 'text-neutral-800';
 
