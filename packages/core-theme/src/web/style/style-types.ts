@@ -20,6 +20,8 @@ export type ColorTone =
   | 'light' //200 - Standard light backgrounds.
   | 'lightest'; //50 - Standard light backgrounds.
 
+export type OpacityOption = ColorTone | 'full' | 'none';
+
 export type TextSize = 'xs' | 'sm' | 'md' | 'lg' | 'xl' | 'xxl';
 export type ButtonSize = TextSize;
 export type TextAlign = 'left' | 'center' | 'right' | 'justify';
@@ -151,4 +153,5 @@ export type StyleGuide = {
   listPosition: Record<ListPosition, string>;
   rounding: Record<RoundingSize, string>;
   spacing: spacingStyles;
+  opacity: Record<OpacityOption, string>;
 };

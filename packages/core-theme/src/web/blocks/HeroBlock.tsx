@@ -5,12 +5,13 @@ import SanityImage from '@zilfire/next-sanity-image';
 import { Button } from '../components/Button.js';
 import { styleGuide } from '../style/style-guide.js';
 import clsx from 'clsx';
-import type { ThemeColor, ColorTone, StyleGuide } from '../style/style-types.js';
+import type { ThemeColor, ColorTone, OpacityOption } from '../style/style-types.js';
+import { getBGColorClass, getOpacityClass } from '../style/utils.js';
 
 type OverlayOptions = {
   themeColor?: ThemeColor;
   colorTone?: ColorTone;
-  opacity?: '0' | '40' | '50' | '60' | '100';
+  opacity?: OpacityOption;
 };
 
 export type HeroBlockOptions = {
@@ -26,14 +27,9 @@ export type HeroBlockProps = {
 const textBlockSpacing = styleGuide.spacing.line.lg;
 const sectionPadding = styleGuide.spacing.section.xxl;
 
-const getBGColorClass = (themeColor: ThemeColor, colorTone: ColorTone, styleGuide: StyleGuide) => {
-  const colorClass = styleGuide.bgColor[themeColor]?.[colorTone];
-  return colorClass || '';
-};
-
 const defaultOverlayColor = 'black';
 const defaultOverlayTone = 'medium';
-const defaultOverlayOpacity = '40';
+const defaultOverlayOpacity = 'shade';
 
 export const HeroBlock: React.FC<HeroBlockProps> = ({ data, context, options }) => {
   const { sanityConfig } = context;
@@ -45,25 +41,10 @@ export const HeroBlock: React.FC<HeroBlockProps> = ({ data, context, options }) 
   } = overlayOptions;
 
   const overlayOpacity = overlayOptions.opacity ? overlayOptions.opacity : defaultOverlayOpacity;
-  let overlayOpacityClass: string = '';
+  const overlayOpacityClass = getOpacityClass(overlayOpacity, styleGuide);
 
-  switch (overlayOpacity) {
-    case '0':
-      overlayOpacityClass = 'opacity-0';
-      break;
-    case '40':
-      overlayOpacityClass = 'opacity-40';
-      break;
-    case '50':
-      overlayOpacityClass = 'opacity-50';
-      break;
-    case '60':
-      overlayOpacityClass = 'opacity-60';
-      break;
-    case '100':
-      overlayOpacityClass = 'opacity-100';
-      break;
-  }
+  console.log('overlay', overlayOptions);
+  console.log('defaultOverlayOpacity', defaultOverlayOpacity);
 
   const overlayBgClass = getBGColorClass(overlayThemeColor, overlayColorTone, styleGuide);
 

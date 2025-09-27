@@ -156,3 +156,14 @@ export const leadingSnug = 'leading-snug';
 export const leadingNormal = 'leading-normal';
 export const leadingRelaxed = 'leading-relaxed';
 export const leadingLoose = 'leading-loose';
+
+// Opacity variables
+export const opacityFull = 'opacity-100';
+export const opacityDarkest = 'opacity-90';
+export const opacityDark = 'opacity-75';
+export const opacityShade = 'opacity-60';
+export const opacityMedium = 'opacity-50';
+export const opacitySoft = 'opacity-40';
+export const opacityLight = 'opacity-20';
+export const opacityLightest = 'opacity-10';
+export const opacityNone = 'opacity-0';
