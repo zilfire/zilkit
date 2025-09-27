@@ -21,7 +21,7 @@ export type ColorTone =
   | 'lightest'; //50 - Standard light backgrounds.
 
 export type TextSize = 'xs' | 'sm' | 'md' | 'lg' | 'xl' | '2xl';
-export type ButtonSize = 'sm' | 'md' | 'lg';
+export type ButtonSize = TextSize;
 export type TextAlign = 'left' | 'center' | 'right' | 'justify';
 export type Leading = 'none' | 'tight' | 'snug' | 'normal' | 'relaxed' | 'loose';
 export type FontWeight =
@@ -104,7 +104,7 @@ export type DefaultTextComponentStyles = {
 };
 
 export type DefaultStyles = {
-  colorTones: ColorTone;
+  colorTone: ColorTone;
   backgroundColor: ThemeColor;
   textColor: ThemeColor;
   componentStyles: Record<TextComponentVariant, DefaultTextComponentStyles>;
