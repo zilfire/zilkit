@@ -17,7 +17,7 @@ const sectionPadding = styleGuide.spacing.section.xl;
 export const HeroBlock: React.FC<HeroBlockProps> = ({ data, context }) => {
   const { sanityConfig } = context;
   const { heading, description, backgroundImage, primaryButton } = data;
-  console.log('HeroBlock data:', data);
+  // console.log('HeroBlock data:', data);
   return (
     <div className="bg-gray-300 relative overflow-hidden">
       {backgroundImage && (
@@ -30,7 +30,7 @@ export const HeroBlock: React.FC<HeroBlockProps> = ({ data, context }) => {
           />
         </div>
       )}
-      {backgroundImage && <div className="absolute inset-0 bg-black opacity-30 z-5"></div>}
+      {backgroundImage && <div className="absolute inset-0 bg-black opacity-40 z-5"></div>}
       <div
         className={clsx('container mx-auto text-center lg:text-left z-10 relative', sectionPadding)}
       >
@@ -38,7 +38,7 @@ export const HeroBlock: React.FC<HeroBlockProps> = ({ data, context }) => {
           <H1
             textSize="lg"
             textColor="white"
-            styleOverride={['textAlign', 'spacing']}
+            styleOverride={['spacing']}
             className={textBlockSpacing}
             colorTone="medium"
           >

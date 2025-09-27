@@ -122,7 +122,6 @@ const getTextColorClass = (component: TextComponentVariant, options: StyleOption
     const { defaultColor, defaultColorTone } = getDefaultStyles(component);
     const color = themeColor ?? defaultColor;
     const tone = colorTone ?? defaultColorTone;
-    console.log('getTextColorClass:', { component, color, tone });
 
     if (!(color in styleGuide.textColor)) {
       throw new Error(`Invalid theme color: ${color}`);
@@ -154,16 +153,7 @@ const getLeadingClass = (component: TextComponentVariant, options: StyleOptions 
   }
 
   const fontSize = size ?? getDefaultStyles(component).defaultSize;
-  const leadingClass = styleGuide.componentStyles[component].leading[fontSize];
-
-  console.log('getLeadingClass:', {
-    component,
-    leading,
-    styleOverride,
-    fontSize,
-    leadingClass,
-  });
-  return leadingClass;
+  return styleGuide.componentStyles[component].leading[fontSize];
 };
 
 const getTextAlignClass = (component: TextComponentVariant, options: StyleOptions = {}) => {

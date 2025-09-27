@@ -1,6 +1,7 @@
 'use client';
 import { useRef, useState } from 'react';
 import clsx from 'clsx';
+import type { ThemeContext } from '../../types/context/index.js';
 import { Section } from '../components/Section.js';
 import { Container } from '../components/Container.js';
 import { FaPlus as PlusIcon, FaMinus as MinusIcon } from 'react-icons/fa6';
@@ -11,7 +12,7 @@ import { PortableText } from 'next-sanity';
 import type {
   ThemeColor,
   // FontStyle,
-  ColorMode,
+  ColorTone,
   FontWeight,
   // TextAlign,
   TextSize,
@@ -20,7 +21,7 @@ import type {
 import { Text } from '../text/index.js';
 
 type FaqOptions = {
-  colorMode?: ColorMode;
+  colorTone?: ColorTone;
   descriptionOptions?: TextComponentStyles & {
     sidebarRuleColor?: ThemeColor;
     sidebarRule?: boolean;
@@ -50,6 +51,7 @@ type FaqOptions = {
 type FaqBlockProps = {
   data: FaqBlockData;
   options?: FaqOptions;
+  context?: ThemeContext;
 };
 
 type FAQItemProps = {
@@ -59,6 +61,7 @@ type FAQItemProps = {
   };
   options?: FaqOptions;
   index: number;
+  context: ThemeContext;
 };
 
 const getBorderColor = (color: ThemeColor): string => {
@@ -69,7 +72,7 @@ const getFontColor = (color: ThemeColor): string => {
   return `text-${color}-500`;
 };
 
-export const FaqBlock: React.FC<FaqBlockProps> = ({ data, options }) => {
+export const FaqBlock: React.FC<FaqBlockProps> = ({ data, options, context }) => {
   const { heading, description, faqs } = data;
   const sidebarRuleColor = options?.descriptionOptions?.sidebarRuleColor;
   const sidebarRule = options?.descriptionOptions?.sidebarRule;
@@ -109,10 +112,10 @@ export const FaqBlock: React.FC<FaqBlockProps> = ({ data, options }) => {
               </p>
             )}
           </div>
-          {faqs && faqs.length > 0 && (
+          {faqs && faqs.length > 0 && context && (
             <div className="w-full lg:w-8/12 -mb-6 border-t">
               {faqs.map((faq, index) => (
-                <FaqItem qa={faq} index={index} key={index} options={options} />
+                <FaqItem qa={faq} index={index} key={index} options={options} context={context} />
               ))}
             </div>
           )}
@@ -122,7 +125,7 @@ export const FaqBlock: React.FC<FaqBlockProps> = ({ data, options }) => {
   );
 };
 
-const FaqItem = ({ qa, index, options }: FAQItemProps) => {
+const FaqItem = ({ qa, index, options, context }: FAQItemProps) => {
   const questionTextColor = options?.questionOptions?.textColor;
   // const answerTextColor = options?.answerOptions?.textColor;
   const plusIconColor = options?.plusIconOptions?.color;
@@ -172,9 +175,12 @@ const FaqItem = ({ qa, index, options }: FAQItemProps) => {
           <div className="mt-4 ml-2">
             <PortableText
               value={qa.answer}
-              components={portableTextComponents({
-                themeColor: 'neutral',
-              })}
+              components={portableTextComponents(
+                {
+                  themeColor: 'neutral',
+                },
+                context
+              )}
             />
           </div>
         </div>
