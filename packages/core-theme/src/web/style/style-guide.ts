@@ -1,4 +1,4 @@
-import { StyleGuide } from '@/web/style/style-types.js';
+import { StyleGuide } from '../../types/style-types/index.js';
 import { componentStyles } from './element-styles.js';
 import { defaultStyles } from './default-styles.js';
 import { spacingStyles } from './spacing-styles.js';

@@ -1,4 +1,4 @@
-import type { ComponentStyles } from '@/web/style/style-types.js';
+import type { ComponentStyles } from '@/types/style-types/index.js';
 import clsx from 'clsx';
 
 import {
@@ -21,7 +21,6 @@ import {
   lineSpacing2XL,
   lineSpacing3XL,
   lineSpacing4XL,
-  lineSpacing5XL,
   lineIndentXS,
   lineIndentSM,
   lineIndentMD,

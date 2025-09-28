@@ -22,7 +22,8 @@ export type ColorTone =
 
 export type OpacityOption = ColorTone | 'full' | 'none';
 
-export type TextSize = 'xs' | 'sm' | 'md' | 'lg' | 'xl' | 'xxl';
+export type Size = 'xs' | 'sm' | 'md' | 'lg' | 'xl' | 'xxl';
+export type TextSize = Size;
 export type ButtonSize = TextSize;
 export type TextAlign = 'left' | 'center' | 'right' | 'justify';
 export type Leading = 'none' | 'tight' | 'snug' | 'normal' | 'relaxed' | 'loose';
@@ -136,8 +137,8 @@ export type ComponentStyles =
       >;
 
 export type spacingStyles = {
-  line: Record<TextSize, string>;
-  section: Record<TextSize, string>;
+  line: Record<Size, string>;
+  section: Record<Size, string>;
   containerPadding: string;
 };
 

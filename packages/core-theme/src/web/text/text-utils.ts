@@ -11,7 +11,7 @@ import type {
   ListPosition,
   TextStylesOverride,
   TextStylesForOverride,
-} from '../style/style-types.js';
+} from '../../types/style-types/index.js';
 import { styleGuide } from '../style/style-guide.js';
 import { isArray } from 'sanity';
 

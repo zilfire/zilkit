@@ -1,4 +1,4 @@
-import type { DefaultStyles } from './style-types.js';
+import type { DefaultStyles } from '../../types/style-types/index.js';
 import { headingFont } from './style-variables.js';
 
 export const defaultStyles: DefaultStyles = {

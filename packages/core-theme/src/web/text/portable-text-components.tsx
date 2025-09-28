@@ -8,8 +8,8 @@ import type {
   TextComponentVariant,
   FontStyle,
   FontWeight,
-} from '../style/style-types.js';
-import { ThemeContext } from '../../types/context/index.js';
+} from '../../types/style-types/index.js';
+import { ThemeContext } from '../../types/context-types/index.js';
 import clsx from 'clsx';
 
 import {

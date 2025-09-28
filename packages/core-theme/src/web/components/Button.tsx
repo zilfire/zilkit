@@ -5,10 +5,10 @@ import type {
   ButtonSize,
   RoundingSize,
   FontWeight,
-} from '../style/style-types.js';
+} from '../../types/style-types/index.js';
 import clsx from 'clsx';
 import { ButtonData } from '../../types/sanity-data-types/index.js';
-import { ThemeContext } from '../../types/context/index.js';
+import { ThemeContext } from '../../types/context-types/index.js';
 import { renderLinkPath } from '../../utils/render-link-path.js';
 
 export type ButtonOptions = {

@@ -1,7 +1,7 @@
 'use client';
 import { useRef, useState } from 'react';
 import clsx from 'clsx';
-import type { ThemeContext } from '../../types/context/index.js';
+import type { ThemeContext } from '../../types/context-types/index.js';
 import { Section } from '../components/Section.js';
 import { Container } from '../components/Container.js';
 import { FaPlus as PlusIcon, FaMinus as MinusIcon } from 'react-icons/fa6';
@@ -17,7 +17,7 @@ import type {
   // TextAlign,
   TextSize,
   TextComponentStyles,
-} from '../style/style-types.js';
+} from '../../types/style-types/index.js';
 import { Text } from '../text/index.js';
 
 type FaqOptions = {

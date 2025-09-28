@@ -46,7 +46,7 @@ export default function TextPage() {
           comprehend your content.
         </P>
 
-        <H2 textSize={textSize}>H2: Heading Hierarchy</H2>
+        <H2 textSize={textSize}>H2: All About Heading Hierarchy</H2>
 
         <P textSize={textSize}>
           Proper heading hierarchy is absolutely crucial for both accessibility and search engine
@@ -58,7 +58,7 @@ export default function TextPage() {
           your page structure and content relationships.
         </P>
 
-        <H3 textSize={textSize}>H3: Primary Headings (H1)</H3>
+        <H3 textSize={textSize}>H3: Understanding the Primary Headings (H1)</H3>
         <P textSize={textSize}>
           Use H1 exclusively for page titles and main content headers, as they serve as the primary
           entry point for both users and search engines to understand your page's purpose and topic.

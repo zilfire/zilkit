@@ -26,6 +26,16 @@ export const lineSpacing3XL = 'mb-12 md:mb-16';
 export const lineSpacing4XL = 'mb-16 md:mb-24';
 export const lineSpacing5XL = 'mb-24 md:mb-32';
 
+export const lineSpacingYXS = 'my-2 md:my-2.5';
+export const lineSpacingYSM = 'my-2.5 md:my-3';
+export const lineSpacingYMD = 'my-3 md:my-4';
+export const lineSpacingYLG = 'my-4 md:my-6';
+export const lineSpacingYXL = 'my-6 md:my-8';
+export const lineSpacingY2XL = 'my-8 md:my-12';
+export const lineSpacingY3XL = 'my-12 md:my-16';
+export const lineSpacingY4XL = 'my-16 md:my-24';
+export const lineSpacingY5XL = 'my-24 md:my-32';
+
 export const lineIndentXS = 'ml-3';
 export const lineIndentSM = 'ml-4';
 export const lineIndentMD = 'ml-4';
@@ -40,13 +50,12 @@ export const blockquotePaddingLG = 'pl-4';
 export const blockquotePaddingXL = 'pl-5';
 export const blockquotePaddingxxl = 'pl-5';
 
-export const sectionSpacing = 'py-20 md:py-32';
-export const sectionSpacingXS = 'py-10 md:py-18';
-export const sectionSpacingSM = 'py-16 md:py-24';
-export const sectionSpacingMD = sectionSpacing;
-export const sectionSpacingLG = 'py-24 md:py-36';
-export const sectionSpacingXL = 'py-32 md:py-40';
-export const sectionSpacingxxl = 'py-40 md:py-64';
+export const sectionSpacingXS = 'py-10 md:py-18 lg:py-24';
+export const sectionSpacingSM = 'py-16 md:py-24 lg:py-32';
+export const sectionSpacingMD = 'py-20 md:py-32 lg:py-36';
+export const sectionSpacingLG = 'py-24 md:py-36 lg:py-40';
+export const sectionSpacingXL = 'py-32 md:py-40 lg:py-48';
+export const sectionSpacingxxl = 'py-40 md:py-64 lg:py-72';
 
 export const containerPadding = 'px-4 md:px-6 lg:px-8';
 

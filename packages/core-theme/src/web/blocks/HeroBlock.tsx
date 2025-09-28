@@ -1,12 +1,13 @@
 import type { HeroBlockData } from '../../types/sanity-data-types/blocks/index.js';
-import type { ThemeContext } from '../../types/context/index.js';
+import type { ThemeContext } from '../../types/context-types/index.js';
+import type { ThemeColor, ColorTone, OpacityOption, Size } from '../../types/style-types/index.js';
 import { H1, P } from '../text/index.js';
 import SanityImage from '@zilfire/next-sanity-image';
 import { Button } from '../components/Button.js';
 import { styleGuide } from '../style/style-guide.js';
 import clsx from 'clsx';
-import type { ThemeColor, ColorTone, OpacityOption } from '../style/style-types.js';
 import { getBGColorClass, getOpacityClass } from '../style/utils.js';
+import { Container } from '../components/index.js';
 
 type OverlayOptions = {
   themeColor?: ThemeColor;
@@ -14,8 +15,13 @@ type OverlayOptions = {
   opacity?: OpacityOption;
 };
 
+type SectionOptions = {
+  sectionSpacing?: Size;
+};
+
 export type HeroBlockOptions = {
   overlayOptions?: OverlayOptions;
+  sectionOptions?: SectionOptions;
 };
 
 export type HeroBlockProps = {
@@ -24,21 +30,22 @@ export type HeroBlockProps = {
   options?: HeroBlockOptions;
 };
 
-const textBlockSpacing = styleGuide.spacing.line.lg;
-const sectionPadding = styleGuide.spacing.section.xxl;
-
 const defaultOverlayColor = 'black';
 const defaultOverlayTone = 'medium';
 const defaultOverlayOpacity = 'shade';
+const defaultSectionSpacing = 'xxl';
 
 export const HeroBlock: React.FC<HeroBlockProps> = ({ data, context, options }) => {
   const { sanityConfig } = context;
   const { heading, description, backgroundImage, primaryButton } = data;
-  const { overlayOptions = {} }: HeroBlockOptions = options || {};
+  const { overlayOptions = {}, sectionOptions = {} }: HeroBlockOptions = options || {};
   const {
     themeColor: overlayThemeColor = defaultOverlayColor,
     colorTone: overlayColorTone = defaultOverlayTone,
   } = overlayOptions;
+
+  const sectionSpacing = sectionOptions.sectionSpacing || defaultSectionSpacing;
+  const sectionSpacingClass = styleGuide.spacing.section[sectionSpacing];
 
   const overlayOpacity = overlayOptions.opacity ? overlayOptions.opacity : defaultOverlayOpacity;
   const overlayOpacityClass = getOpacityClass(overlayOpacity, styleGuide);
@@ -63,25 +70,12 @@ export const HeroBlock: React.FC<HeroBlockProps> = ({ data, context, options }) 
       {backgroundImage && (
         <div className={clsx('absolute inset-0 z-5', overlayOpacityClass, overlayBgClass)}></div>
       )}
-      <div
-        className={clsx('container mx-auto text-center lg:text-left z-10 relative', sectionPadding)}
-      >
+      <Container className={clsx('relative', sectionSpacingClass)}>
         <div className="lg:w-1/2 w-full">
-          <H1
-            textSize="lg"
-            textColor="white"
-            styleOverride={['spacing']}
-            className={textBlockSpacing}
-            colorTone="medium"
-          >
+          <H1 textSize="lg" textColor="white" styleOverride={[]} colorTone="medium">
             {heading}
           </H1>
-          <P
-            textSize="lg"
-            styleOverride={['spacing']}
-            className={textBlockSpacing}
-            textColor="white"
-          >
+          <P textSize="lg" styleOverride={[]} textColor="white">
             {description}
           </P>
           <div className="lg:text-left text-center">
@@ -103,7 +97,7 @@ export const HeroBlock: React.FC<HeroBlockProps> = ({ data, context, options }) 
             )}
           </div>
         </div>
-      </div>
+      </Container>
     </div>
   );
 };

@@ -1,4 +1,9 @@
-import type { ColorTone, OpacityOption, StyleGuide, ThemeColor } from './style-types.js';
+import type {
+  ColorTone,
+  OpacityOption,
+  StyleGuide,
+  ThemeColor,
+} from '../../types/style-types/index.js';
 
 export const getBGColorClass = (
   themeColor: ThemeColor,

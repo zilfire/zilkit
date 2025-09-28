@@ -3,7 +3,7 @@ import type {
   TextComponent,
   TextComponentStyles,
   TextComponentVariant,
-} from '../style/style-types.js';
+} from '../../types/style-types/index.js';
 import { getTextComponentClasses } from './text-utils.js';
 import clsx from 'clsx';
 
