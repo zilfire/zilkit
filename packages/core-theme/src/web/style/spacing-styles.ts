@@ -4,7 +4,7 @@ import {
   lineSpacingMD,
   lineSpacingLG,
   lineSpacingXL,
-  lineSpacingxxl,
+  lineSpacing2XL,
   sectionSpacingXS,
   sectionSpacingSM,
   sectionSpacingMD,
@@ -21,7 +21,7 @@ export const spacingStyles = {
     md: lineSpacingMD,
     lg: lineSpacingLG,
     xl: lineSpacingXL,
-    xxl: lineSpacingxxl,
+    xxl: lineSpacing2XL,
   },
   section: {
     xs: sectionSpacingXS,

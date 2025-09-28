@@ -15,13 +15,16 @@ export const text7XL = 'text-5xl md:text-7xl lg:text-9xl';
 export const headingFont = 'font-heading';
 
 // Spacing variables
-export const lineSpacing = 'mb-4 md:mb-6';
-export const lineSpacingXS = 'mb-2 md:mb-4';
-export const lineSpacingSM = 'mb-2 md:mb-4';
-export const lineSpacingMD = lineSpacing;
-export const lineSpacingLG = 'mb-4 md:mb-8';
-export const lineSpacingXL = 'mb-6 md:mb-12';
-export const lineSpacingxxl = 'mb-8 md:mb-16';
+// export const lineSpacing = 'mb-1.5 md:mb-2';
+export const lineSpacingXS = 'mb-2 md:mb-2.5';
+export const lineSpacingSM = 'mb-2.5 md:mb-3';
+export const lineSpacingMD = 'mb-3 md:mb-4';
+export const lineSpacingLG = 'mb-4 md:mb-6';
+export const lineSpacingXL = 'mb-6 md:mb-8';
+export const lineSpacing2XL = 'mb-8 md:mb-12';
+export const lineSpacing3XL = 'mb-12 md:mb-16';
+export const lineSpacing4XL = 'mb-16 md:mb-24';
+export const lineSpacing5XL = 'mb-24 md:mb-32';
 
 export const lineIndentXS = 'ml-3';
 export const lineIndentSM = 'ml-4';
