@@ -17,9 +17,9 @@ export default async function Home() {
 
   const options: HeroBlockOptions = {
     overlayOptions: {
-      themeColor: 'secondary',
-      colorTone: 'darkest',
-      opacity: 'dark',
+      overlayColor: 'neutral',
+      overlayColorTone: 'darkest',
+      overlayOpacity: 'shade',
     },
   };
 

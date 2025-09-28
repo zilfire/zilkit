@@ -1,6 +1,12 @@
 import type { HeroBlockData } from '../../types/sanity-data-types/blocks/index.js';
 import type { ThemeContext } from '../../types/context-types/index.js';
-import type { ThemeColor, ColorTone, OpacityOption, Size } from '../../types/style-types/index.js';
+import type {
+  ThemeColor,
+  ColorTone,
+  OpacityOption,
+  Size,
+  FontWeight,
+} from '../../types/style-types/index.js';
 import { H1, P } from '../text/index.js';
 import SanityImage from '@zilfire/next-sanity-image';
 import { Button } from '../components/Button.js';
@@ -10,18 +16,42 @@ import { getBGColorClass, getOpacityClass } from '../style/utils.js';
 import { Container } from '../components/index.js';
 
 type OverlayOptions = {
-  themeColor?: ThemeColor;
-  colorTone?: ColorTone;
-  opacity?: OpacityOption;
+  overlayColor?: ThemeColor;
+  overlayColorTone?: ColorTone;
+  overlayOpacity?: OpacityOption;
 };
 
 type SectionOptions = {
   sectionSpacing?: Size;
+  overlayColor?: ThemeColor;
+  overlayColorTone?: ColorTone;
+  overlayOpacity?: OpacityOption;
+};
+
+type HeroContentOptions = {
+  spacing: Size;
+  headlineTextSize: Size;
+  headlineColor: ThemeColor;
+  headlineColorTone: ColorTone;
+  descriptionTextSize: Size;
+  descriptionColor?: ThemeColor;
+  descriptionColorTone?: ColorTone;
+};
+
+type primaryButtonOptions = {
+  backgroundColor: ThemeColor;
+  backgroundColorTone: ColorTone;
+  textColor: ThemeColor;
+  textColorTone: ColorTone;
+  size: Size;
+  fontWeight: FontWeight;
 };
 
 export type HeroBlockOptions = {
   overlayOptions?: OverlayOptions;
   sectionOptions?: SectionOptions;
+  contentOptions?: HeroContentOptions;
+  primaryButtonOptions?: primaryButtonOptions;
 };
 
 export type HeroBlockProps = {
@@ -40,20 +70,20 @@ export const HeroBlock: React.FC<HeroBlockProps> = ({ data, context, options }) 
   const { heading, description, backgroundImage, primaryButton } = data;
   const { overlayOptions = {}, sectionOptions = {} }: HeroBlockOptions = options || {};
   const {
-    themeColor: overlayThemeColor = defaultOverlayColor,
-    colorTone: overlayColorTone = defaultOverlayTone,
+    overlayColor = defaultOverlayColor,
+    overlayColorTone = defaultOverlayTone,
+    overlayOpacity = defaultOverlayOpacity,
   } = overlayOptions;
 
   const sectionSpacing = sectionOptions.sectionSpacing || defaultSectionSpacing;
   const sectionSpacingClass = styleGuide.spacing.section[sectionSpacing];
 
-  const overlayOpacity = overlayOptions.opacity ? overlayOptions.opacity : defaultOverlayOpacity;
   const overlayOpacityClass = getOpacityClass(overlayOpacity, styleGuide);
 
   console.log('overlay', overlayOptions);
   console.log('defaultOverlayOpacity', defaultOverlayOpacity);
 
-  const overlayBgClass = getBGColorClass(overlayThemeColor, overlayColorTone, styleGuide);
+  const overlayBgClass = getBGColorClass(overlayColor, overlayColorTone, styleGuide);
 
   return (
     <div className="bg-gray-300 relative overflow-hidden">
