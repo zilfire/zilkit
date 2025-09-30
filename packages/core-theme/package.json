@@ -1,6 +1,6 @@
 {
   "name": "@zilfire/core-theme",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "",
   "type": "module",
   "files": [
@@ -15,6 +15,10 @@
     "./web/blocks": {
       "types": "./dist/web/blocks/index.d.ts",
       "import": "./dist/web/blocks/index.js"
+    },
+    "./web/blocks/HeroBlock": {
+      "types": "./dist/web/blocks/HeroBlock.d.ts",
+      "import": "./dist/web/blocks/HeroBlock.js"
     },
     "./web/components": {
       "types": "./dist/web/components/index.d.ts",
