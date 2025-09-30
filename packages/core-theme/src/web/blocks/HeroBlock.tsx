@@ -15,13 +15,13 @@ import clsx from 'clsx';
 import { getBGColorClass, getOpacityClass } from '../style/utils.js';
 import { Container } from '../components/index.js';
 
-export type OverlayOptions = {
+export type HeroOverlayOptions = {
   overlayColor?: ThemeColor;
   overlayColorTone?: ColorTone;
   overlayOpacity?: OpacityOption;
 };
 
-export type SectionOptions = {
+export type HeroSectionOptions = {
   sectionSpacing?: Size;
   overlayColor?: ThemeColor;
   overlayColorTone?: ColorTone;
@@ -41,7 +41,7 @@ export type HeroContentOptions = {
   contentAlignment?: HeroContentAlignment;
 };
 
-export type ButtonOptions = {
+export type HeroButtonOptions = {
   primaryButtonBackgroundColor?: ThemeColor;
   primaryButtonBackgroundColorTone?: ColorTone;
   primaryButtonTextColor?: ThemeColor;
@@ -51,10 +51,10 @@ export type ButtonOptions = {
 };
 
 export type HeroBlockOptions = {
-  overlayOptions?: OverlayOptions;
-  sectionOptions?: SectionOptions;
+  overlayOptions?: HeroOverlayOptions;
+  sectionOptions?: HeroSectionOptions;
   contentOptions?: HeroContentOptions;
-  buttonOptions?: ButtonOptions;
+  buttonOptions?: HeroButtonOptions;
 };
 
 export type HeroBlockProps = {
