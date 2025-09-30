@@ -9,8 +9,6 @@ export type ThemeColor =
 
 export type FontStyle = 'normal' | 'italic';
 
-// @todo: Consider renaming ColorTone for better clarity.
-// @todo: add color shade to scale
 export type ColorTone =
   | 'darkest' //950 - The deepest, almost black.
   | 'dark' //800 - Standard dark backgrounds.

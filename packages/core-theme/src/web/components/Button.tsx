@@ -12,9 +12,10 @@ import { ThemeContext } from '../../types/context-types/index.js';
 import { renderLinkPath } from '../../utils/render-link-path.js';
 
 export type ButtonOptions = {
-  colorTone?: ColorTone;
+  backgroundColorTone?: ColorTone;
   backgroundColor?: ThemeColor;
   textColor?: ThemeColor;
+  textColorTone?: ColorTone;
   size?: ButtonSize;
   rounding?: RoundingSize;
   fontWeight?: FontWeight;
@@ -26,23 +27,32 @@ export type ButtonProps = {
   options?: ButtonOptions;
   data: ButtonData;
   context: ThemeContext;
+  className?: string;
 };
 
-export const Button: React.FC<ButtonProps> = ({ onClick, children, options, context, data }) => {
+export const Button: React.FC<ButtonProps> = ({
+  onClick,
+  children,
+  options,
+  context,
+  data,
+  className,
+}) => {
   const path = data.link ? renderLinkPath(data.link) : '';
   const content = data.text || children;
   const Link = context.LinkComponent;
   const {
-    colorTone = 'medium',
+    backgroundColorTone = 'medium',
     backgroundColor = 'primary',
     textColor = 'black',
+    textColorTone = 'medium',
     size = 'md',
     rounding = 'md',
     fontWeight = 'normal',
   } = options || {};
 
-  const backgroundClass = styleGuide.bgColor[backgroundColor][colorTone];
-  const textClass = styleGuide.textColor[textColor][colorTone];
+  const backgroundClass = styleGuide.bgColor[backgroundColor][backgroundColorTone];
+  const textClass = styleGuide.textColor[textColor][textColorTone];
   const fontSizeClass = styleGuide.componentStyles.button.fontSize[size];
   const spacingClass = styleGuide.componentStyles.button.spacing[size];
   const roundingClass = styleGuide.rounding[rounding];
@@ -58,7 +68,8 @@ export const Button: React.FC<ButtonProps> = ({ onClick, children, options, cont
           spacingClass,
           roundingClass,
           fontWeightClass,
-          'hover:brightness-95 inline-block'
+          'hover:brightness-95 inline-block',
+          className
         )}
       >
         {content}

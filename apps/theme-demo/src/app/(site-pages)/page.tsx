@@ -16,11 +16,11 @@ export default async function Home() {
   const { hero: heroData } = homeData;
 
   const options: HeroBlockOptions = {
-    overlayOptions: {
-      overlayColor: 'neutral',
-      overlayColorTone: 'darkest',
-      overlayOpacity: 'shade',
-    },
+    // overlayOptions: {
+    //   overlayColor: 'neutral',
+    //   overlayColorTone: 'darkest',
+    //   overlayOpacity: 'shade',
+    // },
   };
 
   return (
