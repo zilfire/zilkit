@@ -1,4 +1,3 @@
-import { de } from 'date-fns/locale';
 import { defineField, defineType } from 'sanity';
 
 export default defineType({
@@ -32,6 +31,10 @@ export default defineType({
       name: 'hero',
       title: 'Hero',
       type: 'heroBlock',
+      options: {
+        collapsible: true,
+        collapsed: false,
+      },
     }),
   ],
 });

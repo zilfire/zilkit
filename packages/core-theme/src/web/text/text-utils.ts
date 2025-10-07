@@ -130,7 +130,7 @@ const getTextColorClass = (component: TextComponentVariant, options: StyleOption
     return styleGuide.textColor[color][tone];
   } catch (error) {
     console.error(`Error getting text color class:`, error);
-    return styleGuide.textColor.neutral.medium; // Fallback
+    return styleGuide.textColor.neutral['700']; // Fallback
   }
 };
 

@@ -10,15 +10,39 @@ export type ThemeColor =
 export type FontStyle = 'normal' | 'italic';
 
 export type ColorTone =
-  | 'darkest' //950 - The deepest, almost black.
-  | 'dark' //800 - Standard dark backgrounds.
-  | 'shade' //600 - A deeper shade of color, used for emphasis.
-  | 'medium' //500 - Mid background color
-  | 'soft' //300 - Used for cards, sheets, or surfaces above the background.
-  | 'light' //200 - Standard light backgrounds.
-  | 'lightest'; //50 - Standard light backgrounds.
+  | '50' //50 - Standard light backgrounds.
+  | '100' //100 - Standard light backgrounds.
+  | '200' //200 - Standard light backgrounds.
+  | '300' //300 - Used for cards, sheets, or surfaces above the background.
+  | '400' //400 - A lighter shade of color, used for emphasis.
+  | '500' //500 - Mid background color
+  | '600' //600 - A deeper shade of color, used for emphasis.
+  | '700' //700 - Standard dark backgrounds.
+  | '800' //800 - Standard dark backgrounds.
+  | '900' //900 - Standard dark backgrounds.
+  | '950'; //950 - The deepest, almost black.
 
-export type OpacityOption = ColorTone | 'full' | 'none';
+export type OpacityOption =
+  | '0' //0% - Fully transparent.
+  | '5' //5% - Almost fully transparent.
+  | '10' //10% - Very transparent.
+  | '15' //15% - Highly transparent.
+  | '20' //20% - Quite transparent.
+  | '25' //25% - Quarter transparent.
+  | '30' //30% - Moderately transparent.
+  | '35' //35% - Moderately transparent.
+  | '40' //40% - Less transparent.
+  | '45' //45% - Less transparent.
+  | '50' //50% - Half transparent.
+  | '55' //55% - More opaque.
+  | '60' //60% - More opaque.
+  | '65' //65% - Mostly opaque.
+  | '70' //70% - Mostly opaque.
+  | '75' //75% - Three quarters opaque.
+  | '80' //80% - Nearly opaque.
+  | '90' //90% - Very nearly opaque.
+  | '95' //95% - Almost fully opaque.
+  | '100'; //100% - Fully opaque.
 
 export type Size = 'xs' | 'sm' | 'md' | 'lg' | 'xl' | 'xxl';
 export type TextSize = Size;
@@ -104,7 +128,7 @@ export type DefaultTextComponentStyles = {
 };
 
 export type DefaultStyles = {
-  colorTone: ColorTone;
+  // colorTone: ColorTone;
   backgroundColor: ThemeColor;
   textColor: ThemeColor;
   componentStyles: Record<TextComponentVariant, DefaultTextComponentStyles>;
