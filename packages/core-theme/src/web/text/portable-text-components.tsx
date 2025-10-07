@@ -61,7 +61,7 @@ const RenderedText: React.FC<RenderedTextProps> = ({
   renderClassName,
 }) => {
   const size = options?.size || 'md';
-  const colorTone = options?.colorTone || 'light';
+  const colorTone = options?.colorTone || '700';
   const themeColor = options?.themeColor || 'black';
   const classOverride = options?.classOverride;
   const className = options?.className;

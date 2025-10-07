@@ -64,23 +64,23 @@ export type HeroBlockProps = {
 };
 
 const defaultOverlayColor: ThemeColor = 'black';
-const defaultOverlayTone: ColorTone = 'medium';
-const defaultOverlayOpacity: OpacityOption = 'medium';
+const defaultOverlayTone: ColorTone = '500';
+const defaultOverlayOpacity: OpacityOption = '50';
 const defaultSectionSpacing: Size = 'xl';
 
 const defaultContentSpacing: Size = 'xl';
 const defaultHeadlineTextSize: Size = 'lg';
 const defaultHeadlineColor: ThemeColor = 'white';
-const defaultHeadlineColorTone: ColorTone = 'medium';
+const defaultHeadlineColorTone: ColorTone = '500';
 const defaultDescriptionTextSize: Size = 'lg';
 const defaultDescriptionColor: ThemeColor = 'white';
-const defaultDescriptionColorTone: ColorTone = 'medium';
+const defaultDescriptionColorTone: ColorTone = '700';
 const defaultContentAlignment: HeroContentAlignment = 'responsive';
 
 const defaultPrimaryButtonBackgroundColor: ThemeColor = 'primary';
-const defaultPrimaryButtonBackgroundColorTone: ColorTone = 'medium';
+const defaultPrimaryButtonBackgroundColorTone: ColorTone = '500';
 const defaultPrimaryButtonTextColor: ThemeColor = 'black';
-const defaultPrimaryButtonTextColorTone: ColorTone = 'medium';
+const defaultPrimaryButtonTextColorTone: ColorTone = '500';
 const defaultPrimaryButtonSize: Size = 'lg';
 const defaultPrimaryButtonFontWeight: FontWeight = 'medium';
 

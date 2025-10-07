@@ -42,10 +42,10 @@ export const Button: React.FC<ButtonProps> = ({
   const content = data.text || children;
   const Link = context.LinkComponent;
   const {
-    backgroundColorTone = 'medium',
+    backgroundColorTone = '500',
     backgroundColor = 'primary',
     textColor = 'black',
-    textColorTone = 'medium',
+    textColorTone = '700',
     size = 'md',
     rounding = 'md',
     fontWeight = 'normal',
