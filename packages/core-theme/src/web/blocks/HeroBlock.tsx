@@ -172,19 +172,20 @@ export const HeroBlock: React.FC<HeroBlockProps> = ({
           {headlineOptions.children || heading}
         </Text>
         {description && (
-          <PortableText
-            value={description}
-            components={portableTextComponents(
-              {
-                themeColor: 'white',
-                weight: 'normal',
-                size: 'lg',
-                normalSpan: true,
-                className: 'block',
-              },
-              context
-            )}
-          />
+          <div className="">
+            <PortableText
+              value={description}
+              components={portableTextComponents(
+                {
+                  themeColor: 'white',
+                  weight: 'normal',
+                  size: 'lg',
+                  className: 'last:mb-0',
+                },
+                context
+              )}
+            />
+          </div>
         )}
         <div className={clsx(alignmentClass)}>
           {primaryButton && (
