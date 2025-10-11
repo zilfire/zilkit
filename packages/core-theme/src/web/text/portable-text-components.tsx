@@ -167,7 +167,7 @@ export const portableTextComponents = (
       normal: (props: PortableTextComponentProps<PortableTextBlock>) => {
         if (normalSpan === true) {
           return (
-            <RenderedText variant={'span'} options={options}>
+            <RenderedText variant={'span'} as="span" options={options}>
               {props.children}
             </RenderedText>
           );

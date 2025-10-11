@@ -13,7 +13,7 @@ export const heroBlock = defineType({
     defineField({
       name: 'description',
       title: 'Description',
-      type: 'text',
+      type: 'richText',
     }),
     defineField({
       name: 'backgroundImage',

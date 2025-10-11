@@ -8,7 +8,7 @@ import type {
   FontWeight,
   TextComponent,
 } from '../../types/style-types/index.js';
-import { Text, H1, P } from '../text/index.js';
+import { Text, portableTextComponents } from '../text/index.js';
 import type { TextComponentProps } from '../text/index.js';
 import { Button } from '../components/Button.js';
 import { styleGuide } from '../style/style-guide.js';
@@ -21,6 +21,7 @@ import type {
   BackgroundImageOptions,
   ContainerOptions,
 } from '../components/Section.js';
+import { PortableText } from 'next-sanity';
 
 export type HeroContentAlignment = 'left' | 'center' | 'responsive';
 
@@ -170,15 +171,21 @@ export const HeroBlock: React.FC<HeroBlockProps> = ({
         >
           {headlineOptions.children || heading}
         </Text>
-        <P
-          textSize={descriptionTextSize}
-          styleOverride={['spacing', 'textAlign']}
-          textColor={descriptionColor}
-          colorTone={descriptionColorTone}
-          className={clsx(alignmentClass)}
-        >
-          {description}
-        </P>
+        {description && (
+          <PortableText
+            value={description}
+            components={portableTextComponents(
+              {
+                themeColor: 'white',
+                weight: 'normal',
+                size: 'lg',
+                normalSpan: true,
+                className: 'block',
+              },
+              context
+            )}
+          />
+        )}
         <div className={clsx(alignmentClass)}>
           {primaryButton && (
             <Button

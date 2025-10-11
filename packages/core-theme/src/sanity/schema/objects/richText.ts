@@ -17,6 +17,7 @@ export const richText = defineType({
   title: 'Rich Text',
   name: 'richText',
   type: 'array',
+  validation: (Rule) => Rule.max(1).error('Only one paragraph is allowed'),
   of: [
     defineArrayMember({
       title: 'Block',
@@ -26,7 +27,7 @@ export const richText = defineType({
       // you want, and decide how you want to deal with it where you want to
       // use your content.
       styles: [{ title: 'Normal', value: 'normal' }],
-      lists: [{ title: 'Bullet', value: 'bullet' }],
+      lists: [],
       // Marks let you mark up inline text in the Portable Text Editor
       marks: {
         // Decorators usually describe a single property – e.g. a typographic
