@@ -1,20 +1,41 @@
-import clsx from "clsx";
+import clsx from 'clsx';
+import type { Size } from '../../types/style-types/index.js';
+import { styleGuide } from '../style/style-guide.js';
 
-type ContainerProps = {
-  children?: React.ReactNode;
-  className?: string;
+export type ContainerOptions = {
+  verticalPadding?: Size;
+  containerClassName?: string;
+  containerClassOverride?: boolean;
 };
+
+export type ContainerProps = {
+  children?: React.ReactNode;
+  options?: ContainerOptions;
+};
+
+// @todo: make horizontal padding configurable via styleGuide
+const horizontalPaddingClass = 'px-3 md:px-4 lg:px-6';
 
 export const Container: React.FC<ContainerProps> = ({
   children,
-  className,
+  options = {},
 }): React.ReactElement => {
+  const { containerClassName, containerClassOverride, verticalPadding } = options;
+
+  const verticalPaddingClass = verticalPadding ? styleGuide.spacing.section[verticalPadding] : '';
+
   return (
     <div
-      className={clsx(
-        "container mx-auto px-3 md:px-4 lg:px-6",
-        className ? className : ""
-      )}
+      className={
+        containerClassOverride === true
+          ? containerClassName
+          : clsx(
+              'container relative mx-auto ',
+              horizontalPaddingClass,
+              containerClassName,
+              verticalPaddingClass
+            )
+      }
     >
       {children}
     </div>

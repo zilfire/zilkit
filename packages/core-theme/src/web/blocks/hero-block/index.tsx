@@ -11,27 +11,19 @@ import { H1, P } from '../../text/index.js';
 import { Button } from '../../components/Button.js';
 import { styleGuide } from '../../style/style-guide.js';
 import clsx from 'clsx';
-import { getBGColorClass, getOpacityClass } from '../../style/utils.js';
-import { Container } from '../../components/index.js';
+// import type { ContainerOptions } from '../../components/Container.js';
 import { Section } from '../../components/Section.js';
-
-export type HeroOverlayOptions = {
-  overlayColor?: ThemeColor;
-  overlayColorTone?: ColorTone;
-  overlayOpacity?: OpacityOption;
-};
-
-export type HeroSectionOptions = {
-  sectionSpacing?: Size;
-  overlayColor?: ThemeColor;
-  overlayColorTone?: ColorTone;
-  overlayOpacity?: OpacityOption;
-};
+import type {
+  SectionOptions,
+  OverlayOptions,
+  BackgroundImageOptions,
+  ContainerOptions,
+} from '../../components/Section.js';
 
 export type HeroContentAlignment = 'left' | 'center' | 'responsive';
 
 export type HeroContentOptions = {
-  contentSpacing?: Size;
+  contentGap?: Size;
   headlineTextSize?: Size;
   headlineColor?: ThemeColor;
   headlineColorTone?: ColorTone;
@@ -50,32 +42,33 @@ export type HeroButtonOptions = {
   primaryButtonFontWeight?: FontWeight;
 };
 
-export type HeroBlockOptions = {
-  overlayOptions?: HeroOverlayOptions;
-  sectionOptions?: HeroSectionOptions;
-  contentOptions?: HeroContentOptions;
-  buttonOptions?: HeroButtonOptions;
-};
-
 export type HeroBlockProps = {
   data: HeroBlockData;
   context: ThemeContext;
-  options?: HeroBlockOptions;
+  overlayOptions?: OverlayOptions;
+  sectionOptions?: SectionOptions;
+  containerOptions?: ContainerOptions;
+  backgroundImageOptions?: BackgroundImageOptions;
+  contentOptions?: HeroContentOptions;
+  buttonOptions?: HeroButtonOptions;
 };
 
 const defaultOverlayColor: ThemeColor = 'black';
 const defaultOverlayTone: ColorTone = '500';
 const defaultOverlayOpacity: OpacityOption = '50';
-const defaultSectionSpacing: Size = 'xl';
 
-const defaultContentSpacing: Size = 'xl';
+const defaultContainerVerticalPadding: Size = 'xl';
+
+const defaultContentGap: Size = 'xl';
+const defaultContentAlignment: HeroContentAlignment = 'responsive';
+
 const defaultHeadlineTextSize: Size = 'lg';
 const defaultHeadlineColor: ThemeColor = 'white';
 const defaultHeadlineColorTone: ColorTone = '500';
+
 const defaultDescriptionTextSize: Size = 'lg';
 const defaultDescriptionColor: ThemeColor = 'white';
 const defaultDescriptionColorTone: ColorTone = '700';
-const defaultContentAlignment: HeroContentAlignment = 'responsive';
 
 const defaultPrimaryButtonBackgroundColor: ThemeColor = 'primary';
 const defaultPrimaryButtonBackgroundColorTone: ColorTone = '500';
@@ -83,29 +76,41 @@ const defaultPrimaryButtonTextColor: ThemeColor = 'black';
 const defaultPrimaryButtonTextColorTone: ColorTone = '500';
 const defaultPrimaryButtonSize: Size = 'lg';
 const defaultPrimaryButtonFontWeight: FontWeight = 'medium';
+const defaultBGImageSizes = [600, 900, 1200, 1800, 2400];
+const defaultBGImageQuality = 80;
+const defaultBGImagePriority = true;
 
-export const HeroBlock: React.FC<HeroBlockProps> = ({ data, context, options }) => {
-  const { sanityConfig } = context;
+export const HeroBlock: React.FC<HeroBlockProps> = ({
+  data,
+  context,
+  sectionOptions = {},
+  overlayOptions = {},
+  backgroundImageOptions = {},
+  containerOptions = {},
+  contentOptions = {},
+  buttonOptions = {},
+}) => {
   const { heading, description, backgroundImage, primaryButton } = data;
-  const {
-    overlayOptions = {},
-    sectionOptions = {},
-    contentOptions = {},
-    buttonOptions = {},
-  }: HeroBlockOptions = options || {};
-  const {
-    overlayColor = defaultOverlayColor,
-    overlayColorTone = defaultOverlayTone,
-    overlayOpacity = defaultOverlayOpacity,
-  } = overlayOptions;
-  // const overlayOpacityClass = getOpacityClass(overlayOpacity, styleGuide);
-  // const overlayBgClass = getBGColorClass(overlayColor, overlayColorTone, styleGuide);
 
-  const { sectionSpacing = defaultSectionSpacing } = sectionOptions;
-  const sectionSpacingClass = styleGuide.spacing.section[sectionSpacing];
+  // Set default overlay options if not provided
+  overlayOptions.overlayColor = overlayOptions.overlayColor || defaultOverlayColor;
+  overlayOptions.overlayColorTone = overlayOptions.overlayColorTone || defaultOverlayTone;
+  overlayOptions.overlayOpacity = overlayOptions.overlayOpacity || defaultOverlayOpacity;
+
+  // Set default background image options if not provided
+  backgroundImageOptions.imageSizes = backgroundImageOptions.imageSizes || defaultBGImageSizes;
+  backgroundImageOptions.quality = backgroundImageOptions.quality || defaultBGImageQuality;
+  backgroundImageOptions.priority =
+    backgroundImageOptions.priority !== undefined
+      ? backgroundImageOptions.priority
+      : defaultBGImagePriority;
+
+  // Set default container options if not provided
+  containerOptions.verticalPadding =
+    containerOptions.verticalPadding || defaultContainerVerticalPadding;
 
   const {
-    contentSpacing = defaultContentSpacing,
+    contentGap = defaultContentGap,
     headlineTextSize = defaultHeadlineTextSize,
     headlineColor = defaultHeadlineColor,
     headlineColorTone = defaultHeadlineColorTone,
@@ -114,7 +119,8 @@ export const HeroBlock: React.FC<HeroBlockProps> = ({ data, context, options }) 
     descriptionColorTone = defaultDescriptionColorTone,
     contentAlignment = defaultContentAlignment,
   } = contentOptions;
-  const contentSpacingClass = styleGuide.spacing.line[contentSpacing];
+
+  const contentGapClass = styleGuide.spacing.verticalLineGap[contentGap];
 
   const {
     primaryButtonBackgroundColor = defaultPrimaryButtonBackgroundColor,
@@ -144,55 +150,50 @@ export const HeroBlock: React.FC<HeroBlockProps> = ({ data, context, options }) 
     <Section
       themeContext={context}
       backgroundImage={backgroundImage}
-      backgroundImageOptions={{
-        imageSizes: [600, 900, 1200, 1800, 2400],
-        quality: 80,
-        priority: true,
-      }}
-      sectionOptions={{}}
-      overlayOptions={{ overlayColor: 'black' }}
+      backgroundImageOptions={backgroundImageOptions}
+      sectionOptions={sectionOptions}
+      overlayOptions={overlayOptions}
+      containerOptions={containerOptions}
     >
-      <Container className={clsx('relative', sectionSpacingClass)}>
-        <div className="w-full lg:w-2/3 xl:w-1/2">
-          <H1
-            textSize={headlineTextSize}
-            textColor={headlineColor}
-            styleOverride={['spacing']}
-            colorTone={headlineColorTone}
-            className={clsx(contentSpacingClass, alignmentClass)}
-          >
-            {heading}
-          </H1>
-          <P
-            textSize={descriptionTextSize}
-            styleOverride={['spacing']}
-            textColor={descriptionColor}
-            colorTone={descriptionColorTone}
-            className={clsx(contentSpacingClass, alignmentClass)}
-          >
-            {description}
-          </P>
-          <div className={clsx(alignmentClass)}>
-            {primaryButton && (
-              <Button
-                context={context}
-                data={primaryButton!}
-                options={{
-                  backgroundColor: primaryButtonBackgroundColor,
-                  backgroundColorTone: primaryButtonBackgroundColorTone,
-                  textColor: primaryButtonTextColor,
-                  textColorTone: primaryButtonTextColorTone,
-                  fontWeight: primaryButtonFontWeight,
-                  size: primaryButtonSize,
-                  rounding: 'sm',
-                }}
-              >
-                Click me
-              </Button>
-            )}
-          </div>
+      <div className={clsx('w-full lg:w-2/3 xl:w-1/2 flex flex-col', contentGapClass)}>
+        <H1
+          textSize={headlineTextSize}
+          textColor={headlineColor}
+          styleOverride={['spacing']}
+          colorTone={headlineColorTone}
+          className={clsx(alignmentClass)}
+        >
+          {heading}
+        </H1>
+        <P
+          textSize={descriptionTextSize}
+          styleOverride={['spacing']}
+          textColor={descriptionColor}
+          colorTone={descriptionColorTone}
+          className={clsx(alignmentClass)}
+        >
+          {description}
+        </P>
+        <div className={clsx(alignmentClass)}>
+          {primaryButton && (
+            <Button
+              context={context}
+              data={primaryButton!}
+              options={{
+                backgroundColor: primaryButtonBackgroundColor,
+                backgroundColorTone: primaryButtonBackgroundColorTone,
+                textColor: primaryButtonTextColor,
+                textColorTone: primaryButtonTextColorTone,
+                fontWeight: primaryButtonFontWeight,
+                size: primaryButtonSize,
+                rounding: 'sm',
+              }}
+            >
+              Click me
+            </Button>
+          )}
         </div>
-      </Container>
+      </div>
     </Section>
   );
 };

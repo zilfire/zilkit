@@ -5,21 +5,27 @@ import { getBGColorClass, getOpacityClass } from '../style/utils.js';
 import type { SanityImageWithAlt } from '@zilfire/next-sanity-image/types';
 import type { ThemeContext } from '../../types/context-types/index.js';
 import SanityImage from '@zilfire/next-sanity-image';
+import { Container } from './Container.js';
+import type { ContainerOptions } from './Container.js';
 
-type SectionOptions = {
-  sectionColor?: ThemeColor;
-  sectionColorTone?: ColorTone;
+export type { ContainerOptions };
+
+export type SectionOptions = {
+  sectionBGColor?: ThemeColor;
+  sectionBGColorTone?: ColorTone;
   sectionClassName?: string;
   sectionClassOverride?: boolean;
 };
 
-type OverlayOptions = {
+export type OverlayOptions = {
   overlayColor?: ThemeColor;
   overlayColorTone?: ColorTone;
   overlayOpacity?: OpacityOption;
+  overlayClassName?: string;
+  overlayClassOverride?: boolean;
 };
 
-type BackgroundImageOptions = {
+export type BackgroundImageOptions = {
   imageSizes?: string | number[];
   quality?: number;
   priority?: boolean;
@@ -28,9 +34,10 @@ type BackgroundImageOptions = {
   loading?: 'lazy' | 'eager';
 };
 
-export type HeroSectionProps = {
+export type SectionProps = {
   children?: React.ReactNode;
   sectionOptions?: SectionOptions;
+  containerOptions?: ContainerOptions;
   overlayOptions?: OverlayOptions;
   backgroundImageOptions?: BackgroundImageOptions;
   backgroundImage?: SanityImageWithAlt;
@@ -42,28 +49,31 @@ const defaultClassName = 'relative overflow-hidden';
 const defaultOverlayColorTone: ColorTone = '500';
 const defaultOverlayOpacity: OpacityOption = '50';
 
-export const Section: React.FC<HeroSectionProps> = ({
+export const Section: React.FC<SectionProps> = ({
   children,
   sectionOptions,
+  containerOptions,
   overlayOptions,
   backgroundImageOptions,
   backgroundImage,
   themeContext,
 }) => {
   const {
-    sectionColor,
-    sectionColorTone = defaultBGColorTone,
+    sectionBGColor,
+    sectionBGColorTone = defaultBGColorTone,
     sectionClassName,
     sectionClassOverride,
   } = sectionOptions || {};
-  const bgClass = sectionColor
-    ? getBGColorClass(sectionColor, sectionColorTone, styleGuide)
+  const bgClass = sectionBGColor
+    ? getBGColorClass(sectionBGColor, sectionBGColorTone, styleGuide)
     : false;
 
   const {
     overlayColor,
     overlayColorTone = defaultOverlayColorTone,
     overlayOpacity = defaultOverlayOpacity,
+    overlayClassName,
+    overlayClassOverride,
   } = overlayOptions || {};
 
   const overlayOpacityClass = overlayColor ? getOpacityClass(overlayOpacity, styleGuide) : false;
@@ -95,8 +105,14 @@ export const Section: React.FC<HeroSectionProps> = ({
           />
         </div>
       )}
-      <div className={clsx('absolute inset-0 z-5', overlayOpacityClass, overlayBgClass)}></div>
-      {children}
+      <div
+        className={
+          overlayClassOverride === true
+            ? overlayClassName
+            : clsx('absolute inset-0 z-5', overlayOpacityClass, overlayBgClass, overlayClassName)
+        }
+      ></div>
+      <Container options={containerOptions}>{children}</Container>
     </section>
   );
 };

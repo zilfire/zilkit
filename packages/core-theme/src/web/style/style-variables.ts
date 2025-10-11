@@ -26,6 +26,13 @@ export const lineSpacing3XL = 'mb-12 md:mb-16';
 export const lineSpacing4XL = 'mb-16 md:mb-24';
 export const lineSpacing5XL = 'mb-24 md:mb-32';
 
+export const verticalGapSpacingXS = 'gap-2 md:gap-2.5';
+export const verticalGapSpacingSM = 'gap-2.5 md:gap-3';
+export const verticalGapSpacingMD = 'gap-3 md:gap-4';
+export const verticalGapSpacingLG = 'gap-4 md:gap-6';
+export const verticalGapSpacingXL = 'gap-6 md:gap-8';
+export const verticalGapSpacing2XL = 'gap-8 md:gap-12';
+
 export const lineSpacingYXS = 'my-2 md:my-2.5';
 export const lineSpacingYSM = 'my-2.5 md:my-3';
 export const lineSpacingYMD = 'my-3 md:my-4';

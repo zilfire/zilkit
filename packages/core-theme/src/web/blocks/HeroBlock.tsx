@@ -155,7 +155,7 @@ export const HeroBlock: React.FC<HeroBlockProps> = ({ data, context, options }) 
       {backgroundImage && (
         <div className={clsx('absolute inset-0 z-5', overlayOpacityClass, overlayBgClass)}></div>
       )}
-      <Container className={clsx('relative', sectionSpacingClass)}>
+      <Container options={{ containerClassName: clsx('relative', sectionSpacingClass) }}>
         <div className="w-full lg:w-2/3 xl:w-1/2">
           <H1
             textSize={headlineTextSize}

@@ -160,6 +160,7 @@ export type ComponentStyles =
 
 export type spacingStyles = {
   line: Record<Size, string>;
+  verticalLineGap: Record<Size, string>;
   section: Record<Size, string>;
   containerPadding: string;
 };
