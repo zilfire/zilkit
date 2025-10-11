@@ -100,16 +100,17 @@ export type TextComponentStyles = {
   textSize?: TextSize;
   textAlign?: TextAlign;
   textColor?: ThemeColor;
+  colorTone?: ColorTone;
   fontFamily?: string;
   fontWeight?: FontWeight;
   fontStyle?: FontStyle;
   leading?: Leading;
   className?: string;
   classOverride?: string;
-  border?: TextSize; // Optional border style
-  borderColor?: ThemeColor; // Optional border color
-  listType?: ListType; // Optional list type
-  listPosition?: ListPosition; // Optional list position
+  border?: TextSize;
+  borderColor?: ThemeColor;
+  listType?: ListType;
+  listPosition?: ListPosition;
   styleOverride?: TextStylesOverride;
 };
 

@@ -23,7 +23,6 @@ export type TextComponentProps = TextComponentStyles & {
   variant?: TextComponentVariant;
   as?: TextComponent;
   children?: React.ReactNode;
-  colorTone?: ColorTone;
 };
 
 export const Text: React.FC<TextComponentProps> = ({
