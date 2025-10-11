@@ -1,19 +1,19 @@
-import type { HeroBlockData } from '../../types/sanity-data-types/blocks/index.js';
-import type { ThemeContext } from '../../types/context-types/index.js';
+import type { HeroBlockData } from '../../../types/sanity-data-types/blocks/index.js';
+import type { ThemeContext } from '../../../types/context-types/index.js';
 import type {
   ThemeColor,
   ColorTone,
   OpacityOption,
   Size,
   FontWeight,
-} from '../../types/style-types/index.js';
-import { H1, P } from '../text/index.js';
-import SanityImage from '@zilfire/next-sanity-image';
-import { Button } from '../components/Button.js';
-import { styleGuide } from '../style/style-guide.js';
+} from '../../../types/style-types/index.js';
+import { H1, P } from '../../text/index.js';
+import { Button } from '../../components/Button.js';
+import { styleGuide } from '../../style/style-guide.js';
 import clsx from 'clsx';
-import { getBGColorClass, getOpacityClass } from '../style/utils.js';
-import { Container } from '../components/index.js';
+import { getBGColorClass, getOpacityClass } from '../../style/utils.js';
+import { Container } from '../../components/index.js';
+import { Section } from '../../components/Section.js';
 
 export type HeroOverlayOptions = {
   overlayColor?: ThemeColor;
@@ -98,8 +98,8 @@ export const HeroBlock: React.FC<HeroBlockProps> = ({ data, context, options }) 
     overlayColorTone = defaultOverlayTone,
     overlayOpacity = defaultOverlayOpacity,
   } = overlayOptions;
-  const overlayOpacityClass = getOpacityClass(overlayOpacity, styleGuide);
-  const overlayBgClass = getBGColorClass(overlayColor, overlayColorTone, styleGuide);
+  // const overlayOpacityClass = getOpacityClass(overlayOpacity, styleGuide);
+  // const overlayBgClass = getBGColorClass(overlayColor, overlayColorTone, styleGuide);
 
   const { sectionSpacing = defaultSectionSpacing } = sectionOptions;
   const sectionSpacingClass = styleGuide.spacing.section[sectionSpacing];
@@ -141,20 +141,17 @@ export const HeroBlock: React.FC<HeroBlockProps> = ({ data, context, options }) 
   }
 
   return (
-    <section className="bg-gray-300 relative overflow-hidden">
-      {backgroundImage && (
-        <div className="absolute z-0 w-full h-full">
-          <SanityImage
-            imageObject={backgroundImage}
-            alt={backgroundImage.alt || 'Hero Image'}
-            sanityConfig={sanityConfig}
-            layout="cover"
-          />
-        </div>
-      )}
-      {backgroundImage && (
-        <div className={clsx('absolute inset-0 z-5', overlayOpacityClass, overlayBgClass)}></div>
-      )}
+    <Section
+      themeContext={context}
+      backgroundImage={backgroundImage}
+      backgroundImageOptions={{
+        imageSizes: [600, 900, 1200, 1800, 2400],
+        quality: 80,
+        priority: true,
+      }}
+      sectionOptions={{}}
+      overlayOptions={{ overlayColor: 'black' }}
+    >
       <Container className={clsx('relative', sectionSpacingClass)}>
         <div className="w-full lg:w-2/3 xl:w-1/2">
           <H1
@@ -196,6 +193,6 @@ export const HeroBlock: React.FC<HeroBlockProps> = ({ data, context, options }) 
           </div>
         </div>
       </Container>
-    </section>
+    </Section>
   );
 };
