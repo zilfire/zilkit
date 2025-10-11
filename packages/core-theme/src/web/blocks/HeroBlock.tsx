@@ -26,10 +26,12 @@ import { PortableText } from 'next-sanity';
 export type HeroContentAlignment = 'left' | 'center' | 'responsive';
 
 export type HeadlineOptions = TextComponentProps;
+export type DescriptionOptions = TextComponentProps;
 
 export type HeroContentOptions = {
   contentGap?: Size;
   headlineOptions?: HeadlineOptions;
+  descriptionOptions: DescriptionOptions;
   descriptionTextSize?: Size;
   descriptionColor?: ThemeColor;
   descriptionColorTone?: ColorTone;
@@ -116,9 +118,6 @@ export const HeroBlock: React.FC<HeroBlockProps> = ({
   const {
     contentGap = defaultContentGap,
     headlineOptions = {},
-    descriptionTextSize = defaultDescriptionTextSize,
-    descriptionColor = defaultDescriptionColor,
-    descriptionColorTone = defaultDescriptionColorTone,
     contentAlignment = defaultContentAlignment,
   } = contentOptions;
 
