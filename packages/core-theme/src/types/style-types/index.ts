@@ -169,6 +169,10 @@ export type spacingStyles = {
 export type StyleGuide = {
   defaultStyles: DefaultStyles;
   bgColor: Record<ThemeColor, Record<ColorTone, string>>;
+  bgColorHover: Record<ThemeColor, Record<ColorTone, string>>;
+  borderColorHover: Record<ThemeColor, Record<ColorTone, string>>;
+  borderColor: Record<ThemeColor, Record<ColorTone, string>>;
+  textColorHover: Record<ThemeColor, Record<ColorTone, string>>;
   textColor: Record<ThemeColor, Record<ColorTone, string>>;
   fontWeight: Record<FontWeight, string>;
   fontStyle: Record<FontStyle, string>;
@@ -179,4 +183,5 @@ export type StyleGuide = {
   rounding: Record<RoundingSize, string>;
   spacing: spacingStyles;
   opacity: Record<OpacityOption, string>;
+  bgOpacity: Record<OpacityOption, string>;
 };

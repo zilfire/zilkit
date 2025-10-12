@@ -3,17 +3,17 @@ import type { ThemeContext } from '../../types/context-types/index.js';
 import type {
   ThemeColor,
   ColorTone,
-  OpacityOption,
   Size,
   FontWeight,
   TextComponent,
+  OpacityOption,
 } from '../../types/style-types/index.js';
 import { Text, portableTextComponents } from '../text/index.js';
 import type { TextComponentProps } from '../text/index.js';
 import { Button } from '../components/Button.js';
+import type { ButtonOptions, ButtonVariant } from '../components/Button.js';
 import { styleGuide } from '../style/style-guide.js';
 import clsx from 'clsx';
-// import type { ContainerOptions } from '../../components/Container.js';
 import { Section } from '../components/Section.js';
 import type {
   SectionOptions,
@@ -31,20 +31,10 @@ export type DescriptionOptions = TextComponentProps;
 export type HeroContentOptions = {
   contentGap?: Size;
   headlineOptions?: HeadlineOptions;
-  descriptionOptions: DescriptionOptions;
-  descriptionTextSize?: Size;
-  descriptionColor?: ThemeColor;
-  descriptionColorTone?: ColorTone;
+  descriptionOptions?: DescriptionOptions;
   contentAlignment?: HeroContentAlignment;
-};
-
-export type HeroButtonOptions = {
-  primaryButtonBackgroundColor?: ThemeColor;
-  primaryButtonBackgroundColorTone?: ColorTone;
-  primaryButtonTextColor?: ThemeColor;
-  primaryButtonTextColorTone?: ColorTone;
-  primaryButtonSize?: Size;
-  primaryButtonFontWeight?: FontWeight;
+  primaryButtonOptions?: ButtonOptions;
+  secondaryButtonOptions?: ButtonOptions;
 };
 
 export type HeroBlockProps = {
@@ -55,33 +45,52 @@ export type HeroBlockProps = {
   containerOptions?: ContainerOptions;
   backgroundImageOptions?: BackgroundImageOptions;
   contentOptions?: HeroContentOptions;
-  buttonOptions?: HeroButtonOptions;
 };
 
+// Overlay Default Styles
 const defaultOverlayColor: ThemeColor = 'black';
 const defaultOverlayTone: ColorTone = '500';
 const defaultOverlayOpacity: OpacityOption = '50';
 
+// Container Default Styles
 const defaultContainerVerticalPadding: Size = 'xl';
 
+// Content Block Default Styles
 const defaultContentGap: Size = 'xl';
 const defaultContentAlignment: HeroContentAlignment = 'responsive';
 
+// Headline Default Styles
 const defaultHeadlineTextSize: Size = 'lg';
 const defaultHeadlineColor: ThemeColor = 'white';
 const defaultHeadlineColorTone: ColorTone = '500';
 const defaultHeadlineTag: TextComponent = 'h1';
 
+// Description Default Styles
 const defaultDescriptionTextSize: Size = 'lg';
 const defaultDescriptionColor: ThemeColor = 'white';
 const defaultDescriptionColorTone: ColorTone = '700';
 
-const defaultPrimaryButtonBackgroundColor: ThemeColor = 'primary';
-const defaultPrimaryButtonBackgroundColorTone: ColorTone = '500';
+// Button Default Styles
+const defaultPrimaryButtonVariant: ButtonVariant = 'solid';
+const defaultPrimaryButtonBGOpacity: OpacityOption = '100';
+const defaultPrimaryButtonBGColor: ThemeColor = 'primary';
+const defaultPrimaryButtonBGColorTone: ColorTone = '500';
 const defaultPrimaryButtonTextColor: ThemeColor = 'black';
 const defaultPrimaryButtonTextColorTone: ColorTone = '500';
 const defaultPrimaryButtonSize: Size = 'lg';
 const defaultPrimaryButtonFontWeight: FontWeight = 'medium';
+
+// Secondary Button Default Styles
+const defaultSecondaryButtonVariant: ButtonVariant = 'outline';
+const defaultSecondaryButtonBGOpacity: OpacityOption = '20';
+const defaultSecondaryButtonBGColor: ThemeColor = 'black';
+const defaultSecondaryButtonBGColorTone: ColorTone = '500';
+const defaultSecondaryButtonTextColor: ThemeColor = 'primary';
+const defaultSecondaryButtonTextColorTone: ColorTone = '500';
+const defaultSecondaryButtonSize: Size = 'lg';
+const defaultSecondaryButtonFontWeight: FontWeight = 'medium';
+
+// Background Image Default Styles
 const defaultBGImageSizes = [600, 900, 1200, 1800, 2400];
 const defaultBGImageQuality = 80;
 const defaultBGImagePriority = true;
@@ -94,9 +103,9 @@ export const HeroBlock: React.FC<HeroBlockProps> = ({
   backgroundImageOptions = {},
   containerOptions = {},
   contentOptions = {},
-  buttonOptions = {},
 }) => {
-  const { heading, description, backgroundImage, primaryButton } = data;
+  const { heading, description, backgroundImage, primaryButton, secondaryButton } = data;
+  const { primaryButtonOptions = {}, secondaryButtonOptions = {} } = contentOptions;
 
   // Set default overlay options if not provided
   overlayOptions.overlayColor = overlayOptions.overlayColor || defaultOverlayColor;
@@ -115,29 +124,26 @@ export const HeroBlock: React.FC<HeroBlockProps> = ({
   containerOptions.verticalPadding =
     containerOptions.verticalPadding || defaultContainerVerticalPadding;
 
+  // Set default description options if not provided
+  const descriptionOptions = contentOptions.descriptionOptions || {};
+
+  descriptionOptions.textSize = descriptionOptions.textSize || defaultDescriptionTextSize;
+  descriptionOptions.textColor = descriptionOptions.textColor || defaultDescriptionColor;
+  descriptionOptions.colorTone = descriptionOptions.colorTone || defaultDescriptionColorTone;
+
+  descriptionOptions.className = descriptionOptions.className
+    ? clsx(descriptionOptions.className, 'last:mb-0')
+    : 'last:mb-0';
+
+  // Content Options
   const {
     contentGap = defaultContentGap,
     headlineOptions = {},
     contentAlignment = defaultContentAlignment,
   } = contentOptions;
-
-  headlineOptions.textSize = headlineOptions.textSize || defaultHeadlineTextSize;
-  headlineOptions.textColor = headlineOptions.textColor || defaultHeadlineColor;
-  headlineOptions.colorTone = headlineOptions.colorTone || defaultHeadlineColorTone;
-
   const contentGapClass = styleGuide.spacing.verticalLineGap[contentGap];
 
-  const {
-    primaryButtonBackgroundColor = defaultPrimaryButtonBackgroundColor,
-    primaryButtonBackgroundColorTone = defaultPrimaryButtonBackgroundColorTone,
-    primaryButtonTextColor = defaultPrimaryButtonTextColor,
-    primaryButtonTextColorTone = defaultPrimaryButtonTextColorTone,
-    primaryButtonSize = defaultPrimaryButtonSize,
-    primaryButtonFontWeight = defaultPrimaryButtonFontWeight,
-  } = buttonOptions;
-
   let alignmentClass: string;
-
   switch (contentAlignment) {
     case 'left':
       alignmentClass = 'text-left';
@@ -150,6 +156,44 @@ export const HeroBlock: React.FC<HeroBlockProps> = ({
       alignmentClass = 'text-center lg:text-left';
       break;
   }
+
+  // Set default headline options if not provided
+  headlineOptions.textSize = headlineOptions.textSize || defaultHeadlineTextSize;
+  headlineOptions.textColor = headlineOptions.textColor || defaultHeadlineColor;
+  headlineOptions.colorTone = headlineOptions.colorTone || defaultHeadlineColorTone;
+
+  // Set Primary Button Default Options
+  primaryButtonOptions.variant = primaryButtonOptions.variant || defaultPrimaryButtonVariant;
+  primaryButtonOptions.bgOpacity = primaryButtonOptions.bgOpacity || defaultPrimaryButtonBGOpacity;
+  primaryButtonOptions.bgColor = primaryButtonOptions.bgColor || defaultPrimaryButtonBGColor;
+  primaryButtonOptions.bgColorTone =
+    primaryButtonOptions.bgColorTone || defaultPrimaryButtonBGColorTone;
+  primaryButtonOptions.textColor = primaryButtonOptions.textColor || defaultPrimaryButtonTextColor;
+  primaryButtonOptions.textColorTone =
+    primaryButtonOptions.textColorTone || defaultPrimaryButtonTextColorTone;
+  primaryButtonOptions.size = primaryButtonOptions.size || defaultPrimaryButtonSize;
+  primaryButtonOptions.fontWeight =
+    primaryButtonOptions.fontWeight || defaultPrimaryButtonFontWeight;
+
+  // Set Secondary Button Default Options
+  secondaryButtonOptions.variant = secondaryButtonOptions.variant || defaultSecondaryButtonVariant;
+  secondaryButtonOptions.bgOpacity =
+    secondaryButtonOptions.bgOpacity || defaultSecondaryButtonBGOpacity;
+  secondaryButtonOptions.bgColor = secondaryButtonOptions.bgColor || defaultSecondaryButtonBGColor;
+  secondaryButtonOptions.bgColorTone =
+    secondaryButtonOptions.bgColorTone || defaultSecondaryButtonBGColorTone;
+  secondaryButtonOptions.textColor =
+    secondaryButtonOptions.textColor || defaultSecondaryButtonTextColor;
+  secondaryButtonOptions.textColorTone =
+    secondaryButtonOptions.textColorTone || defaultSecondaryButtonTextColorTone;
+  secondaryButtonOptions.size = secondaryButtonOptions.size || defaultSecondaryButtonSize;
+  secondaryButtonOptions.fontWeight =
+    secondaryButtonOptions.fontWeight || defaultSecondaryButtonFontWeight;
+
+  secondaryButtonOptions.className = clsx(
+    secondaryButtonOptions.className,
+    'border border-primary-500 border-2'
+  );
 
   return (
     <Section
@@ -174,33 +218,18 @@ export const HeroBlock: React.FC<HeroBlockProps> = ({
           <div className="">
             <PortableText
               value={description}
-              components={portableTextComponents(
-                {
-                  themeColor: 'white',
-                  weight: 'normal',
-                  size: 'lg',
-                  className: 'last:mb-0',
-                },
-                context
-              )}
+              components={portableTextComponents(descriptionOptions, context)}
             />
           </div>
         )}
         <div className={clsx(alignmentClass)}>
           {primaryButton && (
-            <Button
-              context={context}
-              data={primaryButton!}
-              options={{
-                backgroundColor: primaryButtonBackgroundColor,
-                backgroundColorTone: primaryButtonBackgroundColorTone,
-                textColor: primaryButtonTextColor,
-                textColorTone: primaryButtonTextColorTone,
-                fontWeight: primaryButtonFontWeight,
-                size: primaryButtonSize,
-                rounding: 'sm',
-              }}
-            >
+            <Button context={context} data={primaryButton!} options={primaryButtonOptions}>
+              Click me
+            </Button>
+          )}
+          {secondaryButton && (
+            <Button context={context} data={secondaryButton!} options={secondaryButtonOptions}>
               Click me
             </Button>
           )}

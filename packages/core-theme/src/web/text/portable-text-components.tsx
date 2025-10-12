@@ -1,13 +1,10 @@
 import { Text } from './index.js';
 import type {
   TextSize,
-  TextAlign,
-  ColorTone,
   ThemeColor,
   TextComponent,
   TextComponentVariant,
-  FontStyle,
-  FontWeight,
+  TextComponentStyles,
 } from '../../types/style-types/index.js';
 import { ThemeContext } from '../../types/context-types/index.js';
 import clsx from 'clsx';
@@ -19,29 +16,13 @@ import {
   PortableTextBlock,
 } from 'next-sanity';
 
-type ComponentOptions = {
-  size?: TextSize;
-  align?: TextAlign;
-  className?: string;
-  colorTone?: ColorTone;
-  themeColor?: ThemeColor;
-  classOverride?: string; // Optional class override
-  weight?: FontWeight;
-  style?: FontStyle;
+type ComponentOptions = TextComponentStyles & {
   border?: TextSize; // Optional border style
   borderColor?: ThemeColor; // Optional border color
 };
 
-type PortableTextOptions = {
-  size?: TextSize;
+type PortableTextOptions = TextComponentStyles & {
   normalSpan?: boolean;
-  className?: string;
-  align?: TextAlign;
-  colorTone?: ColorTone;
-  themeColor?: ThemeColor;
-  classOverride?: string; // Optional class override
-  weight?: FontWeight;
-  style?: FontStyle;
   componentOptions?: Partial<Record<TextComponent, ComponentOptions>>;
 };
 
@@ -60,20 +41,20 @@ const RenderedText: React.FC<RenderedTextProps> = ({
   options,
   renderClassName,
 }) => {
-  const size = options?.size || 'md';
+  const size = options?.textSize || 'md';
   const colorTone = options?.colorTone || '700';
-  const themeColor = options?.themeColor || 'black';
+  const themeColor = options?.textColor || 'black';
   const classOverride = options?.classOverride;
   const className = options?.className;
 
-  const textSize = options?.componentOptions?.[as]?.size || size;
+  const textSize = options?.componentOptions?.[as]?.textSize || size;
   const textColorTone = options?.componentOptions?.[as]?.colorTone || colorTone;
-  const textAlign = options?.componentOptions?.[as]?.align || undefined;
-  const textThemeColor = options?.componentOptions?.[as]?.themeColor || themeColor;
+  const textAlign = options?.componentOptions?.[as]?.textAlign || undefined;
+  const textThemeColor = options?.componentOptions?.[as]?.textColor || themeColor;
   const textClassOverride = options?.componentOptions?.[as]?.classOverride || classOverride;
   const textClassName = options?.componentOptions?.[as]?.className || className;
-  const textStyle = options?.componentOptions?.[as]?.style || options?.style;
-  const textWeight = options?.componentOptions?.[as]?.weight || options?.weight;
+  const textStyle = options?.componentOptions?.[as]?.fontStyle || options?.fontStyle;
+  const textWeight = options?.componentOptions?.[as]?.fontWeight || options?.fontWeight;
   const textBorder = options?.componentOptions?.[as]?.border || undefined;
   const textBorderColor = options?.componentOptions?.[as]?.borderColor || undefined;
 
@@ -104,6 +85,8 @@ export const portableTextComponents = (
   const normalSpan = options.normalSpan || false;
   const { LinkComponent } = context;
 
+  console.log('PORTABLE TEXT OPTIONS', options);
+
   return {
     types: {},
     marks: {
@@ -112,8 +95,6 @@ export const portableTextComponents = (
         const internalPath = value?.internalPath ?? '/';
         const id = value?.id ? `#${value.id}` : '';
         const href = `${internalPath}${id}`;
-
-        // console.log('internalLink props:', props);
 
         return (
           <LinkComponent className="text-blue-600" href={href}>
