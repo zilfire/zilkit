@@ -9,7 +9,9 @@ export type TextElement =
   | 'h6'
   | 'li'
   | 'ol'
-  | 'ul';
+  | 'ul'
+  | 'blockquote'
+  | 'indent';
 
 export type TextStyleGroup =
   | 'textSize'
