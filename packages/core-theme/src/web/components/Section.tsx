@@ -112,7 +112,9 @@ export const Section: React.FC<SectionProps> = ({
             : clsx('absolute inset-0 z-5', overlayOpacityClass, overlayBgClass, overlayClassName)
         }
       ></div>
-      <Container options={containerOptions}>{children}</Container>
+      <Container options={containerOptions} className="relative z-10">
+        {children}
+      </Container>
     </section>
   );
 };

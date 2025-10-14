@@ -35,9 +35,9 @@ export type TextSizeStyle = {
 };
 
 export type TextVariantStyle = {
-  base?: TextSizeStyle; // Required 'base' key
+  base?: TextSizeStyle;
 } & {
-  [key in TextSize]?: TextSizeStyle; // Optional TextSize keys
+  [key in TextSize]?: TextSizeStyle;
 };
 
 export type StyleClassNames = {

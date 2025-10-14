@@ -1,6 +1,14 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import 'tailwindcss';
+
+/* Scan your local app files */
+@source "../../src/**/*.{js,ts,jsx,tsx,mdx}";
+
+/* Scan the core-theme package */
+@source "../../node_modules/@zilfire/core-theme/**/*.{js,ts,jsx,tsx,mdx}";
+
+@theme {
+  --color-primary-500: oklch(0.723 0.219 149.579);
+}
 
 :root {
   --background: #ffffff;
@@ -13,7 +21,6 @@
     --foreground: #ededed;
   }
 }
-
 html,
 body {
   max-width: 100vw;
@@ -26,21 +33,4 @@ body {
   font-family: var(--font-geist-sans), sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-}
-
-* {
-  box-sizing: border-box;
-  padding: 0;
-  margin: 0;
-}
-
-a {
-  color: inherit;
-  text-decoration: none;
-}
-
-@media (prefers-color-scheme: dark) {
-  html {
-    color-scheme: dark;
-  }
 }

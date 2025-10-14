@@ -11,6 +11,7 @@ export type ContainerOptions = {
 export type ContainerProps = {
   children?: React.ReactNode;
   options?: ContainerOptions;
+  className?: string;
 };
 
 // @todo: make horizontal padding configurable via styleGuide
@@ -18,6 +19,7 @@ const horizontalPaddingClass = 'px-3 md:px-4 lg:px-6';
 
 export const Container: React.FC<ContainerProps> = ({
   children,
+  className,
   options = {},
 }): React.ReactElement => {
   const { containerClassName, containerClassOverride, verticalPadding } = options;
@@ -33,7 +35,8 @@ export const Container: React.FC<ContainerProps> = ({
               'container relative mx-auto ',
               horizontalPaddingClass,
               containerClassName,
-              verticalPaddingClass
+              verticalPaddingClass,
+              className
             )
       }
     >
