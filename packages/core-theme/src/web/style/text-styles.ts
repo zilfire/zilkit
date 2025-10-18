@@ -30,6 +30,9 @@ export const bodyFont = 'font-body';
 export const headingFont = 'font-heading';
 export const fontItalic = 'italic';
 export const fontNotItalic = 'not-italic';
+export const zeroHorizontalMargin = 'mx-0';
+export const zeroVerticalMargin = 'my-0';
+export const zeroMargin = 'm-0';
 
 export const styleClasses: StyleClassNames = {
   text: {
@@ -46,12 +49,12 @@ export const styleClasses: StyleClassNames = {
           listType: '',
           listPosition: '',
           verticalSpacing: verticalLineSpacing,
-          horizontalSpacing: 'mx-0',
+          horizontalSpacing: zeroHorizontalMargin,
           border: '',
         },
         elements: {
           span: {
-            verticalSpacing: 'm-0',
+            verticalSpacing: zeroVerticalMargin,
           },
           h1: {
             textSize: text4XL,

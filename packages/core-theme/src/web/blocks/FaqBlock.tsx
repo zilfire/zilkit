@@ -177,7 +177,7 @@ const FaqItem = ({ qa, index, options, context }: FAQItemProps) => {
               value={qa.answer}
               components={portableTextComponents(
                 {
-                  themeColor: 'neutral',
+                  textColor: 'neutral',
                 },
                 context
               )}

@@ -41,7 +41,7 @@
   "main": "./dist/index.js",
   "module": "./dist/index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "npm run build && node --test dist/**/*.test.js",
     "build": "tsc",
     "dev": "tsc --watch",
     "lint": "eslint . --ext .ts,.tsx",

@@ -27,7 +27,7 @@ export type TextStyleGroup =
   | 'horizontalSpacing'
   | 'border';
 
-export type TextSize = 'xs' | 'sm' | 'md' | 'lg' | 'xl' | 'xxl';
+export type TextSize = 'base' | 'xs' | 'sm' | 'md' | 'lg' | 'xl' | 'xxl';
 
 export type ElementStyle = Partial<Record<TextStyleGroup, string>>;
 
