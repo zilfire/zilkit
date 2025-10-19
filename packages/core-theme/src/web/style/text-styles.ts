@@ -1,4 +1,4 @@
-import type { StyleClassNames } from '../../types/style-types/text-styles.js';
+import type { StyleClassNames } from '../../types/style-types/style-classes.js';
 import clsx from 'clsx';
 
 // Text size variables

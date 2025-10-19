@@ -34,6 +34,8 @@ export type TextSize = 'base' | 'xs' | 'sm' | 'md' | 'lg' | 'xl' | 'xxl';
 
 export type ElementStyle = Partial<Record<TextStyleGroup, string>>;
 
+export type TextClassOverrides = TextStyleGroup | TextStyleGroup[] | 'all';
+
 export type TextSizeStyle = {
   default?: ElementStyle;
   elements?: Partial<Record<TextComponent, ElementStyle>>;

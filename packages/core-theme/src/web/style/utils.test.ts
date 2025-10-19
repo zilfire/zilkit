@@ -1,7 +1,7 @@
 import { describe, it } from 'node:test';
 import assert from 'node:assert';
-import { getTextClass } from './utils.js';
-import type { StyleClassNames } from '../../types/style-types/text-styles.js';
+import { getTextClass } from './style-utils.js';
+import type { StyleClassNames } from '../../types/style-types/style-classes.js';
 
 // Mock text styles data for testing
 const mockTextStyles: StyleClassNames = {

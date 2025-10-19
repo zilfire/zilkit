@@ -2,9 +2,10 @@ import type {
   TextElement,
   TextComponent,
   TextStyleGroup,
-} from '../../types/style-types/text-styles.js';
+  TextClassOverrides,
+} from '../../types/style-types/style-classes.js';
 import { styleClasses } from '../style/text-styles.js';
-import { getTextClass } from '../style/utils.js';
+import { getTextClass } from '../style/style-utils.js';
 import clsx from 'clsx';
 
 const DEFAULT_ELEMENT: TextElement = 'p';
@@ -20,7 +21,7 @@ export const Text = ({
   as?: TextElement;
   children: React.ReactNode;
   className?: string;
-  classOverrides?: TextStyleGroup | TextStyleGroup[] | 'all';
+  classOverrides?: TextClassOverrides;
 }): React.ReactElement => {
   // If blockquote or indent variant, set default element to ensure a proper HTML tag is used.
   if (element === 'blockquote' || element === 'indent') {

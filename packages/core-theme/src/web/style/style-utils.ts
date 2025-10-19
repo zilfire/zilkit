@@ -13,7 +13,7 @@ import type {
   StyleClassNames,
   TextSize,
   TextVariantStyle,
-} from '../../types/style-types/text-styles.js';
+} from '../../types/style-types/style-classes.js';
 
 export const getBGColorClass = (
   themeColor: ThemeColor,

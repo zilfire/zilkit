@@ -12,7 +12,7 @@
   "include": [
     "src",
     "src/deprecated/types/style-types/index.ts",
-    "src/types/style-types/text-styles.ts",
+    "src/types/style-types/style-classes.ts",
     "src/deprecated/web/utils"
   ],
   "exclude": ["node_modules", "dist", "src/tests"]
