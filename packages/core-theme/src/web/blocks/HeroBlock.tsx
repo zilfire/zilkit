@@ -8,7 +8,7 @@ import type {
   TextComponent,
   OpacityOption,
 } from '../../deprecated/types/style-types/index.js';
-import { Text, portableTextComponents } from '../text/index.js';
+import { Text } from '../text/index.js';
 import type { TextComponentProps } from '../text/index.js';
 import { Button } from '../components/Button.js';
 import type { ButtonOptions, ButtonVariant } from '../components/Button.js';
@@ -22,6 +22,9 @@ import type {
   ContainerOptions,
 } from '../components/Section.js';
 import { PortableText } from 'next-sanity';
+import { textComponents } from '../text/text-components.js';
+
+export { textComponents } from '../text/text-components.js';
 
 export type HeroContentAlignment = 'left' | 'center' | 'responsive';
 
@@ -216,10 +219,7 @@ export const HeroBlock: React.FC<HeroBlockProps> = ({
         </Text>
         {description && (
           <div className="">
-            <PortableText
-              value={description}
-              components={portableTextComponents(descriptionOptions, context)}
-            />
+            <PortableText value={description} components={textComponents({}, context)} />
           </div>
         )}
         <div className={clsx(alignmentClass)}>
