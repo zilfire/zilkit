@@ -1,5 +1,5 @@
 import clsx from 'clsx';
-import type { Size } from '../../types/style-types/index.js';
+import type { Size } from '../../deprecated/types/style-types/index.js';
 import { styleGuide } from '../style/style-guide.js';
 
 export type ContainerOptions = {

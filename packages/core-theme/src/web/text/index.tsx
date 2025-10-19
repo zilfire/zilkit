@@ -2,8 +2,8 @@ import type {
   TextComponent,
   TextComponentStyles,
   TextComponentVariant,
-} from '../../types/style-types/index.js';
-import { getTextComponentClasses } from './text-utils.js';
+} from '../../deprecated/types/style-types/index.js';
+import { getTextComponentClasses } from '../../deprecated/web/text/text-utils.js';
 import clsx from 'clsx';
 
 export * from './P.js';

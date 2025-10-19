@@ -9,6 +9,11 @@
     "outDir": "dist",
     "rootDir": "src"
   },
-  "include": ["src"],
+  "include": [
+    "src",
+    "src/deprecated/types/style-types/index.ts",
+    "src/types/style-types/text-styles.ts",
+    "src/deprecated/web/utils"
+  ],
   "exclude": ["node_modules", "dist", "src/tests"]
 }

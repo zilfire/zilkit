@@ -5,11 +5,11 @@ import type {
   OpacityOption,
   StyleGuide,
   ThemeColor,
-} from '../../types/style-types/index.js';
+} from '../../deprecated/types/style-types/index.js';
 
 import type {
   TextStyleGroup,
-  TextElement,
+  TextComponent,
   StyleClassNames,
   TextSize,
   TextVariantStyle,
@@ -30,7 +30,7 @@ export const getOpacityClass = (opacity: OpacityOption, styleGuide: StyleGuide):
 };
 
 export const getTextClass = (
-  textElement: TextElement,
+  textComponent: TextComponent,
   textStyleGroup: TextStyleGroup,
   textStyles: StyleClassNames,
   styleOptions: {
@@ -44,8 +44,8 @@ export const getTextClass = (
   if (variant !== 'normal' && textStyles.text.variants?.[variant]) {
     const variantStyles = textStyles.text.variants[variant] as TextVariantStyle;
     // Check for variant size-specific style.
-    if (variantStyles[size]?.elements?.[textElement]?.[textStyleGroup]) {
-      return variantStyles[size]?.elements?.[textElement]?.[textStyleGroup];
+    if (variantStyles[size]?.elements?.[textComponent]?.[textStyleGroup]) {
+      return variantStyles[size]?.elements?.[textComponent]?.[textStyleGroup];
     }
     // Check for variant default size style.
     if (variantStyles[size]?.default?.[textStyleGroup]) {
@@ -54,8 +54,8 @@ export const getTextClass = (
   }
 
   // Check for normal size-specific style.
-  if (textStyles.text.normal[size]?.elements?.[textElement]?.[textStyleGroup]) {
-    return textStyles.text.normal[size]?.elements?.[textElement]?.[textStyleGroup];
+  if (textStyles.text.normal[size]?.elements?.[textComponent]?.[textStyleGroup]) {
+    return textStyles.text.normal[size]?.elements?.[textComponent]?.[textStyleGroup];
   }
 
   // Check for normal default size style.

@@ -7,6 +7,9 @@ dist/
 build/
 *.tsbuildinfo
 
+# Deprecated folder
+deprecated/
+
 # Environment files
 .env
 .env.local

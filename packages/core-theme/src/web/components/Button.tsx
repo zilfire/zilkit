@@ -6,7 +6,7 @@ import type {
   RoundingSize,
   FontWeight,
   OpacityOption,
-} from '../../types/style-types/index.js';
+} from '../../deprecated/types/style-types/index.js';
 import clsx from 'clsx';
 import { ButtonData } from '../../types/sanity-data-types/index.js';
 import { ThemeContext } from '../../types/context-types/index.js';

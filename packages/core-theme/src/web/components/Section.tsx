@@ -1,5 +1,5 @@
 import clsx from 'clsx';
-import { ThemeColor, ColorTone, OpacityOption } from '../../types/style-types/index.js';
+import { ThemeColor, ColorTone, OpacityOption } from '../../deprecated/types/style-types/index.js';
 import { styleGuide } from '../style/style-guide.js';
 import { getBGColorClass, getOpacityClass } from '../style/utils.js';
 import type { SanityImageWithAlt } from '@zilfire/next-sanity-image/types';

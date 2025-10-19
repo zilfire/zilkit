@@ -7,7 +7,7 @@ import type {
   FontWeight,
   TextComponent,
   OpacityOption,
-} from '../../types/style-types/index.js';
+} from '../../deprecated/types/style-types/index.js';
 import { Text, portableTextComponents } from '../text/index.js';
 import type { TextComponentProps } from '../text/index.js';
 import { Button } from '../components/Button.js';

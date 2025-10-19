@@ -1,4 +1,5 @@
 import type { StyleClassNames } from '../../types/style-types/text-styles.js';
+import clsx from 'clsx';
 
 // Text size variables
 // export const textXS = 'text-xs';
@@ -33,6 +34,15 @@ export const fontNotItalic = 'not-italic';
 export const zeroHorizontalMargin = 'mx-0';
 export const zeroVerticalMargin = 'my-0';
 export const zeroMargin = 'm-0';
+
+const mediumIndent = 'ml-4';
+
+const blockquotePadding = 'pl-4';
+const blockquoteHorizontalSpacing = clsx(mediumIndent, blockquotePadding);
+const blockquoteBorder = 'border-l';
+const blockquoteBorderColor = 'border-gray-400';
+
+const indentHorizontalSpacing = clsx(mediumIndent);
 
 export const styleClasses: StyleClassNames = {
   text: {
@@ -101,8 +111,14 @@ export const styleClasses: StyleClassNames = {
           li: {
             verticalSpacing: verticalListElementSpacing,
           },
-          blockquote: {},
-          indent: {},
+          blockquote: {
+            horizontalSpacing: blockquoteHorizontalSpacing,
+            border: blockquoteBorder,
+            borderColor: blockquoteBorderColor,
+          },
+          indent: {
+            horizontalSpacing: indentHorizontalSpacing,
+          },
         },
       },
     },

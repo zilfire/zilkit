@@ -17,7 +17,7 @@ import type {
   // TextAlign,
   TextSize,
   TextComponentStyles,
-} from '../../types/style-types/index.js';
+} from '../../deprecated/types/style-types/index.js';
 import { Text } from '../text/index.js';
 
 type FaqOptions = {

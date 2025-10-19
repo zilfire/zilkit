@@ -5,7 +5,7 @@ import type {
   TextComponent,
   TextComponentVariant,
   TextComponentStyles,
-} from '../../types/style-types/index.js';
+} from '../../deprecated/types/style-types/index.js';
 import { ThemeContext } from '../../types/context-types/index.js';
 import clsx from 'clsx';
 
