@@ -1,4 +1,11 @@
-import type { TextElement, TextComponent } from '../../types/style-types/text-styles.js';
+import type {
+  TextElement,
+  TextComponent,
+  TextStyleGroup,
+} from '../../types/style-types/text-styles.js';
+import { styleClasses } from '../style/text-styles.js';
+import { getTextClass } from '../style/utils.js';
+import clsx from 'clsx';
 
 const DEFAULT_ELEMENT: TextElement = 'p';
 
@@ -6,10 +13,14 @@ export const Text = ({
   element = DEFAULT_ELEMENT,
   as,
   children,
+  className,
+  classOverrides,
 }: {
-  element: TextComponent;
+  element?: TextComponent;
   as?: TextElement;
   children: React.ReactNode;
+  className?: string;
+  classOverrides?: TextStyleGroup | TextStyleGroup[] | 'all';
 }): React.ReactElement => {
   // If blockquote or indent variant, set default element to ensure a proper HTML tag is used.
   if (element === 'blockquote' || element === 'indent') {
@@ -19,5 +30,48 @@ export const Text = ({
   }
   const Component = as || (element as TextElement);
 
-  return <Component>{children}</Component>;
+  const textStyleGroups: TextStyleGroup[] = [
+    'textSize',
+    'textAlign',
+    'textColor',
+    'leading',
+    'fontWeight',
+    'fontStyle',
+    'fontFamily',
+    'listType',
+    'listPosition',
+    'verticalSpacing',
+    'horizontalSpacing',
+    'border',
+    'borderColor',
+  ];
+
+  let textClasses: string[] = [];
+
+  if (classOverrides !== 'all') {
+    if (Array.isArray(classOverrides)) {
+      // Filter out classOverrides from textStyleGroups before mapping
+      const filteredStyleGroups = textStyleGroups.filter(
+        (group) => !classOverrides.includes(group)
+      );
+
+      textClasses = filteredStyleGroups.map((group: TextStyleGroup) =>
+        getTextClass(element, group, styleClasses, {})
+      );
+    } else if (classOverrides) {
+      // Single classOverride - filter it out
+      const filteredStyleGroups = textStyleGroups.filter((group) => group !== classOverrides);
+
+      textClasses = filteredStyleGroups.map((group: TextStyleGroup) =>
+        getTextClass(element, group, styleClasses, {})
+      );
+    } else {
+      // No classOverrides - use all style groups
+      textClasses = textStyleGroups.map((group: TextStyleGroup) =>
+        getTextClass(element, group, styleClasses, {})
+      );
+    }
+  }
+
+  return <Component className={clsx(textClasses, className)}>{children}</Component>;
 };
