@@ -1,6 +1,6 @@
 import clsx from 'clsx';
 import { ThemeColor, ColorTone, OpacityOption } from '../../deprecated/types/style-types/index.js';
-import { styleGuide } from '../style/style-guide.js';
+import { styleGuide } from '../../deprecated/web/style/style-guide.js';
 import { getBGColorClass, getOpacityClass } from '../style/style-utils.js';
 import type { SanityImageWithAlt } from '@zilfire/next-sanity-image/types';
 import type { ThemeContext } from '../../types/context-types/index.js';
@@ -85,6 +85,9 @@ export const Section: React.FC<SectionProps> = ({
 
   const { sanityConfig } = themeContext;
 
+  console.log('containerOptions', containerOptions);
+  const newClassName = 'py-30 px-4 md:px-40 lg:px-48';
+
   return (
     <section
       className={clsx(sectionClassOverride !== true && defaultClassName, sectionClassName, bgClass)}
@@ -109,7 +112,13 @@ export const Section: React.FC<SectionProps> = ({
         className={
           overlayClassOverride === true
             ? overlayClassName
-            : clsx('absolute inset-0 z-5', overlayOpacityClass, overlayBgClass, overlayClassName)
+            : clsx(
+                'absolute inset-0 z-5',
+                overlayOpacityClass,
+                overlayBgClass,
+                overlayClassName,
+                newClassName
+              )
         }
       ></div>
       <Container options={containerOptions} className="relative z-10">

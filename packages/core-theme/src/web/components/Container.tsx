@@ -1,6 +1,6 @@
 import clsx from 'clsx';
 import type { Size } from '../../deprecated/types/style-types/index.js';
-import { styleGuide } from '../style/style-guide.js';
+import { styleGuide } from '../../deprecated/web/style/style-guide.js';
 
 export type ContainerOptions = {
   verticalPadding?: Size;

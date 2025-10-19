@@ -32,19 +32,27 @@ type PortableTextProps = {
   context: ThemeContext;
 };
 
-// export const textComponents = (
-//   options: TextComponentOptions = {},
-//   context: ThemeContext
-// ): PortableTextReactComponents => {
-//   return {
-//     types: {},
-//     marks: {},
-//     block: {
-//       normal: (props: PortableTextComponentProps<PortableTextBlock>) => (
-//         <Text variant="p" as="p" {...options}>
-//           {props.children}
-//         </Text>
-//       ),
-//     },
-//   };
-// };
+export const textComponents = (
+  options: TextComponentOptions = {},
+  context: ThemeContext
+): PortableTextReactComponents => {
+  return {
+    types: {},
+    marks: {},
+    list: {},
+    listItem: {},
+    block: {
+      normal: (props: PortableTextComponentProps<PortableTextBlock>) => (
+        <Text variant="p" as="p" {...options}>
+          {props.children}
+        </Text>
+      ),
+    },
+    hardBreak: () => <br />,
+    unknownType: () => null,
+    unknownMark: () => null,
+    unknownList: () => null,
+    unknownListItem: () => null,
+    unknownBlockStyle: () => null,
+  };
+};

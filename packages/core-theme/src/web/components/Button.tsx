@@ -1,4 +1,4 @@
-import { styleGuide } from '../style/style-guide.js';
+import { styleGuide } from '../../deprecated/web/style/style-guide.js';
 import type {
   ThemeColor,
   ColorTone,

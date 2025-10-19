@@ -12,7 +12,7 @@ import { Text, portableTextComponents } from '../text/index.js';
 import type { TextComponentProps } from '../text/index.js';
 import { Button } from '../components/Button.js';
 import type { ButtonOptions, ButtonVariant } from '../components/Button.js';
-import { styleGuide } from '../style/style-guide.js';
+import { styleGuide } from '../../deprecated/web/style/style-guide.js';
 import clsx from 'clsx';
 import { Section } from '../components/Section.js';
 import type {
