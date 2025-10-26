@@ -1,4 +1,10 @@
-import { HeroBlock } from '@zilfire/core-theme/web/blocks';
+import {
+  HeroBlock,
+  SimpleHeroSection,
+  SimpleHeroBlock,
+  SimpleHeroBlockHeading,
+  SimpleHeroBlockDescription,
+} from '@zilfire/core-theme/web/blocks';
 // import type { HeroBlockOptions } from '@zilfire/core-theme/web/blocks';
 import { HOME_QUERY, HomeQueryData } from '@/sanity/queries';
 import { client } from '@/sanity/client';
@@ -27,8 +33,9 @@ export default async function Home() {
     <>
       <header className="py-12 bg-red-500">Header</header>
       <main className="grow flex flex-col">
-        {heroData && <HeroBlock data={heroData} context={themeContext} />}
-        <div className="bg-green-500 mx-auto max-w-4xl px-4 py-16 flex flex-col grow">!!!</div>
+        {/* {heroData && <HeroBlock data={heroData} context={themeContext} />} */}
+        {heroData && <SimpleHeroBlock data={heroData} context={themeContext} />}
+        <div className="bg-gray-100 flex flex-col grow"></div>
       </main>
     </>
   );
