@@ -1,9 +1,16 @@
-import { Text } from './index.js';
-import type { TextComponentProps } from './index.js';
-import clsx from 'clsx';
+import { Text } from './Text.js';
+import type { TextProps } from './Text.js';
 
-export const UL: React.FC<TextComponentProps> = (props) => {
-  return <Text {...props} variant={props.variant ?? 'ul'} className={clsx('', props.className)} />;
+interface ULProps extends Omit<TextProps, 'element'> {
+  element?: never; // Prevent overriding the element
+}
+
+export const UL: React.FC<ULProps> = ({ children, ...props }) => {
+  return (
+    <Text {...props} element="ul">
+      {children}
+    </Text>
+  );
 };
 
 export default UL;

@@ -1,8 +1,16 @@
-import { Text } from './index.js';
-import type { TextComponentProps } from './index.js';
+import { Text } from './Text.js';
+import type { TextProps } from './Text.js';
 
-export const H3: React.FC<TextComponentProps> = (props) => {
-  return <Text {...props} variant={props.variant ?? 'h3'} />;
+interface H3Props extends Omit<TextProps, 'element'> {
+  element?: never; // Prevent overriding the element
+}
+
+export const H3: React.FC<H3Props> = ({ children, ...props }) => {
+  return (
+    <Text {...props} element="h3">
+      {children}
+    </Text>
+  );
 };
 
 export default H3;

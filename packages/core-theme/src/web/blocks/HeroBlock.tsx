@@ -8,8 +8,8 @@ import type {
   TextComponent,
   OpacityOption,
 } from '../../deprecated/types/style-types/index.js';
-import { Text } from '../text/index.js';
-import type { TextComponentProps } from '../text/index.js';
+// import { Text } from '../text/index.js';
+// import type { TextComponentProps } from '../text/index.js';
 import { Button } from '../components/Button.js';
 import type { ButtonOptions, ButtonVariant } from '../components/Button.js';
 import { styleGuide } from '../../deprecated/web/style/style-guide.js';
@@ -28,8 +28,14 @@ export { textComponents } from '../text/text-components.js';
 
 export type HeroContentAlignment = 'left' | 'center' | 'responsive';
 
-export type HeadlineOptions = TextComponentProps;
-export type DescriptionOptions = TextComponentProps;
+// export type HeadlineOptions = TextComponentProps;
+// export type DescriptionOptions = TextComponentProps;
+export type HeadlineOptions = {
+  className?: string;
+};
+export type DescriptionOptions = {
+  className?: string;
+};
 
 export type HeroContentOptions = {
   contentGap?: Size;
@@ -130,9 +136,9 @@ export const HeroBlock: React.FC<HeroBlockProps> = ({
   // Set default description options if not provided
   const descriptionOptions = contentOptions.descriptionOptions || {};
 
-  descriptionOptions.textSize = descriptionOptions.textSize || defaultDescriptionTextSize;
-  descriptionOptions.textColor = descriptionOptions.textColor || defaultDescriptionColor;
-  descriptionOptions.colorTone = descriptionOptions.colorTone || defaultDescriptionColorTone;
+  // descriptionOptions.textSize = descriptionOptions.textSize || defaultDescriptionTextSize;
+  // descriptionOptions.textColor = descriptionOptions.textColor || defaultDescriptionColor;
+  // descriptionOptions.colorTone = descriptionOptions.colorTone || defaultDescriptionColorTone;
 
   descriptionOptions.className = descriptionOptions.className
     ? clsx(descriptionOptions.className, 'last:mb-0')
@@ -161,9 +167,9 @@ export const HeroBlock: React.FC<HeroBlockProps> = ({
   }
 
   // Set default headline options if not provided
-  headlineOptions.textSize = headlineOptions.textSize || defaultHeadlineTextSize;
-  headlineOptions.textColor = headlineOptions.textColor || defaultHeadlineColor;
-  headlineOptions.colorTone = headlineOptions.colorTone || defaultHeadlineColorTone;
+  // headlineOptions.textSize = headlineOptions.textSize || defaultHeadlineTextSize;
+  // headlineOptions.textColor = headlineOptions.textColor || defaultHeadlineColor;
+  // headlineOptions.colorTone = headlineOptions.colorTone || defaultHeadlineColorTone;
 
   // Set Primary Button Default Options
   primaryButtonOptions.variant = primaryButtonOptions.variant || defaultPrimaryButtonVariant;
@@ -208,7 +214,7 @@ export const HeroBlock: React.FC<HeroBlockProps> = ({
       containerOptions={containerOptions}
     >
       <div className={clsx('w-full lg:w-2/3 xl:w-1/2 flex flex-col', contentGapClass)}>
-        <Text
+        {/* <Text
           as={headlineOptions.as || defaultHeadlineTag}
           variant="h1"
           {...headlineOptions}
@@ -216,7 +222,8 @@ export const HeroBlock: React.FC<HeroBlockProps> = ({
           className={clsx(alignmentClass)}
         >
           {headlineOptions.children || heading}
-        </Text>
+        </Text> */}
+        <h1 className={clsx('text-4xl font-bold', alignmentClass)}>{heading}</h1>
         {description && (
           <div className="">
             <PortableText value={description} components={textComponents({}, context)} />

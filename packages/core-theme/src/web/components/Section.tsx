@@ -1,7 +1,7 @@
 import clsx from 'clsx';
 import { ThemeColor, ColorTone, OpacityOption } from '../../deprecated/types/style-types/index.js';
 import { styleGuide } from '../../deprecated/web/style/style-guide.js';
-import { getBGColorClass, getOpacityClass } from '../style/style-utils.js';
+// import { getBGColorClass, getOpacityClass } from '../style/style-utils.js';
 import type { SanityImageWithAlt } from '@zilfire/next-sanity-image/types';
 import type { ThemeContext } from '../../types/context-types/index.js';
 import SanityImage from '@zilfire/next-sanity-image';
@@ -64,9 +64,11 @@ export const Section: React.FC<SectionProps> = ({
     sectionClassName,
     sectionClassOverride,
   } = sectionOptions || {};
-  const bgClass = sectionBGColor
-    ? getBGColorClass(sectionBGColor, sectionBGColorTone, styleGuide)
-    : false;
+  const bgClass = false;
+
+  // const bgClass = sectionBGColor
+  //   ? getBGColorClass(sectionBGColor, sectionBGColorTone, styleGuide)
+  //   : false;
 
   const {
     overlayColor,
@@ -76,10 +78,13 @@ export const Section: React.FC<SectionProps> = ({
     overlayClassOverride,
   } = overlayOptions || {};
 
-  const overlayOpacityClass = overlayColor ? getOpacityClass(overlayOpacity, styleGuide) : false;
-  const overlayBgClass = overlayColor
-    ? getBGColorClass(overlayColor, overlayColorTone, styleGuide)
-    : false;
+  const overlayOpacityClass = false;
+  const overlayBgClass = false;
+
+  // const overlayOpacityClass = overlayColor ? getOpacityClass(overlayOpacity, styleGuide) : false;
+  // const overlayBgClass = overlayColor
+  //   ? getBGColorClass(overlayColor, overlayColorTone, styleGuide)
+  //   : false;
 
   const { imageSizes, quality, priority, onLoad, onError, loading } = backgroundImageOptions || {};
 

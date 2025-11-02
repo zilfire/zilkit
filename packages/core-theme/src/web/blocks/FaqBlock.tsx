@@ -7,7 +7,7 @@ import { Container } from '../components/Container.js';
 import { FaPlus as PlusIcon, FaMinus as MinusIcon } from 'react-icons/fa6';
 import type { FaqBlockData } from '../../types/sanity-data-types/blocks/index.js';
 import type { PortableTextBlock } from '@portabletext/types';
-import { portableTextComponents } from '../text/index.js';
+// import { portableTextComponents } from '../text/index.js';
 import { PortableText } from 'next-sanity';
 import type {
   ThemeColor,
@@ -18,7 +18,7 @@ import type {
   TextSize,
   TextComponentStyles,
 } from '../../deprecated/types/style-types/index.js';
-import { Text } from '../text/index.js';
+// import { Text } from '../text/index.js';
 
 type FaqOptions = {
   colorTone?: ColorTone;
@@ -89,7 +89,7 @@ export const FaqBlock: React.FC<FaqBlockProps> = ({ data, options, context }) =>
         <div className="flex flex-wrap lg:flex-nowrap gap-x-8">
           <div className="w-full lg:w-4/12 mb-8">
             {heading && (
-              <Text
+              /* <Text
                 as="h2"
                 textSize="sm"
                 fontWeight="bold"
@@ -97,7 +97,8 @@ export const FaqBlock: React.FC<FaqBlockProps> = ({ data, options, context }) =>
                 // className="w-100 text-3xl font-bold mb-4"
               >
                 {heading}
-              </Text>
+              </Text> */
+              <h2 className="text-3xl font-bold mb-4">{heading}</h2>
             )}
             {description && (
               <p
@@ -173,7 +174,7 @@ const FaqItem = ({ qa, index, options, context }: FAQItemProps) => {
           }}
         >
           <div className="mt-4 ml-2">
-            <PortableText
+            {/* <PortableText
               value={qa.answer}
               components={portableTextComponents(
                 {
@@ -181,7 +182,8 @@ const FaqItem = ({ qa, index, options, context }: FAQItemProps) => {
                 },
                 context
               )}
-            />
+            /> */}
+            <div className="text-neutral-700">{JSON.stringify(qa.answer)}</div>
           </div>
         </div>
       </div>

@@ -93,6 +93,13 @@ const mockTextStyles: StyleClassNames = {
         },
       },
     },
+    emphasis: {
+      bold: 'font-bold',
+      italic: 'italic',
+      underline: 'underline',
+      strikethrough: 'line-through',
+      overline: 'overline',
+    },
   },
 };
 
@@ -139,6 +146,59 @@ describe('getTextClass', () => {
     it('should use base size as default when size is not specified', () => {
       const result = getTextClass('h1', 'textSize', mockTextStyles, {});
       assert.strictEqual(result, 'text-4xl');
+    });
+  });
+
+  describe('emphasis styles', () => {
+    it('should return bold class when bold is true and textStyleGroup is fontWeight', () => {
+      const result = getTextClass('p', 'fontWeight', mockTextStyles, {
+        bold: true,
+      });
+      assert.strictEqual(result, 'font-bold');
+    });
+
+    it('should return italic class when italic is true and textStyleGroup is fontStyle', () => {
+      const result = getTextClass('p', 'fontStyle', mockTextStyles, {
+        italic: true,
+      });
+      assert.strictEqual(result, 'italic');
+    });
+
+    it('should return decoration class when lineDecoration is set and textStyleGroup is decorationLine', () => {
+      const underlineResult = getTextClass('p', 'decorationLine', mockTextStyles, {
+        lineDecoration: 'underline',
+      });
+      assert.strictEqual(underlineResult, 'underline');
+
+      const strikethroughResult = getTextClass('p', 'decorationLine', mockTextStyles, {
+        lineDecoration: 'strikethrough',
+      });
+      assert.strictEqual(strikethroughResult, 'line-through');
+
+      const overlineResult = getTextClass('p', 'decorationLine', mockTextStyles, {
+        lineDecoration: 'overline',
+      });
+      assert.strictEqual(overlineResult, 'overline');
+    });
+
+    it('should not return emphasis classes for non-matching style groups', () => {
+      const boldForTextSize = getTextClass('p', 'textSize', mockTextStyles, {
+        bold: true,
+      });
+      assert.strictEqual(boldForTextSize, 'text-base'); // Should fall back to normal
+
+      const italicForTextColor = getTextClass('p', 'textColor', mockTextStyles, {
+        italic: true,
+      });
+      assert.strictEqual(italicForTextColor, 'text-neutral-900'); // Should fall back to normal
+    });
+
+    it('should prioritize emphasis over normal styles', () => {
+      // Even though h1 has font-bold in normal styles, emphasis should take precedence
+      const result = getTextClass('h1', 'fontWeight', mockTextStyles, {
+        bold: true,
+      });
+      assert.strictEqual(result, 'font-bold'); // From emphasis, not from h1 normal style
     });
   });
 
@@ -190,6 +250,16 @@ describe('getTextClass', () => {
       });
       assert.strictEqual(result, 'text-5xl'); // falls back to normal lg
     });
+
+    it('should prioritize emphasis over variant styles', () => {
+      // Even with hero variant, emphasis should take precedence
+      const result = getTextClass('h1', 'fontWeight', mockTextStyles, {
+        variant: 'hero',
+        size: 'base',
+        bold: true,
+      });
+      assert.strictEqual(result, 'font-bold'); // From emphasis, not from hero variant
+    });
   });
 
   describe('edge cases', () => {
@@ -225,8 +295,16 @@ describe('getTextClass', () => {
   });
 
   describe('fallback hierarchy', () => {
-    it('should follow correct fallback order: variant element -> variant default -> normal element -> normal default', () => {
-      // Test case where variant has element style
+    it('should follow correct fallback order: emphasis -> variant element -> variant default -> normal element -> normal default', () => {
+      // Test case where emphasis takes highest priority
+      const emphasisResult = getTextClass('h1', 'fontWeight', mockTextStyles, {
+        variant: 'hero',
+        size: 'base',
+        bold: true,
+      });
+      assert.strictEqual(emphasisResult, 'font-bold'); // emphasis wins over variant
+
+      // Test case where variant has element style (no emphasis)
       const variantElementResult = getTextClass('h1', 'leading', mockTextStyles, {
         variant: 'hero',
         size: 'base',

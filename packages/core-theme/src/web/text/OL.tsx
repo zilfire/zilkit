@@ -1,9 +1,16 @@
-import { Text } from './index.js';
-import type { TextComponentProps } from './index.js';
-import clsx from 'clsx';
+import { Text } from './Text.js';
+import type { TextProps } from './Text.js';
 
-export const OL: React.FC<TextComponentProps> = (props) => {
-  return <Text {...props} variant={props.variant ?? 'ol'} className={clsx('', props.className)} />;
+interface OLProps extends Omit<TextProps, 'element'> {
+  element?: never; // Prevent overriding the element
+}
+
+export const OL: React.FC<OLProps> = ({ children, ...props }) => {
+  return (
+    <Text {...props} element="ol">
+      {children}
+    </Text>
+  );
 };
 
 export default OL;

@@ -1,12 +1,3 @@
-// import clsx from 'clsx';
-
-import type {
-  ColorTone,
-  OpacityOption,
-  StyleGuide,
-  ThemeColor,
-} from '../../deprecated/types/style-types/index.js';
-
 import type {
   TextStyleGroup,
   TextComponent,
@@ -15,20 +6,6 @@ import type {
   TextVariantStyle,
   TextLineDecoration,
 } from '../../types/style-types/style-classes.js';
-
-export const getBGColorClass = (
-  themeColor: ThemeColor,
-  colorTone: ColorTone,
-  styleGuide: StyleGuide
-) => {
-  const colorClass = styleGuide.bgColor[themeColor]?.[colorTone];
-  return colorClass || '';
-};
-
-export const getOpacityClass = (opacity: OpacityOption, styleGuide: StyleGuide): string => {
-  const opacityClass = styleGuide.opacity[opacity];
-  return opacityClass || '';
-};
 
 export const getTextClass = (
   textComponent: TextComponent,
