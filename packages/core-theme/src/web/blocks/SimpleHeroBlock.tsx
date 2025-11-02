@@ -83,7 +83,7 @@ export const SimpleHeroBlock = ({
 }) => {
   return (
     <SimpleHeroSection data={data} context={context}>
-      <SimpleHeroBGImage data={data} context={context} />
+      {/* <SimpleHeroBGImage data={data} context={context} /> */}
       <SimpleHeroOverlay />
       <SimpleHeroContainer>
         <SimpleHeroBlockHeading data={data} />
