@@ -15,6 +15,10 @@ export type TextElementVariant = 'blockquote' | 'indent';
 
 export type TextComponent = TextElement | TextElementVariant;
 
+export type TextEmphasis = 'italic' | 'bold' | TextLineDecoration;
+
+export type TextLineDecoration = 'underline' | 'strikethrough' | 'overline';
+
 export type TextStyleGroup =
   | 'textSize'
   | 'textAlign'
@@ -28,7 +32,8 @@ export type TextStyleGroup =
   | 'verticalSpacing'
   | 'horizontalSpacing'
   | 'border'
-  | 'borderColor';
+  | 'borderColor'
+  | 'decorationLine';
 
 export type TextSize = 'base' | 'xs' | 'sm' | 'md' | 'lg' | 'xl' | 'xxl';
 
@@ -47,11 +52,22 @@ export type TextVariantStyle = {
   [key in TextSize]?: TextSizeStyle;
 };
 
-export type StyleClassNames = {
-  text: {
+export type TextClassNames = {
+  emphasis?: {
+    bold?: string;
+    italic?: string;
+    underline?: string;
+    strikethrough?: string;
+    overline?: string;
+  };
+  style: {
     normal: TextVariantStyle;
     variants?: {
       [key: Exclude<string, 'normal'>]: TextVariantStyle;
     };
   };
+};
+
+export type StyleClassNames = {
+  text: TextClassNames;
 };

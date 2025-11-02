@@ -6,87 +6,89 @@ import type { StyleClassNames } from '../../types/style-types/style-classes.js';
 // Mock text styles data for testing
 const mockTextStyles: StyleClassNames = {
   text: {
-    normal: {
-      base: {
-        default: {
-          textSize: 'text-base',
-          textColor: 'text-neutral-900',
-          fontWeight: 'font-normal',
-        },
-        elements: {
-          h1: {
-            textSize: 'text-4xl',
-            fontWeight: 'font-bold',
-          },
-          h2: {
-            textSize: 'text-3xl',
-            fontWeight: 'font-semibold',
-          },
-          p: {
-            textSize: 'text-base',
-            leading: 'leading-relaxed',
-          },
-        },
-      },
-      lg: {
-        default: {
-          textSize: 'text-lg',
-          textColor: 'text-neutral-800',
-        },
-        elements: {
-          h1: {
-            textSize: 'text-5xl',
-            fontWeight: 'font-bold',
-          },
-          h2: {
-            textSize: 'text-4xl',
-            fontWeight: 'font-semibold',
-          },
-        },
-      },
-      sm: {
-        default: {
-          textSize: 'text-sm',
-          textColor: 'text-neutral-700',
-        },
-      },
-    },
-    variants: {
-      hero: {
+    style: {
+      normal: {
         base: {
           default: {
-            textSize: 'text-6xl',
-            fontWeight: 'font-black',
-            textColor: 'text-white',
+            textSize: 'text-base',
+            textColor: 'text-neutral-900',
+            fontWeight: 'font-normal',
           },
           elements: {
             h1: {
-              textSize: 'text-7xl',
-              fontWeight: 'font-black',
-              leading: 'leading-tight',
+              textSize: 'text-4xl',
+              fontWeight: 'font-bold',
+            },
+            h2: {
+              textSize: 'text-3xl',
+              fontWeight: 'font-semibold',
+            },
+            p: {
+              textSize: 'text-base',
+              leading: 'leading-relaxed',
             },
           },
         },
         lg: {
           default: {
-            textSize: 'text-7xl',
-            fontWeight: 'font-black',
+            textSize: 'text-lg',
+            textColor: 'text-neutral-800',
           },
           elements: {
             h1: {
-              textSize: 'text-8xl',
-              fontWeight: 'font-black',
-              leading: 'leading-none',
+              textSize: 'text-5xl',
+              fontWeight: 'font-bold',
+            },
+            h2: {
+              textSize: 'text-4xl',
+              fontWeight: 'font-semibold',
             },
           },
         },
-      },
-      caption: {
-        base: {
+        sm: {
           default: {
-            textSize: 'text-xs',
-            fontWeight: 'font-light',
-            textColor: 'text-neutral-600',
+            textSize: 'text-sm',
+            textColor: 'text-neutral-700',
+          },
+        },
+      },
+      variants: {
+        hero: {
+          base: {
+            default: {
+              textSize: 'text-6xl',
+              fontWeight: 'font-black',
+              textColor: 'text-white',
+            },
+            elements: {
+              h1: {
+                textSize: 'text-7xl',
+                fontWeight: 'font-black',
+                leading: 'leading-tight',
+              },
+            },
+          },
+          lg: {
+            default: {
+              textSize: 'text-7xl',
+              fontWeight: 'font-black',
+            },
+            elements: {
+              h1: {
+                textSize: 'text-8xl',
+                fontWeight: 'font-black',
+                leading: 'leading-none',
+              },
+            },
+          },
+        },
+        caption: {
+          base: {
+            default: {
+              textSize: 'text-xs',
+              fontWeight: 'font-light',
+              textColor: 'text-neutral-600',
+            },
           },
         },
       },

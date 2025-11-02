@@ -4,7 +4,7 @@ import type {
   TextStyleGroup,
   TextClassOverrides,
 } from '../../types/style-types/style-classes.js';
-import { styleClasses } from '../style/text-styles.js';
+import { styleClassNames } from '../style/style-classes.js';
 import { getTextClass } from '../style/style-utils.js';
 import clsx from 'clsx';
 
@@ -57,19 +57,19 @@ export const Text = ({
       );
 
       textClasses = filteredStyleGroups.map((group: TextStyleGroup) =>
-        getTextClass(element, group, styleClasses, {})
+        getTextClass(element, group, styleClassNames, {})
       );
     } else if (classOverrides) {
       // Single classOverride - filter it out
       const filteredStyleGroups = textStyleGroups.filter((group) => group !== classOverrides);
 
       textClasses = filteredStyleGroups.map((group: TextStyleGroup) =>
-        getTextClass(element, group, styleClasses, {})
+        getTextClass(element, group, styleClassNames, {})
       );
     } else {
       // No classOverrides - use all style groups
       textClasses = textStyleGroups.map((group: TextStyleGroup) =>
-        getTextClass(element, group, styleClasses, {})
+        getTextClass(element, group, styleClassNames, {})
       );
     }
   }

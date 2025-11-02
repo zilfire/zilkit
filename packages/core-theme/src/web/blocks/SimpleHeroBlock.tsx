@@ -41,12 +41,11 @@ export const SimpleHeroBlockDescription = ({
 };
 
 export const SimpleHeroSection = ({
-  data,
   children,
   className,
   classOverride,
 }: {
-  data: HeroBlockData;
+  data?: HeroBlockData;
   children?: React.ReactNode;
   className?: string;
   classOverride?: string;

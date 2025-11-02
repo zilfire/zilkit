@@ -13,6 +13,7 @@ import type {
   StyleClassNames,
   TextSize,
   TextVariantStyle,
+  TextLineDecoration,
 } from '../../types/style-types/style-classes.js';
 
 export const getBGColorClass = (
@@ -36,13 +37,44 @@ export const getTextClass = (
   styleOptions: {
     variant?: string;
     size?: TextSize;
+    bold?: boolean;
+    italic?: boolean;
+    lineDecoration?: TextLineDecoration | false;
   }
 ): string => {
-  const { size = 'base', variant = 'normal' } = styleOptions;
+  const {
+    size = 'base',
+    variant = 'normal',
+    bold = false,
+    italic = false,
+    lineDecoration = false,
+  } = styleOptions;
+
+  // Check for emphasis styles first.
+  if (bold && textStyleGroup === 'fontWeight') {
+    const boldClass = textStyles.text.emphasis?.bold;
+    if (boldClass) {
+      return boldClass;
+    }
+  }
+
+  if (italic && textStyleGroup === 'fontStyle') {
+    const italicClass = textStyles.text.emphasis?.italic;
+    if (italicClass) {
+      return italicClass;
+    }
+  }
+
+  if (lineDecoration && textStyleGroup === 'decorationLine') {
+    const decorationClass = textStyles.text.emphasis?.[lineDecoration];
+    if (decorationClass) {
+      return decorationClass;
+    }
+  }
 
   // Check for variant style.
-  if (variant !== 'normal' && textStyles.text.variants?.[variant]) {
-    const variantStyles = textStyles.text.variants[variant] as TextVariantStyle;
+  if (variant !== 'normal' && textStyles.text.style.variants?.[variant]) {
+    const variantStyles = textStyles.text.style.variants[variant] as TextVariantStyle;
     // Check for variant size-specific style.
     if (variantStyles[size]?.elements?.[textComponent]?.[textStyleGroup]) {
       return variantStyles[size]?.elements?.[textComponent]?.[textStyleGroup];
@@ -54,13 +86,13 @@ export const getTextClass = (
   }
 
   // Check for normal size-specific style.
-  if (textStyles.text.normal[size]?.elements?.[textComponent]?.[textStyleGroup]) {
-    return textStyles.text.normal[size]?.elements?.[textComponent]?.[textStyleGroup];
+  if (textStyles.text.style.normal[size]?.elements?.[textComponent]?.[textStyleGroup]) {
+    return textStyles.text.style.normal[size]?.elements?.[textComponent]?.[textStyleGroup];
   }
 
   // Check for normal default size style.
-  if (textStyles.text.normal[size]?.default?.[textStyleGroup]) {
-    return textStyles.text.normal[size]?.default?.[textStyleGroup];
+  if (textStyles.text.style.normal[size]?.default?.[textStyleGroup]) {
+    return textStyles.text.style.normal[size]?.default?.[textStyleGroup];
   }
 
   return '';
