@@ -35,11 +35,11 @@ export type TextStyleGroup =
   | 'borderColor'
   | 'decorationLine';
 
+export type TextClassOverrides = Partial<Record<TextStyleGroup, string>> | string;
+
 export type TextSize = 'base' | 'xs' | 'sm' | 'md' | 'lg' | 'xl' | 'xxl';
 
 export type ElementStyle = Partial<Record<TextStyleGroup, string>>;
-
-export type TextClassOverrides = TextStyleGroup | TextStyleGroup[] | 'all';
 
 export type TextSizeStyle = {
   default?: ElementStyle;

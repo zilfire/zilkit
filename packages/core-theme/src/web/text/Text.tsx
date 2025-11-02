@@ -49,29 +49,29 @@ export const Text = ({
 
   let textClasses: string[] = [];
 
-  if (classOverrides !== 'all') {
-    if (Array.isArray(classOverrides)) {
-      // Filter out classOverrides from textStyleGroups before mapping
-      const filteredStyleGroups = textStyleGroups.filter(
-        (group) => !classOverrides.includes(group)
-      );
+  if (typeof classOverrides === 'string') {
+    // If classOverrides is a string, use it in place of all textStyleGroup classNames
+    textClasses = [classOverrides];
+  } else if (classOverrides && typeof classOverrides === 'object') {
+    // If classOverrides is a Record, use provided string classNames and generate the rest
+    const overrideKeys = Object.keys(classOverrides) as TextStyleGroup[];
+    const providedClasses = Object.values(classOverrides).filter(Boolean) as string[];
 
-      textClasses = filteredStyleGroups.map((group: TextStyleGroup) =>
-        getTextClass(element, group, styleClassNames, {})
-      );
-    } else if (classOverrides) {
-      // Single classOverride - filter it out
-      const filteredStyleGroups = textStyleGroups.filter((group) => group !== classOverrides);
+    // Get remaining style groups that aren't overridden
+    const remainingStyleGroups = textStyleGroups.filter((group) => !overrideKeys.includes(group));
 
-      textClasses = filteredStyleGroups.map((group: TextStyleGroup) =>
-        getTextClass(element, group, styleClassNames, {})
-      );
-    } else {
-      // No classOverrides - use all style groups
-      textClasses = textStyleGroups.map((group: TextStyleGroup) =>
-        getTextClass(element, group, styleClassNames, {})
-      );
-    }
+    // Generate classes for remaining groups
+    const generatedClasses = remainingStyleGroups.map((group: TextStyleGroup) =>
+      getTextClass(element, group, styleClassNames, {})
+    );
+
+    // Combine provided override classes with generated classes
+    textClasses = [...providedClasses, ...generatedClasses];
+  } else {
+    // No classOverrides - use all style groups
+    textClasses = textStyleGroups.map((group: TextStyleGroup) =>
+      getTextClass(element, group, styleClassNames, {})
+    );
   }
 
   return <Component className={clsx(textClasses, className)}>{children}</Component>;
