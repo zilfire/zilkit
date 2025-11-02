@@ -35,6 +35,10 @@
     "./types": {
       "types": "./dist/types/index.d.ts",
       "import": "./dist/types/index.js"
+    },
+    "./style-classes": {
+      "types": "./dist/types/style-types/style-classes.d.ts",
+      "import": "./dist/web/style/style-classes.js"
     }
   },
   "types": "./dist/index.d.ts",

@@ -3,16 +3,18 @@ import type { ThemeContext } from '../../types/context-types/index.js';
 import { PortableText } from 'next-sanity';
 import { textComponents } from '../text/text-components.js';
 import SanityImage from '@zilfire/next-sanity-image';
+import { Section, SectionBackgroundImage } from '../components/Section.js';
+import type { SectionBackgroundImageOptions } from '../components/Section.js';
 import clsx from 'clsx';
 
-export type BackgroundImageOptions = {
-  imageSizes?: string | number[];
-  quality?: number;
-  priority?: boolean;
-  onLoad?: () => void;
-  onError?: () => void;
-  loading?: 'lazy' | 'eager';
-};
+// export type BackgroundImageOptions = {
+//   imageSizes?: string | number[];
+//   quality?: number;
+//   priority?: boolean;
+//   onLoad?: () => void;
+//   onError?: () => void;
+//   loading?: 'lazy' | 'eager';
+// };
 
 // const sectionSpacingXS = 'py-10 md:py-18 lg:py-24';
 // const sectionSpacingSM = 'py-16 md:py-24 lg:py-32';
@@ -40,19 +42,14 @@ export const SimpleHeroBlockDescription = ({
   );
 };
 
-export const SimpleHeroSection = ({
-  children,
-  className,
-  classOverride,
-}: {
+export const SimpleHeroSection = (props: {
   data?: HeroBlockData;
   children?: React.ReactNode;
   className?: string;
   classOverride?: string;
+  context: ThemeContext;
 }) => {
-  // const { heading, description, backgroundImage, primaryButton, secondaryButton } = data;
-
-  return <section className={clsx(classOverride ?? `relative`, className)}>{children}</section>;
+  return <Section {...props}></Section>;
 };
 
 export const SimpleHeroBGImage = ({
@@ -62,29 +59,9 @@ export const SimpleHeroBGImage = ({
 }: {
   data: HeroBlockData;
   context: ThemeContext;
-  options?: BackgroundImageOptions;
+  options?: SectionBackgroundImageOptions;
 }) => {
-  const { backgroundImage } = data || {};
-  const { sanityConfig } = context;
-  const { imageSizes, quality, priority, onLoad, onError, loading } = options || {};
-
-  if (!backgroundImage) return null;
-  return (
-    <div className="absolute z-0 w-full h-full">
-      <SanityImage
-        imageObject={backgroundImage}
-        alt={backgroundImage.alt || 'Hero Image'}
-        sanityConfig={sanityConfig}
-        layout="cover"
-        quality={quality}
-        priority={priority || false}
-        onLoad={onLoad}
-        onError={onError}
-        loading={loading}
-        imageSizes={imageSizes}
-      />
-    </div>
-  );
+  return <SectionBackgroundImage data={data} context={context} options={options} />;
 };
 
 export const SimpleHeroOverlay = ({}) => {
@@ -105,7 +82,7 @@ export const SimpleHeroBlock = ({
   context: ThemeContext;
 }) => {
   return (
-    <SimpleHeroSection data={data}>
+    <SimpleHeroSection data={data} context={context}>
       <SimpleHeroBGImage data={data} context={context} />
       <SimpleHeroOverlay />
       <SimpleHeroContainer>

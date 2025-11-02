@@ -1,4 +1,4 @@
 export * from './Container.js';
-export * from './SectionDepr.js';
+export * from './Section.js';
 export * from './Link.js';
 export * from './Button.js';
