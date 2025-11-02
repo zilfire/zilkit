@@ -68,6 +68,15 @@ export type TextClassNames = {
   };
 };
 
+export type SectionVerticalSpacingSize = 'base' | 'xs' | 'sm' | 'md' | 'lg' | 'xl' | 'xxl';
+
+export type SectionClassNames = {
+  sectionVerticalSpacing: { base: string } & Partial<
+    Record<Exclude<SectionVerticalSpacingSize, 'base'>, string>
+  >;
+};
+
 export type StyleClassNames = {
   text: TextClassNames;
+  section: SectionClassNames;
 };

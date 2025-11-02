@@ -1,6 +1,6 @@
 import { describe, it } from 'node:test';
 import assert from 'node:assert';
-import { getTextClass } from './style-utils.js';
+import { getTextClass, getSectionVerticalSpacingClass } from './style-utils.js';
 import type { StyleClassNames } from '../../types/style-types/style-classes.js';
 
 // Mock text styles data for testing
@@ -99,6 +99,15 @@ const mockTextStyles: StyleClassNames = {
       underline: 'underline',
       strikethrough: 'line-through',
       overline: 'overline',
+    },
+  },
+  section: {
+    sectionVerticalSpacing: {
+      base: 'py-32 md:py-40 lg:py-48',
+      sm: 'py-16 md:py-24 lg:py-32',
+      md: 'py-20 md:py-32 lg:py-36',
+      lg: 'py-24 md:py-36 lg:py-40',
+      xl: 'py-32 md:py-40 lg:py-48',
     },
   },
 };
@@ -332,5 +341,39 @@ describe('getTextClass', () => {
       });
       assert.strictEqual(normalDefaultResult, 'text-neutral-900');
     });
+  });
+});
+
+describe('getSectionVerticalSpacingClass', () => {
+  it('should return base class when no size is provided', () => {
+    const result = getSectionVerticalSpacingClass(mockTextStyles);
+    assert.strictEqual(result, 'py-32 md:py-40 lg:py-48');
+  });
+
+  it('should return base class when size is explicitly "base"', () => {
+    const result = getSectionVerticalSpacingClass(mockTextStyles, 'base');
+    assert.strictEqual(result, 'py-32 md:py-40 lg:py-48');
+  });
+
+  it('should return specific size class when size is provided', () => {
+    const result = getSectionVerticalSpacingClass(mockTextStyles, 'sm');
+    assert.strictEqual(result, 'py-16 md:py-24 lg:py-32');
+  });
+
+  it('should return different size classes correctly', () => {
+    const mdResult = getSectionVerticalSpacingClass(mockTextStyles, 'md');
+    assert.strictEqual(mdResult, 'py-20 md:py-32 lg:py-36');
+
+    const lgResult = getSectionVerticalSpacingClass(mockTextStyles, 'lg');
+    assert.strictEqual(lgResult, 'py-24 md:py-36 lg:py-40');
+
+    const xlResult = getSectionVerticalSpacingClass(mockTextStyles, 'xl');
+    assert.strictEqual(xlResult, 'py-32 md:py-40 lg:py-48');
+  });
+
+  it('should fall back to base when requested size is not available', () => {
+    // Since 'xs' is not defined in our mock data, it should fall back to base
+    const result = getSectionVerticalSpacingClass(mockTextStyles, 'xs');
+    assert.strictEqual(result, 'py-32 md:py-40 lg:py-48');
   });
 });

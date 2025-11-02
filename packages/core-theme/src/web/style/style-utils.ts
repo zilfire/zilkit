@@ -5,6 +5,7 @@ import type {
   TextSize,
   TextVariantStyle,
   TextLineDecoration,
+  SectionVerticalSpacingSize,
 } from '../../types/style-types/style-classes.js';
 
 export const getTextClass = (
@@ -73,4 +74,18 @@ export const getTextClass = (
   }
 
   return '';
+};
+
+export const getSectionVerticalSpacingClass = (
+  sectionStyles: StyleClassNames,
+  size?: SectionVerticalSpacingSize
+): string => {
+  const spacingSize = size || 'base';
+
+  // Get the requested size or fall back to base
+  const spacingClass =
+    sectionStyles.section.sectionVerticalSpacing[spacingSize] ||
+    sectionStyles.section.sectionVerticalSpacing.base;
+
+  return spacingClass || '';
 };

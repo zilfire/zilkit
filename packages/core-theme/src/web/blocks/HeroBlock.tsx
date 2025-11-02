@@ -14,13 +14,13 @@ import { Button } from '../components/Button.js';
 import type { ButtonOptions, ButtonVariant } from '../components/Button.js';
 import { styleGuide } from '../../deprecated/web/style/style-guide.js';
 import clsx from 'clsx';
-import { Section } from '../components/Section.js';
+import { DeprSection as Section } from '../components/DeprSection.js';
 import type {
   SectionOptions,
   OverlayOptions,
   BackgroundImageOptions,
   ContainerOptions,
-} from '../components/Section.js';
+} from '../components/DeprSection.js';
 import { PortableText } from 'next-sanity';
 import { textComponents } from '../text/text-components.js';
 
