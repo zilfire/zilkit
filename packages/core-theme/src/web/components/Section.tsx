@@ -31,7 +31,8 @@ interface SectionWrapperProps {
   'aria-labelledby'?: string;
 }
 
-export type SectionBackgroundImageOptions = {
+// @todo: update and export from next-sanity-image package
+export interface SectionBackgroundImageOptions {
   imageSizes?: string | number[];
   quality?: number;
   priority?: boolean;
@@ -39,7 +40,7 @@ export type SectionBackgroundImageOptions = {
   onError?: () => void;
   loading?: 'lazy' | 'eager';
   className?: string;
-};
+}
 
 interface SectionBackgroundOverlayProps {
   enabled?: boolean;
@@ -244,10 +245,5 @@ export const Section: React.FC<SectionProps> = ({
     </SectionWrapper>
   );
 };
-
-// Backward compatibility exports
-export const SectionBGImage = SectionBackgroundImage;
-export type SectionBGImageOptions = SectionBackgroundImageOptions;
-export type SectionBGImageData = SectionBackgroundImageData;
 
 export default Section;

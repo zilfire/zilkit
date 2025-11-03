@@ -3,6 +3,8 @@ import type {
   TextComponent,
   TextStyleGroup,
   TextClassOverrides,
+  TextLineDecoration,
+  TextSize,
 } from '../../types/style-types/style-classes.js';
 import { styleClassNames } from '../style/style-classes.js';
 import { getTextClass } from '../style/style-utils.js';
@@ -22,19 +24,28 @@ const TEXT_STYLE_GROUPS: TextStyleGroup[] = [
   'listPosition',
   'verticalSpacing',
   'horizontalSpacing',
+  'lineDecoration',
   'border',
   'borderColor',
 ];
 
-interface TextProps {
+export interface TextStyleOptions {
+  variant?: string;
+  size?: TextSize;
+  bold?: boolean;
+  italic?: boolean;
+  lineDecoration?: TextLineDecoration | false;
+  color?: string | false;
+}
+
+export interface TextProps {
   element?: TextComponent;
   as?: TextElement;
   children: React.ReactNode;
   className?: string;
   classOverrides?: TextClassOverrides;
+  styleOptions?: TextStyleOptions;
 }
-
-export type { TextProps };
 
 const resolveComponent = (element: TextComponent, as?: TextElement): TextElement => {
   if (element === 'blockquote' || element === 'indent') {
@@ -64,14 +75,18 @@ const handleObjectOverrides = (
   return [...providedClasses, ...generatedClasses];
 };
 
-const generateDefaultClasses = (element: TextComponent): string[] => {
+const generateDefaultClasses = (
+  element: TextComponent,
+  styleOptions: TextStyleOptions
+): string[] => {
   return TEXT_STYLE_GROUPS.map((group: TextStyleGroup) =>
-    getTextClass(element, group, styleClassNames, {})
+    getTextClass(element, group, styleClassNames, styleOptions)
   ).filter(Boolean);
 };
 
 const generateTextClasses = (
   element: TextComponent,
+  styleOptions: TextStyleOptions = {},
   classOverrides?: TextClassOverrides
 ): string[] => {
   if (typeof classOverrides === 'string') {
@@ -82,7 +97,7 @@ const generateTextClasses = (
     return handleObjectOverrides(classOverrides, element);
   }
 
-  return generateDefaultClasses(element);
+  return generateDefaultClasses(element, styleOptions);
 };
 
 export const Text = ({
@@ -91,9 +106,10 @@ export const Text = ({
   children,
   className,
   classOverrides,
+  styleOptions = {},
 }: TextProps): React.ReactElement => {
   const Component = resolveComponent(element, as);
-  const textClasses = generateTextClasses(element, classOverrides);
+  const textClasses = generateTextClasses(element, styleOptions, classOverrides);
 
   return <Component className={clsx(textClasses, className)}>{children}</Component>;
 };

@@ -33,7 +33,7 @@ export type TextStyleGroup =
   | 'horizontalSpacing'
   | 'border'
   | 'borderColor'
-  | 'decorationLine';
+  | 'lineDecoration';
 
 export type TextClassOverrides = Partial<Record<TextStyleGroup, string>> | string;
 
@@ -60,6 +60,7 @@ export type TextClassNames = {
     strikethrough?: string;
     overline?: string;
   };
+  color?: Partial<Record<string, string>>;
   style: {
     normal: TextVariantStyle;
     variants?: {

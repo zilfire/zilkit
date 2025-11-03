@@ -3,7 +3,7 @@ import { useRef, useState } from 'react';
 import clsx from 'clsx';
 import type { ThemeContext } from '../../types/context-types/index.js';
 import { Section } from '../components/SectionDepr.js';
-import { Container } from '../components/Container.js';
+import { Container } from '../components/DeprContainer.js';
 import { FaPlus as PlusIcon, FaMinus as MinusIcon } from 'react-icons/fa6';
 import type { FaqBlockData } from '../../types/sanity-data-types/blocks/index.js';
 import type { PortableTextBlock } from '@portabletext/types';

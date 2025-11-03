@@ -5,8 +5,8 @@ import { styleGuide } from '../../deprecated/web/style/style-guide.js';
 import type { SanityImageWithAlt } from '@zilfire/next-sanity-image/types';
 import type { ThemeContext } from '../../types/context-types/index.js';
 import SanityImage from '@zilfire/next-sanity-image';
-import { Container } from './Container.js';
-import type { ContainerOptions } from './Container.js';
+import { Container } from './DeprContainer.js';
+import type { ContainerOptions } from './DeprContainer.js';
 
 export type { ContainerOptions };
 

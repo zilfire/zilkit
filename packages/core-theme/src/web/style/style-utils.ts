@@ -2,23 +2,17 @@ import type {
   TextStyleGroup,
   TextComponent,
   StyleClassNames,
-  TextSize,
   TextVariantStyle,
-  TextLineDecoration,
   SectionVerticalSpacingSize,
 } from '../../types/style-types/style-classes.js';
+
+import type { TextStyleOptions } from '../text/Text.js';
 
 export const getTextClass = (
   textComponent: TextComponent,
   textStyleGroup: TextStyleGroup,
   styleClasses: StyleClassNames,
-  styleOptions: {
-    variant?: string;
-    size?: TextSize;
-    bold?: boolean;
-    italic?: boolean;
-    lineDecoration?: TextLineDecoration | false;
-  }
+  styleOptions: TextStyleOptions
 ): string => {
   const {
     size = 'base',
@@ -26,6 +20,7 @@ export const getTextClass = (
     bold = false,
     italic = false,
     lineDecoration = false,
+    color = false,
   } = styleOptions;
 
   // Check for emphasis styles first.
@@ -43,10 +38,17 @@ export const getTextClass = (
     }
   }
 
-  if (lineDecoration && textStyleGroup === 'decorationLine') {
+  if (lineDecoration && textStyleGroup === 'lineDecoration') {
     const decorationClass = styleClasses.text.emphasis?.[lineDecoration];
     if (decorationClass) {
       return decorationClass;
+    }
+  }
+
+  if (color && textStyleGroup === 'textColor') {
+    const colorClass = styleClasses.text.color?.[color];
+    if (colorClass) {
+      return colorClass;
     }
   }
 

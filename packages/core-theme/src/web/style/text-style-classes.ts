@@ -78,6 +78,11 @@ export const textClassNames: TextClassNames = {
     strikethrough: fontStrikethrough,
     overline: fontOverline,
   },
+  color: {
+    black: textBlack,
+    white: textWhite,
+    primary: textPrimary,
+  },
   style: {
     normal: {
       base: {
