@@ -4,6 +4,7 @@ import type {
   ButtonSizeClassCategory,
   ButtonSize,
   ButtonClassOverride,
+  ButtonClassCategory,
 } from '../../../types/style-types/button-style-classes.js';
 import type { StyleClassNames } from '../../../types/style-types/style-class-names.js';
 import clsx from 'clsx';
@@ -23,9 +24,12 @@ export const buttonColorClassCategories: readonly ButtonColorClassCategory[] = [
   'borderColor',
 ] as const;
 
+export const buttonClassCategory: readonly ButtonClassCategory[] = ['pointer'] as const;
+
 export const buttonClassCategories: readonly ButtonStyleClassCategory[] = [
   ...buttonSizeClassCategories,
   ...buttonColorClassCategories,
+  ...buttonClassCategory,
 ] as const;
 
 export const getButtonClass = (

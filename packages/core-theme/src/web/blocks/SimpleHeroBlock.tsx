@@ -6,6 +6,9 @@ import { textComponents } from '../text/text-components.js';
 import { Section } from '../components/Section.js';
 import { Container } from '../components/Container.js';
 import { H1 } from '../text/index.js';
+import { button } from '@/sanity/schema/index.js';
+import { Button } from '../components/Button.js';
+
 // import clsx from 'clsx';
 
 // export type BackgroundImageOptions = {
@@ -62,6 +65,8 @@ export const SimpleHeroBlock = ({
         <div className="max-w-4xl">
           <SimpleHeroBlockHeading data={data} />
           <SimpleHeroBlockDescription data={data} context={context} />
+          {data.primaryButton && <Button context={context} data={data.primaryButton} />}
+          {data.secondaryButton && <Button context={context} data={data.secondaryButton} />}
         </div>
       </Container>
     </Section>

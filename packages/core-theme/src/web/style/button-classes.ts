@@ -4,7 +4,7 @@ export const buttonClassNames: ButtonClassNames = {
   style: {
     normal: {
       base: {
-        backgroundColor: 'bg-blue-600',
+        backgroundColor: 'bg-primary-600',
         backgroundOpacity: '',
         textColor: 'text-white',
         borderColor: 'border-transparent',
@@ -13,6 +13,7 @@ export const buttonClassNames: ButtonClassNames = {
         fontSize: 'text-base',
         fontWeight: 'font-medium',
         rounding: 'rounded-md',
+        pointer: 'cursor-pointer',
       },
       colors: {
         primary: {
@@ -50,6 +51,7 @@ export const buttonClassNames: ButtonClassNames = {
           fontSize: 'text-base',
           fontWeight: 'font-medium',
           rounding: 'rounded-md',
+          pointer: 'cursor-pointer',
         },
         colors: {
           primary: {

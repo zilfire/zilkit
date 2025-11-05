@@ -13,7 +13,12 @@ export type ButtonSizeClassCategory =
   | 'fontWeight'
   | 'rounding';
 
-export type ButtonStyleClassCategory = ButtonColorClassCategory | ButtonSizeClassCategory;
+export type ButtonClassCategory = 'pointer';
+
+export type ButtonStyleClassCategory =
+  | ButtonColorClassCategory
+  | ButtonSizeClassCategory
+  | ButtonClassCategory;
 
 export type ButtonClassOverride = Partial<Record<ButtonStyleClassCategory, string>> | string;
 
@@ -33,7 +38,9 @@ export interface ButtonSizeStyleClassCategories {
 }
 
 export type ButtonStyleClassCategories = ButtonColorStyleClassCategories &
-  ButtonSizeStyleClassCategories;
+  ButtonSizeStyleClassCategories & {
+    pointer?: string;
+  };
 
 export interface ButtonVariantStyle {
   base: ButtonStyleClassCategories;

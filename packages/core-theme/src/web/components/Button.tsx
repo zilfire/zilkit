@@ -7,10 +7,10 @@ import { renderLinkPath } from '../../utils/render-link-path.js';
 
 interface ButtonProps {
   context: ThemeContext;
-  onClick?: React.MouseEventHandler<HTMLButtonElement>;
+  // onClick?: React.MouseEventHandler<HTMLButtonElement>;
   children?: React.ReactNode;
   data: ButtonData;
-  options: {
+  options?: {
     variant?: string;
     size?: ButtonSize;
     color?: string;
@@ -24,10 +24,10 @@ interface ButtonProps {
 
 export const Button: React.FC<ButtonProps> = ({
   context,
-  onClick,
+  // onClick,
   children,
   data,
-  options: { variant, size, color, className, classOverride },
+  options: { variant, size, color, className, classOverride } = {},
   type = 'button',
   disabled = false,
   ariaLabel,
@@ -35,7 +35,7 @@ export const Button: React.FC<ButtonProps> = ({
   const content = data.text || children;
   const Link = context.LinkComponent;
   const path = data.link ? renderLinkPath(data.link) : '';
-  const hasLink = Boolean(path);
+  // const hasLink = Boolean(path);
 
   const buttonClasses = getButtonClasses(context.styleClasses, {
     variant,
@@ -45,35 +45,35 @@ export const Button: React.FC<ButtonProps> = ({
     classOverride,
   });
 
-  const handleClick: React.MouseEventHandler<HTMLButtonElement> = (event) => {
-    // If there's an onClick handler and no link, call it
-    // If there's a link, let the Link component handle navigation
-    if (onClick && !hasLink) {
-      onClick(event);
-    }
-  };
+  // const handleClick: React.MouseEventHandler<HTMLButtonElement> = (event) => {
+  //   // If there's an onClick handler and no link, call it
+  //   // If there's a link, let the Link component handle navigation
+  //   if (onClick && !hasLink) {
+  //     onClick(event);
+  //   }
+  // };
 
   // If there's a link, wrap button in Link component
-  if (hasLink) {
-    return (
-      <Link href={path}>
-        <button className={buttonClasses} type={type} disabled={disabled} aria-label={ariaLabel}>
-          {content}
-        </button>
-      </Link>
-    );
-  }
+  // if (hasLink) {
+  return (
+    <Link href={path}>
+      <button className={buttonClasses} type={type} disabled={disabled} aria-label={ariaLabel}>
+        {content}
+      </button>
+    </Link>
+  );
+  // }
 
   // Otherwise, render a button with onClick handler
-  return (
-    <button
-      className={buttonClasses}
-      onClick={handleClick}
-      type={type}
-      disabled={disabled}
-      aria-label={ariaLabel}
-    >
-      {content}
-    </button>
-  );
+  // return (
+  //   <button
+  //     className={buttonClasses}
+  //     onClick={handleClick}
+  //     type={type}
+  //     disabled={disabled}
+  //     aria-label={ariaLabel}
+  //   >
+  //     {content}
+  //   </button>
+  // );
 };
