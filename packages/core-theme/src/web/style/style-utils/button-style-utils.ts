@@ -15,26 +15,30 @@ export const buttonSizeClassCategories: readonly ButtonSizeClassCategory[] = [
   'fontSize',
   'fontWeight',
   'rounding',
+  'verticalSpacing',
+  'horizontalSpacing',
 ] as const;
 
 export const buttonColorClassCategories: readonly ButtonColorClassCategory[] = [
   'backgroundColor',
-  'backgroundOpacity',
   'textColor',
   'borderColor',
 ] as const;
 
-export const buttonClassCategory: readonly ButtonClassCategory[] = ['pointer'] as const;
+export const buttonStyleClassCategories: readonly ButtonStyleClassCategory[] = [
+  'pointer',
+  'border',
+] as const;
 
-export const buttonClassCategories: readonly ButtonStyleClassCategory[] = [
+export const buttonClassCategories: readonly ButtonClassCategory[] = [
   ...buttonSizeClassCategories,
   ...buttonColorClassCategories,
-  ...buttonClassCategory,
+  ...buttonStyleClassCategories,
 ] as const;
 
 export const getButtonClass = (
   styleClassNames: StyleClassNames,
-  classCategory: ButtonStyleClassCategory,
+  classCategory: ButtonClassCategory,
   options: {
     variant?: string;
     size?: ButtonSize;
@@ -50,24 +54,48 @@ export const getButtonClass = (
   const isSizeCategory = buttonSizeClassCategories.includes(
     classCategory as ButtonSizeClassCategory
   );
+  const isStyleCategory = buttonStyleClassCategories.includes(
+    classCategory as ButtonStyleClassCategory
+  );
 
   // If variant is not 'normal', check in the variants object first
   if (variant !== 'normal' && styleClassNames.button.style.variants?.[variant]) {
     const variantStyle = styleClassNames.button.style.variants[variant];
+    const normalStyle = styleClassNames.button.style.normal;
 
     // Check in color sub-object if it's a color category and color is provided
-    if (isColorCategory && color && variantStyle.colors?.[color]) {
-      const colorClass = variantStyle.colors[color][classCategory as ButtonColorClassCategory];
-      if (colorClass) {
-        return colorClass;
+    if (isColorCategory && color) {
+      // First check variant colors
+      if (variantStyle.colors?.[color]) {
+        const colorClass = variantStyle.colors[color][classCategory as ButtonColorClassCategory];
+        if (colorClass) {
+          return colorClass;
+        }
+      }
+      // If not in variant colors, check normal colors
+      if (normalStyle.colors?.[color]) {
+        const colorClass = normalStyle.colors[color][classCategory as ButtonColorClassCategory];
+        if (colorClass) {
+          return colorClass;
+        }
       }
     }
 
     // Check in size sub-object if it's a size category and size is provided
-    if (isSizeCategory && variantStyle.sizes?.[size]) {
-      const sizeClass = variantStyle.sizes[size][classCategory as ButtonSizeClassCategory];
-      if (sizeClass) {
-        return sizeClass;
+    if (isSizeCategory) {
+      // First check variant sizes
+      if (variantStyle.sizes?.[size]) {
+        const sizeClass = variantStyle.sizes[size][classCategory as ButtonSizeClassCategory];
+        if (sizeClass) {
+          return sizeClass;
+        }
+      }
+      // If not in variant sizes, check normal sizes
+      if (normalStyle.sizes?.[size]) {
+        const sizeClass = normalStyle.sizes[size][classCategory as ButtonSizeClassCategory];
+        if (sizeClass) {
+          return sizeClass;
+        }
       }
     }
 

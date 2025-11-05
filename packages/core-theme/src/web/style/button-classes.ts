@@ -1,11 +1,13 @@
 import type { ButtonClassNames } from '../../types/style-types/button-style-classes.js';
 
+export const verticalLineSpacing = 'mb-3 md:mb-4';
+export const horizontalButtonSpacing = 'mr-3';
+
 export const buttonClassNames: ButtonClassNames = {
   style: {
     normal: {
       base: {
-        backgroundColor: 'bg-primary-600',
-        backgroundOpacity: '',
+        backgroundColor: 'bg-primary-600 hover:brightness-95',
         textColor: 'text-white',
         borderColor: 'border-transparent',
         paddingY: 'py-2',
@@ -14,6 +16,9 @@ export const buttonClassNames: ButtonClassNames = {
         fontWeight: 'font-medium',
         rounding: 'rounded-md',
         pointer: 'cursor-pointer',
+        verticalSpacing: '',
+        horizontalSpacing: '',
+        border: 'border-2',
       },
       colors: {
         primary: {
@@ -43,9 +48,9 @@ export const buttonClassNames: ButtonClassNames = {
     variants: {
       outline: {
         base: {
-          backgroundColor: 'bg-transparent',
-          textColor: 'text-blue-600',
-          borderColor: 'border-blue-600',
+          backgroundColor: 'bg-black/45 hover:bg-black/40',
+          textColor: 'text-primary-500 hover:text-primary-600',
+          borderColor: 'border-primary-500 hover:border-primary-600',
           paddingY: 'py-2',
           paddingX: 'px-4',
           fontSize: 'text-base',

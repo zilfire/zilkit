@@ -255,13 +255,13 @@ describe('getButtonClass', () => {
       assert.strictEqual(secondaryResult, 'text-gray-600');
     });
 
-    it('should fall back to variant base when color-specific class is not available', () => {
-      // outline secondary color doesn't have backgroundColor, should fall back to variant base
+    it('should fall back to normal color when color is not in variant colors', () => {
+      // outline secondary color doesn't have backgroundColor in variant, falls back to normal secondary
       const result = getButtonClass(mockStyleClassNames, 'backgroundColor', {
         variant: 'outline',
         color: 'secondary',
       });
-      assert.strictEqual(result, 'bg-transparent');
+      assert.strictEqual(result, 'bg-gray-600');
     });
 
     it('should return class from variant sizes when size is specified', () => {
@@ -358,7 +358,7 @@ describe('getButtonClass', () => {
         variant: 'ghost',
         color: 'secondary',
       });
-      assert.strictEqual(result, 'bg-transparent'); // ghost variant base, not normal
+      assert.strictEqual(result, 'bg-gray-600'); // ghost doesn't have secondary color, falls back to normal secondary
     });
 
     it('should fall back to normal size when not in variant', () => {
@@ -366,7 +366,7 @@ describe('getButtonClass', () => {
         variant: 'ghost',
         size: 'lg',
       });
-      assert.strictEqual(result, 'py-2'); // from ghost variant base (no sizes defined)
+      assert.strictEqual(result, 'py-3'); // ghost doesn't have sizes, falls back to normal lg size
     });
 
     it('should fall back to normal base as last resort', () => {
@@ -412,7 +412,7 @@ describe('getButtonClass', () => {
         variant: 'ghost',
         size: 'lg',
       });
-      assert.strictEqual(normalSizeResult, 'px-4'); // from ghost base (no sizes defined)
+      assert.strictEqual(normalSizeResult, 'px-6'); // ghost doesn't have sizes, falls back to normal lg size
 
       // Test normal base (last resort)
       const normalBaseResult = getButtonClass(mockStyleClassNames, 'fontWeight', {
@@ -425,7 +425,7 @@ describe('getButtonClass', () => {
 
   describe('edge cases', () => {
     it('should return empty string when no matching class is found', () => {
-      const result = getButtonClass(mockStyleClassNames, 'backgroundOpacity', {});
+      const result = getButtonClass(mockStyleClassNames, 'pointer', {});
       assert.strictEqual(result, '');
     });
 

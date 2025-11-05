@@ -41,6 +41,7 @@ export const SimpleHeroBlockDescription = ({
           components={textComponents(
             {
               styleOptions: { color: 'white', size: 'lg' },
+              className: 'mb-6',
             },
             context
           )}
@@ -65,8 +66,20 @@ export const SimpleHeroBlock = ({
         <div className="max-w-4xl">
           <SimpleHeroBlockHeading data={data} />
           <SimpleHeroBlockDescription data={data} context={context} />
-          {data.primaryButton && <Button context={context} data={data.primaryButton} />}
-          {data.secondaryButton && <Button context={context} data={data.secondaryButton} />}
+          {(data.primaryButton || data.secondaryButton) && (
+            <div className="mb-6 flex flex-wrap gap-4">
+              {data.primaryButton && (
+                <Button context={context} data={data.primaryButton} options={{ size: 'lg' }} />
+              )}
+              {data.secondaryButton && (
+                <Button
+                  context={context}
+                  data={data.secondaryButton}
+                  options={{ variant: 'outline', size: 'lg' }}
+                />
+              )}
+            </div>
+          )}
         </div>
       </Container>
     </Section>
