@@ -10,8 +10,8 @@ import type {
 } from '../../deprecated/types/style-types/index.js';
 // import { Text } from '../text/index.js';
 // import type { TextComponentProps } from '../text/index.js';
-import { Button } from '../components/Button.js';
-import type { ButtonOptions, ButtonVariant } from '../components/Button.js';
+import { Button } from '../components/ButtonDepr.js';
+import type { ButtonOptions, ButtonVariant } from '../components/ButtonDepr.js';
 import { styleGuide } from '../../deprecated/web/style/style-guide.js';
 import clsx from 'clsx';
 import { DeprSection as Section } from '../components/DeprSection.js';

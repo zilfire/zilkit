@@ -7,7 +7,7 @@ import type {
   TextSize,
 } from '../../types/style-types/text-style-classes.js';
 import { styleClassNames } from '../style/style-classes.js';
-import { getTextClass } from '../style/style-utils.js';
+import { getTextClass } from '../style/style-utils/text-style-utils.js';
 import clsx from 'clsx';
 
 const DEFAULT_ELEMENT: TextElement = 'p';

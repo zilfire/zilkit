@@ -1,5 +1,5 @@
 import clsx from 'clsx';
-import { getSectionVerticalSpacingClass } from '../style/style-utils.js';
+import { getSectionVerticalSpacingClass } from '../style/style-utils/text-style-utils.js';
 import type { ThemeContext } from '../../types/context-types/index.js';
 import type { SectionVerticalSpacingSize } from '../../types/style-types/section-style-classes.js';
 import type { SanityImageWithAlt } from '@zilfire/next-sanity-image/types';

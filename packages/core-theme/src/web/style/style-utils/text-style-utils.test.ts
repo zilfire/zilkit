@@ -1,7 +1,7 @@
 import { describe, it } from 'node:test';
 import assert from 'node:assert';
-import { getTextClass, getSectionVerticalSpacingClass } from './style-utils.js';
-import type { StyleClassNames } from '../../types/style-types/style-class-names.js';
+import { getTextClass, getSectionVerticalSpacingClass } from './text-style-utils.js';
+import type { StyleClassNames } from '../../../types/style-types/style-class-names.js';
 
 // Mock text styles data for testing
 const mockTextStyles: StyleClassNames = {
@@ -108,6 +108,43 @@ const mockTextStyles: StyleClassNames = {
       md: 'py-20 md:py-32 lg:py-36',
       lg: 'py-24 md:py-36 lg:py-40',
       xl: 'py-32 md:py-40 lg:py-48',
+    },
+  },
+  button: {
+    style: {
+      normal: {
+        base: {
+          backgroundColor: 'bg-blue-600',
+          textColor: 'text-white',
+          paddingY: 'py-2',
+          paddingX: 'px-4',
+          fontSize: 'text-base',
+          fontWeight: 'font-medium',
+          rounding: 'rounded-md',
+        },
+        colors: {
+          primary: {
+            backgroundColor: 'bg-blue-600',
+            textColor: 'text-white',
+          },
+          secondary: {
+            backgroundColor: 'bg-gray-600',
+            textColor: 'text-white',
+          },
+        },
+        sizes: {
+          sm: {
+            paddingY: 'py-1',
+            paddingX: 'px-2',
+            fontSize: 'text-sm',
+          },
+          lg: {
+            paddingY: 'py-3',
+            paddingX: 'px-6',
+            fontSize: 'text-lg',
+          },
+        },
+      },
     },
   },
 };

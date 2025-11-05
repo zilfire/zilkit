@@ -1,84 +1,79 @@
-import { styleGuide } from '../../deprecated/web/style/style-guide.js';
-import type {
-  ThemeColor,
-  ColorTone,
-  ButtonSize,
-  RoundingSize,
-  FontWeight,
-  OpacityOption,
-} from '../../deprecated/types/style-types/index.js';
-import clsx from 'clsx';
+import { getButtonClasses } from '../style/style-utils/button-style-utils.js';
+import { ButtonClassOverride } from '../../types/style-types/button-style-classes.js';
+import { ThemeContext } from '../../types/index.js';
+import type { ButtonSize } from '../../types/style-types/button-style-classes.js';
 import { ButtonData } from '../../types/sanity-data-types/index.js';
-import { ThemeContext } from '../../types/context-types/index.js';
 import { renderLinkPath } from '../../utils/render-link-path.js';
 
-export type ButtonVariant = 'outline' | 'solid';
-
-export type ButtonOptions = {
-  variant?: ButtonVariant;
-  bgOpacity?: OpacityOption;
-  bgColorTone?: ColorTone;
-  bgColor?: ThemeColor;
-  textColor?: ThemeColor;
-  textColorTone?: ColorTone;
-  size?: ButtonSize;
-  rounding?: RoundingSize;
-  fontWeight?: FontWeight;
-  className?: string;
-};
-
-export type ButtonProps = {
-  onClick?: () => void;
-  children?: React.ReactNode;
-  options?: ButtonOptions;
-  data: ButtonData;
+interface ButtonProps {
   context: ThemeContext;
-};
+  onClick?: React.MouseEventHandler<HTMLButtonElement>;
+  children?: React.ReactNode;
+  data: ButtonData;
+  options: {
+    variant?: string;
+    size?: ButtonSize;
+    color?: string;
+    className?: string;
+    classOverride?: ButtonClassOverride;
+  };
+  type?: 'button' | 'submit' | 'reset';
+  disabled?: boolean;
+  ariaLabel?: string;
+}
 
-export const Button: React.FC<ButtonProps> = ({ onClick, children, options, context, data }) => {
-  const path = data.link ? renderLinkPath(data.link) : '';
+export const Button: React.FC<ButtonProps> = ({
+  context,
+  onClick,
+  children,
+  data,
+  options: { variant, size, color, className, classOverride },
+  type = 'button',
+  disabled = false,
+  ariaLabel,
+}) => {
   const content = data.text || children;
   const Link = context.LinkComponent;
-  const {
-    bgColorTone = '500',
-    bgColor = 'primary',
-    textColor = 'black',
-    textColorTone = '700',
-    size = 'md',
-    rounding = 'md',
-    fontWeight = 'normal',
-    variant = 'solid',
-    bgOpacity: optionsBgOpacity,
-  } = options || {};
+  const path = data.link ? renderLinkPath(data.link) : '';
+  const hasLink = Boolean(path);
 
-  let bgOpacity = optionsBgOpacity ? optionsBgOpacity : variant === 'outline' ? '0' : '50';
+  const buttonClasses = getButtonClasses(context.styleClasses, {
+    variant,
+    size,
+    color,
+    className,
+    classOverride,
+  });
 
-  const bgOpacityClass = styleGuide.bgOpacity[bgOpacity];
-  const backgroundClass = styleGuide.bgColor[bgColor][bgColorTone];
-  const textClass = styleGuide.textColor[textColor][textColorTone];
-  const fontSizeClass = styleGuide.componentStyles.button.fontSize[size];
-  const spacingClass = styleGuide.componentStyles.button.spacing[size];
-  const roundingClass = styleGuide.rounding[rounding];
-  const fontWeightClass = styleGuide.fontWeight[fontWeight];
-  const className = options?.className || '';
+  const handleClick: React.MouseEventHandler<HTMLButtonElement> = (event) => {
+    // If there's an onClick handler and no link, call it
+    // If there's a link, let the Link component handle navigation
+    if (onClick && !hasLink) {
+      onClick(event);
+    }
+  };
 
+  // If there's a link, wrap button in Link component
+  if (hasLink) {
+    return (
+      <Link href={path}>
+        <button className={buttonClasses} type={type} disabled={disabled} aria-label={ariaLabel}>
+          {content}
+        </button>
+      </Link>
+    );
+  }
+
+  // Otherwise, render a button with onClick handler
   return (
-    <Link href={path}>
-      <button
-        className={clsx(
-          backgroundClass,
-          textClass,
-          fontSizeClass,
-          spacingClass,
-          roundingClass,
-          fontWeightClass,
-          bgOpacityClass,
-          'hover:brightness-95 inline-block',
-          className
-        )}
-      >
-        {content}
-      </button>
-    </Link>
+    <button
+      className={buttonClasses}
+      onClick={handleClick}
+      type={type}
+      disabled={disabled}
+      aria-label={ariaLabel}
+    >
+      {content}
+    </button>
   );
 };

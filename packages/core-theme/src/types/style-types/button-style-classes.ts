@@ -1,13 +1,30 @@
 export type ButtonSize = 'base' | 'xs' | 'sm' | 'md' | 'lg' | 'xl' | 'xxl';
 
-export interface ButtonColorStyleClasses {
+export type ButtonColorClassCategory =
+  | 'backgroundColor'
+  | 'backgroundOpacity'
+  | 'textColor'
+  | 'borderColor';
+
+export type ButtonSizeClassCategory =
+  | 'paddingY'
+  | 'paddingX'
+  | 'fontSize'
+  | 'fontWeight'
+  | 'rounding';
+
+export type ButtonStyleClassCategory = ButtonColorClassCategory | ButtonSizeClassCategory;
+
+export type ButtonClassOverride = Partial<Record<ButtonStyleClassCategory, string>> | string;
+
+export interface ButtonColorStyleClassCategories {
   backgroundColor?: string;
   backgroundOpacity?: string;
   textColor?: string;
   borderColor?: string;
 }
 
-export interface ButtonSizeStyleClasses {
+export interface ButtonSizeStyleClassCategories {
   paddingY?: string;
   paddingX?: string;
   fontSize?: string;
@@ -15,12 +32,13 @@ export interface ButtonSizeStyleClasses {
   rounding?: string;
 }
 
-export type BaseStyleClasses = ButtonColorStyleClasses & ButtonSizeStyleClasses;
+export type ButtonStyleClassCategories = ButtonColorStyleClassCategories &
+  ButtonSizeStyleClassCategories;
 
 export interface ButtonVariantStyle {
-  base: BaseStyleClasses;
-  colors?: Partial<Record<string, ButtonColorStyleClasses>>;
-  sizes?: Partial<Record<ButtonSize, ButtonSizeStyleClasses>>;
+  base: ButtonStyleClassCategories;
+  colors?: Partial<Record<string, ButtonColorStyleClassCategories>>;
+  sizes?: Partial<Record<ButtonSize, ButtonSizeStyleClassCategories>>;
 }
 
 export interface ButtonClassNames {
