@@ -1,7 +1,7 @@
 import clsx from 'clsx';
 import { getSectionVerticalSpacingClass } from '../style/style-utils.js';
 import type { ThemeContext } from '../../types/context-types/index.js';
-import type { SectionVerticalSpacingSize } from '../../types/style-types/style-classes.js';
+import type { SectionVerticalSpacingSize } from '../../types/style-types/section-style-classes.js';
 import type { SanityImageWithAlt } from '@zilfire/next-sanity-image/types';
 import SanityImage from '@zilfire/next-sanity-image';
 
@@ -12,6 +12,7 @@ interface SectionProps {
   data?: SectionBackgroundImageData;
   verticalSpacing?: SectionVerticalSpacingSize;
   overlayOptions?: SectionBackgroundOverlayProps;
+  backgroundImageOptions?: SectionBackgroundImageOptions;
   className?: string;
   classOverride?: string;
   id?: string;
@@ -210,6 +211,7 @@ export const Section: React.FC<SectionProps> = ({
   className,
   classOverride,
   id,
+  backgroundImageOptions,
   'aria-label': ariaLabel,
   'aria-labelledby': ariaLabelledBy,
 }) => {
@@ -231,7 +233,9 @@ export const Section: React.FC<SectionProps> = ({
       // Only apply spacing to wrapper if no background image
       verticalSpacing={hasBackground ? undefined : verticalSpacing}
     >
-      {data && <SectionBackgroundImage data={data} context={context} />}
+      {data && (
+        <SectionBackgroundImage data={data} context={context} options={backgroundImageOptions} />
+      )}
       {hasBackground && <SectionBackgroundOverlay {...overlayOptions} />}
       <div
         className={clsx(

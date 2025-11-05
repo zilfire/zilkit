@@ -1,5 +1,5 @@
 import { text } from 'node:stream/consumers';
-import type { TextClassNames } from '../../types/style-types/style-classes.js';
+import type { TextClassNames } from '../../types/style-types/text-style-classes.js';
 import clsx from 'clsx';
 
 // Text size variables

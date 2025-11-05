@@ -1,10 +1,12 @@
 import type {
   TextStyleGroup,
   TextComponent,
-  StyleClassNames,
   TextVariantStyle,
-  SectionVerticalSpacingSize,
-} from '../../types/style-types/style-classes.js';
+} from '../../types/style-types/text-style-classes.js';
+
+import type { SectionVerticalSpacingSize } from '../../types/style-types/section-style-classes.js';
+
+import type { StyleClassNames } from '../../types/style-types/style-class-names.js';
 
 import type { TextStyleOptions } from '../text/Text.js';
 

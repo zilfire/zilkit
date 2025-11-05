@@ -1,4 +1,4 @@
-import type { SectionClassNames } from '@/types/style-types/style-classes.js';
+import type { SectionClassNames } from '@/types/style-types/section-style-classes.js';
 
 // const sectionSpacingXS = 'py-10 md:py-18 lg:py-24';
 const sectionSpacingSM = 'py-16 md:py-24 lg:py-32';

@@ -5,7 +5,7 @@ import type {
   TextClassOverrides,
   TextLineDecoration,
   TextSize,
-} from '../../types/style-types/style-classes.js';
+} from '../../types/style-types/text-style-classes.js';
 import { styleClassNames } from '../style/style-classes.js';
 import { getTextClass } from '../style/style-utils.js';
 import clsx from 'clsx';

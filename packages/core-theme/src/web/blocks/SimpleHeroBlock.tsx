@@ -32,40 +32,20 @@ export const SimpleHeroBlockDescription = ({
   const { description } = data;
   return (
     <>
-      {description && <PortableText value={description} components={textComponents({}, context)} />}
+      {description && (
+        <PortableText
+          value={description}
+          components={textComponents(
+            {
+              styleOptions: { color: 'white', size: 'lg' },
+            },
+            context
+          )}
+        />
+      )}
     </>
   );
 };
-
-// export const SimpleHeroSection = (props: {
-//   data?: HeroBlockData;
-//   children?: React.ReactNode;
-//   className?: string;
-//   classOverride?: string;
-//   context: ThemeContext;
-// }) => {
-//   return <Section {...props} verticalSpacing="base"></Section>;
-// };
-
-// export const SimpleHeroBGImage = ({
-//   data,
-//   context,
-//   options,
-// }: {
-//   data: HeroBlockData;
-//   context: ThemeContext;
-//   options?: SectionBackgroundImageOptions;
-// }) => {
-//   return <SectionBackgroundImage data={data} context={context} options={options} />;
-// };
-
-// export const SimpleHeroOverlay = ({}) => {
-//   return <div className={clsx('absolute inset-0 z-5 bg-black opacity-30')}></div>;
-// };
-
-// export const SimpleHeroContainer = ({ children }: { children: React.ReactNode }) => {
-//   return <div className={clsx('relative z-10 container mx-auto')}>{children}</div>;
-// };
 
 export const SimpleHeroBlock = ({
   data,
@@ -79,8 +59,10 @@ export const SimpleHeroBlock = ({
       {/* <SimpleHeroBGImage data={data} context={context} /> */}
       {/* <SimpleHeroOverlay /> */}
       <Container>
-        <SimpleHeroBlockHeading data={data} />
-        <SimpleHeroBlockDescription data={data} context={context} />
+        <div className="max-w-4xl">
+          <SimpleHeroBlockHeading data={data} />
+          <SimpleHeroBlockDescription data={data} context={context} />
+        </div>
       </Container>
     </Section>
   );

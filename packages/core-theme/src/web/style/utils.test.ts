@@ -1,7 +1,7 @@
 import { describe, it } from 'node:test';
 import assert from 'node:assert';
 import { getTextClass, getSectionVerticalSpacingClass } from './style-utils.js';
-import type { StyleClassNames } from '../../types/style-types/style-classes.js';
+import type { StyleClassNames } from '../../types/style-types/style-class-names.js';
 
 // Mock text styles data for testing
 const mockTextStyles: StyleClassNames = {
@@ -174,17 +174,17 @@ describe('getTextClass', () => {
     });
 
     it('should return decoration class when lineDecoration is set and textStyleGroup is decorationLine', () => {
-      const underlineResult = getTextClass('p', 'decorationLine', mockTextStyles, {
+      const underlineResult = getTextClass('p', 'lineDecoration', mockTextStyles, {
         lineDecoration: 'underline',
       });
       assert.strictEqual(underlineResult, 'underline');
 
-      const strikethroughResult = getTextClass('p', 'decorationLine', mockTextStyles, {
+      const strikethroughResult = getTextClass('p', 'lineDecoration', mockTextStyles, {
         lineDecoration: 'strikethrough',
       });
       assert.strictEqual(strikethroughResult, 'line-through');
 
-      const overlineResult = getTextClass('p', 'decorationLine', mockTextStyles, {
+      const overlineResult = getTextClass('p', 'lineDecoration', mockTextStyles, {
         lineDecoration: 'overline',
       });
       assert.strictEqual(overlineResult, 'overline');
