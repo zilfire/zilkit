@@ -54,27 +54,6 @@ const resolveComponent = (element: TextComponent, as?: TextElement): TextElement
   return as || (element as TextElement);
 };
 
-const handleStringOverrides = (classOverrides: string): string[] => [classOverrides];
-
-const handleObjectOverrides = (
-  classOverrides: Record<string, string>,
-  element: TextComponent
-): string[] => {
-  const overrideKeys = Object.keys(classOverrides) as TextStyleGroup[];
-  const providedClasses = Object.values(classOverrides).filter(Boolean) as string[];
-
-  // Get remaining style groups that aren't overridden
-  const remainingStyleGroups = TEXT_STYLE_GROUPS.filter((group) => !overrideKeys.includes(group));
-
-  // Generate classes for remaining groups
-  const generatedClasses = remainingStyleGroups
-    .map((group: TextStyleGroup) => getTextClass(element, group, styleClassNames, {}))
-    .filter(Boolean);
-
-  // Combine provided override classes with generated classes
-  return [...providedClasses, ...generatedClasses];
-};
-
 const generateTextClasses = (
   element: TextComponent,
   styleOptions: TextStyleOptions,
@@ -88,22 +67,6 @@ const generateTextClasses = (
     getTextClass(element, group, styleClassNames, { ...styleOptions, classOverrides })
   ).filter(Boolean);
 };
-
-// const generateTextClasses = (
-//   element: TextComponent,
-//   styleOptions: TextStyleOptions = {},
-//   classOverrides?: TextClassOverrides
-// ): string[] => {
-//   if (typeof classOverrides === 'string') {
-//     return handleStringOverrides(classOverrides);
-//   }
-
-//   if (classOverrides && typeof classOverrides === 'object') {
-//     return handleObjectOverrides(classOverrides, element);
-//   }
-
-//   return generateDefaultClasses(element, styleOptions);
-// };
 
 export const Text = ({
   element = DEFAULT_ELEMENT,

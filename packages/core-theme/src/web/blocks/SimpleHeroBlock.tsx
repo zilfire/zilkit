@@ -44,6 +44,7 @@ export const SimpleHeroBlockDescription = ({
           components={textComponents(
             {
               styleOptions: { color: 'white', size: 'lg' },
+              classOverrides: { textAlign: 'text-center' },
             },
             context
           )}
@@ -63,7 +64,7 @@ export const SimpleHeroBlock = ({
   return (
     <Section data={data} context={context} verticalSpacing="xl">
       <Container>
-        <div className="max-w-4xl">
+        <div className="max-w-4xl mx-auto flex flex-col items-center text-center">
           <SimpleHeroBlockHeading data={data} />
           <SimpleHeroBlockDescription data={data} context={context} />
           {(data.primaryButton || data.secondaryButton) && (

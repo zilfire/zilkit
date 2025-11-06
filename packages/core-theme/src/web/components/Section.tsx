@@ -127,7 +127,7 @@ export const SectionWrapper: React.FC<SectionWrapperProps> = ({
 
 export const SectionBackgroundOverlay: React.FC<SectionBackgroundOverlayProps> = ({
   enabled = true,
-  opacity = 0.5,
+  opacity = 0.6,
   className,
 }) => {
   if (!enabled) return null;
@@ -172,7 +172,7 @@ export const Section: React.FC<SectionProps> = ({
       // Only apply spacing to wrapper if no background image
       verticalSpacing={hasBackground ? undefined : verticalSpacing}
     >
-      {data && (
+      {data && hasBackground && (
         <SectionBackgroundImage data={data} context={context} options={backgroundImageOptions} />
       )}
       {hasBackground && <SectionBackgroundOverlay {...overlayOptions} />}

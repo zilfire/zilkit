@@ -40,7 +40,7 @@ export const buttonClassNames: ButtonClassNames = {
         },
         lg: {
           paddingY: 'py-3',
-          paddingX: 'px-5',
+          paddingX: 'px-8',
           fontSize: 'text-lg',
         },
       },
