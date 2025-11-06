@@ -60,19 +60,6 @@ interface SectionBackgroundImageProps {
   options?: SectionBackgroundImageOptions;
 }
 
-/**
- * SectionBackgroundImage Component
- * Renders a full-bleed background image for sections using inset-0 positioning
- *
- * @example
- * ```tsx
- * <SectionBackgroundImage
- *   data={{ backgroundImage: sanityImageObject }}
- *   context={themeContext}
- *   options={{ quality: 90, priority: true }}
- * />
- * ```
- */
 export const SectionBackgroundImage: React.FC<SectionBackgroundImageProps> = ({
   data,
   context,
@@ -138,69 +125,21 @@ export const SectionWrapper: React.FC<SectionWrapperProps> = ({
   );
 };
 
-/**
- * SectionBackgroundOverlay Component
- * Renders a configurable overlay on top of background images
- *
- * @example
- * ```tsx
- * <SectionBackgroundOverlay
- *   opacity={0.4}
- *   color="blue"
- *   className="bg-gradient-to-r from-blue-900 to-purple-900"
- * />
- * ```
- */
 export const SectionBackgroundOverlay: React.FC<SectionBackgroundOverlayProps> = ({
   enabled = true,
-  opacity = 0.3,
-  color = 'black',
+  opacity = 0.5,
   className,
 }) => {
   if (!enabled) return null;
 
   return (
-    <div className={clsx('absolute inset-0 z-5', className || `bg-${color}`)} style={{ opacity }} />
+    <div
+      className={clsx('absolute inset-0 z-5 w-full h-full bg-black', className)}
+      style={{ opacity }}
+    />
   );
 };
 
-/**
- * Section Component
- * A flexible section component with intelligent spacing and background image support
- *
- * Key Features:
- * - Automatic spacing management (applies to wrapper for normal sections, content for background sections)
- * - Full-bleed background images with optional overlays
- * - Semantic HTML element support
- * - Accessibility attributes
- * - Integration with theme vertical spacing system
- *
- * @example Basic section with spacing
- * ```tsx
- * <Section verticalSpacing="lg" context={themeContext}>
- *   <h2>My Section</h2>
- * </Section>
- * ```
- *
- * @example Section with background image
- * ```tsx
- * <Section
- *   verticalSpacing="xl"
- *   context={themeContext}
- *   data={{ backgroundImage: sanityImageObject }}
- *   overlayOptions={{ opacity: 0.4, color: 'black' }}
- * >
- *   <h2>Hero Section</h2>
- * </Section>
- * ```
- *
- * @example Semantic HTML
- * ```tsx
- * <Section as="article" id="main-content" aria-labelledby="heading">
- *   <h1 id="heading">Article Title</h1>
- * </Section>
- * ```
- */
 export const Section: React.FC<SectionProps> = ({
   as = 'section',
   children,

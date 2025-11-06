@@ -37,19 +37,22 @@ export type TextStyleGroup =
 
 export type TextClassOverrides = Partial<Record<TextStyleGroup, string>> | string;
 
-export type TextSize = 'base' | 'xs' | 'sm' | 'md' | 'lg' | 'xl' | 'xxl';
+export type TextSize = 'xs' | 'sm' | 'md' | 'lg' | 'xl' | 'xxl';
 
-export type ElementStyle = Partial<Record<TextStyleGroup, string>>;
+// export type ElementStyle = Partial<Record<TextStyleGroup, string>>;
 
-export type TextSizeStyle = {
-  default?: ElementStyle;
-  elements?: Partial<Record<TextComponent, ElementStyle>>;
-};
+// export type TextSizeStyle = {
+//   default?: ElementStyle;
+//   elements?: Partial<Record<TextComponent, ElementStyle>>;
+// };
+
+export type classNamesBySize = string | Partial<Record<TextSize | 'default', string>>;
+
+export type StyleGroupClassNames = Partial<Record<TextStyleGroup, classNamesBySize>>;
 
 export type TextVariantStyle = {
-  base?: TextSizeStyle;
-} & {
-  [key in TextSize]?: TextSizeStyle;
+  default: StyleGroupClassNames;
+  elements?: Partial<Record<TextComponent, StyleGroupClassNames>>;
 };
 
 export type TextClassNames = {

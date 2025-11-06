@@ -85,153 +85,123 @@ export const textClassNames: TextClassNames = {
   },
   style: {
     normal: {
-      base: {
-        default: {
-          textSize: textBase,
-          textAlign: textLeft,
-          textColor: textBlack,
-          leading: leadingNormal,
-          fontWeight: fontNormal,
-          fontStyle: fontNotItalic,
-          fontFamily: bodyFont,
-          listType: '',
-          listPosition: '',
+      default: {
+        textSize: {
+          default: textBase,
+          sm: textSmall,
+          lg: textLarge,
+          xl: textXL,
+        },
+        textAlign: textLeft,
+        textColor: textBlack,
+        leading: leadingNormal,
+        fontWeight: fontNormal,
+        fontStyle: fontNotItalic,
+        fontFamily: bodyFont,
+        listType: '',
+        listPosition: '',
+        verticalSpacing: verticalLineSpacing,
+        horizontalSpacing: zeroHorizontalMargin,
+        border: '',
+      },
+      elements: {
+        span: {
+          verticalSpacing: zeroVerticalMargin,
+        },
+        h1: {
+          textSize: {
+            default: text4XL,
+            sm: text3XL,
+            lg: text5XL,
+            xl: text6XL,
+          },
+          leading: leadingSnug,
+          fontWeight: fontBold,
+          fontFamily: headingFont,
+        },
+        h2: {
+          textSize: {
+            default: text3XL,
+            sm: text2XL,
+            md: text3XL,
+            lg: text4XL,
+            xl: text5XL,
+          },
+          leading: leadingSnug,
+          fontWeight: fontBold,
+          fontFamily: headingFont,
+        },
+        h3: {
+          textSize: {
+            default: text2XL,
+            sm: textXL,
+            md: text2XL,
+            lg: text3XL,
+            xl: text4XL,
+          },
+          leading: leadingSnug,
+          fontWeight: fontBold,
+          fontFamily: headingFont,
+        },
+        h4: {
+          textSize: {
+            default: textXL,
+            sm: textLarge,
+            md: textXL,
+            lg: text2XL,
+            xl: text3XL,
+          },
+          leading: leadingSnug,
+          fontWeight: fontBold,
+          fontFamily: headingFont,
+        },
+        h5: {
+          textSize: {
+            default: textLarge,
+            sm: textBase,
+            md: textLarge,
+            lg: textXL,
+            xl: text2XL,
+          },
+          fontFamily: headingFont,
+          fontWeight: fontBold,
+        },
+        h6: {
+          textSize: {
+            default: textLarge,
+            sm: textBase,
+            md: textLarge,
+            lg: textXL,
+            xl: text2XL,
+          },
+          fontFamily: headingFont,
+          fontWeight: fontMedium,
+        },
+        ol: {
+          listType: listDecimal,
           verticalSpacing: verticalLineSpacing,
-          horizontalSpacing: zeroHorizontalMargin,
-          border: '',
         },
-        elements: {
-          span: {
-            verticalSpacing: zeroVerticalMargin,
-          },
-          h1: {
-            textSize: text4XL,
-            leading: leadingSnug,
-            fontWeight: fontBold,
-            fontFamily: headingFont,
-          },
-          h2: {
-            textSize: text3XL,
-            leading: leadingSnug,
-            fontWeight: fontBold,
-            fontFamily: headingFont,
-          },
-          h3: {
-            textSize: text2XL,
-            leading: leadingSnug,
-            fontWeight: fontBold,
-            fontFamily: headingFont,
-          },
-          h4: {
-            textSize: textXL,
-            leading: leadingSnug,
-            fontWeight: fontBold,
-            fontFamily: headingFont,
-          },
-          h5: {
-            textSize: textLarge,
-            fontFamily: headingFont,
-            fontWeight: fontBold,
-          },
-          h6: {
-            textSize: textLarge,
-            fontFamily: headingFont,
-            fontWeight: fontMedium,
-          },
-          ol: {
-            listType: listDecimal,
-            verticalSpacing: verticalLineSpacing,
-          },
-          ul: {
-            listType: listDisc,
-            verticalSpacing: verticalLineSpacing,
-          },
-          li: {
-            verticalSpacing: verticalListElementSpacing,
-          },
-          blockquote: {
-            horizontalSpacing: blockquoteHorizontalSpacing,
-            border: blockquoteBorder,
-            borderColor: blockquoteBorderColor,
-          },
-          indent: {
-            horizontalSpacing: indentHorizontalSpacing,
-          },
+        ul: {
+          listType: listDisc,
+          verticalSpacing: verticalLineSpacing,
         },
-      },
-      sm: {
-        default: {
-          textSize: textSmall,
+        li: {
+          verticalSpacing: verticalListElementSpacing,
         },
-        elements: {
-          h5: {
-            textSize: textBase,
-          },
-          h4: {
-            textSize: textLarge,
-          },
-          h3: {
-            textSize: textXL,
-          },
-          h2: {
-            textSize: text2XL,
-          },
-          h1: {
-            textSize: text3XL,
-          },
+        blockquote: {
+          horizontalSpacing: blockquoteHorizontalSpacing,
+          border: blockquoteBorder,
+          borderColor: blockquoteBorderColor,
         },
-      },
-      lg: {
-        default: {
-          textSize: textLarge,
-        },
-        elements: {
-          h5: {
-            textSize: textXL,
-          },
-          h4: {
-            textSize: text2XL,
-          },
-          h3: {
-            textSize: text3XL,
-          },
-          h2: {
-            textSize: text4XL,
-          },
-          h1: {
-            textSize: text5XL,
-          },
-        },
-      },
-      xl: {
-        default: {
-          textSize: textXL,
-        },
-        elements: {
-          h5: {
-            textSize: text2XL,
-          },
-          h4: {
-            textSize: text3XL,
-          },
-          h3: {
-            textSize: text4XL,
-          },
-          h2: {
-            textSize: text5XL,
-          },
-          h1: {
-            textSize: text6XL,
-          },
+        indent: {
+          horizontalSpacing: indentHorizontalSpacing,
         },
       },
     },
     variants: {
       primary: {
-        base: {
-          default: {
-            textColor: textPrimary,
-          },
+        default: {
+          textColor: textPrimary,
         },
       },
     },

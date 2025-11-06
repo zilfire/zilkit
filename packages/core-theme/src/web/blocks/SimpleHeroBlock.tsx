@@ -6,7 +6,6 @@ import { textComponents } from '../text/text-components.js';
 import { Section } from '../components/Section.js';
 import { Container } from '../components/Container.js';
 import { H1 } from '../text/index.js';
-import { button } from '@/sanity/schema/index.js';
 import { Button } from '../components/Button.js';
 
 // import clsx from 'clsx';
@@ -41,7 +40,6 @@ export const SimpleHeroBlockDescription = ({
           components={textComponents(
             {
               styleOptions: { color: 'white', size: 'lg' },
-              className: 'mb-6',
             },
             context
           )}
@@ -60,8 +58,6 @@ export const SimpleHeroBlock = ({
 }) => {
   return (
     <Section data={data} context={context} verticalSpacing="xl">
-      {/* <SimpleHeroBGImage data={data} context={context} /> */}
-      {/* <SimpleHeroOverlay /> */}
       <Container>
         <div className="max-w-4xl">
           <SimpleHeroBlockHeading data={data} />
