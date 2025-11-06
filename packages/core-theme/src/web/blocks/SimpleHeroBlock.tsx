@@ -21,7 +21,11 @@ import { Button } from '../components/Button.js';
 
 // todo: fix line decoration styles
 export const SimpleHeroBlockHeading = ({ data }: { data: HeroBlockData }) => {
-  return <H1 styleOptions={{ color: 'white' }}>{data.heading}</H1>;
+  return (
+    <H1 styleOptions={{ color: 'white' }} classOverrides={{}}>
+      {data.heading}
+    </H1>
+  );
 };
 
 export const SimpleHeroBlockDescription = ({

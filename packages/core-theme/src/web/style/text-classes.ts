@@ -39,7 +39,7 @@ export const textLeft = 'text-left';
 // Text colors
 export const textBlack = 'text-black';
 export const textWhite = 'text-white';
-export const textPrimary = 'text-blue-700';
+export const textPrimary = 'text-primary-600';
 
 // Font weights
 export const fontNormal = 'font-normal';

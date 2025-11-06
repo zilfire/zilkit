@@ -4,7 +4,7 @@ import type {
   TextVariantStyle,
   TextSize,
   classNamesBySize,
-  StyleGroupClassNames,
+  TextClassOverrides,
 } from '../../../types/style-types/text-style-classes.js';
 
 import type { SectionVerticalSpacingSize } from '../../../types/style-types/section-style-classes.js';
@@ -49,7 +49,7 @@ export const getTextClass = (
   textComponent: TextComponent,
   textStyleGroup: TextStyleGroup,
   styleClasses: StyleClassNames,
-  styleOptions: TextStyleOptions
+  styleOptions: TextStyleOptions & { classOverrides?: TextClassOverrides }
 ): string => {
   const {
     size = 'default',
@@ -59,8 +59,6 @@ export const getTextClass = (
     lineDecoration = false,
     color = false,
   } = styleOptions;
-
-  // console.log('styleClasses', styleClasses.text.style.normal);
 
   // Check for emphasis styles first.
   if (bold && textStyleGroup === 'fontWeight') {
@@ -90,6 +88,13 @@ export const getTextClass = (
     if (colorClass) {
       return colorClass;
     }
+  }
+
+  // Handle overrides
+  const classOverrides = styleOptions.classOverrides;
+
+  if (typeof classOverrides === 'object' && textStyleGroup in classOverrides) {
+    return classOverrides[textStyleGroup] || '';
   }
 
   // If variant, check for variant-specific styles -- First check element then default

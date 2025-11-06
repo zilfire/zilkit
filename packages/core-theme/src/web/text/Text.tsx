@@ -75,30 +75,35 @@ const handleObjectOverrides = (
   return [...providedClasses, ...generatedClasses];
 };
 
-const generateDefaultClasses = (
+const generateTextClasses = (
   element: TextComponent,
-  styleOptions: TextStyleOptions
-): string[] => {
+  styleOptions: TextStyleOptions,
+  classOverrides?: TextClassOverrides
+): string | string[] => {
+  if (typeof classOverrides === 'string') {
+    return classOverrides;
+  }
+
   return TEXT_STYLE_GROUPS.map((group: TextStyleGroup) =>
-    getTextClass(element, group, styleClassNames, styleOptions)
+    getTextClass(element, group, styleClassNames, { ...styleOptions, classOverrides })
   ).filter(Boolean);
 };
 
-const generateTextClasses = (
-  element: TextComponent,
-  styleOptions: TextStyleOptions = {},
-  classOverrides?: TextClassOverrides
-): string[] => {
-  if (typeof classOverrides === 'string') {
-    return handleStringOverrides(classOverrides);
-  }
+// const generateTextClasses = (
+//   element: TextComponent,
+//   styleOptions: TextStyleOptions = {},
+//   classOverrides?: TextClassOverrides
+// ): string[] => {
+//   if (typeof classOverrides === 'string') {
+//     return handleStringOverrides(classOverrides);
+//   }
 
-  if (classOverrides && typeof classOverrides === 'object') {
-    return handleObjectOverrides(classOverrides, element);
-  }
+//   if (classOverrides && typeof classOverrides === 'object') {
+//     return handleObjectOverrides(classOverrides, element);
+//   }
 
-  return generateDefaultClasses(element, styleOptions);
-};
+//   return generateDefaultClasses(element, styleOptions);
+// };
 
 export const Text = ({
   element = DEFAULT_ELEMENT,
