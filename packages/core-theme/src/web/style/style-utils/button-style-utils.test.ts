@@ -8,10 +8,8 @@ const mockStyleClassNames: StyleClassNames = {
   text: {
     style: {
       normal: {
-        base: {
-          default: {
-            textSize: 'text-base',
-          },
+        default: {
+          textSize: 'text-base',
         },
       },
     },

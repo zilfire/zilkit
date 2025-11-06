@@ -8,87 +8,80 @@ const mockTextStyles: StyleClassNames = {
   text: {
     style: {
       normal: {
-        base: {
-          default: {
-            textSize: 'text-base',
-            textColor: 'text-neutral-900',
-            fontWeight: 'font-normal',
+        default: {
+          textSize: {
+            default: 'text-base',
+            sm: 'text-sm',
+            md: 'text-base',
+            lg: 'text-lg',
           },
-          elements: {
-            h1: {
-              textSize: 'text-4xl',
-              fontWeight: 'font-bold',
-            },
-            h2: {
-              textSize: 'text-3xl',
-              fontWeight: 'font-semibold',
-            },
-            p: {
-              textSize: 'text-base',
-              leading: 'leading-relaxed',
-            },
+          textColor: {
+            default: 'text-neutral-900',
+            sm: 'text-neutral-700',
+            md: 'text-neutral-900',
+            lg: 'text-neutral-800',
           },
+          fontWeight: 'font-normal',
         },
-        lg: {
-          default: {
-            textSize: 'text-lg',
-            textColor: 'text-neutral-800',
-          },
-          elements: {
-            h1: {
-              textSize: 'text-5xl',
-              fontWeight: 'font-bold',
+        elements: {
+          h1: {
+            textSize: {
+              default: 'text-4xl',
+              md: 'text-4xl',
+              lg: 'text-5xl',
             },
-            h2: {
-              textSize: 'text-4xl',
-              fontWeight: 'font-semibold',
-            },
+            fontWeight: 'font-bold',
           },
-        },
-        sm: {
-          default: {
-            textSize: 'text-sm',
-            textColor: 'text-neutral-700',
+          h2: {
+            textSize: {
+              default: 'text-3xl',
+              md: 'text-3xl',
+              lg: 'text-4xl',
+            },
+            fontWeight: 'font-semibold',
+          },
+          p: {
+            textSize: {
+              default: 'text-base',
+              sm: 'text-sm',
+              md: 'text-base',
+            },
+            leading: 'leading-relaxed',
           },
         },
       },
       variants: {
         hero: {
-          base: {
-            default: {
-              textSize: 'text-6xl',
-              fontWeight: 'font-black',
-              textColor: 'text-white',
+          default: {
+            textSize: {
+              default: 'text-6xl',
+              md: 'text-6xl',
+              lg: 'text-7xl',
             },
-            elements: {
-              h1: {
-                textSize: 'text-7xl',
-                fontWeight: 'font-black',
-                leading: 'leading-tight',
-              },
-            },
+            fontWeight: 'font-black',
+            textColor: 'text-white',
           },
-          lg: {
-            default: {
-              textSize: 'text-7xl',
+          elements: {
+            h1: {
+              textSize: {
+                default: 'text-7xl',
+                md: 'text-7xl',
+                lg: 'text-8xl',
+              },
               fontWeight: 'font-black',
-            },
-            elements: {
-              h1: {
-                textSize: 'text-8xl',
-                fontWeight: 'font-black',
-                leading: 'leading-none',
+              leading: {
+                default: 'leading-tight',
+                md: 'leading-tight',
+                lg: 'leading-none',
               },
             },
           },
         },
         caption: {
-          base: {
-            default: {
-              textSize: 'text-xs',
-              fontWeight: 'font-light',
-              textColor: 'text-neutral-600',
-            },
+          default: {
+            textSize: 'text-xs',
+            fontWeight: 'font-light',
+            textColor: 'text-neutral-600',
           },
         },
       },
@@ -151,28 +144,28 @@ const mockTextStyles: StyleClassNames = {
 
 describe('getTextClass', () => {
   describe('normal variant (default)', () => {
-    it('should return element-specific style for base size', () => {
+    it('should return element-specific style for md size', () => {
       const result = getTextClass('h1', 'textSize', mockTextStyles, {
-        size: 'base',
+        size: 'md',
       });
       assert.strictEqual(result, 'text-4xl');
     });
 
     it('should return element-specific style for different style groups', () => {
       const fontWeightResult = getTextClass('h1', 'fontWeight', mockTextStyles, {
-        size: 'base',
+        size: 'md',
       });
       assert.strictEqual(fontWeightResult, 'font-bold');
 
       const leadingResult = getTextClass('p', 'leading', mockTextStyles, {
-        size: 'base',
+        size: 'md',
       });
       assert.strictEqual(leadingResult, 'leading-relaxed');
     });
 
     it('should fall back to default style when element-specific style is not available', () => {
       const result = getTextClass('span', 'textColor', mockTextStyles, {
-        size: 'base',
+        size: 'md',
       });
       assert.strictEqual(result, 'text-neutral-900');
     });
@@ -189,9 +182,9 @@ describe('getTextClass', () => {
       assert.strictEqual(smResult, 'text-sm');
     });
 
-    it('should use base size as default when size is not specified', () => {
+    it('should use default size when size is not specified', () => {
       const result = getTextClass('h1', 'textSize', mockTextStyles, {});
-      assert.strictEqual(result, 'text-4xl');
+      assert.strictEqual(result, 'text-4xl'); // Falls back to 'default' key which is 'text-4xl'
     });
   });
 
@@ -252,7 +245,7 @@ describe('getTextClass', () => {
     it('should return variant-specific element style', () => {
       const result = getTextClass('h1', 'textSize', mockTextStyles, {
         variant: 'hero',
-        size: 'base',
+        size: 'md',
       });
       assert.strictEqual(result, 'text-7xl');
     });
@@ -268,7 +261,7 @@ describe('getTextClass', () => {
     it('should fall back to variant default when element-specific style is not available', () => {
       const result = getTextClass('p', 'textSize', mockTextStyles, {
         variant: 'hero',
-        size: 'base',
+        size: 'md',
       });
       assert.strictEqual(result, 'text-6xl');
     });
@@ -276,7 +269,7 @@ describe('getTextClass', () => {
     it('should work with simple variants without element overrides', () => {
       const result = getTextClass('p', 'textSize', mockTextStyles, {
         variant: 'caption',
-        size: 'base',
+        size: 'md',
       });
       assert.strictEqual(result, 'text-xs');
     });
@@ -284,7 +277,7 @@ describe('getTextClass', () => {
     it('should fall back to normal styles when variant does not exist', () => {
       const result = getTextClass('h1', 'textSize', mockTextStyles, {
         variant: 'nonexistent',
-        size: 'base',
+        size: 'md',
       });
       assert.strictEqual(result, 'text-4xl');
     });
@@ -292,16 +285,16 @@ describe('getTextClass', () => {
     it('should fall back to normal styles when variant size does not exist', () => {
       const result = getTextClass('h1', 'textSize', mockTextStyles, {
         variant: 'caption',
-        size: 'lg', // caption variant only has base size
+        size: 'lg', // caption variant only has default/string size
       });
-      assert.strictEqual(result, 'text-5xl'); // falls back to normal lg
+      assert.strictEqual(result, 'text-xs'); // string values apply to all sizes
     });
 
     it('should prioritize emphasis over variant styles', () => {
       // Even with hero variant, emphasis should take precedence
       const result = getTextClass('h1', 'fontWeight', mockTextStyles, {
         variant: 'hero',
-        size: 'base',
+        size: 'md',
         bold: true,
       });
       assert.strictEqual(result, 'font-bold'); // From emphasis, not from hero variant
@@ -318,7 +311,7 @@ describe('getTextClass', () => {
 
     it('should handle missing style groups gracefully', () => {
       const result = getTextClass('h1', 'listType', mockTextStyles, {
-        size: 'base',
+        size: 'md',
       });
       assert.strictEqual(result, '');
     });
@@ -326,7 +319,7 @@ describe('getTextClass', () => {
     it('should use normal variant when variant is "normal"', () => {
       const result = getTextClass('h1', 'textSize', mockTextStyles, {
         variant: 'normal',
-        size: 'base',
+        size: 'md',
       });
       assert.strictEqual(result, 'text-4xl');
     });
@@ -336,7 +329,7 @@ describe('getTextClass', () => {
         variant: undefined,
         size: undefined,
       });
-      assert.strictEqual(result, 'text-4xl'); // should use base size and normal variant
+      assert.strictEqual(result, 'text-4xl'); // should use default size and normal variant
     });
   });
 
@@ -345,7 +338,7 @@ describe('getTextClass', () => {
       // Test case where emphasis takes highest priority
       const emphasisResult = getTextClass('h1', 'fontWeight', mockTextStyles, {
         variant: 'hero',
-        size: 'base',
+        size: 'md',
         bold: true,
       });
       assert.strictEqual(emphasisResult, 'font-bold'); // emphasis wins over variant
@@ -353,28 +346,28 @@ describe('getTextClass', () => {
       // Test case where variant has element style (no emphasis)
       const variantElementResult = getTextClass('h1', 'leading', mockTextStyles, {
         variant: 'hero',
-        size: 'base',
+        size: 'md',
       });
       assert.strictEqual(variantElementResult, 'leading-tight');
 
       // Test case where variant has only default style
       const variantDefaultResult = getTextClass('p', 'fontWeight', mockTextStyles, {
         variant: 'hero',
-        size: 'base',
+        size: 'md',
       });
       assert.strictEqual(variantDefaultResult, 'font-black');
 
       // Test case where variant doesn't exist, falls back to normal element
       const normalElementResult = getTextClass('p', 'leading', mockTextStyles, {
         variant: 'nonexistent',
-        size: 'base',
+        size: 'md',
       });
       assert.strictEqual(normalElementResult, 'leading-relaxed');
 
       // Test case where no element style exists, falls back to normal default
       const normalDefaultResult = getTextClass('span', 'textColor', mockTextStyles, {
         variant: 'nonexistent',
-        size: 'base',
+        size: 'md',
       });
       assert.strictEqual(normalDefaultResult, 'text-neutral-900');
     });
