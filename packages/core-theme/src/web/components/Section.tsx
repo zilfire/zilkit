@@ -1,21 +1,27 @@
+'use client';
 import clsx from 'clsx';
 import { getSectionVerticalSpacingClass } from '../style/style-utils/text-style-utils.js';
+import { getBackgroundColorClass } from '../style/style-utils/section-style-utils.js';
 import type { ThemeContext } from '../../types/context-types/index.js';
+import type { BackgroundColor } from '../../types/style-types/section-style-classes.js';
 import type { SectionVerticalSpacingSize } from '../../types/style-types/section-style-classes.js';
 import type { SanityImageWithAlt } from '@zilfire/next-sanity-image/types';
 import SanityImage from '@zilfire/next-sanity-image';
+import { Container } from './Container.js';
 
-interface SectionProps {
+export interface SectionProps {
   as?: 'section' | 'div' | 'article' | 'header' | 'footer' | 'main';
   children?: React.ReactNode;
   context: ThemeContext;
   data?: SectionBackgroundImageData;
-  verticalSpacing?: SectionVerticalSpacingSize;
-  overlayOptions?: SectionBackgroundOverlayProps;
-  backgroundImageOptions?: SectionBackgroundImageOptions;
   className?: string;
   classOverride?: string;
   id?: string;
+  container?: boolean;
+  verticalSpacing?: SectionVerticalSpacingSize;
+  overlayOptions?: SectionBackgroundOverlayProps;
+  contentOptions?: SectionContentOptions;
+  backgroundImageOptions?: SectionBackgroundImageOptions;
   'aria-label'?: string;
   'aria-labelledby'?: string;
 }
@@ -28,6 +34,7 @@ interface SectionWrapperProps {
   context?: ThemeContext;
   verticalSpacing?: SectionVerticalSpacingSize;
   id?: string;
+  container?: boolean;
   'aria-label'?: string;
   'aria-labelledby'?: string;
 }
@@ -46,18 +53,29 @@ export interface SectionBackgroundImageOptions {
 interface SectionBackgroundOverlayProps {
   enabled?: boolean;
   opacity?: number;
-  color?: string;
+  color?: BackgroundColor;
   className?: string;
+  context: ThemeContext;
 }
 
-type SectionBackgroundImageData = {
+export interface SectionBackgroundImageData {
   backgroundImage?: SanityImageWithAlt;
-};
+}
 
-interface SectionBackgroundImageProps {
+export interface SectionBackgroundImageProps {
   data: SectionBackgroundImageData;
   context: ThemeContext;
   options?: SectionBackgroundImageOptions;
+}
+
+export interface SectionContentOptions {
+  className?: string;
+  classOverride?: string;
+}
+
+export interface SectionContentProps {
+  options?: SectionContentOptions;
+  children?: React.ReactNode;
 }
 
 export const SectionBackgroundImage: React.FC<SectionBackgroundImageProps> = ({
@@ -103,8 +121,9 @@ export const SectionWrapper: React.FC<SectionWrapperProps> = ({
   children,
   classOverride,
   context,
-  verticalSpacing,
+  verticalSpacing = 'md',
   id,
+  container = true,
   'aria-label': ariaLabel,
   'aria-labelledby': ariaLabelledBy,
 }) => {
@@ -120,24 +139,33 @@ export const SectionWrapper: React.FC<SectionWrapperProps> = ({
       aria-label={ariaLabel}
       aria-labelledby={ariaLabelledBy}
     >
-      {children}
+      {container ? <Container>{children}</Container> : children}
     </Component>
   );
 };
 
 export const SectionBackgroundOverlay: React.FC<SectionBackgroundOverlayProps> = ({
+  color = 'black',
   enabled = true,
   opacity = 0.6,
   className,
+  context,
 }) => {
   if (!enabled) return null;
 
+  const backgroundColorClass = getBackgroundColorClass(color, context.styleClasses);
+
   return (
     <div
-      className={clsx('absolute inset-0 z-5 w-full h-full bg-black', className)}
+      className={clsx('absolute inset-0 z-5 w-full h-full', backgroundColorClass, className)}
       style={{ opacity }}
     />
   );
+};
+
+export const SectionContent: React.FC<SectionContentProps> = ({ options, children }) => {
+  const { className, classOverride } = options || {};
+  return <div className={classOverride || clsx('relative z-10', className)}>{children}</div>;
 };
 
 export const Section: React.FC<SectionProps> = ({
@@ -149,8 +177,10 @@ export const Section: React.FC<SectionProps> = ({
   overlayOptions,
   className,
   classOverride,
+  contentOptions,
   id,
   backgroundImageOptions,
+  container = true,
   'aria-label': ariaLabel,
   'aria-labelledby': ariaLabelledBy,
 }) => {
@@ -169,22 +199,16 @@ export const Section: React.FC<SectionProps> = ({
       id={id}
       aria-label={ariaLabel}
       aria-labelledby={ariaLabelledBy}
-      // Only apply spacing to wrapper if no background image
-      verticalSpacing={hasBackground ? undefined : verticalSpacing}
+      verticalSpacing={verticalSpacing}
+      container={container}
     >
-      {data && hasBackground && (
-        <SectionBackgroundImage data={data} context={context} options={backgroundImageOptions} />
+      {hasBackground && (
+        <>
+          <SectionBackgroundImage data={data} context={context} options={backgroundImageOptions} />
+          <SectionBackgroundOverlay {...overlayOptions} context={context} />
+        </>
       )}
-      {hasBackground && <SectionBackgroundOverlay {...overlayOptions} />}
-      <div
-        className={clsx(
-          'relative z-10',
-          // Apply spacing to content if there's a background
-          hasBackground ? spacingClass : undefined
-        )}
-      >
-        {children}
-      </div>
+      <SectionContent options={contentOptions}>{children}</SectionContent>
     </SectionWrapper>
   );
 };

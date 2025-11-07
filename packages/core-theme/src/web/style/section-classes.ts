@@ -15,4 +15,10 @@ export const sectionClassNames: SectionClassNames = {
     lg: sectionSpacingLG,
     xl: sectionSpacingXL,
   },
+  backgroundColors: {
+    black: 'bg-black',
+    white: 'bg-white',
+    muted: 'bg-gray-100',
+    primary: 'bg-primary-500',
+  },
 };

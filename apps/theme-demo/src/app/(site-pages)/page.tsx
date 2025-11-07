@@ -1,7 +1,5 @@
 import {
   HeroBlock,
-  SimpleHeroSection,
-  SimpleHeroBlock,
   SimpleHeroBlockHeading,
   SimpleHeroBlockDescription,
 } from '@zilfire/core-theme/web/blocks';
@@ -33,8 +31,7 @@ export default async function Home() {
     <>
       <header className="py-12 bg-red-500">Header</header>
       <main className="grow flex flex-col">
-        {/* {heroData && <HeroBlock data={heroData} context={themeContext} />} */}
-        {heroData && <SimpleHeroBlock data={heroData} context={themeContext} />}
+        {heroData && <HeroBlock data={heroData} context={themeContext} />}
         <div className="bg-gray-100 flex flex-col grow"></div>
       </main>
     </>
