@@ -6,9 +6,8 @@ import { textComponents } from '../text/text-components.js';
 import { ImageSection } from '../components/ImageSection.js';
 import type { ImageSectionProps } from '../components/ImageSection.js';
 import { H1 } from '../text/index.js';
-import { Button } from '../components/Button.js';
-import { getHorizontalGapSpacingClass } from '../style/style-utils/layout-style-utils.js';
-import clsx from 'clsx';
+import { ButtonGroup } from '../components/ButtonGroup.js';
+import type { ButtonData } from '../../types/sanity-data-types/index.js';
 
 // Constants
 const HERO_DEFAULT_SIZES =
@@ -29,9 +28,16 @@ interface HeroSectionProps extends ImageSectionProps {
   data?: HeroBlockData;
 }
 
-export const SimpleHeroBlockHeading = ({ data }: { data: HeroBlockData }): React.ReactElement => {
+export const HeroBlockHeading = ({
+  data,
+  id,
+}: {
+  data: HeroBlockData;
+  id?: string;
+}): React.ReactElement => {
   return (
     <H1
+      id={id}
       styleOptions={HERO_TEXT_STYLES.styleOptions}
       classOverrides={HERO_TEXT_STYLES.classOverrides}
     >
@@ -40,7 +46,7 @@ export const SimpleHeroBlockHeading = ({ data }: { data: HeroBlockData }): React
   );
 };
 
-export const SimpleHeroBlockDescription = ({
+export const HeroBlockDescription = ({
   data,
   context,
 }: {
@@ -106,26 +112,26 @@ const HeroButtonGroup = ({
   primaryButton,
   secondaryButton,
   context,
+  id,
 }: {
   primaryButton?: HeroBlockData['primaryButton'];
   secondaryButton?: HeroBlockData['secondaryButton'];
   context: ThemeContext;
+  id?: string;
 }): React.ReactElement | null => {
-  if (!primaryButton && !secondaryButton) return null;
+  const buttons = [primaryButton, secondaryButton].filter(Boolean) as ButtonData[];
 
-  const gapClass = getHorizontalGapSpacingClass('sm', context.styleClasses);
+  if (buttons.length === 0) return null;
 
   return (
-    <div className={clsx('flex flex-wrap', gapClass)}>
-      {primaryButton && <Button context={context} data={primaryButton} options={{ size: 'lg' }} />}
-      {secondaryButton && (
-        <Button
-          context={context}
-          data={secondaryButton}
-          options={{ variant: 'outline', size: 'lg' }}
-        />
-      )}
-    </div>
+    <ButtonGroup
+      id={id}
+      buttons={buttons}
+      context={context}
+      gap="sm"
+      buttonOptions={{ size: 'lg' }}
+      secondaryVariant="outline"
+    />
   );
 };
 
@@ -138,8 +144,8 @@ export const HeroBlock = ({
 }): React.ReactElement => {
   return (
     <HeroSection data={data} context={context}>
-      <SimpleHeroBlockHeading data={data} />
-      <SimpleHeroBlockDescription data={data} context={context} />
+      <HeroBlockHeading data={data} />
+      <HeroBlockDescription data={data} context={context} />
       <HeroButtonGroup
         primaryButton={data.primaryButton}
         secondaryButton={data.secondaryButton}

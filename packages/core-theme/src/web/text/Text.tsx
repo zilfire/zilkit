@@ -45,6 +45,7 @@ export interface TextProps {
   className?: string;
   classOverrides?: TextClassOverrides;
   styleOptions?: TextStyleOptions;
+  id?: string;
 }
 
 const resolveComponent = (element: TextComponent, as?: TextElement): TextElement => {
@@ -75,9 +76,14 @@ export const Text = ({
   className,
   classOverrides,
   styleOptions = {},
+  id,
 }: TextProps): React.ReactElement => {
   const Component = resolveComponent(element, as);
   const textClasses = generateTextClasses(element, styleOptions, classOverrides);
 
-  return <Component className={clsx(textClasses, className)}>{children}</Component>;
+  return (
+    <Component id={id} className={clsx(textClasses, className)}>
+      {children}
+    </Component>
+  );
 };
