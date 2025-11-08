@@ -2,9 +2,12 @@
 import clsx from 'clsx';
 import { getSectionVerticalSpacingClass } from '../style/style-utils/layout-style-utils.js';
 import { getBackgroundColorClass } from '../style/style-utils/layout-style-utils.js';
+import { getContentMaxWidthClass } from '../style/style-utils/layout-style-utils.js';
+import { getZIndexClass } from '../style/style-utils/layout-style-utils.js';
 import type { ThemeContext } from '../../types/context-types/index.js';
 import type { BackgroundColor } from '../../types/style-types/layout-style-classes.js';
 import type { LayoutSizeOption } from '../../types/style-types/layout-style-classes.js';
+import type { ContentWidthOption } from '../../types/style-types/layout-style-classes.js';
 import type { SanityImageWithAlt } from '@zilfire/next-sanity-image/types';
 import SanityImage from '@zilfire/next-sanity-image';
 import { Container } from './Container.js';
@@ -94,11 +97,13 @@ export interface SectionBackgroundImageProps {
 export interface SectionContentOptions {
   className?: string;
   classOverride?: string;
+  maxWidth?: ContentWidthOption;
 }
 
 export interface SectionContentProps {
   options?: SectionContentOptions;
   children?: React.ReactNode;
+  context: ThemeContext;
 }
 
 export const SectionBackgroundImage = ({
@@ -107,7 +112,7 @@ export const SectionBackgroundImage = ({
   options,
 }: SectionBackgroundImageProps): React.ReactElement | null => {
   const { backgroundImage } = data || {};
-  const { sanityConfig } = context;
+  const { sanityConfig, styleClasses } = context;
   const {
     imageSizes,
     quality = DEFAULT_BACKGROUND_IMAGE_QUALITY,
@@ -120,8 +125,10 @@ export const SectionBackgroundImage = ({
 
   if (!backgroundImage) return null;
 
+  const zIndexClass = getZIndexClass('background', styleClasses);
+
   return (
-    <div className={clsx('absolute inset-0 z-0', className)}>
+    <div className={clsx('absolute inset-0', zIndexClass, className)}>
       <SanityImage
         imageObject={backgroundImage}
         alt={backgroundImage.alt || 'Background Image'}
@@ -176,10 +183,11 @@ export const SectionBackgroundOverlay = ({
   if (!enabled) return null;
 
   const backgroundColorClass = getBackgroundColorClass(color, context.styleClasses);
+  const zIndexClass = getZIndexClass('overlay', context.styleClasses);
 
   return (
     <div
-      className={clsx('absolute inset-0 z-5 w-full h-full', backgroundColorClass, className)}
+      className={clsx('absolute inset-0 w-full h-full', zIndexClass, backgroundColorClass, className)}
       style={{ opacity }}
     />
   );
@@ -207,9 +215,25 @@ const SectionBackground = ({
   );
 };
 
-export const SectionContent = ({ options, children }: SectionContentProps): React.ReactElement => {
+export const SectionContent = ({
+  options,
+  children,
+  context,
+}: SectionContentProps): React.ReactElement => {
+  const { styleClasses } = context;
+  const maxWidthClass = options?.maxWidth
+    ? getContentMaxWidthClass(options.maxWidth, styleClasses)
+    : '';
+  const zIndexClass = getZIndexClass('content', styleClasses);
+
   return (
-    <div className={getClassName(options?.classOverride, 'relative z-10', options?.className)}>
+    <div
+      className={getClassName(
+        options?.classOverride,
+        clsx('relative', zIndexClass, maxWidthClass),
+        options?.className
+      )}
+    >
       {children}
     </div>
   );
@@ -249,7 +273,9 @@ export const Section = ({
         backgroundImageOptions={backgroundImageOptions}
         overlayOptions={overlayOptions}
       />
-      <SectionContent options={contentOptions}>{children}</SectionContent>
+      <SectionContent options={contentOptions} context={context}>
+        {children}
+      </SectionContent>
     </SectionWrapper>
   );
 };

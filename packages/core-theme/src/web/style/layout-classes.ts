@@ -15,6 +15,30 @@ export const verticalLineSpacingLG = 'mb-6 md:mb-8'; // 1.5rem → 2rem
 export const verticalLineSpacingXL = 'mb-8 md:mb-10'; // 2rem → 2.5rem
 export const verticalLineSpacingXXL = 'mb-10 md:mb-12'; // 2.5rem → 3rem
 
+// horizontal gap spacing
+export const horizontalGapSpacingXS = 'gap-x-2'; // 0.5rem
+export const horizontalGapSpacingSM = 'gap-x-4'; // 1rem
+export const horizontalGapSpacingMD = 'gap-x-6'; // 1.5rem
+export const horizontalGapSpacingLG = 'gap-x-8'; // 2rem
+export const horizontalGapSpacingXL = 'gap-x-12'; // 3rem
+export const horizontalGapSpacingXXL = 'gap-x-16'; // 4rem
+
+// vertical gap spacing
+export const verticalGapSpacingXS = 'gap-y-2'; // 0.5rem
+export const verticalGapSpacingSM = 'gap-y-4'; // 1rem
+export const verticalGapSpacingMD = 'gap-y-6'; // 1.5rem
+export const verticalGapSpacingLG = 'gap-y-8'; // 2rem
+export const verticalGapSpacingXL = 'gap-y-12'; // 3rem
+export const verticalGapSpacingXXL = 'gap-y-16'; // 4rem
+
+// z-index layers
+export const zIndexBackground = 'z-0';
+export const zIndexOverlay = 'z-5';
+export const zIndexContent = 'z-10';
+export const zIndexDropdown = 'z-40';
+export const zIndexModal = 'z-50';
+export const zIndexTooltip = 'z-60';
+
 export const layoutClassNames: LayoutClassNames = {
   verticalSectionSpacing: {
     base: sectionSpacingXL,
@@ -40,5 +64,40 @@ export const layoutClassNames: LayoutClassNames = {
   },
   containerPadding: {
     base: 'px-4 md:px-8 lg:px-16',
+  },
+  contentMaxWidth: {
+    base: 'max-w-4xl', // normal
+    xs: 'max-w-xl',
+    narrow: 'max-w-2xl',
+    normal: 'max-w-4xl',
+    wide: 'max-w-6xl',
+    full: 'max-w-none',
+  },
+  horizontalGapSpacing: {
+    base: horizontalGapSpacingSM,
+    xs: horizontalGapSpacingXS,
+    sm: horizontalGapSpacingSM,
+    md: horizontalGapSpacingMD,
+    lg: horizontalGapSpacingLG,
+    xl: horizontalGapSpacingXL,
+    xxl: horizontalGapSpacingXXL,
+  },
+  verticalGapSpacing: {
+    base: verticalGapSpacingSM,
+    xs: verticalGapSpacingXS,
+    sm: verticalGapSpacingSM,
+    md: verticalGapSpacingMD,
+    lg: verticalGapSpacingLG,
+    xl: verticalGapSpacingXL,
+    xxl: verticalGapSpacingXXL,
+  },
+  zIndex: {
+    base: zIndexContent,
+    background: zIndexBackground,
+    overlay: zIndexOverlay,
+    content: zIndexContent,
+    dropdown: zIndexDropdown,
+    modal: zIndexModal,
+    tooltip: zIndexTooltip,
   },
 };

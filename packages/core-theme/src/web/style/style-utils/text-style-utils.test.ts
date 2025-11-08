@@ -1,6 +1,7 @@
 import { describe, it } from 'node:test';
 import assert from 'node:assert';
-import { getTextClass, getSectionVerticalSpacingClass } from './text-style-utils.js';
+import { getTextClass } from './text-style-utils.js';
+import { getSectionVerticalSpacingClass } from './layout-style-utils.js';
 import type { StyleClassNames } from '../../../types/style-types/style-class-names.js';
 
 // Mock text styles data for testing
@@ -94,13 +95,24 @@ const mockTextStyles: StyleClassNames = {
       overline: 'overline',
     },
   },
-  section: {
-    sectionVerticalSpacing: {
+  layout: {
+    verticalSectionSpacing: {
       base: 'py-32 md:py-40 lg:py-48',
       sm: 'py-16 md:py-24 lg:py-32',
       md: 'py-20 md:py-32 lg:py-36',
       lg: 'py-24 md:py-36 lg:py-40',
       xl: 'py-32 md:py-40 lg:py-48',
+    },
+    backgroundColors: {
+      black: 'bg-black',
+      white: 'bg-white',
+      muted: 'bg-gray-100',
+    },
+    verticalLineSpacing: {
+      base: 'mb-4 md:mb-5',
+    },
+    containerPadding: {
+      base: 'px-4 md:px-6 lg:px-8',
     },
   },
   button: {

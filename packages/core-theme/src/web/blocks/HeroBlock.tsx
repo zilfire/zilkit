@@ -7,6 +7,8 @@ import { Section } from '../components/Section.js';
 import type { SectionProps } from '../components/Section.js';
 import { H1 } from '../text/index.js';
 import { Button } from '../components/Button.js';
+import { getHorizontalGapSpacingClass } from '../style/style-utils/layout-style-utils.js';
+import clsx from 'clsx';
 
 // Constants
 const HERO_DEFAULT_SIZES =
@@ -89,7 +91,10 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
       data={data}
       backgroundImageOptions={finalBackgroundImageOptions}
       container={container}
-      contentOptions={{ className: 'max-w-4xl mx-auto flex flex-col items-center text-center' }}
+      contentOptions={{
+        maxWidth: 'normal',
+        className: 'mx-auto flex flex-col items-center text-center',
+      }}
     >
       {children}
     </Section>
@@ -108,8 +113,10 @@ const HeroButtonGroup = ({
 }): React.ReactElement | null => {
   if (!primaryButton && !secondaryButton) return null;
 
+  const gapClass = getHorizontalGapSpacingClass('sm', context.styleClasses);
+
   return (
-    <div className="flex flex-wrap gap-4">
+    <div className={clsx('flex flex-wrap', gapClass)}>
       {primaryButton && <Button context={context} data={primaryButton} options={{ size: 'lg' }} />}
       {secondaryButton && (
         <Button

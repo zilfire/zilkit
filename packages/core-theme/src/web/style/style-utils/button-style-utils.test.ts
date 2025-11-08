@@ -13,10 +13,33 @@ const mockStyleClassNames: StyleClassNames = {
         },
       },
     },
+    emphasis: {
+      bold: 'font-bold',
+      italic: 'italic',
+      underline: 'underline',
+      strikethrough: 'line-through',
+      overline: 'overline',
+    },
+    color: {
+      black: 'text-black',
+      white: 'text-white',
+      primary: 'text-primary-600',
+    },
   },
-  section: {
-    sectionVerticalSpacing: {
+  layout: {
+    verticalSectionSpacing: {
       base: 'py-32',
+    },
+    backgroundColors: {
+      black: 'bg-black',
+      white: 'bg-white',
+      muted: 'bg-gray-100',
+    },
+    verticalLineSpacing: {
+      base: 'mb-4',
+    },
+    containerPadding: {
+      base: 'px-4',
     },
   },
   button: {

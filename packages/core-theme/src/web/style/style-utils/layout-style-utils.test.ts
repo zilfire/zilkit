@@ -1,0 +1,249 @@
+import { describe, it } from 'node:test';
+import assert from 'node:assert';
+import {
+  getBackgroundColorClass,
+  getSectionVerticalSpacingClass,
+  getContainerPaddingClass,
+} from './layout-style-utils.js';
+import type { StyleClassNames } from '../../../types/style-types/style-class-names.js';
+
+// Mock style class names for testing
+const mockStyleClassNames: StyleClassNames = {
+  text: {
+    style: {
+      normal: {
+        default: {
+          textSize: 'text-base',
+        },
+      },
+    },
+    emphasis: {
+      bold: 'font-bold',
+      italic: 'italic',
+      underline: 'underline',
+      strikethrough: 'line-through',
+      overline: 'overline',
+    },
+    color: {
+      black: 'text-black',
+      white: 'text-white',
+      primary: 'text-primary-600',
+    },
+  },
+  layout: {
+    verticalSectionSpacing: {
+      base: 'py-32 md:py-40 lg:py-48',
+      sm: 'py-16 md:py-24 lg:py-32',
+      md: 'py-20 md:py-32 lg:py-36',
+      lg: 'py-24 md:py-36 lg:py-40',
+      xl: 'py-32 md:py-40 lg:py-48',
+      xxl: 'py-40 md:py-64 lg:py-72',
+    },
+    backgroundColors: {
+      black: 'bg-black',
+      white: 'bg-white',
+      muted: 'bg-gray-100',
+      primary: 'bg-primary-500',
+      secondary: 'bg-secondary-500',
+      accent: 'bg-accent-500',
+    },
+    verticalLineSpacing: {
+      base: 'mb-4 md:mb-5',
+      sm: 'mb-2 md:mb-3',
+      md: 'mb-4 md:mb-5',
+      lg: 'mb-6 md:mb-8',
+      xl: 'mb-8 md:mb-10',
+    },
+    containerPadding: {
+      base: 'px-4 md:px-6 lg:px-8',
+      sm: 'px-2 md:px-4 lg:px-6',
+      md: 'px-4 md:px-6 lg:px-8',
+      lg: 'px-6 md:px-8 lg:px-12',
+      xl: 'px-8 md:px-12 lg:px-16',
+    },
+  },
+  button: {
+    style: {
+      normal: {
+        base: {
+          backgroundColor: 'bg-blue-600',
+          textColor: 'text-white',
+          paddingY: 'py-2',
+          paddingX: 'px-4',
+          fontSize: 'text-base',
+          fontWeight: 'font-medium',
+          rounding: 'rounded-md',
+        },
+      },
+    },
+  },
+};
+
+describe('getBackgroundColorClass', () => {
+  it('should return the correct class for black background', () => {
+    const result = getBackgroundColorClass('black', mockStyleClassNames);
+    assert.strictEqual(result, 'bg-black');
+  });
+
+  it('should return the correct class for white background', () => {
+    const result = getBackgroundColorClass('white', mockStyleClassNames);
+    assert.strictEqual(result, 'bg-white');
+  });
+
+  it('should return the correct class for muted background', () => {
+    const result = getBackgroundColorClass('muted', mockStyleClassNames);
+    assert.strictEqual(result, 'bg-gray-100');
+  });
+
+  it('should return the correct class for primary background', () => {
+    const result = getBackgroundColorClass('primary', mockStyleClassNames);
+    assert.strictEqual(result, 'bg-primary-500');
+  });
+
+  it('should return the correct class for custom background colors', () => {
+    const secondaryResult = getBackgroundColorClass('secondary', mockStyleClassNames);
+    assert.strictEqual(secondaryResult, 'bg-secondary-500');
+
+    const accentResult = getBackgroundColorClass('accent', mockStyleClassNames);
+    assert.strictEqual(accentResult, 'bg-accent-500');
+  });
+
+  it('should return empty string for non-existent background color', () => {
+    const result = getBackgroundColorClass('nonexistent', mockStyleClassNames);
+    assert.strictEqual(result, '');
+  });
+});
+
+describe('getSectionVerticalSpacingClass', () => {
+  it('should return base spacing class', () => {
+    const result = getSectionVerticalSpacingClass('base', mockStyleClassNames);
+    assert.strictEqual(result, 'py-32 md:py-40 lg:py-48');
+  });
+
+  it('should return sm spacing class', () => {
+    const result = getSectionVerticalSpacingClass('sm', mockStyleClassNames);
+    assert.strictEqual(result, 'py-16 md:py-24 lg:py-32');
+  });
+
+  it('should return md spacing class', () => {
+    const result = getSectionVerticalSpacingClass('md', mockStyleClassNames);
+    assert.strictEqual(result, 'py-20 md:py-32 lg:py-36');
+  });
+
+  it('should return lg spacing class', () => {
+    const result = getSectionVerticalSpacingClass('lg', mockStyleClassNames);
+    assert.strictEqual(result, 'py-24 md:py-36 lg:py-40');
+  });
+
+  it('should return xl spacing class', () => {
+    const result = getSectionVerticalSpacingClass('xl', mockStyleClassNames);
+    assert.strictEqual(result, 'py-32 md:py-40 lg:py-48');
+  });
+
+  it('should return xxl spacing class', () => {
+    const result = getSectionVerticalSpacingClass('xxl', mockStyleClassNames);
+    assert.strictEqual(result, 'py-40 md:py-64 lg:py-72');
+  });
+
+  it('should fall back to base spacing class for xs (not defined)', () => {
+    const result = getSectionVerticalSpacingClass('xs', mockStyleClassNames);
+    assert.strictEqual(result, 'py-32 md:py-40 lg:py-48');
+  });
+
+  it('should work with different size options', () => {
+    const sizes: Array<'sm' | 'md' | 'lg' | 'xl'> = ['sm', 'md', 'lg', 'xl'];
+    const expectedResults = [
+      'py-16 md:py-24 lg:py-32',
+      'py-20 md:py-32 lg:py-36',
+      'py-24 md:py-36 lg:py-40',
+      'py-32 md:py-40 lg:py-48',
+    ];
+
+    sizes.forEach((size, index) => {
+      const result = getSectionVerticalSpacingClass(size, mockStyleClassNames);
+      assert.strictEqual(result, expectedResults[index]);
+    });
+  });
+});
+
+describe('getContainerPaddingClass', () => {
+  it('should return base container padding class', () => {
+    const result = getContainerPaddingClass('base', mockStyleClassNames);
+    assert.strictEqual(result, 'px-4 md:px-6 lg:px-8');
+  });
+
+  it('should return sm container padding class', () => {
+    const result = getContainerPaddingClass('sm', mockStyleClassNames);
+    assert.strictEqual(result, 'px-2 md:px-4 lg:px-6');
+  });
+
+  it('should return md container padding class', () => {
+    const result = getContainerPaddingClass('md', mockStyleClassNames);
+    assert.strictEqual(result, 'px-4 md:px-6 lg:px-8');
+  });
+
+  it('should return lg container padding class', () => {
+    const result = getContainerPaddingClass('lg', mockStyleClassNames);
+    assert.strictEqual(result, 'px-6 md:px-8 lg:px-12');
+  });
+
+  it('should return xl container padding class', () => {
+    const result = getContainerPaddingClass('xl', mockStyleClassNames);
+    assert.strictEqual(result, 'px-8 md:px-12 lg:px-16');
+  });
+
+  it('should fall back to base padding class for xs (not defined)', () => {
+    const result = getContainerPaddingClass('xs', mockStyleClassNames);
+    assert.strictEqual(result, 'px-4 md:px-6 lg:px-8');
+  });
+
+  it('should fall back to base padding class for xxl (not defined)', () => {
+    const result = getContainerPaddingClass('xxl', mockStyleClassNames);
+    assert.strictEqual(result, 'px-4 md:px-6 lg:px-8');
+  });
+
+  it('should work with different size options', () => {
+    const sizes: Array<'sm' | 'md' | 'lg' | 'xl'> = ['sm', 'md', 'lg', 'xl'];
+    const expectedResults = [
+      'px-2 md:px-4 lg:px-6',
+      'px-4 md:px-6 lg:px-8',
+      'px-6 md:px-8 lg:px-12',
+      'px-8 md:px-12 lg:px-16',
+    ];
+
+    sizes.forEach((size, index) => {
+      const result = getContainerPaddingClass(size, mockStyleClassNames);
+      assert.strictEqual(result, expectedResults[index]);
+    });
+  });
+});
+
+describe('Layout utilities integration', () => {
+  it('should work together for building complete section styles', () => {
+    const bgColor = getBackgroundColorClass('primary', mockStyleClassNames);
+    const spacing = getSectionVerticalSpacingClass('lg', mockStyleClassNames);
+    const padding = getContainerPaddingClass('md', mockStyleClassNames);
+
+    assert.strictEqual(bgColor, 'bg-primary-500');
+    assert.strictEqual(spacing, 'py-24 md:py-36 lg:py-40');
+    assert.strictEqual(padding, 'px-4 md:px-6 lg:px-8');
+
+    // Verify all classes are truthy
+    assert.ok(bgColor);
+    assert.ok(spacing);
+    assert.ok(padding);
+  });
+
+  it('should handle missing values gracefully', () => {
+    const bgColor = getBackgroundColorClass('invalid-color', mockStyleClassNames);
+    const spacing = getSectionVerticalSpacingClass('xs', mockStyleClassNames);
+    const padding = getContainerPaddingClass('xxl', mockStyleClassNames);
+
+    // Invalid color returns empty string
+    assert.strictEqual(bgColor, '');
+
+    // Missing sizes fall back to base
+    assert.strictEqual(spacing, 'py-32 md:py-40 lg:py-48');
+    assert.strictEqual(padding, 'px-4 md:px-6 lg:px-8');
+  });
+});
