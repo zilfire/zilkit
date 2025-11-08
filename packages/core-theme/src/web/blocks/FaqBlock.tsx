@@ -15,6 +15,16 @@ import type { TextStyleOptions } from '../text/Text.js';
 import type { TextClassOverrides, TextSize } from '../../types/style-types/text-style-classes.js';
 import { getTextColorClass } from '../style/style-utils/color-style-utils.js';
 
+/*
+  @todo: add borderStyles
+  @todo: add 'as' option to H2 Heading
+  @todo: add background color option
+  @todo: move Text interfaces to text-types
+  @todo: refactor FAQBlock
+  @todo: make entire question block clickable
+  @todo: add aria options
+*/
+
 const QUESTION_COLOR_DEFAULT = 'black' as const;
 const ANSWER_COLOR_DEFAULT = 'muted' as const;
 const PLUS_ICON_COLOR_DEFAULT = 'primary' as const;
@@ -63,18 +73,9 @@ type FAQItemProps = {
   context: ThemeContext;
 };
 
-// const getBorderColor = (color: ThemeColor): string => {
-//   return `border-${color}-500`;
-// };
-
-// const getFontColor = (color: ThemeColor): string => {
-//   return `text-${color}-500`;
-// };
-
 export const FaqBlock: React.FC<FaqBlockProps> = ({ data, options, context }) => {
   const { heading, description, faqs } = data;
 
-  // @todo: add borderColor to layout styles and implement color option
   return (
     <Section context={context} backgroundColor="neutral-light" verticalSpacing="lg" id="faq">
       <div className="flex flex-wrap lg:flex-nowrap gap-x-8">
