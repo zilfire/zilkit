@@ -18,4 +18,5 @@ export interface LayoutClassNames {
   verticalLineSpacing: { base: string } & Partial<
     Record<Exclude<LayoutSizeOption, 'base'>, string>
   >;
+  containerPadding: { base: string } & Partial<Record<Exclude<LayoutSizeOption, 'base'>, string>>;
 }

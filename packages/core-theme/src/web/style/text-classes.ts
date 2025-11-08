@@ -6,7 +6,7 @@ import {
   verticalLineSpacingMD,
   verticalLineSpacingLG,
   verticalLineSpacingXL,
-} from './section-classes.js';
+} from './layout-classes.js';
 import clsx from 'clsx';
 
 // Text size variables

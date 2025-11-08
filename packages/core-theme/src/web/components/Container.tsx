@@ -1,8 +1,17 @@
+import { getContainerPaddingClass } from '../style/style-utils/layout-style-utils.js';
+import type { ThemeContext } from '../../types/index.js';
+import clsx from 'clsx';
+
 interface ContainerProps {
   children: React.ReactNode;
+  context: ThemeContext;
 }
 
 // todo: add responsive padding props
-export const Container: React.FC<ContainerProps> = ({ children }) => {
-  return <div className="container mx-auto px-4 md:px-8 lg:px-16">{children}</div>;
+export const Container: React.FC<ContainerProps> = ({ children, context: { styleClasses } }) => {
+  return (
+    <div className={clsx('container mx-auto', getContainerPaddingClass('base', styleClasses))}>
+      {children}
+    </div>
+  );
 };

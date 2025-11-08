@@ -15,7 +15,7 @@ export const verticalLineSpacingLG = 'mb-6 md:mb-8'; // 1.5rem → 2rem
 export const verticalLineSpacingXL = 'mb-8 md:mb-10'; // 2rem → 2.5rem
 export const verticalLineSpacingXXL = 'mb-10 md:mb-12'; // 2.5rem → 3rem
 
-export const sectionClassNames: LayoutClassNames = {
+export const layoutClassNames: LayoutClassNames = {
   verticalSectionSpacing: {
     base: sectionSpacingXL,
     sm: sectionSpacingSM,
@@ -37,5 +37,8 @@ export const sectionClassNames: LayoutClassNames = {
     lg: verticalLineSpacingLG,
     xl: verticalLineSpacingXL,
     xxl: verticalLineSpacingXXL,
+  },
+  containerPadding: {
+    base: 'px-4 md:px-8 lg:px-16',
   },
 };

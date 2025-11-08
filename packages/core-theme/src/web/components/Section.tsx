@@ -54,7 +54,7 @@ interface SectionWrapperProps {
   className?: string;
   children?: React.ReactNode;
   classOverride?: string;
-  context?: ThemeContext;
+  context: ThemeContext;
   verticalSpacing?: LayoutSizeOption;
   id?: string;
   container?: boolean;
@@ -161,7 +161,7 @@ export const SectionWrapper = ({
       aria-label={ariaLabel}
       aria-labelledby={ariaLabelledBy}
     >
-      {container ? <Container>{children}</Container> : children}
+      {container ? <Container context={context}>{children}</Container> : children}
     </Component>
   );
 };
