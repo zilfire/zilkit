@@ -1,4 +1,4 @@
-import { HeroBlock } from '@zilfire/core-theme/web/blocks';
+import { HeroBlock, FaqBlock } from '@zilfire/core-theme/web/blocks';
 // import type { HeroBlockOptions } from '@zilfire/core-theme/web/blocks';
 import { HOME_QUERY, HomeQueryData } from '@/sanity/queries';
 import { client } from '@/sanity/client';
@@ -13,7 +13,7 @@ export default async function Home() {
     { perspective: isEnabled ? 'drafts' : 'published' }
   );
 
-  const { hero: heroData } = homeData;
+  const { hero: heroData, faq: faqData } = homeData;
 
   // const options: HeroBlockOptions = {
   //   // overlayOptions: {
@@ -40,6 +40,7 @@ export default async function Home() {
             }}
           />
         )}
+        {faqData && <FaqBlock data={faqData} context={themeContext} />}
         <div className="bg-gray-100 flex flex-col grow"></div>
       </main>
     </>

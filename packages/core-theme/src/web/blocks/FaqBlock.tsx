@@ -1,36 +1,48 @@
 'use client';
 import { useRef, useState } from 'react';
+import { H2 } from '../text/H2.js';
+import { Blockquote } from '../text/Blockquote.js';
 import clsx from 'clsx';
 import type { ThemeContext } from '../../types/context-types/index.js';
 import { Section } from '../components/Section.js';
 import { FaPlus as PlusIcon, FaMinus as MinusIcon } from 'react-icons/fa6';
 import type { FaqBlockData } from '../../types/sanity-data-types/blocks/index.js';
 import type { PortableTextBlock } from '@portabletext/types';
-// import { portableTextComponents } from '../text/index.js';
+import { textComponents } from '../text/text-components.js';
 import { PortableText } from 'next-sanity';
-import type {
-  ThemeColor,
-  // FontStyle,
-  ColorTone,
-  FontWeight,
-  // TextAlign,
-  TextSize,
-  TextComponentStyles,
-} from '../../deprecated/types/style-types/index.js';
-// import { Text } from '../text/index.js';
+import type { ThemeColor } from '../../types/style-types/color-style-classes.js';
+import type { TextStyleOptions } from '../text/Text.js';
+import type { TextClassOverrides, TextSize } from '../../types/style-types/text-style-classes.js';
+import { getTextColorClass } from '../style/style-utils/color-style-utils.js';
+
+const QUESTION_COLOR_DEFAULT = 'black' as const;
+const ANSWER_COLOR_DEFAULT = 'muted' as const;
+const PLUS_ICON_COLOR_DEFAULT = 'primary' as const;
 
 type FaqOptions = {
-  colorTone?: ColorTone;
-  descriptionOptions?: TextComponentStyles & {
+  descriptionOptions?: {
     sidebarRuleColor?: ThemeColor;
-    sidebarRule?: boolean;
+    className?: string;
+    classOverrides?: TextClassOverrides;
+    styleOptions?: TextStyleOptions;
   };
-  headlineOptions?: TextComponentStyles;
-  questionOptions?: TextComponentStyles;
-  answerOptions?: TextComponentStyles;
+  headlineOptions?: {
+    styleOptions?: TextStyleOptions;
+    className?: string;
+    classOverrides?: TextClassOverrides;
+  };
+  questionOptions?: {
+    styleOptions?: TextStyleOptions;
+    className?: string;
+    classOverrides?: TextClassOverrides;
+  };
+  answerOptions?: {
+    className?: string;
+    classOverrides?: TextClassOverrides;
+    styleOptions?: TextStyleOptions;
+  };
   plusIconOptions?: {
     color?: ThemeColor;
-    weight?: FontWeight;
     size?: TextSize;
   };
 };
@@ -51,53 +63,31 @@ type FAQItemProps = {
   context: ThemeContext;
 };
 
-const getBorderColor = (color: ThemeColor): string => {
-  return `border-${color}-500`;
-};
+// const getBorderColor = (color: ThemeColor): string => {
+//   return `border-${color}-500`;
+// };
 
-const getFontColor = (color: ThemeColor): string => {
-  return `text-${color}-500`;
-};
+// const getFontColor = (color: ThemeColor): string => {
+//   return `text-${color}-500`;
+// };
 
 export const FaqBlock: React.FC<FaqBlockProps> = ({ data, options, context }) => {
   const { heading, description, faqs } = data;
-  const sidebarRuleColor = options?.descriptionOptions?.sidebarRuleColor;
-  const sidebarRule = options?.descriptionOptions?.sidebarRule;
-  const descriptionFontStyle = options?.descriptionOptions?.fontStyle;
-  const sidebarRuleOn = typeof sidebarRule === 'boolean' ? sidebarRule : true;
-  const italicDescription =
-    descriptionFontStyle === 'italic' || typeof descriptionFontStyle === 'undefined';
 
+  // @todo: add borderColor to layout styles and implement color option
   return (
     <Section context={context} backgroundColor="neutral-light" verticalSpacing="lg" id="faq">
       <div className="flex flex-wrap lg:flex-nowrap gap-x-8">
         <div className="w-full lg:w-4/12 mb-8">
-          {heading && (
-            /* <Text
-                as="h2"
-                textSize="sm"
-                fontWeight="bold"
-                fontStyle="normal"
-                // className="w-100 text-3xl font-bold mb-4"
-              >
-                {heading}
-              </Text> */
-            <h2 className="text-3xl font-bold mb-4">{heading}</h2>
-          )}
+          {heading && <H2 className="">{heading}</H2>}
           {description && (
-            <p
-              className={clsx(
-                'text-gray-600 ml-1',
-                sidebarRuleOn && `border-l-4 pl-2 ${getBorderColor(sidebarRuleColor || 'primary')}`,
-                italicDescription && 'italic'
-              )}
-            >
+            <Blockquote classOverrides={{ borderColor: 'border-primary-500' }}>
               {description}
-            </p>
+            </Blockquote>
           )}
         </div>
         {faqs && faqs.length > 0 && (
-          <div className="w-full lg:w-8/12 -mb-6 border-t">
+          <div className="w-full lg:w-8/12 -mb-6 border-t border-gray-400">
             {faqs.map((faq, index) => (
               <FaqItem qa={faq} index={index} key={index} options={options} context={context} />
             ))}
@@ -107,10 +97,12 @@ export const FaqBlock: React.FC<FaqBlockProps> = ({ data, options, context }) =>
     </Section>
   );
 };
+
 const FaqItem = ({ qa, index, options, context }: FAQItemProps) => {
-  const questionTextColor = options?.questionOptions?.textColor;
-  // const answerTextColor = options?.answerOptions?.textColor;
-  const plusIconColor = options?.plusIconOptions?.color;
+  const questionTextColor = options?.questionOptions?.styleOptions?.color || QUESTION_COLOR_DEFAULT;
+  const answerTextColor = options?.answerOptions?.styleOptions?.color || ANSWER_COLOR_DEFAULT;
+  const plusIconColor = options?.plusIconOptions?.color || PLUS_ICON_COLOR_DEFAULT;
+  const { styleClasses } = context;
 
   const [open, setOpen] = useState(false);
   const qaRef = useRef<HTMLDivElement>(null);
@@ -133,11 +125,11 @@ const FaqItem = ({ qa, index, options, context }: FAQItemProps) => {
   };
 
   return (
-    <div className="border-b py-4 flex gap-x-4 lg:gap-x-8">
+    <div className="border-b py-4 flex gap-x-4 lg:gap-x-8 border-gray-400">
       <div>
         <div className="font-semibold text-lg">
           <a
-            className={clsx('cursor-pointer', getFontColor(questionTextColor || 'black'))}
+            className={clsx('cursor-pointer', getTextColorClass(questionTextColor, styleClasses))}
             onClick={(e) => {
               e.preventDefault();
               handleToggle();
@@ -153,22 +145,23 @@ const FaqItem = ({ qa, index, options, context }: FAQItemProps) => {
           ref={qaRef}
         >
           <div className="mt-4 ml-2">
-            {/* <PortableText
+            <PortableText
               value={qa.answer}
-              components={portableTextComponents(
+              components={textComponents(
                 {
-                  textColor: 'neutral',
+                  styleOptions: {
+                    color: 'muted',
+                  },
                 },
                 context
               )}
-            /> */}
-            <div className="text-neutral-700">{JSON.stringify(qa.answer)}</div>
+            />
           </div>
         </div>
       </div>
       <div className="grow flex justify-end items-start">
         <button
-          className={clsx('collapsible w-4', getFontColor(plusIconColor || 'primary'))}
+          className={clsx('collapsible w-4', getTextColorClass(plusIconColor, styleClasses))}
           onClick={(e) => {
             e.preventDefault();
             handleToggle();

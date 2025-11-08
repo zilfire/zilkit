@@ -8,4 +8,6 @@ export * from './Span.js';
 export * from './OL.js';
 export * from './UL.js';
 export * from './LI.js';
+export * from './Blockquote.js';
+export * from './Indent.js';
 export * from './Text.js';

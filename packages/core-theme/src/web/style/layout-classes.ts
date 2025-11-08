@@ -47,12 +47,6 @@ export const layoutClassNames: LayoutClassNames = {
     lg: sectionSpacingLG,
     xl: sectionSpacingXL,
   },
-  backgroundColors: {
-    black: 'bg-black',
-    white: 'bg-white',
-    muted: 'bg-gray-100',
-    primary: 'bg-primary-500',
-  },
   verticalLineSpacing: {
     base: verticalLineSpacingMD,
     xs: verticalLineSpacingXS,

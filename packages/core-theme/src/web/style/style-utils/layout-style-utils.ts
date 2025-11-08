@@ -1,15 +1,10 @@
 import type {
-  BackgroundColor,
   LayoutSizeOption,
   ContentWidthOption,
   GapSpacingOption,
   ZIndexLayer,
 } from '../../../types/style-types/layout-style-classes.js';
 import { StyleClassNames } from '../../../types/style-types/style-class-names.js';
-
-export const getBackgroundColorClass = (color: BackgroundColor, styleClasses: StyleClassNames) => {
-  return styleClasses.layout.backgroundColors[color] || '';
-};
 
 export const getSectionVerticalSpacingClass = (
   size: LayoutSizeOption,

@@ -36,5 +36,14 @@ export default defineType({
         collapsed: false,
       },
     }),
+    defineField({
+      name: 'faq',
+      title: 'FAQ Section',
+      type: 'faqBlock',
+      options: {
+        collapsible: true,
+        collapsed: false,
+      },
+    }),
   ],
 });

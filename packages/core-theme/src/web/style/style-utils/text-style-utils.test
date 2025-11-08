@@ -114,6 +114,18 @@ const mockTextStyles: StyleClassNames = {
     containerPadding: {
       base: 'px-4 md:px-6 lg:px-8',
     },
+    contentMaxWidth: {
+      base: 'max-w-7xl',
+    },
+    horizontalGapSpacing: {
+      base: 'gap-x-4',
+    },
+    verticalGapSpacing: {
+      base: 'gap-y-4',
+    },
+    zIndex: {
+      base: 'z-0',
+    },
   },
   button: {
     style: {

@@ -7,6 +7,9 @@ import {
   verticalLineSpacingLG,
   verticalLineSpacingXL,
 } from './layout-classes.js';
+
+import { textBlack, textWhite, textPrimary, textMuted } from './color-classes.js';
+
 import clsx from 'clsx';
 
 // Text size variables
@@ -56,11 +59,6 @@ export const zeroMargin = 'm-0';
 // Text alignment
 export const textLeft = 'text-left';
 
-// Text colors
-export const textBlack = 'text-black';
-export const textWhite = 'text-white';
-export const textPrimary = 'text-primary-600';
-
 // Font weights
 export const fontNormal = 'font-normal';
 export const fontBold = 'font-bold';
@@ -85,9 +83,9 @@ export const mediumIndent = 'ml-4';
 export const indentHorizontalSpacing = clsx(mediumIndent);
 
 // Blockquote styles
-export const blockquotePadding = 'pl-4';
-export const blockquoteHorizontalSpacing = clsx(mediumIndent, blockquotePadding);
-export const blockquoteBorder = 'border-l';
+export const blockquotePadding = 'pl-2';
+export const blockquoteHorizontalSpacing = clsx('ml-1', blockquotePadding);
+export const blockquoteBorder = 'border-l-4';
 export const blockquoteBorderColor = 'border-gray-400';
 
 export const textClassNames: TextClassNames = {
@@ -102,6 +100,7 @@ export const textClassNames: TextClassNames = {
     black: textBlack,
     white: textWhite,
     primary: textPrimary,
+    muted: textMuted,
   },
   style: {
     normal: {
@@ -130,7 +129,6 @@ export const textClassNames: TextClassNames = {
           xl: verticalLineSpacingXL,
         },
         horizontalSpacing: zeroHorizontalMargin,
-        border: '',
       },
       elements: {
         span: {
@@ -227,6 +225,8 @@ export const textClassNames: TextClassNames = {
           horizontalSpacing: blockquoteHorizontalSpacing,
           border: blockquoteBorder,
           borderColor: blockquoteBorderColor,
+          fontStyle: fontItalic,
+          textColor: textMuted,
         },
         indent: {
           horizontalSpacing: indentHorizontalSpacing,
