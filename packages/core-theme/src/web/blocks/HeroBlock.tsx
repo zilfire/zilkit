@@ -3,8 +3,8 @@ import type { ThemeContext } from '../../types/context-types/index.js';
 import type React from 'react';
 import { PortableText } from 'next-sanity';
 import { textComponents } from '../text/text-components.js';
-import { Section } from '../components/Section.js';
-import type { SectionProps } from '../components/Section.js';
+import { ImageSection } from '../components/ImageSection.js';
+import type { ImageSectionProps } from '../components/ImageSection.js';
 import { H1 } from '../text/index.js';
 import { Button } from '../components/Button.js';
 import { getHorizontalGapSpacingClass } from '../style/style-utils/layout-style-utils.js';
@@ -25,7 +25,7 @@ const HERO_TEXT_STYLES_CENTER = {
   classOverrides: { textAlign: 'text-center' },
 } as const;
 
-interface HeroSectionProps extends SectionProps {
+interface HeroSectionProps extends ImageSectionProps {
   data?: HeroBlockData;
 }
 
@@ -62,8 +62,8 @@ export const SimpleHeroBlockDescription = ({
 // Helper function to configure background image options
 const getBackgroundImageOptions = (
   data: HeroBlockData | undefined,
-  options: SectionProps['backgroundImageOptions'] = {}
-): SectionProps['backgroundImageOptions'] => {
+  options: ImageSectionProps['backgroundImageOptions'] = {}
+): ImageSectionProps['backgroundImageOptions'] => {
   if (!data?.backgroundImage) return options;
 
   return {
@@ -85,7 +85,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
   const finalBackgroundImageOptions = getBackgroundImageOptions(data, backgroundImageOptions);
 
   return (
-    <Section
+    <ImageSection
       context={context}
       verticalSpacing={verticalSpacing}
       data={data}
@@ -97,7 +97,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
       }}
     >
       {children}
-    </Section>
+    </ImageSection>
   );
 };
 
