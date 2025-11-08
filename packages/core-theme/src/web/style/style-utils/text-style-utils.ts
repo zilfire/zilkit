@@ -7,7 +7,7 @@ import type {
   TextClassOverrides,
 } from '../../../types/style-types/text-style-classes.js';
 
-import type { SectionVerticalSpacingSize } from '../../../types/style-types/section-style-classes.js';
+import type { LayoutSizeOption } from '../../../types/style-types/layout-style-classes.js';
 
 import type { StyleClassNames } from '../../../types/style-types/style-class-names.js';
 
@@ -138,16 +138,4 @@ export const getTextClass = (
   }
 
   return '';
-};
-
-export const getSectionVerticalSpacingClass = (
-  size: SectionVerticalSpacingSize,
-  styleClasses: StyleClassNames
-): string => {
-  // Get the requested size or fall back to base
-  const spacingClass =
-    styleClasses.section.sectionVerticalSpacing[size] ||
-    styleClasses.section.sectionVerticalSpacing.base;
-
-  return spacingClass || '';
 };

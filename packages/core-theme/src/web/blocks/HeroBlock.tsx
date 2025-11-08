@@ -15,7 +15,7 @@ interface HeroSectionProps extends SectionProps {
 
 export const SimpleHeroBlockHeading = ({ data }: { data: HeroBlockData }) => {
   return (
-    <H1 styleOptions={{ color: 'white' }} classOverrides={{}}>
+    <H1 styleOptions={{ color: 'white', size: 'lg' }} classOverrides={{}}>
       {data.heading}
     </H1>
   );
@@ -84,7 +84,7 @@ export const HeroBlock = ({ data, context }: { data: HeroBlockData; context: The
       <SimpleHeroBlockHeading data={data} />
       <SimpleHeroBlockDescription data={data} context={context} />
       {(data.primaryButton || data.secondaryButton) && (
-        <div className="mb-6 flex flex-wrap gap-4">
+        <div className="flex flex-wrap gap-4">
           {data.primaryButton && (
             <Button context={context} data={data.primaryButton} options={{ size: 'lg' }} />
           )}

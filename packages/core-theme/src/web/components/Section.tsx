@@ -1,10 +1,10 @@
 'use client';
 import clsx from 'clsx';
-import { getSectionVerticalSpacingClass } from '../style/style-utils/text-style-utils.js';
-import { getBackgroundColorClass } from '../style/style-utils/section-style-utils.js';
+import { getSectionVerticalSpacingClass } from '../style/style-utils/layout-style-utils.js';
+import { getBackgroundColorClass } from '../style/style-utils/layout-style-utils.js';
 import type { ThemeContext } from '../../types/context-types/index.js';
-import type { BackgroundColor } from '../../types/style-types/section-style-classes.js';
-import type { SectionVerticalSpacingSize } from '../../types/style-types/section-style-classes.js';
+import type { BackgroundColor } from '../../types/style-types/layout-style-classes.js';
+import type { LayoutSizeOption } from '../../types/style-types/layout-style-classes.js';
 import type { SanityImageWithAlt } from '@zilfire/next-sanity-image/types';
 import SanityImage from '@zilfire/next-sanity-image';
 import { Container } from './Container.js';
@@ -18,7 +18,7 @@ export interface SectionProps {
   classOverride?: string;
   id?: string;
   container?: boolean;
-  verticalSpacing?: SectionVerticalSpacingSize;
+  verticalSpacing?: LayoutSizeOption;
   overlayOptions?: SectionBackgroundOverlayProps;
   contentOptions?: SectionContentOptions;
   backgroundImageOptions?: SectionBackgroundImageOptions;
@@ -32,7 +32,7 @@ interface SectionWrapperProps {
   children?: React.ReactNode;
   classOverride?: string;
   context?: ThemeContext;
-  verticalSpacing?: SectionVerticalSpacingSize;
+  verticalSpacing?: LayoutSizeOption;
   id?: string;
   container?: boolean;
   'aria-label'?: string;
