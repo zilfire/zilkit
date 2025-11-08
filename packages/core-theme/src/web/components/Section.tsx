@@ -8,6 +8,29 @@ import type { LayoutSizeOption } from '../../types/style-types/layout-style-clas
 import type { SanityImageWithAlt } from '@zilfire/next-sanity-image/types';
 import SanityImage from '@zilfire/next-sanity-image';
 import { Container } from './Container.js';
+import type React from 'react';
+
+// Constants
+const DEFAULT_BACKGROUND_IMAGE_QUALITY = 80 as const;
+const DEFAULT_BACKGROUND_IMAGE_LOADING = 'lazy' as const;
+const DEFAULT_OVERLAY_OPACITY = 0.6 as const;
+const DEFAULT_OVERLAY_COLOR = 'black' as const;
+const DEFAULT_VERTICAL_SPACING = 'md' as const;
+
+// Helper functions
+const getClassName = (
+  classOverride: string | undefined,
+  defaultClasses: string,
+  additionalClasses?: string
+): string => {
+  return classOverride || clsx(defaultClasses, additionalClasses);
+};
+
+const hasBackgroundImage = (
+  data?: SectionBackgroundImageData
+): data is Required<SectionBackgroundImageData> => {
+  return Boolean(data?.backgroundImage);
+};
 
 export interface SectionProps {
   as?: 'section' | 'div' | 'article' | 'header' | 'footer' | 'main';
@@ -78,20 +101,20 @@ export interface SectionContentProps {
   children?: React.ReactNode;
 }
 
-export const SectionBackgroundImage: React.FC<SectionBackgroundImageProps> = ({
+export const SectionBackgroundImage = ({
   data,
   context,
   options,
-}) => {
+}: SectionBackgroundImageProps): React.ReactElement | null => {
   const { backgroundImage } = data || {};
   const { sanityConfig } = context;
   const {
     imageSizes,
-    quality = 80,
+    quality = DEFAULT_BACKGROUND_IMAGE_QUALITY,
     priority = false,
     onLoad,
     onError,
-    loading = 'lazy',
+    loading = DEFAULT_BACKGROUND_IMAGE_LOADING,
     className,
   } = options || {};
 
@@ -115,27 +138,26 @@ export const SectionBackgroundImage: React.FC<SectionBackgroundImageProps> = ({
   );
 };
 
-export const SectionWrapper: React.FC<SectionWrapperProps> = ({
+export const SectionWrapper = ({
   as: Component = 'section',
   className,
   children,
   classOverride,
   context,
-  verticalSpacing = 'md',
+  verticalSpacing = DEFAULT_VERTICAL_SPACING,
   id,
   container = true,
   'aria-label': ariaLabel,
   'aria-labelledby': ariaLabelledBy,
-}) => {
-  const spacingClass =
-    context && verticalSpacing
-      ? getSectionVerticalSpacingClass(verticalSpacing, context.styleClasses)
-      : '';
+}: SectionWrapperProps): React.ReactElement => {
+  const spacingClass = context?.styleClasses
+    ? getSectionVerticalSpacingClass(verticalSpacing, context.styleClasses)
+    : '';
 
   return (
     <Component
       id={id}
-      className={classOverride ? classOverride : clsx('relative', spacingClass, className)}
+      className={getClassName(classOverride, clsx('relative', spacingClass), className)}
       aria-label={ariaLabel}
       aria-labelledby={ariaLabelledBy}
     >
@@ -144,13 +166,13 @@ export const SectionWrapper: React.FC<SectionWrapperProps> = ({
   );
 };
 
-export const SectionBackgroundOverlay: React.FC<SectionBackgroundOverlayProps> = ({
-  color = 'black',
+export const SectionBackgroundOverlay = ({
+  color = DEFAULT_OVERLAY_COLOR,
   enabled = true,
-  opacity = 0.6,
+  opacity = DEFAULT_OVERLAY_OPACITY,
   className,
   context,
-}) => {
+}: SectionBackgroundOverlayProps): React.ReactElement | null => {
   if (!enabled) return null;
 
   const backgroundColorClass = getBackgroundColorClass(color, context.styleClasses);
@@ -163,12 +185,37 @@ export const SectionBackgroundOverlay: React.FC<SectionBackgroundOverlayProps> =
   );
 };
 
-export const SectionContent: React.FC<SectionContentProps> = ({ options, children }) => {
-  const { className, classOverride } = options || {};
-  return <div className={classOverride || clsx('relative z-10', className)}>{children}</div>;
+// Combined background image and overlay component
+const SectionBackground = ({
+  data,
+  context,
+  backgroundImageOptions,
+  overlayOptions,
+}: {
+  data?: SectionBackgroundImageData;
+  context: ThemeContext;
+  backgroundImageOptions?: SectionBackgroundImageOptions;
+  overlayOptions?: SectionBackgroundOverlayProps;
+}): React.ReactElement | null => {
+  if (!hasBackgroundImage(data)) return null;
+
+  return (
+    <>
+      <SectionBackgroundImage data={data} context={context} options={backgroundImageOptions} />
+      <SectionBackgroundOverlay {...overlayOptions} context={context} />
+    </>
+  );
 };
 
-export const Section: React.FC<SectionProps> = ({
+export const SectionContent = ({ options, children }: SectionContentProps): React.ReactElement => {
+  return (
+    <div className={getClassName(options?.classOverride, 'relative z-10', options?.className)}>
+      {children}
+    </div>
+  );
+};
+
+export const Section = ({
   as = 'section',
   children,
   context,
@@ -183,13 +230,7 @@ export const Section: React.FC<SectionProps> = ({
   container = true,
   'aria-label': ariaLabel,
   'aria-labelledby': ariaLabelledBy,
-}) => {
-  const hasBackground = data?.backgroundImage;
-  const spacingClass =
-    context && verticalSpacing
-      ? getSectionVerticalSpacingClass(verticalSpacing, context.styleClasses)
-      : '';
-
+}: SectionProps): React.ReactElement => {
   return (
     <SectionWrapper
       as={as}
@@ -202,12 +243,12 @@ export const Section: React.FC<SectionProps> = ({
       verticalSpacing={verticalSpacing}
       container={container}
     >
-      {hasBackground && (
-        <>
-          <SectionBackgroundImage data={data} context={context} options={backgroundImageOptions} />
-          <SectionBackgroundOverlay {...overlayOptions} context={context} />
-        </>
-      )}
+      <SectionBackground
+        data={data}
+        context={context}
+        backgroundImageOptions={backgroundImageOptions}
+        overlayOptions={overlayOptions}
+      />
       <SectionContent options={contentOptions}>{children}</SectionContent>
     </SectionWrapper>
   );
