@@ -49,19 +49,23 @@ export const HeroBlockHeading = ({
 export const HeroBlockDescription = ({
   data,
   context,
+  id,
 }: {
   data: HeroBlockData;
   context: ThemeContext;
+  id?: string;
 }): React.ReactElement | null => {
   const { description } = data;
 
   if (!description) return null;
 
   return (
-    <PortableText
-      value={description}
-      components={textComponents(HERO_TEXT_STYLES_CENTER, context)}
-    />
+    <div id={id}>
+      <PortableText
+        value={description}
+        components={textComponents(HERO_TEXT_STYLES_CENTER, context)}
+      />
+    </div>
   );
 };
 
@@ -87,6 +91,8 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
   verticalSpacing = 'xl',
   container = true,
   backgroundImageOptions = {},
+  id,
+  'aria-labelledby': ariaLabelledBy,
 }) => {
   const finalBackgroundImageOptions = getBackgroundImageOptions(data, backgroundImageOptions);
 
@@ -97,6 +103,8 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
       data={data}
       backgroundImageOptions={finalBackgroundImageOptions}
       container={container}
+      id={id}
+      aria-labelledby={ariaLabelledBy}
       contentOptions={{
         maxWidth: 'normal',
         className: 'mx-auto flex flex-col items-center text-center',
@@ -135,21 +143,44 @@ const HeroButtonGroup = ({
   );
 };
 
+interface HeroBlockContentIds {
+  heading?: string;
+  description?: string;
+  buttonGroup?: string;
+}
+
+export interface HeroBlockProps {
+  data: HeroBlockData;
+  context: ThemeContext;
+  contentIds?: HeroBlockContentIds;
+  id?: string;
+  'aria-label'?: string;
+  'aria-labelledby'?: string;
+}
+
 export const HeroBlock = ({
   data,
   context,
-}: {
-  data: HeroBlockData;
-  context: ThemeContext;
-}): React.ReactElement => {
+  contentIds,
+  id,
+  'aria-label': ariaLabel,
+  'aria-labelledby': ariaLabelledBy,
+}: HeroBlockProps): React.ReactElement => {
   return (
-    <HeroSection data={data} context={context}>
-      <HeroBlockHeading data={data} />
-      <HeroBlockDescription data={data} context={context} />
+    <HeroSection
+      data={data}
+      context={context}
+      id={id}
+      aria-label={ariaLabel}
+      aria-labelledby={ariaLabelledBy}
+    >
+      <HeroBlockHeading data={data} id={contentIds?.heading} />
+      <HeroBlockDescription data={data} context={context} id={contentIds?.description} />
       <HeroButtonGroup
         primaryButton={data.primaryButton}
         secondaryButton={data.secondaryButton}
         context={context}
+        id={contentIds?.buttonGroup}
       />
     </HeroSection>
   );
