@@ -2,8 +2,7 @@
 import { useRef, useState } from 'react';
 import clsx from 'clsx';
 import type { ThemeContext } from '../../types/context-types/index.js';
-import { Section } from '../components/SectionDepr.js';
-import { Container } from '../components/DeprContainer.js';
+import { Section } from '../components/Section.js';
 import { FaPlus as PlusIcon, FaMinus as MinusIcon } from 'react-icons/fa6';
 import type { FaqBlockData } from '../../types/sanity-data-types/blocks/index.js';
 import type { PortableTextBlock } from '@portabletext/types';
@@ -36,22 +35,10 @@ type FaqOptions = {
   };
 };
 
-// type FaqOptions = {
-//   colorMode?: ColorMode;
-//   sidebarRuleColor?: ThemeColor;
-//   sidebarRule?: boolean;
-//   descriptionFontStyle?: FontStyle;
-//   descriptionTextColor?: ThemeColor;
-//   headlineTextColor?: ThemeColor;
-//   questionTextColor?: ThemeColor;
-//   answerTextColor?: ThemeColor;
-//   plusIconColor?: ThemeColor;
-// };
-
 type FaqBlockProps = {
   data: FaqBlockData;
   options?: FaqOptions;
-  context?: ThemeContext;
+  context: ThemeContext;
 };
 
 type FAQItemProps = {
@@ -77,19 +64,16 @@ export const FaqBlock: React.FC<FaqBlockProps> = ({ data, options, context }) =>
   const sidebarRuleColor = options?.descriptionOptions?.sidebarRuleColor;
   const sidebarRule = options?.descriptionOptions?.sidebarRule;
   const descriptionFontStyle = options?.descriptionOptions?.fontStyle;
-  // const descriptionTextColor = options?.descriptionOptions?.textColor;
-  // const headlineTextColor = options?.headlineOptions?.textColor;
   const sidebarRuleOn = typeof sidebarRule === 'boolean' ? sidebarRule : true;
   const italicDescription =
     descriptionFontStyle === 'italic' || typeof descriptionFontStyle === 'undefined';
 
   return (
-    <Section className="bg-stone-50 px-2" id="faq">
-      <Container>
-        <div className="flex flex-wrap lg:flex-nowrap gap-x-8">
-          <div className="w-full lg:w-4/12 mb-8">
-            {heading && (
-              /* <Text
+    <Section context={context} backgroundColor="neutral-light" verticalSpacing="lg" id="faq">
+      <div className="flex flex-wrap lg:flex-nowrap gap-x-8">
+        <div className="w-full lg:w-4/12 mb-8">
+          {heading && (
+            /* <Text
                 as="h2"
                 textSize="sm"
                 fontWeight="bold"
@@ -98,34 +82,31 @@ export const FaqBlock: React.FC<FaqBlockProps> = ({ data, options, context }) =>
               >
                 {heading}
               </Text> */
-              <h2 className="text-3xl font-bold mb-4">{heading}</h2>
-            )}
-            {description && (
-              <p
-                className={clsx(
-                  'text-gray-600 ml-1',
-                  sidebarRuleOn &&
-                    `border-l-4 pl-2 ${getBorderColor(sidebarRuleColor || 'primary')}`,
-                  italicDescription && 'italic'
-                )}
-              >
-                {description}
-              </p>
-            )}
-          </div>
-          {faqs && faqs.length > 0 && context && (
-            <div className="w-full lg:w-8/12 -mb-6 border-t">
-              {faqs.map((faq, index) => (
-                <FaqItem qa={faq} index={index} key={index} options={options} context={context} />
-              ))}
-            </div>
+            <h2 className="text-3xl font-bold mb-4">{heading}</h2>
+          )}
+          {description && (
+            <p
+              className={clsx(
+                'text-gray-600 ml-1',
+                sidebarRuleOn && `border-l-4 pl-2 ${getBorderColor(sidebarRuleColor || 'primary')}`,
+                italicDescription && 'italic'
+              )}
+            >
+              {description}
+            </p>
           )}
         </div>
-      </Container>
+        {faqs && faqs.length > 0 && (
+          <div className="w-full lg:w-8/12 -mb-6 border-t">
+            {faqs.map((faq, index) => (
+              <FaqItem qa={faq} index={index} key={index} options={options} context={context} />
+            ))}
+          </div>
+        )}
+      </div>
     </Section>
   );
 };
-
 const FaqItem = ({ qa, index, options, context }: FAQItemProps) => {
   const questionTextColor = options?.questionOptions?.textColor;
   // const answerTextColor = options?.answerOptions?.textColor;
@@ -169,9 +150,7 @@ const FaqItem = ({ qa, index, options, context }: FAQItemProps) => {
           className={clsx('transition-all overflow-hidden duration-300 ease-out')}
           id={`collapsible-answer-${index}`}
           style={{ maxHeight: '0' }}
-          ref={(el) => {
-            qaRef.current = el;
-          }}
+          ref={qaRef}
         >
           <div className="mt-4 ml-2">
             {/* <PortableText
@@ -187,7 +166,7 @@ const FaqItem = ({ qa, index, options, context }: FAQItemProps) => {
           </div>
         </div>
       </div>
-      <div className="grow flex justify-end items-start sky-500">
+      <div className="grow flex justify-end items-start">
         <button
           className={clsx('collapsible w-4', getFontColor(plusIconColor || 'primary'))}
           onClick={(e) => {
@@ -195,7 +174,7 @@ const FaqItem = ({ qa, index, options, context }: FAQItemProps) => {
             handleToggle();
           }}
           aria-label="Toggle answer visibility"
-          aria-expanded="false"
+          aria-expanded={open}
           aria-controls={`collapsible-answer-${index}`}
           role="button"
           id={`collapsible-button-${index}`}
