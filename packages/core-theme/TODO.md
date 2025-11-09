@@ -5,12 +5,12 @@
 ### FaqBlock
 
 - [x] Add 'as' option to H2 Heading
-- [ ] Add background color option
-- [ ] Move Text interfaces to text-types
+- [x] Add background color option
+- [x] Move Text interfaces to text-types
 - [ ] Refactor FAQBlock
-- [ ] Make entire question block clickable
-- [ ] Add aria options
-- [ ] Add default heading fontWeight
+- [x] Make entire question block clickable
+- [x] Add aria options
+- [x] Add default heading fontWeight
 
 ### ImageSection
 
