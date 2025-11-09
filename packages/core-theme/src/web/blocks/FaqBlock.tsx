@@ -23,6 +23,7 @@ import { getTextColorClass } from '../style/style-utils/color-style-utils.js';
   @todo: refactor FAQBlock
   @todo: make entire question block clickable
   @todo: add aria options
+  @todo: add default heading fontWeight
 */
 
 const QUESTION_COLOR_DEFAULT = 'black' as const;
