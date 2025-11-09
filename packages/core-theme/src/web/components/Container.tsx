@@ -10,7 +10,7 @@ interface ContainerProps {
 // todo: add responsive padding props
 export const Container: React.FC<ContainerProps> = ({ children, context: { styleClasses } }) => {
   return (
-    <div className={clsx('container mx-auto', getContainerPaddingClass('base', styleClasses))}>
+    <div className={clsx('container mx-auto', getContainerPaddingClass('md', styleClasses))}>
       {children}
     </div>
   );
