@@ -4,7 +4,7 @@ import { getSectionVerticalSpacingClass } from '../style/style-utils/layout-styl
 import { getBackgroundColorClass } from '../style/style-utils/background-style-utils.js';
 import { getContentMaxWidthClass } from '../style/style-utils/layout-style-utils.js';
 import type { ThemeContext } from '../../types/context-types/index.js';
-import type { ThemeColor } from '../../types/style-types/border-style-classes.js';
+import type { ThemeColor } from '../../types/style-types/style-class-names.js';
 import type { LayoutSizeOption } from '../../types/style-types/layout-style-classes.js';
 import type { ContentWidthOption } from '../../types/style-types/layout-style-classes.js';
 import { Container } from './Container.js';
@@ -22,19 +22,27 @@ const getClassName = (
   return classOverride || clsx(defaultClasses, additionalClasses);
 };
 
-export interface SectionProps {
-  as?: 'section' | 'div' | 'article' | 'header' | 'footer' | 'main';
-  children?: React.ReactNode;
-  context: ThemeContext;
+export interface SectionStyleOptions {
   backgroundColor?: ThemeColor;
+  verticalSpacing?: LayoutSizeOption;
+}
+
+export type SectionElement = 'section' | 'div' | 'article' | 'header' | 'footer' | 'main';
+
+export interface SectionOptions {
+  styleOptions?: SectionStyleOptions;
   className?: string;
   classOverride?: string;
   id?: string;
   container?: boolean;
-  verticalSpacing?: LayoutSizeOption;
-  contentOptions?: SectionContentOptions;
+  as?: SectionElement;
   'aria-label'?: string;
   'aria-labelledby'?: string;
+}
+
+export interface SectionProps extends SectionOptions {
+  children?: React.ReactNode;
+  context: ThemeContext;
 }
 
 export interface SectionContentOptions {
@@ -76,15 +84,14 @@ export const Section = ({
   as: Component = 'section',
   children,
   context,
-  backgroundColor,
+  // backgroundColor,
   className,
   classOverride,
   id,
   container = true,
-  verticalSpacing = DEFAULT_VERTICAL_SPACING,
-  contentOptions,
   'aria-label': ariaLabel,
   'aria-labelledby': ariaLabelledBy,
+  styleOptions: { backgroundColor, verticalSpacing = DEFAULT_VERTICAL_SPACING } = {},
 }: SectionProps): React.ReactElement => {
   const { styleClasses } = context;
   const spacingClass = getSectionVerticalSpacingClass(verticalSpacing, styleClasses);
@@ -98,14 +105,6 @@ export const Section = ({
     className
   );
 
-  const content = contentOptions ? (
-    <SectionContent options={contentOptions} context={context}>
-      {children}
-    </SectionContent>
-  ) : (
-    children
-  );
-
   return (
     <Component
       id={id}
@@ -113,7 +112,7 @@ export const Section = ({
       aria-label={ariaLabel}
       aria-labelledby={ariaLabelledBy}
     >
-      {container ? <Container context={context}>{content}</Container> : content}
+      {container ? <Container context={context}>{children}</Container> : children}
     </Component>
   );
 };

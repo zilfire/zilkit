@@ -4,7 +4,7 @@
 
 ### FaqBlock
 
-- [ ] Add 'as' option to H2 Heading
+- [x] Add 'as' option to H2 Heading
 - [ ] Add background color option
 - [ ] Move Text interfaces to text-types
 - [ ] Refactor FAQBlock

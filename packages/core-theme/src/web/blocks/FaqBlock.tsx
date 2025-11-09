@@ -5,6 +5,7 @@ import { Blockquote } from '../text/Blockquote.js';
 import clsx from 'clsx';
 import type { ThemeContext } from '../../types/context-types/index.js';
 import { Section } from '../components/Section.js';
+import type { SectionOptions } from '../components/Section.js';
 import { FaPlus as PlusIcon, FaMinus as MinusIcon } from 'react-icons/fa6';
 import type { FaqBlockData } from '../../types/sanity-data-types/blocks/index.js';
 import type { PortableTextBlock } from '@portabletext/types';
@@ -12,7 +13,11 @@ import { textComponents } from '../text/text-components.js';
 import { PortableText } from 'next-sanity';
 import type { ThemeColor } from '../../types/style-types/style-class-names.js';
 import type { TextStyleOptions } from '../text/Text.js';
-import type { TextClassOverrides, TextSize } from '../../types/style-types/text-style-classes.js';
+import type {
+  TextClassOverrides,
+  TextSize,
+  TextElement,
+} from '../../types/style-types/text-style-classes.js';
 import type { BorderColor } from '../../types/style-types/border-style-classes.js';
 import { getTextColorClass } from '../style/style-utils/text-style-utils.js';
 import {
@@ -27,6 +32,7 @@ const BORDER_COLOR_DEFAULT = 'muted' as const;
 const BORDER_THICKNESS_DEFAULT = 'thin' as const;
 
 type FaqOptions = {
+  sectionOptions?: SectionOptions;
   descriptionOptions?: {
     sidebarRuleColor?: ThemeColor;
     className?: string;
@@ -37,6 +43,8 @@ type FaqOptions = {
     styleOptions?: TextStyleOptions;
     className?: string;
     classOverrides?: TextClassOverrides;
+    as?: TextElement;
+    id?: string;
   };
   questionOptions?: {
     styleOptions?: TextStyleOptions;
@@ -75,6 +83,7 @@ type FAQItemProps = {
 export const FaqBlock: React.FC<FaqBlockProps> = ({ data, options, context }) => {
   const { heading, description, faqs } = data;
   const { borderColor, borderThickness } = options?.questionOptions || {};
+  const { headlineOptions, sectionOptions } = options || {};
 
   const borderColorClass = getBorderColorClass(
     borderColor || BORDER_COLOR_DEFAULT,
@@ -87,10 +96,10 @@ export const FaqBlock: React.FC<FaqBlockProps> = ({ data, options, context }) =>
   );
 
   return (
-    <Section context={context} backgroundColor="neutral-light" verticalSpacing="lg" id="faq">
+    <Section context={context} {...sectionOptions}>
       <div className="flex flex-wrap lg:flex-nowrap gap-x-8">
         <div className="w-full lg:w-4/12 mb-8">
-          {heading && <H2 className="">{heading}</H2>}
+          {heading && <H2 {...headlineOptions}>{heading}</H2>}
           {description && (
             <Blockquote classOverrides={{ borderColor: 'border-primary-500' }}>
               {description}
@@ -98,7 +107,7 @@ export const FaqBlock: React.FC<FaqBlockProps> = ({ data, options, context }) =>
           )}
         </div>
         {faqs && faqs.length > 0 && (
-          <div className={clsx('w-full lg:w-8/12 -mb-6', borderEdgeClass, borderColorClass)}>
+          <div className={clsx('w-full lg:w-8/12 mb-6', borderEdgeClass, borderColorClass)}>
             {faqs.map((faq, index) => (
               <FaqItem qa={faq} index={index} key={index} options={options} context={context} />
             ))}

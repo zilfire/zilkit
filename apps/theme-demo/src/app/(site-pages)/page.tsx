@@ -40,7 +40,16 @@ export default async function Home() {
             }}
           />
         )}
-        {faqData && <FaqBlock data={faqData} context={themeContext} />}
+        {faqData && (
+          <FaqBlock
+            data={faqData}
+            context={themeContext}
+            options={{
+              headlineOptions: { as: 'h3' },
+              sectionOptions: { styleOptions: { backgroundColor: 'muted' } },
+            }}
+          />
+        )}
         <div className="bg-gray-100 flex flex-col grow"></div>
       </main>
     </>
