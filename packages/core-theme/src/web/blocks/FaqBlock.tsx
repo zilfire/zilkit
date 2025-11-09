@@ -186,36 +186,32 @@ const FaqItem = ({ qa, index, options, context }: FAQItemProps) => {
   return (
     <div className={clsx('py-4 flex gap-x-4', borderEdgeClass, borderColorClass)}>
       <div>
-        <div className="flex justify-between items-center">
-          <div className="font-semibold text-lg">
-            <a
-              className={clsx('cursor-pointer', getTextColorClass(questionTextColor, styleClasses))}
-              onClick={(e) => {
-                e.preventDefault();
-                handleToggle();
-              }}
+        <a
+          className={clsx('cursor-pointer')}
+          onClick={(e) => {
+            e.preventDefault();
+            handleToggle();
+          }}
+        >
+          <div className="flex justify-between items-center">
+            <div
+              className={clsx(
+                'font-semibold text-lg',
+                getTextColorClass(questionTextColor, styleClasses)
+              )}
             >
               {qa.question}
-            </a>
+            </div>
+            <div className="px-4">
+              {open ? (
+                <MinusIcon className={getTextColorClass(plusIconColor, styleClasses)} />
+              ) : (
+                <PlusIcon className={getTextColorClass(plusIconColor, styleClasses)} />
+              )}
+            </div>
           </div>
-          <div className="px-4">
-            <button
-              className={clsx('collapsible', getTextColorClass(plusIconColor, styleClasses))}
-              onClick={(e) => {
-                e.preventDefault();
-                handleToggle();
-              }}
-              aria-label="Toggle answer visibility"
-              aria-expanded={open}
-              aria-controls={`collapsible-answer-${index}`}
-              role="button"
-              id={`collapsible-button-${index}`}
-              type="button"
-            >
-              {open ? <MinusIcon /> : <PlusIcon />}
-            </button>
-          </div>
-        </div>
+        </a>
+
         <div
           className={clsx('transition-all overflow-hidden duration-300 ease-out')}
           id={`collapsible-answer-${index}`}
@@ -228,8 +224,9 @@ const FaqItem = ({ qa, index, options, context }: FAQItemProps) => {
               components={textComponents(
                 {
                   styleOptions: {
-                    color: 'muted',
+                    color: answerTextColor,
                   },
+                  className: 'last:mb-0',
                 },
                 context
               )}
@@ -237,23 +234,6 @@ const FaqItem = ({ qa, index, options, context }: FAQItemProps) => {
           </div>
         </div>
       </div>
-      {/* <div className="px-4">
-        <button
-          className={clsx('collapsible', getTextColorClass(plusIconColor, styleClasses))}
-          onClick={(e) => {
-            e.preventDefault();
-            handleToggle();
-          }}
-          aria-label="Toggle answer visibility"
-          aria-expanded={open}
-          aria-controls={`collapsible-answer-${index}`}
-          role="button"
-          id={`collapsible-button-${index}`}
-          type="button"
-        >
-          {open ? <MinusIcon /> : <PlusIcon />}
-        </button>
-      </div> */}
     </div>
   );
 };
