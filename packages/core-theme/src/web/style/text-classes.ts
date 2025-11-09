@@ -8,8 +8,6 @@ import {
   verticalLineSpacingXL,
 } from './layout-classes.js';
 
-import { textBlack, textWhite, textPrimary, textMuted } from './color-classes.js';
-
 import clsx from 'clsx';
 
 // Text size variables
@@ -24,6 +22,12 @@ import clsx from 'clsx';
 // export const text5XL = 'text-4xl md:text-6xl lg:text-7xl';
 // export const text6XL = 'text-4xl md:text-6xl lg:text-8xl';
 // export const text7XL = 'text-5xl md:text-7xl lg:text-9xl';
+
+// Text colors
+export const textBlack = 'text-black';
+export const textWhite = 'text-white';
+export const textPrimary = 'text-primary-600';
+export const textMuted = 'text-gray-600';
 
 // Text size variables - consistent naming and responsive scaling
 export const textXS = 'text-xs'; // 0.75rem

@@ -1,3 +1,7 @@
+import type { ThemeColor } from './style-class-names.js';
+
+export type TextColor = ThemeColor;
+
 export type TextElement =
   | 'p'
   | 'span'
@@ -49,14 +53,16 @@ export type TextVariantStyle = {
 };
 
 export type TextClassNames = {
-  emphasis?: {
+  emphasis: {
     bold?: string;
     italic?: string;
     underline?: string;
     strikethrough?: string;
     overline?: string;
   };
-  color?: Partial<Record<string, string>>;
+  color: { black: string; white: string; muted: string; primary: string } & Partial<
+    Record<ThemeColor, string>
+  >;
   style: {
     normal: TextVariantStyle;
     variants?: {

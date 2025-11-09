@@ -1,3 +1,5 @@
+import type { ThemeColor } from './style-class-names.js';
+
 export type ButtonSize = 'base' | 'xs' | 'sm' | 'md' | 'lg' | 'xl' | 'xxl';
 
 export type ButtonColorClassCategory = 'backgroundColor' | 'textColor' | 'borderColor';
@@ -21,10 +23,10 @@ export type ButtonClassCategory =
 export type ButtonClassOverride = Partial<Record<ButtonClassCategory, string>> | string;
 
 export interface ButtonColorStyleClassCategories {
-  backgroundColor?: string;
+  backgroundColor?: ThemeColor;
   backgroundOpacity?: string;
-  textColor?: string;
-  borderColor?: string;
+  textColor?: ThemeColor;
+  borderColor?: ThemeColor;
 }
 
 export interface ButtonSizeStyleClassCategories {

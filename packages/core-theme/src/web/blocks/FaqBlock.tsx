@@ -10,25 +10,21 @@ import type { FaqBlockData } from '../../types/sanity-data-types/blocks/index.js
 import type { PortableTextBlock } from '@portabletext/types';
 import { textComponents } from '../text/text-components.js';
 import { PortableText } from 'next-sanity';
-import type { ThemeColor } from '../../types/style-types/color-style-classes.js';
+import type { ThemeColor } from '../../types/style-types/style-class-names.js';
 import type { TextStyleOptions } from '../text/Text.js';
 import type { TextClassOverrides, TextSize } from '../../types/style-types/text-style-classes.js';
-import { getTextColorClass } from '../style/style-utils/color-style-utils.js';
-
-/*
-  @todo: add borderStyles
-  @todo: add 'as' option to H2 Heading
-  @todo: add background color option
-  @todo: move Text interfaces to text-types
-  @todo: refactor FAQBlock
-  @todo: make entire question block clickable
-  @todo: add aria options
-  @todo: add default heading fontWeight
-*/
+import type { BorderColor } from '../../types/style-types/border-style-classes.js';
+import { getTextColorClass } from '../style/style-utils/text-style-utils.js';
+import {
+  getBorderColorClass,
+  getBorderEdgeClass,
+} from '../style/style-utils/border-style-utils.js';
 
 const QUESTION_COLOR_DEFAULT = 'black' as const;
 const ANSWER_COLOR_DEFAULT = 'muted' as const;
 const PLUS_ICON_COLOR_DEFAULT = 'primary' as const;
+const BORDER_COLOR_DEFAULT = 'muted' as const;
+const BORDER_THICKNESS_DEFAULT = 'thin' as const;
 
 type FaqOptions = {
   descriptionOptions?: {
@@ -46,6 +42,8 @@ type FaqOptions = {
     styleOptions?: TextStyleOptions;
     className?: string;
     classOverrides?: TextClassOverrides;
+    borderColor?: BorderColor;
+    borderThickness?: 'thin' | 'medium' | 'thick';
   };
   answerOptions?: {
     className?: string;
@@ -76,6 +74,17 @@ type FAQItemProps = {
 
 export const FaqBlock: React.FC<FaqBlockProps> = ({ data, options, context }) => {
   const { heading, description, faqs } = data;
+  const { borderColor, borderThickness } = options?.questionOptions || {};
+
+  const borderColorClass = getBorderColorClass(
+    borderColor || BORDER_COLOR_DEFAULT,
+    context.styleClasses
+  );
+  const borderEdgeClass = getBorderEdgeClass(
+    'top',
+    borderThickness || BORDER_THICKNESS_DEFAULT,
+    context.styleClasses
+  );
 
   return (
     <Section context={context} backgroundColor="neutral-light" verticalSpacing="lg" id="faq">
@@ -89,7 +98,7 @@ export const FaqBlock: React.FC<FaqBlockProps> = ({ data, options, context }) =>
           )}
         </div>
         {faqs && faqs.length > 0 && (
-          <div className="w-full lg:w-8/12 -mb-6 border-t border-gray-400">
+          <div className={clsx('w-full lg:w-8/12 -mb-6', borderEdgeClass, borderColorClass)}>
             {faqs.map((faq, index) => (
               <FaqItem qa={faq} index={index} key={index} options={options} context={context} />
             ))}
@@ -104,7 +113,18 @@ const FaqItem = ({ qa, index, options, context }: FAQItemProps) => {
   const questionTextColor = options?.questionOptions?.styleOptions?.color || QUESTION_COLOR_DEFAULT;
   const answerTextColor = options?.answerOptions?.styleOptions?.color || ANSWER_COLOR_DEFAULT;
   const plusIconColor = options?.plusIconOptions?.color || PLUS_ICON_COLOR_DEFAULT;
+  const { borderColor, borderThickness } = options?.questionOptions || {};
   const { styleClasses } = context;
+
+  const borderColorClass = getBorderColorClass(
+    borderColor || BORDER_COLOR_DEFAULT,
+    context.styleClasses
+  );
+  const borderEdgeClass = getBorderEdgeClass(
+    'bottom',
+    borderThickness || BORDER_THICKNESS_DEFAULT,
+    context.styleClasses
+  );
 
   const [open, setOpen] = useState(false);
   const qaRef = useRef<HTMLDivElement>(null);
@@ -127,7 +147,7 @@ const FaqItem = ({ qa, index, options, context }: FAQItemProps) => {
   };
 
   return (
-    <div className="border-b py-4 flex gap-x-4 lg:gap-x-8 border-gray-400">
+    <div className={clsx('py-4 flex gap-x-4 lg:gap-x-8', borderEdgeClass, borderColorClass)}>
       <div>
         <div className="font-semibold text-lg">
           <a

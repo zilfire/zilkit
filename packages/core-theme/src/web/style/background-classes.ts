@@ -1,0 +1,16 @@
+import { BackgroundClassNames } from '../../types/style-types/background-style-classes.js';
+
+// Background colors
+export const bgBlack = 'bg-black';
+export const bgWhite = 'bg-white';
+export const bgPrimary = 'bg-primary-600';
+export const bgMuted = 'bg-gray-200';
+
+export const backgroundClassNames: BackgroundClassNames = {
+  backgroundColors: {
+    black: bgBlack,
+    white: bgWhite,
+    muted: bgMuted,
+    primary: bgPrimary,
+  },
+};

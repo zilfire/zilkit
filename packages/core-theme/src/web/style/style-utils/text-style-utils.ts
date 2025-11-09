@@ -7,11 +7,24 @@ import type {
   TextClassOverrides,
 } from '../../../types/style-types/text-style-classes.js';
 
-import type { LayoutSizeOption } from '../../../types/style-types/layout-style-classes.js';
+import type { ThemeColor } from '../../../types/style-types/style-class-names.js';
+
+// import type { LayoutSizeOption } from '../../../types/style-types/layout-style-classes.js';
 
 import type { StyleClassNames } from '../../../types/style-types/style-class-names.js';
 
 import type { TextStyleOptions } from '../../text/Text.js';
+
+/**
+ * Get a text color class by key
+ */
+export function getTextColorClass(
+  key: ThemeColor,
+  classNames: StyleClassNames
+): string | undefined {
+  console.log('getTextColor', key);
+  return classNames.text.color[key];
+}
 
 const getStyleGroupClassNameBySize = (
   classNamesBySize: classNamesBySize,
