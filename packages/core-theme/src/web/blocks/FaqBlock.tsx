@@ -24,12 +24,21 @@ import {
   getBorderColorClass,
   getBorderEdgeClass,
 } from '../style/style-utils/border-style-utils.js';
+import {
+  getGapSpacingClass,
+  getColumnLayoutClass,
+} from '../style/style-utils/layout-style-utils.js';
 
 const QUESTION_COLOR_DEFAULT = 'black' as const;
 const ANSWER_COLOR_DEFAULT = 'muted' as const;
 const PLUS_ICON_COLOR_DEFAULT = 'primary' as const;
 const BORDER_COLOR_DEFAULT = 'muted' as const;
 const BORDER_THICKNESS_DEFAULT = 'thin' as const;
+const COLUMN_GAP_DEFAULT = 'lg' as const;
+const FIRST_COLUMN_LAYOUT_DEFAULT = 'third' as const;
+const SECOND_COLUMN_LAYOUT_DEFAULT = 'twoThirds' as const;
+const BLOCKQUOTE_BORDER_COLOR_DEFAULT = 'primary' as const;
+const HEADLINE_SIZE_DEFAULT: TextSize = 'sm' as const;
 
 type FaqOptions = {
   sectionOptions?: SectionOptions;
@@ -83,7 +92,7 @@ type FAQItemProps = {
 export const FaqBlock: React.FC<FaqBlockProps> = ({ data, options, context }) => {
   const { heading, description, faqs } = data;
   const { borderColor, borderThickness } = options?.questionOptions || {};
-  const { headlineOptions, sectionOptions } = options || {};
+  const { headlineOptions = {}, sectionOptions = {} } = options || {};
 
   const borderColorClass = getBorderColorClass(
     borderColor || BORDER_COLOR_DEFAULT,
@@ -95,19 +104,38 @@ export const FaqBlock: React.FC<FaqBlockProps> = ({ data, options, context }) =>
     context.styleClasses
   );
 
+  const gapClass = getGapSpacingClass(COLUMN_GAP_DEFAULT, context.styleClasses);
+
+  const colOneLayoutClass = getColumnLayoutClass(FIRST_COLUMN_LAYOUT_DEFAULT, context.styleClasses);
+
+  const colTwoLayoutClass = getColumnLayoutClass(
+    SECOND_COLUMN_LAYOUT_DEFAULT,
+    context.styleClasses
+  );
+
+  const blockQuoteBorderClass = getBorderColorClass(
+    options?.descriptionOptions?.sidebarRuleColor || BLOCKQUOTE_BORDER_COLOR_DEFAULT,
+    context.styleClasses
+  );
+
+  headlineOptions.styleOptions = {
+    ...headlineOptions?.styleOptions,
+    size: headlineOptions?.styleOptions?.size || HEADLINE_SIZE_DEFAULT,
+  };
+
   return (
     <Section context={context} {...sectionOptions}>
-      <div className="flex flex-wrap lg:flex-nowrap gap-x-8">
-        <div className="w-full lg:w-4/12 mb-8">
+      <div className={clsx('flex flex-wrap lg:flex-nowrap', gapClass)}>
+        <div className={colOneLayoutClass}>
           {heading && <H2 {...headlineOptions}>{heading}</H2>}
           {description && (
-            <Blockquote classOverrides={{ borderColor: 'border-primary-500' }}>
+            <Blockquote classOverrides={{ borderColor: blockQuoteBorderClass }}>
               {description}
             </Blockquote>
           )}
         </div>
         {faqs && faqs.length > 0 && (
-          <div className={clsx('w-full lg:w-8/12 mb-6', borderEdgeClass, borderColorClass)}>
+          <div className={clsx(colTwoLayoutClass, borderEdgeClass, borderColorClass)}>
             {faqs.map((faq, index) => (
               <FaqItem qa={faq} index={index} key={index} options={options} context={context} />
             ))}

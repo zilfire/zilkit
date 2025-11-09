@@ -1,31 +1,24 @@
-export type LayoutSizeOption = 'base' | 'xs' | 'sm' | 'md' | 'lg' | 'xl' | 'xxl';
+export type LayoutSizeOption = 'xs' | 'sm' | 'md' | 'lg' | 'xl' | 'xxl';
 
 export type ContentWidthOption = 'full' | 'wide' | 'normal' | 'narrow' | 'xs';
 
-export type GapSpacingOption = 'base' | 'xs' | 'sm' | 'md' | 'lg' | 'xl' | 'xxl';
+export type GapSpacingOption = 'xs' | 'sm' | 'md' | 'lg' | 'xl' | 'xxl';
 
-export type ZIndexLayer =
-  | 'base'
-  | 'background'
-  | 'overlay'
-  | 'content'
-  | 'dropdown'
-  | 'modal'
-  | 'tooltip';
+export type ColumnLayout = 'half' | 'third' | 'quarter' | 'twoThirds' | 'threeQuarters' | 'full';
+
+export type ZIndexLayer = 'background' | 'overlay' | 'content' | 'dropdown' | 'modal' | 'tooltip';
 
 export interface LayoutClassNames {
-  verticalSectionSpacing: { base: string } & Partial<
-    Record<Exclude<LayoutSizeOption, 'base'>, string>
-  >;
+  verticalSectionSpacing: Partial<Record<LayoutSizeOption, string>>;
 
-  verticalLineSpacing: { base: string } & Partial<
-    Record<Exclude<LayoutSizeOption, 'base'>, string>
-  >;
-  containerPadding: { base: string } & Partial<Record<Exclude<LayoutSizeOption, 'base'>, string>>;
-  contentMaxWidth: { base: string } & Partial<Record<Exclude<ContentWidthOption, 'base'>, string>>;
-  horizontalGapSpacing: { base: string } & Partial<
-    Record<Exclude<GapSpacingOption, 'base'>, string>
-  >;
-  verticalGapSpacing: { base: string } & Partial<Record<Exclude<GapSpacingOption, 'base'>, string>>;
-  zIndex: { base: string } & Partial<Record<Exclude<ZIndexLayer, 'base'>, string>>;
+  verticalLineSpacing: Partial<Record<LayoutSizeOption, string>>;
+  containerPadding: Partial<Record<LayoutSizeOption, string>>;
+  contentMaxWidth: Partial<Record<ContentWidthOption, string>>;
+  horizontalGapSpacing: Partial<Record<GapSpacingOption, string>>;
+  verticalGapSpacing: Partial<Record<GapSpacingOption, string>>;
+  zIndex: Partial<Record<ZIndexLayer, string>>;
+
+  gapSpacing: Partial<Record<GapSpacingOption, string>>;
+
+  columnLayout: Partial<Record<ColumnLayout, string>>;
 }
