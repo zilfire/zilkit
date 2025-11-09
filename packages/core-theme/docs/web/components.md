@@ -11,11 +11,13 @@ Reusable UI components for building layouts and interfaces.
 Styled button component with variants and sizes.
 
 **Import:**
+
 ```typescript
 import { Button } from '@zilfire/core-theme/web/components';
 ```
 
 **Props:**
+
 ```typescript
 interface ButtonProps {
   context: ThemeContext;
@@ -35,6 +37,7 @@ interface ButtonProps {
 ```
 
 **Example:**
+
 ```typescript
 <Button
   data={{
@@ -57,11 +60,13 @@ interface ButtonProps {
 Container for grouping buttons with consistent spacing.
 
 **Import:**
+
 ```typescript
 import { ButtonGroup } from '@zilfire/core-theme/web/components';
 ```
 
 **Example:**
+
 ```typescript
 <ButtonGroup>
   <Button data={primaryButton} context={context} />
@@ -76,11 +81,13 @@ import { ButtonGroup } from '@zilfire/core-theme/web/components';
 Navigation link component.
 
 **Import:**
+
 ```typescript
 import { Link } from '@zilfire/core-theme/web/components';
 ```
 
 **Props:**
+
 ```typescript
 interface LinkProps {
   href: string;
@@ -92,6 +99,7 @@ interface LinkProps {
 ```
 
 **Example:**
+
 ```typescript
 <Link href="/about" className="text-primary-600">
   Learn More
@@ -109,11 +117,13 @@ interface LinkProps {
 Layout section with configurable spacing and background.
 
 **Import:**
+
 ```typescript
 import { Section } from '@zilfire/core-theme/web/components';
 ```
 
 **Props:**
+
 ```typescript
 interface SectionProps {
   children: React.ReactNode;
@@ -125,11 +135,10 @@ interface SectionProps {
 ```
 
 **Example:**
+
 ```typescript
 <Section paddingY="py-16" backgroundColor="bg-gray-50">
-  <Container>
-    {/* Your content */}
-  </Container>
+  <Container>{/* Your content */}</Container>
 </Section>
 ```
 
@@ -140,11 +149,13 @@ interface SectionProps {
 Content width container for consistent max-width layouts.
 
 **Import:**
+
 ```typescript
 import { Container } from '@zilfire/core-theme/web/components';
 ```
 
 **Props:**
+
 ```typescript
 interface ContainerProps {
   children: React.ReactNode;
@@ -154,6 +165,7 @@ interface ContainerProps {
 ```
 
 **Example:**
+
 ```typescript
 <Container maxWidth="lg" className="px-4">
   <h1>Contained Content</h1>
@@ -167,11 +179,13 @@ interface ContainerProps {
 Section with background image support.
 
 **Import:**
+
 ```typescript
 import { ImageSection } from '@zilfire/core-theme/web/components';
 ```
 
 **Props:**
+
 ```typescript
 interface ImageSectionProps {
   children: React.ReactNode;
@@ -185,6 +199,7 @@ interface ImageSectionProps {
 ```
 
 **Example:**
+
 ```typescript
 <ImageSection
   backgroundImage={{
@@ -196,9 +211,7 @@ interface ImageSectionProps {
     quality: 80,
   }}
 >
-  <Container>
-    {/* Your content */}
-  </Container>
+  <Container>{/* Your content */}</Container>
 </ImageSection>
 ```
 
@@ -220,7 +233,7 @@ export default function Page() {
           <p>Content here</p>
         </Container>
       </Section>
-      
+
       <Section backgroundColor="bg-gray-100" paddingY="py-20">
         <Container maxWidth="lg">
           <h2>Features</h2>
@@ -237,27 +250,16 @@ export default function Page() {
 import { ButtonGroup, Button } from '@zilfire/core-theme/web/components';
 
 <ButtonGroup>
-  <Button
-    data={primaryData}
-    context={context}
-    options={{ variant: 'primary', size: 'lg' }}
-  />
-  <Button
-    data={secondaryData}
-    context={context}
-    options={{ variant: 'secondary', size: 'lg' }}
-  />
-</ButtonGroup>
+  <Button data={primaryData} context={context} options={{ variant: 'primary', size: 'lg' }} />
+  <Button data={secondaryData} context={context} options={{ variant: 'secondary', size: 'lg' }} />
+</ButtonGroup>;
 ```
 
 ### Nested Sections
 
 ```typescript
 <Section paddingY="py-0">
-  <ImageSection
-    backgroundImage={heroImage}
-    backgroundImageOptions={{ quality: 90 }}
-  >
+  <ImageSection backgroundImage={heroImage} backgroundImageOptions={{ quality: 90 }}>
     <Container>
       <h1>Hero Content</h1>
     </Container>
@@ -299,9 +301,7 @@ import { ButtonGroup, Button } from '@zilfire/core-theme/web/components';
 
 ```typescript
 <Container className="px-4 md:px-6 lg:px-8">
-  <Section paddingY="py-8 md:py-12 lg:py-16">
-    {/* Responsive spacing */}
-  </Section>
+  <Section paddingY="py-8 md:py-12 lg:py-16">{/* Responsive spacing */}</Section>
 </Container>
 ```
 
@@ -310,11 +310,7 @@ import { ButtonGroup, Button } from '@zilfire/core-theme/web/components';
 ### ARIA Labels
 
 ```typescript
-<Button
-  data={buttonData}
-  context={context}
-  ariaLabel="Submit contact form"
-/>
+<Button data={buttonData} context={context} ariaLabel="Submit contact form" />
 ```
 
 ### Semantic HTML

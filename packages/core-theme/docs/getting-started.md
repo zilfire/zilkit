@@ -45,8 +45,8 @@ export default function HomePage() {
           {
             text: 'Get Started',
             href: '/get-started',
-            style: 'primary'
-          }
+            style: 'primary',
+          },
         ]}
       />
     </main>
@@ -127,20 +127,19 @@ import { Section, Container } from '@zilfire/core-theme/web/components';
 export default function LandingPage() {
   return (
     <>
-      <HeroBlock
-        heading="My Product"
-        subheading="The best solution for your needs"
-      />
-      
+      <HeroBlock heading="My Product" subheading="The best solution for your needs" />
+
       <Section>
-        <Container>
-          {/* Your content */}
-        </Container>
+        <Container>{/* Your content */}</Container>
       </Section>
-      
+
       <FaqBlock
         heading="Frequently Asked Questions"
-        faqs={[/* FAQ data */]}
+        faqs={
+          [
+            /* FAQ data */
+          ]
+        }
       />
     </>
   );
@@ -160,7 +159,7 @@ async function getHeroData(): Promise<HeroBlockData> {
 
 export default async function Page() {
   const heroData = await getHeroData();
-  
+
   return <HeroBlock {...heroData} />;
 }
 ```
@@ -170,6 +169,7 @@ export default async function Page() {
 ### Module Resolution Issues
 
 If you encounter import errors, ensure:
+
 1. Your `package.json` has `"type": "module"`
 2. You're using `.js` extensions in imports within the package
 3. Your bundler supports ESM
@@ -181,12 +181,9 @@ Make sure you have Tailwind CSS configured and the necessary classes are include
 ```javascript
 // tailwind.config.js
 module.exports = {
-  content: [
-    './app/**/*.{js,ts,jsx,tsx}',
-    './node_modules/@zilfire/core-theme/dist/**/*.js',
-  ],
+  content: ['./app/**/*.{js,ts,jsx,tsx}', './node_modules/@zilfire/core-theme/dist/**/*.js'],
   // ... rest of config
-}
+};
 ```
 
 ---

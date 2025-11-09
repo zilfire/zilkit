@@ -61,6 +61,7 @@ import { bgPrimary } from '@zilfire/core-theme/style-classes';
 ```
 
 Each export path corresponds to a specific concern:
+
 - **Main export (`.`)**: Core types and data types
 - **`/web/blocks`**: Page-level block components
 - **`/web/components`**: Reusable UI components
@@ -119,10 +120,12 @@ The package is designed around Sanity CMS:
 ### Blocks vs Components
 
 **Blocks** are page-level, self-contained sections:
+
 - `HeroBlock`: Hero section with heading, subheading, and buttons
 - `FaqBlock`: FAQ section with collapsible questions
 
 **Components** are smaller, reusable building blocks:
+
 - `Button`: Styled button with variants
 - `Link`: Navigation link
 - `Section`: Layout container with spacing
@@ -144,6 +147,7 @@ const className = getTextColor(colorClassNames, 'primary');
 ```
 
 **Style Utilities** (`style-utils/`):
+
 - `button-style-utils.ts`: Button style composition
 - `color-style-utils.ts`: Color class helpers
 - `layout-style-utils.ts`: Layout utilities
@@ -203,11 +207,7 @@ import { Section } from '@zilfire/core-theme/web/components';
 import type { BlockData } from '@zilfire/core-theme/data-types';
 
 export function CustomBlock(props: BlockData) {
-  return (
-    <Section>
-      {/* Your custom content */}
-    </Section>
-  );
+  return <Section>{/* Your custom content */}</Section>;
 }
 ```
 
@@ -254,6 +254,7 @@ export const allSchemas = [...blockSchemas, customBlock];
 ## Versioning
 
 The package follows semantic versioning:
+
 - **Major**: Breaking API changes
 - **Minor**: New features, backward compatible
 - **Patch**: Bug fixes

@@ -7,6 +7,7 @@ Style types provide a type-safe styling system for all components in `@zilfire/c
 ## Overview
 
 The style type system ensures:
+
 - Type-safe style class definitions
 - Compile-time validation of style values
 - IntelliSense support for available styles
@@ -34,6 +35,7 @@ type ButtonSize = 'base' | 'xs' | 'sm' | 'md' | 'lg' | 'xl' | 'xxl';
 ```
 
 **Usage:**
+
 ```typescript
 import type { ButtonSize } from '@zilfire/core-theme/types';
 import { Button } from '@zilfire/core-theme/web/components';
@@ -95,13 +97,13 @@ interface ButtonClassCategories {
   border?: string;
 }
 
-type ButtonStyleClassCategories = 
-  ButtonColorStyleClassCategories &
+type ButtonStyleClassCategories = ButtonColorStyleClassCategories &
   ButtonSizeStyleClassCategories &
   ButtonClassCategories;
 ```
 
 **Usage:**
+
 ```typescript
 const buttonStyles: ButtonStyleClassCategories = {
   paddingX: 'px-6',
@@ -124,6 +126,7 @@ type ButtonClassOverride = Partial<Record<ButtonClassCategory, string>> | string
 ```
 
 **Usage:**
+
 ```typescript
 // Partial override
 const override: ButtonClassOverride = {
@@ -157,14 +160,14 @@ interface ColorClassNames {
     muted: string;
     primary: string;
   } & Partial<Record<ThemeColor, string>>;
-  
+
   borderColors: {
     black: string;
     white: string;
     muted: string;
     primary: string;
   } & Partial<Record<ThemeColor, string>>;
-  
+
   textColors?: {
     black: string;
     white: string;
@@ -175,6 +178,7 @@ interface ColorClassNames {
 ```
 
 **Usage:**
+
 ```typescript
 import { colorClassNames } from '@zilfire/core-theme/web/style/color-classes';
 import type { ColorClassNames } from '@zilfire/core-theme/types';
@@ -268,10 +272,7 @@ Create type guards for runtime checking:
 import type { ButtonSize } from '@zilfire/core-theme/types';
 
 function isButtonSize(value: unknown): value is ButtonSize {
-  return (
-    typeof value === 'string' &&
-    ['base', 'xs', 'sm', 'md', 'lg', 'xl', 'xxl'].includes(value)
-  );
+  return typeof value === 'string' && ['base', 'xs', 'sm', 'md', 'lg', 'xl', 'xxl'].includes(value);
 }
 
 // Usage
@@ -339,7 +340,7 @@ function validateSize(size: unknown): ButtonSize {
 
 ```typescript
 const sizes = ['xs', 'sm', 'md', 'lg'] as const;
-type Size = typeof sizes[number];
+type Size = (typeof sizes)[number];
 ```
 
 ### 2. Prefer Type Over Interface for Unions
@@ -377,16 +378,10 @@ interface ButtonStyleClassCategories {
 ### Complete Button Styling
 
 ```typescript
-import type {
-  ButtonSize,
-  ButtonStyleClassCategories,
-} from '@zilfire/core-theme/types';
+import type { ButtonSize, ButtonStyleClassCategories } from '@zilfire/core-theme/types';
 import { clsx } from 'clsx';
 
-function getButtonClasses(
-  size: ButtonSize,
-  styles: ButtonStyleClassCategories
-): string {
+function getButtonClasses(size: ButtonSize, styles: ButtonStyleClassCategories): string {
   return clsx(
     styles.paddingX,
     styles.paddingY,

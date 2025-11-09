@@ -37,7 +37,9 @@ import type { HeroBlockData } from '@zilfire/core-theme/data-types';
 const heroData: HeroBlockData = {
   _type: 'heroBlock',
   heading: 'Welcome to My Site',
-  description: [/* Portable Text */],
+  description: [
+    /* Portable Text */
+  ],
   primaryButton: {
     _type: 'button',
     text: 'Get Started',
@@ -60,10 +62,7 @@ export default function MyPage() {
     <Section>
       <Container>
         <h1>My Content</h1>
-        <Button
-          data={{ _type: 'button', text: 'Click me', link: navLink }}
-          context={themeContext}
-        >
+        <Button data={{ _type: 'button', text: 'Click me', link: navLink }} context={themeContext}>
           Click me
         </Button>
       </Container>
@@ -79,6 +78,7 @@ export default function MyPage() {
 Large, self-contained page sections that typically map to Sanity CMS content blocks.
 
 **Available Blocks:**
+
 - `HeroBlock` - Hero section with heading, description, and CTAs
 - `FaqBlock` - FAQ section with collapsible questions
 
@@ -89,6 +89,7 @@ Large, self-contained page sections that typically map to Sanity CMS content blo
 Smaller, reusable building blocks for composing layouts and UI.
 
 **Available Components:**
+
 - `Button` - Styled button with variants
 - `ButtonGroup` - Group of buttons with spacing
 - `Link` - Navigation link component
@@ -103,6 +104,7 @@ Smaller, reusable building blocks for composing layouts and UI.
 Typography components for headings, paragraphs, and formatted text.
 
 **Available Text Components:**
+
 - `Heading` - Generic heading with levels
 - `H1`, `H2`, `H3`, `H4`, `H5`, `H6` - Specific heading levels
 - `Paragraph` - Paragraph text
@@ -114,6 +116,7 @@ Typography components for headings, paragraphs, and formatted text.
 Utility classes and style utility functions for consistent styling.
 
 **Features:**
+
 - Pre-defined style classes
 - Utility functions for dynamic styling
 - Type-safe style composition
@@ -130,8 +133,12 @@ import type { ThemeContext } from '@zilfire/core-theme/types';
 
 const themeContext: ThemeContext = {
   styleClasses: {
-    buttonClasses: { /* ... */ },
-    colorClasses: { /* ... */ },
+    buttonClasses: {
+      /* ... */
+    },
+    colorClasses: {
+      /* ... */
+    },
     // ... other style classes
   },
   LinkComponent: NextLink, // Your Link component
@@ -160,11 +167,7 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
     ImageComponent: Image,
   };
 
-  return (
-    <ThemeContextProvider.Provider value={context}>
-      {children}
-    </ThemeContextProvider.Provider>
-  );
+  return <ThemeContextProvider.Provider value={context}>{children}</ThemeContextProvider.Provider>;
 }
 
 export function useThemeContext() {
@@ -245,12 +248,7 @@ Components follow accessibility best practices:
 - Screen reader friendly
 
 ```typescript
-<Button
-  data={buttonData}
-  context={context}
-  ariaLabel="Submit form"
-  type="submit"
-/>
+<Button data={buttonData} context={context} ariaLabel="Submit form" type="submit" />
 ```
 
 ## Server vs Client Components
@@ -281,7 +279,7 @@ import { Button } from '@zilfire/core-theme/web/components';
 
 export default function InteractiveSection() {
   const [count, setCount] = useState(0);
-  
+
   return (
     <Button
       data={{ _type: 'button', text: `Count: ${count}`, link: navLink }}
@@ -313,8 +311,8 @@ Use dynamic imports for large components:
 ```typescript
 import dynamic from 'next/dynamic';
 
-const HeroBlock = dynamic(() => 
-  import('@zilfire/core-theme/web/blocks').then(mod => ({ default: mod.HeroBlock }))
+const HeroBlock = dynamic(() =>
+  import('@zilfire/core-theme/web/blocks').then((mod) => ({ default: mod.HeroBlock }))
 );
 ```
 
@@ -327,7 +325,9 @@ import type { HeroBlockData } from '@zilfire/core-theme/data-types';
 import { HeroBlock } from '@zilfire/core-theme/web/blocks';
 
 // TypeScript ensures type safety
-const data: HeroBlockData = { /* ... */ };
+const data: HeroBlockData = {
+  /* ... */
+};
 ```
 
 ### 2. Centralize Theme Context
@@ -348,9 +348,7 @@ Components output semantic HTML, maintain this in your usage:
 ```typescript
 <main>
   <HeroBlock data={heroData} context={context} />
-  <Section>
-    {/* Main content */}
-  </Section>
+  <Section>{/* Main content */}</Section>
 </main>
 ```
 

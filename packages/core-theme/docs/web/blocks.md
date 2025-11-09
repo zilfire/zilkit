@@ -11,12 +11,14 @@ Blocks are page-level content sections that map to Sanity CMS content.
 Hero section with heading, description, background image, and call-to-action buttons.
 
 **Import:**
+
 ```typescript
 import { HeroBlock } from '@zilfire/core-theme/web/blocks';
 import type { HeroBlockData } from '@zilfire/core-theme/data-types';
 ```
 
 **Props:**
+
 ```typescript
 interface HeroBlockProps {
   data: HeroBlockData;
@@ -30,11 +32,14 @@ interface HeroBlockProps {
 ```
 
 **Example:**
+
 ```typescript
 const heroData: HeroBlockData = {
   _type: 'heroBlock',
   heading: 'Build Amazing Websites',
-  description: [/* Portable Text content */],
+  description: [
+    /* Portable Text content */
+  ],
   backgroundImage: {
     asset: { _ref: '...', _type: 'reference' },
     alt: 'Hero background',
@@ -51,10 +56,11 @@ const heroData: HeroBlockData = {
   },
 };
 
-<HeroBlock data={heroData} context={themeContext} />
+<HeroBlock data={heroData} context={themeContext} />;
 ```
 
 **Features:**
+
 - Full-width hero section
 - Optional background image with responsive sizing
 - Centered text layout
@@ -69,12 +75,14 @@ const heroData: HeroBlockData = {
 FAQ section with collapsible question and answer items.
 
 **Import:**
+
 ```typescript
 import { FaqBlock } from '@zilfire/core-theme/web/blocks';
 import type { FaqBlockData } from '@zilfire/core-theme/data-types';
 ```
 
 **Props:**
+
 ```typescript
 interface FaqBlockProps {
   data: FaqBlockData;
@@ -84,6 +92,7 @@ interface FaqBlockProps {
 ```
 
 **Example:**
+
 ```typescript
 const faqData: FaqBlockData = {
   _type: 'faqBlock',
@@ -95,7 +104,7 @@ const faqData: FaqBlockData = {
       answer: {
         _type: 'block',
         children: [
-          { _type: 'span', text: 'Follow our getting started guide in the documentation.' }
+          { _type: 'span', text: 'Follow our getting started guide in the documentation.' },
         ],
       },
     },
@@ -103,18 +112,17 @@ const faqData: FaqBlockData = {
       question: 'Is it free?',
       answer: {
         _type: 'block',
-        children: [
-          { _type: 'span', text: 'Yes, it is open source and free to use.' }
-        ],
+        children: [{ _type: 'span', text: 'Yes, it is open source and free to use.' }],
       },
     },
   ],
 };
 
-<FaqBlock data={faqData} context={themeContext} />
+<FaqBlock data={faqData} context={themeContext} />;
 ```
 
 **Features:**
+
 - Collapsible FAQ items
 - Portable Text answers for rich formatting
 - Optional heading and description
@@ -184,12 +192,8 @@ function renderBlock(block: BlockData, context: ThemeContext) {
 
 export default async function Page() {
   const blocks: BlockData[] = await fetchPageBlocks();
-  
-  return (
-    <>
-      {blocks.map(block => renderBlock(block, themeContext))}
-    </>
-  );
+
+  return <>{blocks.map((block) => renderBlock(block, themeContext))}</>;
 }
 ```
 

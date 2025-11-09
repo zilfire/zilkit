@@ -7,6 +7,7 @@ Sanity data types define the shape and structure of content from Sanity CMS. The
 ## Overview
 
 Data types are organized into:
+
 - **Block Types**: Page-level content blocks
 - **Object Types**: Reusable content objects
 - **Config Types**: Site configuration
@@ -15,11 +16,7 @@ Data types are organized into:
 ## Import Path
 
 ```typescript
-import type {
-  HeroBlockData,
-  FaqBlockData,
-  ButtonData,
-} from '@zilfire/core-theme/data-types';
+import type { HeroBlockData, FaqBlockData, ButtonData } from '@zilfire/core-theme/data-types';
 ```
 
 ## Block Types
@@ -46,6 +43,7 @@ type HeroBlockData = {
 ```
 
 **Usage:**
+
 ```typescript
 import { HeroBlock } from '@zilfire/core-theme/web/blocks';
 import type { HeroBlockData } from '@zilfire/core-theme/data-types';
@@ -70,6 +68,7 @@ export default async function Page() {
 ```
 
 **Fields:**
+
 - `_type`: Always `'heroBlock'` (discriminator)
 - `heading`: Optional hero heading text
 - `description`: Optional Portable Text content
@@ -82,10 +81,10 @@ export default async function Page() {
 FAQ section with collapsible questions and answers.
 
 ```typescript
-import { PortableTextBlock } from "@portabletext/types";
+import { PortableTextBlock } from '@portabletext/types';
 
 type FaqBlockData = {
-  _type: "faqBlock";
+  _type: 'faqBlock';
   heading?: string;
   description?: string;
   faqs: {
@@ -96,6 +95,7 @@ type FaqBlockData = {
 ```
 
 **Usage:**
+
 ```typescript
 import { FaqBlock } from '@zilfire/core-theme/web/blocks';
 import type { FaqBlockData } from '@zilfire/core-theme/data-types';
@@ -121,6 +121,7 @@ export default function FaqPage() {
 ```
 
 **Fields:**
+
 - `_type`: Always `'faqBlock'`
 - `heading`: Optional section heading
 - `description`: Optional section description
@@ -147,6 +148,7 @@ type ButtonData = {
 ```
 
 **Usage:**
+
 ```typescript
 import { Button } from '@zilfire/core-theme/web/components';
 import type { ButtonData } from '@zilfire/core-theme/data-types';
@@ -167,6 +169,7 @@ export default function MyComponent() {
 ```
 
 **Fields:**
+
 - `_type`: Always `'button'`
 - `text`: Button label text
 - `link`: Navigation link object
@@ -185,6 +188,7 @@ type NavLink = {
 ```
 
 **Usage:**
+
 ```typescript
 import { Link } from '@zilfire/core-theme/web/components';
 import type { NavLink } from '@zilfire/core-theme/data-types';
@@ -202,6 +206,7 @@ export default function MyComponent() {
 ```
 
 **Fields:**
+
 - `_type`: Always `'navLink'`
 - `href`: URL or path
 - `external`: Whether link is external (optional)
@@ -260,6 +265,7 @@ const content: PortableTextBlock[] = [
 ```
 
 **Usage:**
+
 ```typescript
 import { PortableText } from '@portabletext/react';
 import type { PortableTextBlock } from '@portabletext/types';
@@ -445,9 +451,7 @@ const data: HeroBlockData = {
 ### 2. Use Discriminated Unions
 
 ```typescript
-type ContentBlock = 
-  | { _type: 'hero'; heading: string }
-  | { _type: 'faq'; faqs: Array<any> };
+type ContentBlock = { _type: 'hero'; heading: string } | { _type: 'faq'; faqs: Array<any> };
 
 function render(block: ContentBlock) {
   // TypeScript narrows types based on _type
@@ -499,7 +503,7 @@ async function getPageData(): Promise<PageData> {
 
 export default async function Page() {
   const { hero, faq } = await getPageData();
-  
+
   return (
     <>
       <HeroBlock {...hero} />

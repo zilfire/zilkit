@@ -20,37 +20,37 @@ import { Button } from '@zilfire/core-theme/web/components';
 import { textLarge } from '@zilfire/core-theme/style-classes';
 
 function MyComponent() {
-  return (
-    <HeroBlock
-      heading="Welcome"
-      subheading="Get started with core-theme"
-    />
-  );
+  return <HeroBlock heading="Welcome" subheading="Get started with core-theme" />;
 }
 ```
 
 ## 📚 Documentation
 
 ### Getting Started
+
 - [Installation & Setup](./docs/getting-started.md) - Get up and running quickly
 - [Architecture Overview](./docs/architecture.md) - Understand the package structure
 
 ### Core Features
 
 #### 🎨 [Web Components](./docs/web/README.md)
+
 - [Blocks](./docs/web/blocks.md) - Page-level building blocks (HeroBlock, FaqBlock)
 - [Components](./docs/web/components.md) - Reusable UI components (Button, Link, Section)
 - [Styling System](./docs/web/styling.md) - Utility classes and style utilities
 
 #### 📐 [Types](./docs/types/README.md)
+
 - [Style Types](./docs/types/style-types.md) - Type-safe styling system
 - [Sanity Data Types](./docs/types/sanity-types.md) - CMS content types
 
 #### 🔧 [Sanity Integration](./docs/sanity/README.md)
+
 - [Schema Definitions](./docs/sanity/schema.md) - Sanity Studio schema
 - [Utilities](./docs/sanity/utils.md) - Helper functions for Sanity data
 
 ### API Reference
+
 - [Blocks API](./docs/api/blocks.md) - Complete block component reference
 - [Components API](./docs/api/components.md) - Component props and usage
 - [Utilities API](./docs/api/utilities.md) - Helper function documentation
@@ -61,7 +61,7 @@ This package provides multiple entry points for tree-shaking:
 
 ```typescript
 // Main exports (types and data types)
-import { /* types */ } from '@zilfire/core-theme';
+import /* types */ '@zilfire/core-theme';
 
 // Web components
 import { HeroBlock, FaqBlock } from '@zilfire/core-theme/web/blocks';

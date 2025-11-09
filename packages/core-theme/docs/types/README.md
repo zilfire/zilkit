@@ -71,7 +71,7 @@ function MyButton() {
       fontSize: 'text-lg',
     },
   };
-  
+
   return <button className={/* computed classes */}>Click me</button>;
 }
 ```
@@ -87,7 +87,9 @@ async function getHeroData(): Promise<HeroBlockData> {
   return {
     _type: 'heroBlock',
     heading: 'Welcome',
-    description: [/* Portable Text */],
+    description: [
+      /* Portable Text */
+    ],
     primaryButton: {
       _type: 'button',
       text: 'Get Started',
@@ -120,7 +122,7 @@ TypeScript provides autocomplete for all available options:
 ```typescript
 import type { ThemeColor } from '@zilfire/core-theme/types';
 
-const color: ThemeColor = 'pr|' // IntelliSense shows: primary, black, white, muted
+const color: ThemeColor = 'pr|'; // IntelliSense shows: primary, black, white, muted
 ```
 
 ### 3. Refactoring Safety
@@ -223,7 +225,7 @@ const data = await getHeroData(); // Type inferred as HeroBlockData
 
 ```typescript
 const sizes = ['xs', 'sm', 'md', 'lg'] as const;
-type Size = typeof sizes[number]; // 'xs' | 'sm' | 'md' | 'lg'
+type Size = (typeof sizes)[number]; // 'xs' | 'sm' | 'md' | 'lg'
 ```
 
 ### 4. Document Custom Types
