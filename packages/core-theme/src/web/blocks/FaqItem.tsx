@@ -10,8 +10,12 @@ import type { TextClassOverrides } from '../../types/style-types/text-style-clas
 import type { ThemeColor } from '../../types/style-types/style-class-names.js';
 import type { BorderColor } from '../../types/style-types/border-style-classes.js';
 import { getTextColorClass } from '../style/style-utils/text-style-utils.js';
+import {
+  getBorderColorClass,
+  getBorderEdgeClass,
+} from '../style/style-utils/border-style-utils.js';
 import { textComponents } from '../text/text-components.js';
-import { useToggle, useBorderClasses } from './faq-block-hooks.js';
+import { useToggle } from './faq-block-hooks.js';
 import { FAQ_DEFAULTS } from './faq-block-config.js';
 
 type FaqItemOptions = {
@@ -50,11 +54,14 @@ export const FaqItem: React.FC<FaqItemProps> = ({ qa, index, options, context })
   const { borderColor, borderThickness } = options?.questionOptions || {};
   const { styleClasses } = context;
 
-  const { colorClass: borderColorClass, edgeClass: borderEdgeClass } = useBorderClasses(
+  const borderColorClass = getBorderColorClass(
+    borderColor || FAQ_DEFAULTS.border.color,
+    context.styleClasses
+  );
+  const borderEdgeClass = getBorderEdgeClass(
     'bottom',
-    borderColor,
-    borderThickness,
-    context
+    borderThickness || FAQ_DEFAULTS.border.thickness,
+    context.styleClasses
   );
 
   const [open, toggle] = useToggle(false);

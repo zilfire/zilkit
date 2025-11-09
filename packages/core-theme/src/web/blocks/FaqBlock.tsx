@@ -13,10 +13,49 @@ import type {
   TextElement,
 } from '../../types/style-types/text-style-classes.js';
 import type { BorderColor } from '../../types/style-types/border-style-classes.js';
-import { getBorderColorClass } from '../style/style-utils/border-style-utils.js';
+import {
+  getBorderColorClass,
+  getBorderEdgeClass,
+} from '../style/style-utils/border-style-utils.js';
+import {
+  getGapSpacingClass,
+  getColumnLayoutClass,
+} from '../style/style-utils/layout-style-utils.js';
 import { FaqItem } from './FaqItem.js';
-import { useBorderClasses, useLayoutClasses } from './faq-block-hooks.js';
 import { FAQ_DEFAULTS } from './faq-block-config.js';
+
+/**
+ * Helper function to generate border classes
+ */
+const getBorderClasses = (
+  edge: 'top' | 'bottom' | 'left' | 'right' | 'all',
+  borderColor: BorderColor | undefined,
+  borderThickness: 'thin' | 'medium' | 'thick' | undefined,
+  context: ThemeContext
+) => {
+  const colorClass = getBorderColorClass(
+    borderColor || FAQ_DEFAULTS.border.color,
+    context.styleClasses
+  );
+  const edgeClass = getBorderEdgeClass(
+    edge,
+    borderThickness || FAQ_DEFAULTS.border.thickness,
+    context.styleClasses
+  );
+
+  return { colorClass, edgeClass };
+};
+
+/**
+ * Helper function to generate layout classes
+ */
+const getLayoutClasses = (context: ThemeContext) => {
+  const gapClass = getGapSpacingClass(FAQ_DEFAULTS.layout.columnGap, context.styleClasses);
+  const colOneClass = getColumnLayoutClass(FAQ_DEFAULTS.layout.firstColumn, context.styleClasses);
+  const colTwoClass = getColumnLayoutClass(FAQ_DEFAULTS.layout.secondColumn, context.styleClasses);
+
+  return { gapClass, colOneClass, colTwoClass };
+};
 
 type FaqOptions = {
   sectionOptions?: SectionOptions;
@@ -83,16 +122,16 @@ export const FaqBlock: React.FC<FaqBlockProps> = ({
   const { id: descriptionId } = descriptionOptions;
   const { id: faqContentId } = faqContentOptions;
 
-  // Get border classes using custom hook
-  const { colorClass: borderColorClass, edgeClass: borderEdgeClass } = useBorderClasses(
+  // Get border classes using helper function
+  const { colorClass: borderColorClass, edgeClass: borderEdgeClass } = getBorderClasses(
     'top',
     borderColor,
     borderThickness,
     context
   );
 
-  // Get layout classes using custom hook
-  const { gapClass, colOneClass, colTwoClass } = useLayoutClasses(context);
+  // Get layout classes using helper function
+  const { gapClass, colOneClass, colTwoClass } = getLayoutClasses(context);
 
   // Set up description border color override
   const descriptionBorderColorClass = getBorderColorClass(
