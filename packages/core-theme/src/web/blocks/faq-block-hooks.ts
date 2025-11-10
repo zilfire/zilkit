@@ -20,35 +20,35 @@ export const useToggle = (initialState = false): [boolean, () => void] => {
   return [state, toggle];
 };
 
-/**
- * Hook to generate border classes
- */
-export const useBorderClasses = (
-  edge: 'top' | 'bottom' | 'left' | 'right' | 'all',
-  borderColor: BorderColor | undefined,
-  borderThickness: 'thin' | 'medium' | 'thick' | undefined,
-  context: ThemeContext
-) => {
-  const colorClass = getBorderColorClass(
-    borderColor || FAQ_DEFAULTS.border.color,
-    context.styleClasses
-  );
-  const edgeClass = getBorderEdgeClass(
-    edge,
-    borderThickness || FAQ_DEFAULTS.border.thickness,
-    context.styleClasses
-  );
+// /**
+//  * Hook to generate border classes
+//  */
+// export const useBorderClasses = (
+//   edge: 'top' | 'bottom' | 'left' | 'right' | 'all',
+//   borderColor: BorderColor | undefined,
+//   borderThickness: 'thin' | 'medium' | 'thick' | undefined,
+//   context: ThemeContext
+// ) => {
+//   const colorClass = getBorderColorClass(
+//     borderColor || FAQ_DEFAULTS.border.color,
+//     context.styleClasses
+//   );
+//   const edgeClass = getBorderEdgeClass(
+//     edge,
+//     borderThickness || FAQ_DEFAULTS.border.thickness,
+//     context.styleClasses
+//   );
 
-  return { colorClass, edgeClass };
-};
+//   return { colorClass, edgeClass };
+// };
 
-/**
- * Hook to generate layout classes
- */
-export const useLayoutClasses = (context: ThemeContext) => {
-  const gapClass = getGapSpacingClass(FAQ_DEFAULTS.layout.columnGap, context.styleClasses);
-  const colOneClass = getColumnLayoutClass(FAQ_DEFAULTS.layout.firstColumn, context.styleClasses);
-  const colTwoClass = getColumnLayoutClass(FAQ_DEFAULTS.layout.secondColumn, context.styleClasses);
+// /**
+//  * Hook to generate layout classes
+//  */
+// export const useLayoutClasses = (context: ThemeContext) => {
+//   const gapClass = getGapSpacingClass(FAQ_DEFAULTS.layout.columnGap, context.styleClasses);
+//   const colOneClass = getColumnLayoutClass(FAQ_DEFAULTS.layout.firstColumn, context.styleClasses);
+//   const colTwoClass = getColumnLayoutClass(FAQ_DEFAULTS.layout.secondColumn, context.styleClasses);
 
-  return { gapClass, colOneClass, colTwoClass };
-};
+//   return { gapClass, colOneClass, colTwoClass };
+// };
