@@ -1,5 +1,5 @@
 import { type SchemaTypeDefinition } from 'sanity';
-import { faqBlock, heroBlock } from './blocks/index.js';
+import { faqBlock, heroBlock, mediaContentBlock } from './blocks/index.js';
 import { blockContent, richText, figure, button } from './objects/index.js';
 
 export const schemaDefs: SchemaTypeDefinition[] = [
@@ -9,6 +9,7 @@ export const schemaDefs: SchemaTypeDefinition[] = [
   richText,
   figure,
   button,
+  mediaContentBlock,
 ];
 
 export default schemaDefs;

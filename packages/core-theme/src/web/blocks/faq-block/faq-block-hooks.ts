@@ -1,14 +1,14 @@
 import { useState, useCallback } from 'react';
-import type { ThemeContext } from '../../types/context-types/index.js';
-import type { BorderColor } from '../../types/style-types/border-style-classes.js';
+import type { ThemeContext } from '../../../types/context-types/index.js';
+import type { BorderColor } from '../../../types/style-types/border-style-classes.js';
 import {
   getBorderColorClass,
   getBorderEdgeClass,
-} from '../style/style-utils/border-style-utils.js';
+} from '../../style/style-utils/border-style-utils.js';
 import {
   getGapSpacingClass,
   getColumnLayoutClass,
-} from '../style/style-utils/layout-style-utils.js';
+} from '../../style/style-utils/layout-style-utils.js';
 import { FAQ_DEFAULTS } from './faq-block-config.js';
 
 /**

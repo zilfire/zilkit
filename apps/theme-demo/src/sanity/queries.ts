@@ -1,8 +1,9 @@
 import { defineQuery, SanityDocument } from 'next-sanity';
-import type { HeroBlockData } from '@zilfire/core-theme/data-types';
+import type { HeroBlockData, MediaContentBlockData } from '@zilfire/core-theme/data-types';
 
 export type HomeQueryData = SanityDocument & {
   hero?: HeroBlockData;
+  mediaContent?: MediaContentBlockData;
 };
 
 const navLinkProjection = `

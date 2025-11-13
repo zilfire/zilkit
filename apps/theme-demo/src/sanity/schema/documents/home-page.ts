@@ -33,7 +33,16 @@ export default defineType({
       type: 'heroBlock',
       options: {
         collapsible: true,
-        collapsed: false,
+        collapsed: true,
+      },
+    }),
+    defineField({
+      name: 'mediaContent',
+      title: 'Media Content',
+      type: 'mediaContentBlock',
+      options: {
+        collapsible: true,
+        collapsed: true,
       },
     }),
     defineField({
@@ -42,7 +51,7 @@ export default defineType({
       type: 'faqBlock',
       options: {
         collapsible: true,
-        collapsed: false,
+        collapsed: true,
       },
     }),
   ],

@@ -22,7 +22,6 @@ export function getTextColorClass(
   key: ThemeColor,
   classNames: StyleClassNames
 ): string | undefined {
-  console.log('getTextColor', key);
   return classNames.text.color[key];
 }
 

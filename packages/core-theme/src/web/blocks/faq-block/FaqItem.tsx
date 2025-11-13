@@ -4,17 +4,17 @@ import clsx from 'clsx';
 import { FaPlus as PlusIcon, FaMinus as MinusIcon } from 'react-icons/fa6';
 import { PortableText } from 'next-sanity';
 import type { PortableTextBlock } from '@portabletext/types';
-import type { ThemeContext } from '../../types/context-types/index.js';
-import type { TextStyleOptions } from '../text/Text.js';
-import type { TextClassOverrides } from '../../types/style-types/text-style-classes.js';
-import type { ThemeColor } from '../../types/style-types/style-class-names.js';
-import type { BorderColor } from '../../types/style-types/border-style-classes.js';
-import { getTextColorClass } from '../style/style-utils/text-style-utils.js';
+import type { ThemeContext } from '../../../types/context-types/index.js';
+import type { TextStyleOptions } from '../../text/Text.js';
+import type { TextClassOverrides } from '../../../types/style-types/text-style-classes.js';
+import type { ThemeColor } from '../../../types/style-types/style-class-names.js';
+import type { BorderColor } from '../../../types/style-types/border-style-classes.js';
+import { getTextColorClass } from '../../style/style-utils/text-style-utils.js';
 import {
   getBorderColorClass,
   getBorderEdgeClass,
-} from '../style/style-utils/border-style-utils.js';
-import { textComponents } from '../text/text-components.js';
+} from '../../style/style-utils/border-style-utils.js';
+import { textComponents } from '../../text/text-components.js';
 import { useToggle } from './faq-block-hooks.js';
 import { FAQ_DEFAULTS } from './faq-block-config.js';
 
@@ -85,7 +85,7 @@ export const FaqItem: React.FC<FaqItemProps> = ({ qa, index, options, context })
   };
 
   return (
-    <div className={clsx('py-4 flex gap-x-4', borderEdgeClass, borderColorClass)}>
+    <div className={clsx('py-6 flex', borderEdgeClass, borderColorClass)}>
       <div className="flex-1">
         <button
           className={clsx('cursor-pointer text-left w-full')}
@@ -94,7 +94,7 @@ export const FaqItem: React.FC<FaqItemProps> = ({ qa, index, options, context })
           aria-controls={`faq-answer-${index}`}
           type="button"
         >
-          <div className="flex justify-between items-center gap-x-4">
+          <div className="flex justify-between items-center">
             <div
               className={clsx(
                 'font-semibold text-lg',

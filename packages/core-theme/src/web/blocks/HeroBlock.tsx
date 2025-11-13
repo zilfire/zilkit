@@ -1,6 +1,5 @@
 import type { HeroBlockData } from '../../types/sanity-data-types/blocks/index.js';
 import type { ThemeContext } from '../../types/context-types/index.js';
-import type React from 'react';
 import { PortableText } from 'next-sanity';
 import { textComponents } from '../text/text-components.js';
 import { ImageSection } from '../components/ImageSection.js';
