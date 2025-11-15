@@ -2,6 +2,8 @@ import type { ThemeColor } from './style-class-names.js';
 
 export type TextColor = ThemeColor;
 
+export type TextVariant = string;
+
 export type TextElement =
   | 'p'
   | 'span'
@@ -41,9 +43,22 @@ export type TextStyleGroup =
 
 export type TextClassOverrides = Partial<Record<TextStyleGroup, string>> | string;
 
-export type TextSize = 'xs' | 'sm' | 'md' | 'lg' | 'xl' | 'xxl';
+export type TextSize =
+  | 'xs'
+  | 'sm'
+  | 'md'
+  | 'lg'
+  | 'xl'
+  | '2xl'
+  | '3xl'
+  | '4xl'
+  | '5xl'
+  | '6xl'
+  | '7xl';
 
-export type classNamesBySize = string | Partial<Record<TextSize | 'default', string>>;
+export type TextElementSize = 'xs' | 'sm' | 'md' | 'lg' | 'xl';
+
+export type classNamesBySize = string | Partial<Record<TextElementSize, string>>;
 
 export type StyleGroupClassNames = Partial<Record<TextStyleGroup, classNamesBySize>>;
 
@@ -53,6 +68,7 @@ export type TextVariantStyle = {
 };
 
 export type TextClassNames = {
+  textSize: Partial<Record<TextSize, string>>;
   emphasis: {
     bold?: string;
     italic?: string;

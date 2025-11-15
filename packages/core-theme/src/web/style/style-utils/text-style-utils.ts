@@ -2,7 +2,7 @@ import type {
   TextStyleGroup,
   TextComponent,
   TextVariantStyle,
-  TextSize,
+  TextElementSize,
   classNamesBySize,
   TextClassOverrides,
 } from '../../../types/style-types/text-style-classes.js';
@@ -27,7 +27,7 @@ export function getTextColorClass(
 
 const getStyleGroupClassNameBySize = (
   classNamesBySize: classNamesBySize,
-  size: TextSize | 'default',
+  size: TextElementSize,
   styleClasses: StyleClassNames
 ): string => {
   if (typeof classNamesBySize === 'object') {
@@ -36,13 +36,6 @@ const getStyleGroupClassNameBySize = (
 
     if (sizeClassName) {
       return sizeClassName;
-    }
-
-    if ('default' in classNamesBySize) {
-      const defaultClassName = classNamesBySize.default;
-      if (defaultClassName) {
-        return defaultClassName;
-      }
     }
   } else {
     // It's a string, return it
@@ -60,17 +53,12 @@ const getStyleGroupClassNameBySize = (
 export const getTextClass = (
   textComponent: TextComponent,
   textStyleGroup: TextStyleGroup,
+  size: TextElementSize,
+  variant: string = 'normal',
   styleClasses: StyleClassNames,
   styleOptions: TextStyleOptions & { classOverrides?: TextClassOverrides }
 ): string => {
-  const {
-    size = 'default',
-    variant = 'normal',
-    bold = false,
-    italic = false,
-    lineDecoration = false,
-    color = false,
-  } = styleOptions;
+  const { bold = false, italic = false, lineDecoration = false, color = false } = styleOptions;
 
   // Check for emphasis styles first.
   if (bold && textStyleGroup === 'fontWeight') {

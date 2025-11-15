@@ -4,7 +4,9 @@ import type {
   TextStyleGroup,
   TextClassOverrides,
   TextLineDecoration,
+  TextElementSize,
   TextSize,
+  TextVariant,
 } from '../../types/style-types/text-style-classes.js';
 import { styleClassNames } from '../style/style-classes.js';
 import { getTextClass } from '../style/style-utils/text-style-utils.js';
@@ -30,8 +32,7 @@ const TEXT_STYLE_GROUPS: TextStyleGroup[] = [
 ];
 
 export interface TextStyleOptions {
-  variant?: string;
-  size?: TextSize;
+  textSize?: TextSize;
   bold?: boolean;
   italic?: boolean;
   lineDecoration?: TextLineDecoration | false;
@@ -39,6 +40,8 @@ export interface TextStyleOptions {
 }
 
 export interface TextProps {
+  variant?: TextVariant;
+  size?: TextElementSize;
   element?: TextComponent;
   as?: TextElement;
   children: React.ReactNode;
@@ -57,6 +60,8 @@ const resolveComponent = (element: TextComponent, as?: TextElement): TextElement
 
 const generateTextClasses = (
   element: TextComponent,
+  size: TextElementSize,
+  variant: string,
   styleOptions: TextStyleOptions,
   classOverrides?: TextClassOverrides
 ): string | string[] => {
@@ -65,7 +70,10 @@ const generateTextClasses = (
   }
 
   return TEXT_STYLE_GROUPS.map((group: TextStyleGroup) =>
-    getTextClass(element, group, styleClassNames, { ...styleOptions, classOverrides })
+    getTextClass(element, group, size, variant, styleClassNames, {
+      ...styleOptions,
+      classOverrides,
+    })
   ).filter(Boolean);
 };
 
@@ -76,11 +84,12 @@ export const Text = ({
   className,
   classOverrides,
   styleOptions = {},
+  size = 'md',
+  variant = 'normal',
   id,
 }: TextProps): React.ReactElement => {
   const Component = resolveComponent(element, as);
-  const textClasses = generateTextClasses(element, styleOptions, classOverrides);
-
+  const textClasses = generateTextClasses(element, size, variant, styleOptions, classOverrides);
   return (
     <Component id={id} className={clsx(textClasses, className)}>
       {children}

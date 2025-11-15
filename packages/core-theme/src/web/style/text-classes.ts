@@ -32,7 +32,7 @@ export const textMuted = 'text-gray-600';
 // Text size variables - consistent naming and responsive scaling
 export const textXS = 'text-xs'; // 0.75rem
 export const textSM = 'text-sm'; // 0.875rem
-export const textBase = 'text-base'; // 1rem
+export const textMD = 'text-base'; // 1rem
 export const textLG = 'text-lg md:text-xl'; // 1.125rem → 1.25rem
 export const textXL = 'text-xl md:text-2xl'; // 1.25rem → 1.5rem
 export const text2XL = 'text-2xl md:text-3xl lg:text-4xl'; // 1.5rem → 1.875rem → 2.25rem
@@ -93,6 +93,19 @@ export const blockquoteBorder = 'border-l-4';
 export const blockquoteBorderColor = 'border-gray-400';
 
 export const textClassNames: TextClassNames = {
+  textSize: {
+    xs: textXS,
+    sm: textSM,
+    md: textMD,
+    lg: textLG,
+    xl: textXL,
+    '2xl': text2XL,
+    '3xl': text3XL,
+    '4xl': text4XL,
+    '5xl': text5XL,
+    '6xl': text6XL,
+    '7xl': text7XL,
+  },
   emphasis: {
     bold: fontBold,
     italic: fontItalic,
@@ -110,9 +123,9 @@ export const textClassNames: TextClassNames = {
     normal: {
       default: {
         textSize: {
-          default: textBase,
           xs: textXS,
           sm: textSM,
+          md: textMD,
           lg: textLG,
           xl: textXL,
         },
@@ -125,7 +138,6 @@ export const textClassNames: TextClassNames = {
         listType: '',
         listPosition: '',
         verticalSpacing: {
-          default: verticalLineSpacingMD,
           xs: verticalLineSpacingXS,
           sm: verticalLineSpacingSM,
           md: verticalLineSpacingMD,
@@ -140,7 +152,6 @@ export const textClassNames: TextClassNames = {
         },
         h1: {
           textSize: {
-            default: text4XL,
             xs: text3XL,
             sm: text3XL,
             md: text4XL,
@@ -153,7 +164,6 @@ export const textClassNames: TextClassNames = {
         },
         h2: {
           textSize: {
-            default: text3XL,
             xs: text2XL,
             sm: text2XL,
             md: text3XL,
@@ -166,7 +176,6 @@ export const textClassNames: TextClassNames = {
         },
         h3: {
           textSize: {
-            default: text2XL,
             xs: textXL,
             sm: textXL,
             md: text2XL,
@@ -179,7 +188,6 @@ export const textClassNames: TextClassNames = {
         },
         h4: {
           textSize: {
-            default: textXL,
             xs: textLG,
             sm: textSM,
             md: textXL,
@@ -192,9 +200,8 @@ export const textClassNames: TextClassNames = {
         },
         h5: {
           textSize: {
-            default: textLG,
-            xs: textBase,
-            sm: textBase,
+            xs: textMD,
+            sm: textMD,
             md: textLG,
             lg: textXL,
             xl: text2XL,
@@ -204,9 +211,8 @@ export const textClassNames: TextClassNames = {
         },
         h6: {
           textSize: {
-            default: textLG,
-            xs: textBase,
-            sm: textBase,
+            xs: textMD,
+            sm: textMD,
             md: textLG,
             lg: textXL,
             xl: text2XL,
