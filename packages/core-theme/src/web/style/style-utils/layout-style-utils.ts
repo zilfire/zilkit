@@ -1,42 +1,48 @@
 import type {
-  LayoutSizeOption,
-  ContentWidthOption,
-  GapSpacingOption,
+  LayoutSize,
+  ContentWidth,
+  GapSpacing,
   ZIndexLayer,
-  ColumnLayout,
 } from '../../../types/style-types/layout-style-classes.js';
 import { StyleClassNames } from '../../../types/style-types/style-class-names.js';
 
 export const getSectionVerticalSpacingClass = (
-  size: LayoutSizeOption,
+  size: LayoutSize,
   styleClasses: StyleClassNames
 ): string => {
   return styleClasses.layout.verticalSectionSpacing[size] || '';
 };
 
-export const getContainerPaddingClass = (
-  size: LayoutSizeOption,
+export const getContainerClass = (styleClasses: StyleClassNames): string => {
+  return styleClasses.layout.structure.container || '';
+};
+
+export const getContainerXPaddingClass = (
+  size: LayoutSize,
   styleClasses: StyleClassNames
 ): string => {
-  return styleClasses.layout.containerPadding[size] || '';
+  if (typeof styleClasses.layout.structure.containerXPadding === 'string') {
+    return styleClasses.layout.structure.containerXPadding;
+  }
+  return styleClasses.layout.structure.containerXPadding[size] || '';
 };
 
 export const getContentMaxWidthClass = (
-  width: ContentWidthOption,
+  width: ContentWidth,
   styleClasses: StyleClassNames
 ): string => {
   return styleClasses.layout.contentMaxWidth[width] || '';
 };
 
 export const getHorizontalGapSpacingClass = (
-  size: GapSpacingOption,
+  size: GapSpacing,
   styleClasses: StyleClassNames
 ): string => {
   return styleClasses.layout.horizontalGapSpacing[size] || '';
 };
 
 export const getVerticalGapSpacingClass = (
-  size: GapSpacingOption,
+  size: GapSpacing,
   styleClasses: StyleClassNames
 ): string => {
   return styleClasses.layout.verticalGapSpacing[size] || '';
@@ -47,22 +53,12 @@ export const getZIndexClass = (layer: ZIndexLayer, styleClasses: StyleClassNames
 };
 
 export const getVerticalLineSpacingClass = (
-  size: LayoutSizeOption,
+  size: LayoutSize,
   styleClasses: StyleClassNames
 ): string => {
   return styleClasses.layout.verticalLineSpacing[size] || '';
 };
 
-export const getGapSpacingClass = (
-  size: GapSpacingOption,
-  styleClasses: StyleClassNames
-): string => {
+export const getGapSpacingClass = (size: GapSpacing, styleClasses: StyleClassNames): string => {
   return styleClasses.layout.gapSpacing[size] || '';
-};
-
-export const getColumnLayoutClass = (
-  layout: ColumnLayout,
-  styleClasses: StyleClassNames
-): string => {
-  return styleClasses.layout.columnLayout[layout] || '';
 };

@@ -1,8 +1,5 @@
 import type { TextSize } from '../../../types/style-types/text-style-classes.js';
-import type {
-  GapSpacingOption,
-  ColumnLayout,
-} from '../../../types/style-types/layout-style-classes.js';
+import type { GapSpacing } from '../../../types/style-types/layout-style-classes.js';
 
 export const FAQ_DEFAULTS = {
   question: {
@@ -25,8 +22,6 @@ export const FAQ_DEFAULTS = {
     size: 'sm' as TextSize,
   },
   layout: {
-    columnGap: 'lg' as GapSpacingOption,
-    firstColumn: 'third' as ColumnLayout,
-    secondColumn: 'twoThirds' as ColumnLayout,
+    columnGap: 'lg' as GapSpacing,
   },
 } as const;

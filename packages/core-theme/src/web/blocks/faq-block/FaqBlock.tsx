@@ -17,10 +17,7 @@ import {
   getBorderColorClass,
   getBorderEdgeClass,
 } from '../../style/style-utils/border-style-utils.js';
-import {
-  getGapSpacingClass,
-  getColumnLayoutClass,
-} from '../../style/style-utils/layout-style-utils.js';
+import { getGapSpacingClass } from '../../style/style-utils/layout-style-utils.js';
 import { FaqItem } from './FaqItem.js';
 import { FAQ_DEFAULTS } from './faq-block-config.js';
 
@@ -51,8 +48,8 @@ const getBorderClasses = (
  */
 const getLayoutClasses = (context: ThemeContext) => {
   const gapClass = getGapSpacingClass(FAQ_DEFAULTS.layout.columnGap, context.styleClasses);
-  const colOneClass = getColumnLayoutClass(FAQ_DEFAULTS.layout.firstColumn, context.styleClasses);
-  const colTwoClass = getColumnLayoutClass(FAQ_DEFAULTS.layout.secondColumn, context.styleClasses);
+  const colOneClass = 'w-full, lg:w-1/3';
+  const colTwoClass = 'w-full lg:w-2/3';
 
   return { gapClass, colOneClass, colTwoClass };
 };

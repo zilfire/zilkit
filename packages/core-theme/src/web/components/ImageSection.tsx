@@ -6,8 +6,7 @@ import { getContentMaxWidthClass } from '../style/style-utils/layout-style-utils
 import { getZIndexClass } from '../style/style-utils/layout-style-utils.js';
 import type { ThemeContext } from '../../types/context-types/index.js';
 import type { BackgroundColor } from '../../types/style-types/background-style-classes.js';
-import type { LayoutSizeOption } from '../../types/style-types/layout-style-classes.js';
-import type { ContentWidthOption } from '../../types/style-types/layout-style-classes.js';
+import type { LayoutSize, ContentWidth } from '../../types/style-types/layout-style-classes.js';
 import type { SanityImageWithAlt } from '@zilfire/next-sanity-image/types';
 import SanityImage from '@zilfire/next-sanity-image';
 import { Container } from './Container.js';
@@ -44,7 +43,7 @@ export interface ImageSectionProps {
   classOverride?: string;
   id?: string;
   container?: boolean;
-  verticalSpacing?: LayoutSizeOption;
+  verticalSpacing?: LayoutSize;
   overlayOptions?: SectionBackgroundOverlayProps;
   contentOptions?: ImageSectionContentOptions;
   backgroundImageOptions?: SectionBackgroundImageOptions;
@@ -58,7 +57,7 @@ interface SectionWrapperProps {
   children?: React.ReactNode;
   classOverride?: string;
   context: ThemeContext;
-  verticalSpacing?: LayoutSizeOption;
+  verticalSpacing?: LayoutSize;
   id?: string;
   container?: boolean;
   'aria-label'?: string;
@@ -97,7 +96,7 @@ export interface SectionBackgroundImageProps {
 export interface ImageSectionContentOptions {
   className?: string;
   classOverride?: string;
-  maxWidth?: ContentWidthOption;
+  maxWidth?: ContentWidth;
 }
 
 export interface ImageSectionContentProps {

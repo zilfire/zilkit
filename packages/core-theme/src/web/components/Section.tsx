@@ -1,12 +1,13 @@
 'use client';
 import clsx from 'clsx';
-import { getSectionVerticalSpacingClass } from '../style/style-utils/layout-style-utils.js';
+import {
+  getSectionVerticalSpacingClass,
+  getContentMaxWidthClass,
+} from '../style/style-utils/layout-style-utils.js';
 import { getBackgroundColorClass } from '../style/style-utils/background-style-utils.js';
-import { getContentMaxWidthClass } from '../style/style-utils/layout-style-utils.js';
 import type { ThemeContext } from '../../types/context-types/index.js';
 import type { ThemeColor } from '../../types/style-types/style-class-names.js';
-import type { LayoutSizeOption } from '../../types/style-types/layout-style-classes.js';
-import type { ContentWidthOption } from '../../types/style-types/layout-style-classes.js';
+import type { LayoutSize, ContentWidth } from '../../types/style-types/layout-style-classes.js';
 import { Container } from './Container.js';
 import type React from 'react';
 
@@ -24,7 +25,7 @@ const getClassName = (
 
 export interface SectionStyleOptions {
   backgroundColor?: ThemeColor;
-  verticalSpacing?: LayoutSizeOption;
+  verticalSpacing?: LayoutSize;
 }
 
 export type SectionElement = 'section' | 'div' | 'article' | 'header' | 'footer' | 'main';
@@ -48,7 +49,7 @@ export interface SectionProps extends SectionOptions {
 export interface SectionContentOptions {
   className?: string;
   classOverride?: string;
-  maxWidth?: ContentWidthOption;
+  maxWidth?: ContentWidth;
 }
 
 export interface SectionContentProps {

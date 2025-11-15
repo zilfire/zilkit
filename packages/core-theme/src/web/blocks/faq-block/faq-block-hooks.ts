@@ -5,10 +5,7 @@ import {
   getBorderColorClass,
   getBorderEdgeClass,
 } from '../../style/style-utils/border-style-utils.js';
-import {
-  getGapSpacingClass,
-  getColumnLayoutClass,
-} from '../../style/style-utils/layout-style-utils.js';
+import { getGapSpacingClass } from '../../style/style-utils/layout-style-utils.js';
 import { FAQ_DEFAULTS } from './faq-block-config.js';
 
 /**

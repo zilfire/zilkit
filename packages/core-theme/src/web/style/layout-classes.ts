@@ -47,13 +47,16 @@ export const zIndexDropdown = 'z-40';
 export const zIndexModal = 'z-50';
 export const zIndexTooltip = 'z-60';
 
-// Column layout classes
-export const halfColumn = 'w-full lg:w-6/12';
-export const thirdColumn = 'w-full lg:w-4/12';
-export const quarterColumn = 'w-full lg:w-3/12';
-export const twoThirdsColumn = 'w-full lg:w-8/12';
-export const threeQuartersColumn = 'w-full lg:w-9/12';
-export const fullWidthColumn = 'w-full';
+// Content max width
+export const contentMaxWidthXS = 'max-w-xl';
+export const contentMaxWidthNarrow = 'max-w-2xl';
+export const contentMaxWidthNormal = 'max-w-4xl';
+export const contentMaxWidthWide = 'max-w-6xl';
+export const contentMaxWidthFull = 'max-w-none';
+
+// Container
+export const container = 'container mx-auto';
+export const containerHorizontalPadding = 'px-4 md:px-6 lg:px-8';
 
 export const layoutClassNames: LayoutClassNames = {
   verticalSectionSpacing: {
@@ -71,13 +74,16 @@ export const layoutClassNames: LayoutClassNames = {
     xl: verticalLineSpacingXL,
     xxl: verticalLineSpacingXXL,
   },
-  containerPadding: {},
+  structure: {
+    container: container,
+    containerXPadding: containerHorizontalPadding,
+  },
   contentMaxWidth: {
-    xs: 'max-w-xl',
-    narrow: 'max-w-2xl',
-    normal: 'max-w-4xl',
-    wide: 'max-w-6xl',
-    full: 'max-w-none',
+    xs: contentMaxWidthXS,
+    narrow: contentMaxWidthNarrow,
+    normal: contentMaxWidthNormal,
+    wide: contentMaxWidthWide,
+    full: contentMaxWidthFull,
   },
   horizontalGapSpacing: {
     xs: horizontalGapSpacingXS,
@@ -110,13 +116,5 @@ export const layoutClassNames: LayoutClassNames = {
     dropdown: zIndexDropdown,
     modal: zIndexModal,
     tooltip: zIndexTooltip,
-  },
-  columnLayout: {
-    half: halfColumn,
-    third: thirdColumn,
-    quarter: quarterColumn,
-    twoThirds: twoThirdsColumn,
-    threeQuarters: threeQuartersColumn,
-    full: fullWidthColumn,
   },
 };

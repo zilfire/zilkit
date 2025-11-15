@@ -1,7 +1,7 @@
 import { Button } from './Button.js';
 import type { ButtonData } from '../../types/sanity-data-types/index.js';
 import type { ThemeContext } from '../../types/context-types/index.js';
-import type { GapSpacingOption } from '../../types/style-types/layout-style-classes.js';
+import type { GapSpacing } from '../../types/style-types/layout-style-classes.js';
 import type { ButtonSize } from '../../types/style-types/button-style-classes.js';
 import { getHorizontalGapSpacingClass } from '../style/style-utils/layout-style-utils.js';
 import clsx from 'clsx';
@@ -11,7 +11,7 @@ export interface ButtonGroupProps {
   context: ThemeContext;
   id?: string;
   className?: string;
-  gap?: GapSpacingOption;
+  gap?: GapSpacing;
   wrap?: boolean;
   align?: 'start' | 'center' | 'end';
   buttonOptions?: {
