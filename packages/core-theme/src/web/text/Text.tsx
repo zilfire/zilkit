@@ -7,6 +7,7 @@ import type {
   TextElementSize,
   TextSize,
   TextVariant,
+  TextAlign,
 } from '../../types/style-types/text-style-classes.js';
 import { styleClassNames } from '../style/style-classes.js';
 import { getTextClass } from '../style/style-utils/text-style-utils.js';
@@ -33,6 +34,7 @@ const TEXT_STYLE_GROUPS: TextStyleGroup[] = [
 
 export interface TextStyleOptions {
   textSize?: TextSize;
+  textAlign?: TextAlign;
   bold?: boolean;
   italic?: boolean;
   lineDecoration?: TextLineDecoration | false;

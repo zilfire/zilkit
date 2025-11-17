@@ -60,7 +60,14 @@ export const getTextClass = (
 ): string => {
   const { bold = false, italic = false, lineDecoration = false, color = false } = styleOptions;
 
-  // Check for emphasis styles first.
+  // Handle overrides
+  const classOverrides = styleOptions.classOverrides;
+
+  if (typeof classOverrides === 'object' && textStyleGroup in classOverrides) {
+    return classOverrides[textStyleGroup] || '';
+  }
+
+  // Check for option styles
   if (bold && textStyleGroup === 'fontWeight') {
     const boldClass = styleClasses.text.emphasis?.bold;
     if (boldClass) {
@@ -90,11 +97,11 @@ export const getTextClass = (
     }
   }
 
-  // Handle overrides
-  const classOverrides = styleOptions.classOverrides;
-
-  if (typeof classOverrides === 'object' && textStyleGroup in classOverrides) {
-    return classOverrides[textStyleGroup] || '';
+  if (textStyleGroup === 'textAlign' && styleOptions.textAlign) {
+    const alignClass = styleClasses.text.textAlign?.[styleOptions.textAlign];
+    if (alignClass) {
+      return alignClass;
+    }
   }
 
   // If variant, check for variant-specific styles -- First check element then default

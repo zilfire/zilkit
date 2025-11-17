@@ -62,6 +62,9 @@ export const zeroMargin = 'm-0';
 
 // Text alignment
 export const textLeft = 'text-left';
+export const textCenter = 'text-center';
+export const textRight = 'text-right';
+export const textJustify = 'text-justify';
 
 // Font weights
 export const fontNormal = 'font-normal';
@@ -105,6 +108,12 @@ export const textClassNames: TextClassNames = {
     '5xl': text5XL,
     '6xl': text6XL,
     '7xl': text7XL,
+  },
+  textAlign: {
+    left: textLeft,
+    center: textCenter,
+    right: textRight,
+    justify: textJustify,
   },
   emphasis: {
     bold: fontBold,

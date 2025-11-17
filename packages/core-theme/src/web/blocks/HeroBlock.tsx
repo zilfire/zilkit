@@ -7,7 +7,7 @@ import type { ImageSectionProps } from '../components/ImageSection.js';
 import { H1 } from '../text/index.js';
 import { ButtonGroup } from '../components/ButtonGroup.js';
 import type { ButtonData } from '../../types/sanity-data-types/index.js';
-import { SiZebpay } from 'react-icons/si';
+import type { TextStyleOptions } from '../text/Text.js';
 
 // Constants
 const HERO_DEFAULT_SIZES =
@@ -33,15 +33,17 @@ interface HeroSectionProps extends ImageSectionProps {
 export const HeroBlockHeading = ({
   data,
   id,
+  styleOptions,
 }: {
   data: HeroBlockData;
   id?: string;
+  styleOptions?: TextStyleOptions;
 }): React.ReactElement => {
   return (
     <H1
       id={id}
       size="lg"
-      styleOptions={HERO_TEXT_STYLES.styleOptions}
+      styleOptions={styleOptions}
       classOverrides={HERO_TEXT_STYLES.classOverrides}
     >
       {data.heading}
@@ -110,7 +112,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
       aria-labelledby={ariaLabelledBy}
       contentOptions={{
         maxWidth: 'normal',
-        className: 'mx-auto flex flex-col items-center text-center',
+        className: 'mx-auto flex flex-col items-center',
       }}
     >
       {children}
@@ -177,7 +179,11 @@ export const HeroBlock = ({
       aria-label={ariaLabel}
       aria-labelledby={ariaLabelledBy}
     >
-      <HeroBlockHeading data={data} id={contentIds?.heading} />
+      <HeroBlockHeading
+        data={data}
+        id={contentIds?.heading}
+        styleOptions={{ textAlign: 'left', color: 'white' }}
+      />
       <HeroBlockDescription data={data} context={context} id={contentIds?.description} />
       <HeroButtonGroup
         primaryButton={data.primaryButton}

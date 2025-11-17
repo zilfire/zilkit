@@ -25,6 +25,8 @@ export type TextEmphasis = 'italic' | 'bold' | TextLineDecoration;
 
 export type TextLineDecoration = 'underline' | 'strikethrough' | 'overline';
 
+export type TextAlign = 'left' | 'center' | 'right' | 'justify';
+
 export type TextStyleGroup =
   | 'textSize'
   | 'textAlign'
@@ -69,6 +71,7 @@ export type TextVariantStyle = {
 
 export type TextClassNames = {
   textSize: Partial<Record<TextSize, string>>;
+  textAlign: Partial<Record<TextAlign, string>>;
   emphasis: {
     bold?: string;
     italic?: string;
