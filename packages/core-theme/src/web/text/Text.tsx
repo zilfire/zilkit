@@ -19,11 +19,11 @@ const TEXT_STYLE_GROUPS: TextStyleGroup[] = [
   'textSize', //X
   'textAlign', //X
   'textColor', //X
-  'fontWeight',
-  'fontStyle',
-  'fontFamily',
-  'listType',
-  'listPosition',
+  'fontWeight', //X
+  'fontStyle', //X
+  'fontFamily', //X
+  'listType', //X
+  'listPosition', //X
   'verticalSpacing',
   'horizontalSpacing',
   'lineDecoration',

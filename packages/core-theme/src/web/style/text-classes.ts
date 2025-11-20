@@ -47,18 +47,16 @@ export const fontUnderline = 'underline';
 export const fontStrikethrough = 'line-through';
 export const fontOverline = 'overline';
 
-// Leading
-// 'none' | 'tight' | 'snug' | 'normal' | 'relaxed' | 'loose';
-// export const leadingNone = 'leading-1';
-// export const leadingTight = 'leading-1.25';
-// export const leadingSnug = 'leading-1.375';
-// export const leadingNormal = 'leading-1.5';
-// export const leadingRelaxed = 'leading-1.625';
-// export const leadingLoose = 'leading-2';
-
-// export const leadingNormal = '';
-// export const leadingTight = 'leading-tight';
-// export const leadingSnug = 'leading-snug';
+// Font Weights
+export const fontThin = 'font-thin';
+export const fontExtraLight = 'font-extralight';
+export const fontLight = 'font-light';
+export const fontNormal = 'font-normal';
+export const fontMedium = 'font-medium';
+export const fontSemiBold = 'font-semibold';
+export const fontBold = 'font-bold';
+export const fontExtraBold = 'font-extrabold';
+export const fontBlack = 'font-black';
 
 // Vertical spacing
 // export const verticalLineSpacing = 'mb-3 md:mb-4';
@@ -75,11 +73,6 @@ export const textCenter = 'text-center';
 export const textRight = 'text-right';
 export const textJustify = 'text-justify';
 
-// Font weights
-export const fontNormal = 'font-normal';
-export const fontBold = 'font-bold';
-export const fontMedium = 'font-medium';
-
 // Font families
 export const bodyFont = 'font-body';
 export const headingFont = 'font-heading';
@@ -93,6 +86,7 @@ export const listDisc = 'list-disc';
 export const listDecimal = 'list-decimal';
 export const listNone = 'list-none';
 export const listInside = 'list-inside';
+export const listOutside = 'list-outside';
 
 // Indentations
 export const mediumIndent = 'ml-4';
@@ -136,6 +130,34 @@ export const textClassNames: TextClassNames = {
     white: textWhite,
     primary: textPrimary,
     muted: textMuted,
+  },
+  fontWeight: {
+    thin: fontThin,
+    extralight: fontExtraLight,
+    light: fontLight,
+    normal: fontNormal,
+    medium: fontMedium,
+    semibold: fontSemiBold,
+    bold: fontBold,
+    extrabold: fontExtraBold,
+    black: fontBlack,
+  },
+  fontStyle: {
+    normal: fontNotItalic,
+    italic: fontItalic,
+  },
+  fontFamily: {
+    body: bodyFont,
+    heading: headingFont,
+  },
+  listType: {
+    disc: listDisc,
+    decimal: listDecimal,
+    none: listNone,
+  },
+  listPosition: {
+    inside: listInside,
+    outside: listOutside,
   },
   style: {
     normal: {

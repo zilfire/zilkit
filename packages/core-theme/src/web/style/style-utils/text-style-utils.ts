@@ -110,6 +110,34 @@ export const getTextClass = (
     }
   }
 
+  if (textStyleGroup === 'fontWeight' && styleOptions.fontWeight) {
+    const weightClass = styleClasses.text.fontWeight?.[styleOptions.fontWeight];
+    if (weightClass) {
+      return weightClass;
+    }
+  }
+
+  if (textStyleGroup === 'fontStyle' && styleOptions.fontStyle) {
+    const styleClass = styleClasses.text.fontStyle?.[styleOptions.fontStyle];
+    if (styleClass) {
+      return styleClass;
+    }
+  }
+
+  if (textStyleGroup === 'fontFamily' && styleOptions.fontFamily) {
+    const familyClass = styleClasses.text.fontFamily?.[styleOptions.fontFamily];
+    if (familyClass) {
+      return familyClass;
+    }
+  }
+
+  if (textStyleGroup === 'listType' && styleOptions.listType) {
+    const listTypeClass = styleClasses.text.listType?.[styleOptions.listType];
+    if (listTypeClass) {
+      return listTypeClass;
+    }
+  }
+
   // If variant, check for variant-specific styles -- First check element then default
   if (variant !== 'normal') {
     // Check for variantStyles

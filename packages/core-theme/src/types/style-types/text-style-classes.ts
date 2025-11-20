@@ -27,6 +27,25 @@ export type TextLineDecoration = 'underline' | 'strikethrough' | 'overline';
 
 export type TextAlign = 'left' | 'center' | 'right' | 'justify';
 
+export type FontStyle = 'normal' | 'italic';
+
+export type FontFamily = 'body' | 'heading' | string;
+
+export type ListType = 'disc' | 'none' | 'decimal' | string;
+
+export type ListPosition = 'inside' | 'outside';
+
+export type FontWeight =
+  | 'thin'
+  | 'extralight'
+  | 'light'
+  | 'normal'
+  | 'medium'
+  | 'semibold'
+  | 'bold'
+  | 'extrabold'
+  | 'black';
+
 // export type TextLeading = 'none' | 'tight' | 'snug' | 'normal' | 'relaxed' | 'loose';
 
 export type TextStyleGroup =
@@ -47,6 +66,11 @@ export type TextStyleGroup =
 export interface TextStyleOptions {
   textSize?: TextSize;
   textAlign?: TextAlign;
+  fontWeight?: FontWeight;
+  fontStyle?: FontStyle;
+  fontFamily?: FontFamily;
+  listType?: ListType;
+  listPosition?: ListPosition;
   bold?: boolean;
   italic?: boolean;
   lineDecoration?: TextLineDecoration | false;
@@ -92,6 +116,11 @@ export type TextClassNames = {
   textColor: { black: string; white: string; muted: string; primary: string } & Partial<
     Record<ThemeColor, string>
   >;
+  fontWeight: Partial<Record<FontWeight, string>>;
+  fontStyle: Partial<Record<FontStyle, string>>;
+  fontFamily: Partial<Record<FontFamily, string>>;
+  listType: Partial<Record<ListType, string>>;
+  listPosition: Partial<Record<ListPosition, string>>;
   style: {
     normal: TextVariantStyle;
     variants?: {
