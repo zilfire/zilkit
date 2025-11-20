@@ -3,11 +3,9 @@ import type {
   TextComponent,
   TextStyleGroup,
   TextClassOverrides,
-  TextLineDecoration,
   TextElementSize,
-  TextSize,
   TextVariant,
-  TextAlign,
+  TextStyleOptions,
 } from '../../types/style-types/text-style-classes.js';
 import { styleClassNames } from '../style/style-classes.js';
 import { getTextClass } from '../style/style-utils/text-style-utils.js';
@@ -15,11 +13,12 @@ import clsx from 'clsx';
 
 const DEFAULT_ELEMENT: TextElement = 'p';
 
+// todo: revisit leading -- currently part of font-size in tailwind config
+
 const TEXT_STYLE_GROUPS: TextStyleGroup[] = [
-  'textSize',
-  'textAlign',
-  'textColor',
-  'leading',
+  'textSize', //X
+  'textAlign', //X
+  'textColor', //X
   'fontWeight',
   'fontStyle',
   'fontFamily',
@@ -31,15 +30,6 @@ const TEXT_STYLE_GROUPS: TextStyleGroup[] = [
   'border',
   'borderColor',
 ];
-
-export interface TextStyleOptions {
-  textSize?: TextSize;
-  textAlign?: TextAlign;
-  bold?: boolean;
-  italic?: boolean;
-  lineDecoration?: TextLineDecoration | false;
-  color?: string | false;
-}
 
 export interface TextProps {
   variant?: TextVariant;

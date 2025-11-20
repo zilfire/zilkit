@@ -5,6 +5,7 @@ import type {
   TextElementSize,
   classNamesBySize,
   TextClassOverrides,
+  TextStyleOptions,
 } from '../../../types/style-types/text-style-classes.js';
 
 import type { ThemeColor } from '../../../types/style-types/style-class-names.js';
@@ -13,8 +14,6 @@ import type { ThemeColor } from '../../../types/style-types/style-class-names.js
 
 import type { StyleClassNames } from '../../../types/style-types/style-class-names.js';
 
-import type { TextStyleOptions } from '../../text/Text.js';
-
 /**
  * Get a text color class by key
  */
@@ -22,7 +21,7 @@ export function getTextColorClass(
   key: ThemeColor,
   classNames: StyleClassNames
 ): string | undefined {
-  return classNames.text.color[key];
+  return classNames.text.textColor[key];
 }
 
 const getStyleGroupClassNameBySize = (
@@ -58,7 +57,7 @@ export const getTextClass = (
   styleClasses: StyleClassNames,
   styleOptions: TextStyleOptions & { classOverrides?: TextClassOverrides }
 ): string => {
-  const { bold = false, italic = false, lineDecoration = false, color = false } = styleOptions;
+  const { bold = false, italic = false, lineDecoration = false, textColor = false } = styleOptions;
 
   // Handle overrides
   const classOverrides = styleOptions.classOverrides;
@@ -90,8 +89,8 @@ export const getTextClass = (
     }
   }
 
-  if (color && textStyleGroup === 'textColor') {
-    const colorClass = styleClasses.text.color?.[color];
+  if (textColor && textStyleGroup === 'textColor') {
+    const colorClass = styleClasses.text.textColor?.[textColor];
     if (colorClass) {
       return colorClass;
     }
@@ -101,6 +100,13 @@ export const getTextClass = (
     const alignClass = styleClasses.text.textAlign?.[styleOptions.textAlign];
     if (alignClass) {
       return alignClass;
+    }
+  }
+
+  if (textStyleGroup === 'textSize' && styleOptions.textSize) {
+    const sizeClass = styleClasses.text.textSize?.[styleOptions.textSize];
+    if (sizeClass) {
+      return sizeClass;
     }
   }
 

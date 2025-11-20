@@ -145,12 +145,14 @@ export const FaqBlock: React.FC<FaqBlockProps> = ({
             descriptionOptions.classOverrides?.borderColor || descriptionBorderColorClass,
         };
 
+  // @todo: Refactor size to accomodate new text size naming convention
+
   // Set up headline options with defaults
   const mergedHeadlineOptions = {
     ...headlineOptions,
     styleOptions: {
       ...headlineOptions?.styleOptions,
-      size: headlineOptions?.styleOptions?.size || FAQ_DEFAULTS.headline.size,
+      size: headlineOptions?.styleOptions?.textSize || FAQ_DEFAULTS.headline.size,
     },
   };
 

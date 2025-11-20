@@ -27,11 +27,12 @@ export type TextLineDecoration = 'underline' | 'strikethrough' | 'overline';
 
 export type TextAlign = 'left' | 'center' | 'right' | 'justify';
 
+// export type TextLeading = 'none' | 'tight' | 'snug' | 'normal' | 'relaxed' | 'loose';
+
 export type TextStyleGroup =
   | 'textSize'
   | 'textAlign'
   | 'textColor'
-  | 'leading'
   | 'fontWeight'
   | 'fontStyle'
   | 'fontFamily'
@@ -42,6 +43,15 @@ export type TextStyleGroup =
   | 'border'
   | 'borderColor'
   | 'lineDecoration';
+
+export interface TextStyleOptions {
+  textSize?: TextSize;
+  textAlign?: TextAlign;
+  bold?: boolean;
+  italic?: boolean;
+  lineDecoration?: TextLineDecoration | false;
+  textColor?: string | false;
+}
 
 export type TextClassOverrides = Partial<Record<TextStyleGroup, string>> | string;
 
@@ -79,7 +89,7 @@ export type TextClassNames = {
     strikethrough?: string;
     overline?: string;
   };
-  color: { black: string; white: string; muted: string; primary: string } & Partial<
+  textColor: { black: string; white: string; muted: string; primary: string } & Partial<
     Record<ThemeColor, string>
   >;
   style: {

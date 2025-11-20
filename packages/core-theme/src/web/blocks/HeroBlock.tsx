@@ -7,7 +7,7 @@ import type { ImageSectionProps } from '../components/ImageSection.js';
 import { H1 } from '../text/index.js';
 import { ButtonGroup } from '../components/ButtonGroup.js';
 import type { ButtonData } from '../../types/sanity-data-types/index.js';
-import type { TextStyleOptions } from '../text/Text.js';
+import type { TextStyleOptions } from '../../types/style-types/text-style-classes.js';
 
 // Constants
 const HERO_DEFAULT_SIZES =
@@ -15,13 +15,13 @@ const HERO_DEFAULT_SIZES =
 const HERO_DEFAULT_QUALITY = 80 as const;
 
 const HERO_TEXT_STYLES = {
-  styleOptions: { color: 'white' as const },
+  styleOptions: { textColor: 'white' as const },
   classOverrides: {},
   size: 'lg',
 } as const;
 
 const HERO_TEXT_STYLES_CENTER = {
-  styleOptions: { color: 'white' as const },
+  styleOptions: { textColor: 'white' as const },
   classOverrides: { textAlign: 'text-center' },
   size: 'lg',
 } as const;
@@ -182,7 +182,7 @@ export const HeroBlock = ({
       <HeroBlockHeading
         data={data}
         id={contentIds?.heading}
-        styleOptions={{ textAlign: 'left', color: 'white' }}
+        styleOptions={{ textAlign: 'left', textColor: 'white' }}
       />
       <HeroBlockDescription data={data} context={context} id={contentIds?.description} />
       <HeroButtonGroup

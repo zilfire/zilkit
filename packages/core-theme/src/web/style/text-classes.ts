@@ -48,8 +48,17 @@ export const fontStrikethrough = 'line-through';
 export const fontOverline = 'overline';
 
 // Leading
-export const leadingSnug = 'leading-snug';
-export const leadingNormal = 'leading-normal';
+// 'none' | 'tight' | 'snug' | 'normal' | 'relaxed' | 'loose';
+// export const leadingNone = 'leading-1';
+// export const leadingTight = 'leading-1.25';
+// export const leadingSnug = 'leading-1.375';
+// export const leadingNormal = 'leading-1.5';
+// export const leadingRelaxed = 'leading-1.625';
+// export const leadingLoose = 'leading-2';
+
+// export const leadingNormal = '';
+// export const leadingTight = 'leading-tight';
+// export const leadingSnug = 'leading-snug';
 
 // Vertical spacing
 // export const verticalLineSpacing = 'mb-3 md:mb-4';
@@ -122,7 +131,7 @@ export const textClassNames: TextClassNames = {
     strikethrough: fontStrikethrough,
     overline: fontOverline,
   },
-  color: {
+  textColor: {
     black: textBlack,
     white: textWhite,
     primary: textPrimary,
@@ -140,7 +149,7 @@ export const textClassNames: TextClassNames = {
         },
         textAlign: textLeft,
         textColor: textBlack,
-        leading: leadingNormal,
+        // leading: leadingNormal,
         fontWeight: fontNormal,
         fontStyle: fontNotItalic,
         fontFamily: bodyFont,
@@ -167,7 +176,7 @@ export const textClassNames: TextClassNames = {
             lg: text5XL,
             xl: text6XL,
           },
-          leading: leadingSnug,
+          // leading: leadingSnug,
           fontWeight: fontBold,
           fontFamily: headingFont,
         },
@@ -179,7 +188,7 @@ export const textClassNames: TextClassNames = {
             lg: text4XL,
             xl: text5XL,
           },
-          leading: leadingSnug,
+          // leading: leadingSnug,
           fontWeight: fontBold,
           fontFamily: headingFont,
         },
@@ -191,7 +200,7 @@ export const textClassNames: TextClassNames = {
             lg: text3XL,
             xl: text4XL,
           },
-          leading: leadingSnug,
+          // leading: leadingSnug,
           fontWeight: fontBold,
           fontFamily: headingFont,
         },
@@ -203,7 +212,7 @@ export const textClassNames: TextClassNames = {
             lg: text2XL,
             xl: text3XL,
           },
-          leading: leadingSnug,
+          // leading: leadingSnug,
           fontWeight: fontBold,
           fontFamily: headingFont,
         },
