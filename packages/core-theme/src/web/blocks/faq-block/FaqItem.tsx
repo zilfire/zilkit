@@ -5,7 +5,7 @@ import { FaPlus as PlusIcon, FaMinus as MinusIcon } from 'react-icons/fa6';
 import { PortableText } from 'next-sanity';
 import type { PortableTextBlock } from '@portabletext/types';
 import type { ThemeContext } from '../../../types/context-types/index.js';
-import type { TextStyleOptions } from '../../text/Text.js';
+import type { TextStyleOptions } from '../../../types/style-types/text-style-classes.js';
 import type { TextClassOverrides } from '../../../types/style-types/text-style-classes.js';
 import type { ThemeColor } from '../../../types/style-types/style-class-names.js';
 import type { BorderColor } from '../../../types/style-types/border-style-classes.js';
@@ -48,8 +48,9 @@ export type FaqItemProps = {
 
 export const FaqItem: React.FC<FaqItemProps> = ({ qa, index, options, context }) => {
   const questionTextColor =
-    options?.questionOptions?.styleOptions?.color || FAQ_DEFAULTS.question.color;
-  const answerTextColor = options?.answerOptions?.styleOptions?.color || FAQ_DEFAULTS.answer.color;
+    options?.questionOptions?.styleOptions?.textColor || FAQ_DEFAULTS.question.color;
+  const answerTextColor =
+    options?.answerOptions?.styleOptions?.textColor || FAQ_DEFAULTS.answer.color;
   const plusIconColor = options?.plusIconOptions?.color || FAQ_DEFAULTS.plusIcon.color;
   const { borderColor, borderThickness } = options?.questionOptions || {};
   const { styleClasses } = context;
@@ -127,7 +128,7 @@ export const FaqItem: React.FC<FaqItemProps> = ({ qa, index, options, context })
               components={textComponents(
                 {
                   styleOptions: {
-                    color: answerTextColor,
+                    textColor: answerTextColor,
                   },
                   className: 'last:mb-0',
                 },

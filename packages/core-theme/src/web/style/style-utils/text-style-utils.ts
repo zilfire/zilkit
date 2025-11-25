@@ -57,8 +57,6 @@ export const getTextClass = (
   styleClasses: StyleClassNames,
   styleOptions: TextStyleOptions & { classOverrides?: TextClassOverrides }
 ): string => {
-  const { bold = false, italic = false, lineDecoration = false, textColor = false } = styleOptions;
-
   // Handle overrides
   const classOverrides = styleOptions.classOverrides;
 
@@ -67,30 +65,8 @@ export const getTextClass = (
   }
 
   // Check for option styles
-  if (bold && textStyleGroup === 'fontWeight') {
-    const boldClass = styleClasses.text.emphasis?.bold;
-    if (boldClass) {
-      return boldClass;
-    }
-  }
-
-  if (italic && textStyleGroup === 'fontStyle') {
-    const italicClass = styleClasses.text.emphasis?.italic;
-    if (italicClass) {
-      return italicClass;
-    }
-  }
-
-  if (lineDecoration && textStyleGroup === 'lineDecoration') {
-    const decorationClass = styleClasses.text.emphasis?.[lineDecoration];
-
-    if (decorationClass) {
-      return decorationClass;
-    }
-  }
-
-  if (textColor && textStyleGroup === 'textColor') {
-    const colorClass = styleClasses.text.textColor?.[textColor];
+  if (styleOptions.textColor && textStyleGroup === 'textColor') {
+    const colorClass = styleClasses.text.textColor?.[styleOptions.textColor];
     if (colorClass) {
       return colorClass;
     }
@@ -135,6 +111,27 @@ export const getTextClass = (
     const listTypeClass = styleClasses.text.listType?.[styleOptions.listType];
     if (listTypeClass) {
       return listTypeClass;
+    }
+  }
+
+  if (textStyleGroup === 'listPosition' && styleOptions.listPosition) {
+    const listPositionClass = styleClasses.text.listPosition?.[styleOptions.listPosition];
+    if (listPositionClass) {
+      return listPositionClass;
+    }
+  }
+
+  if (textStyleGroup === 'verticalSpacing' && styleOptions.verticalSpacing) {
+    const verticalSpacingClass = styleClasses.text.verticalSpacing?.[styleOptions.verticalSpacing];
+    if (verticalSpacingClass) {
+      return verticalSpacingClass;
+    }
+  }
+
+  if (textStyleGroup === 'lineDecoration' && styleOptions.lineDecoration) {
+    const lineDecorationClass = styleClasses.text.lineDecoration?.[styleOptions.lineDecoration];
+    if (lineDecorationClass) {
+      return lineDecorationClass;
     }
   }
 

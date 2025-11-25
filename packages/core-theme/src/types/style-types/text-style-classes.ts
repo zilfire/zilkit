@@ -21,9 +21,7 @@ export type TextElementVariant = 'blockquote' | 'indent';
 
 export type TextComponent = TextElement | TextElementVariant;
 
-export type TextEmphasis = 'italic' | 'bold' | TextLineDecoration;
-
-export type TextLineDecoration = 'underline' | 'strikethrough' | 'overline';
+export type TextLineDecoration = 'none' | 'underline' | 'strikethrough' | 'overline';
 
 export type TextAlign = 'left' | 'center' | 'right' | 'justify';
 
@@ -35,6 +33,12 @@ export type ListType = 'disc' | 'none' | 'decimal' | string;
 
 export type ListPosition = 'inside' | 'outside';
 
+export type VerticalSpacing = 'none' | 'xs' | 'sm' | 'md' | 'lg' | 'xl';
+
+export type HorizontalSpacing = 'none' | 'xs' | 'sm' | 'md' | 'lg' | 'xl';
+
+export type BorderColor = ThemeColor;
+
 export type FontWeight =
   | 'thin'
   | 'extralight'
@@ -45,8 +49,6 @@ export type FontWeight =
   | 'bold'
   | 'extrabold'
   | 'black';
-
-// export type TextLeading = 'none' | 'tight' | 'snug' | 'normal' | 'relaxed' | 'loose';
 
 export type TextStyleGroup =
   | 'textSize'
@@ -71,10 +73,9 @@ export interface TextStyleOptions {
   fontFamily?: FontFamily;
   listType?: ListType;
   listPosition?: ListPosition;
-  bold?: boolean;
-  italic?: boolean;
+  verticalSpacing?: VerticalSpacing;
   lineDecoration?: TextLineDecoration | false;
-  textColor?: string | false;
+  textColor?: TextColor | false;
 }
 
 export type TextClassOverrides = Partial<Record<TextStyleGroup, string>> | string;
@@ -106,13 +107,6 @@ export type TextVariantStyle = {
 export type TextClassNames = {
   textSize: Partial<Record<TextSize, string>>;
   textAlign: Partial<Record<TextAlign, string>>;
-  emphasis: {
-    bold?: string;
-    italic?: string;
-    underline?: string;
-    strikethrough?: string;
-    overline?: string;
-  };
   textColor: { black: string; white: string; muted: string; primary: string } & Partial<
     Record<ThemeColor, string>
   >;
@@ -121,6 +115,9 @@ export type TextClassNames = {
   fontFamily: Partial<Record<FontFamily, string>>;
   listType: Partial<Record<ListType, string>>;
   listPosition: Partial<Record<ListPosition, string>>;
+  verticalSpacing: Partial<Record<VerticalSpacing, string>>;
+  horizontalSpacing: Partial<Record<HorizontalSpacing, string>>;
+  lineDecoration: Partial<Record<TextLineDecoration, string>>;
   style: {
     normal: TextVariantStyle;
     variants?: {

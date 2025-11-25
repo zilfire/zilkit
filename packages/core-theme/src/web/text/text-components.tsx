@@ -5,7 +5,7 @@ import {
   PortableTextBlock,
 } from 'next-sanity';
 import { ThemeContext } from '../../types/context-types/index.js';
-import type { TextStyleOptions } from './Text.js';
+import type { TextStyleOptions } from '../../types/style-types/text-style-classes.js';
 import { Text } from './Text.js';
 import clsx from 'clsx';
 import type {

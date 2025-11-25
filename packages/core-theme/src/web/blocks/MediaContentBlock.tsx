@@ -29,7 +29,7 @@ export const MediaContentBlock: React.FC<MediaContentBlockProps> = ({ data, cont
         </div>
         <div className={clsx(columnClass)}>
           {eyebrow && (
-            <Span className="uppercase" styleOptions={{ color: 'muted' }}>
+            <Span className="uppercase" styleOptions={{ textColor: 'muted' }}>
               {eyebrow}
             </Span>
           )}

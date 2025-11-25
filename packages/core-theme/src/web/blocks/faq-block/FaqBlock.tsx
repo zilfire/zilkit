@@ -7,7 +7,7 @@ import { Section } from '../../components/Section.js';
 import type { SectionOptions } from '../../components/Section.js';
 import type { FaqBlockData } from '../../../types/sanity-data-types/blocks/index.js';
 import type { ThemeColor } from '../../../types/style-types/style-class-names.js';
-import type { TextStyleOptions } from '../../text/Text.js';
+import type { TextStyleOptions } from '../../../types/style-types/text-style-classes.js';
 import type {
   TextClassOverrides,
   TextElement,

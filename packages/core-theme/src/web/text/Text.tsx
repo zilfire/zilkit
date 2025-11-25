@@ -16,14 +16,14 @@ const DEFAULT_ELEMENT: TextElement = 'p';
 // todo: revisit leading -- currently part of font-size in tailwind config
 
 const TEXT_STYLE_GROUPS: TextStyleGroup[] = [
-  'textSize', //X
-  'textAlign', //X
-  'textColor', //X
-  'fontWeight', //X
-  'fontStyle', //X
-  'fontFamily', //X
-  'listType', //X
-  'listPosition', //X
+  'textSize',
+  'textAlign',
+  'textColor',
+  'fontWeight',
+  'fontStyle',
+  'fontFamily',
+  'listType',
+  'listPosition',
   'verticalSpacing',
   'horizontalSpacing',
   'lineDecoration',

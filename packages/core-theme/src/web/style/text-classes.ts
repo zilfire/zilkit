@@ -46,6 +46,7 @@ export const text7XL = 'text-7xl md:text-8xl lg:text-9xl'; // 4.5rem â†’ 6rem â†
 export const fontUnderline = 'underline';
 export const fontStrikethrough = 'line-through';
 export const fontOverline = 'overline';
+export const fontNoLineDecoration = '';
 
 // Font Weights
 export const fontThin = 'font-thin';
@@ -98,6 +99,9 @@ export const blockquoteHorizontalSpacing = clsx('ml-1', blockquotePadding);
 export const blockquoteBorder = 'border-l-4';
 export const blockquoteBorderColor = 'border-gray-400';
 
+// horizontal spacing
+export const horizontalSpacingNone = '';
+
 export const textClassNames: TextClassNames = {
   textSize: {
     xs: textXS,
@@ -117,13 +121,6 @@ export const textClassNames: TextClassNames = {
     center: textCenter,
     right: textRight,
     justify: textJustify,
-  },
-  emphasis: {
-    bold: fontBold,
-    italic: fontItalic,
-    underline: fontUnderline,
-    strikethrough: fontStrikethrough,
-    overline: fontOverline,
   },
   textColor: {
     black: textBlack,
@@ -158,6 +155,23 @@ export const textClassNames: TextClassNames = {
   listPosition: {
     inside: listInside,
     outside: listOutside,
+  },
+  verticalSpacing: {
+    none: zeroVerticalMargin,
+    xs: verticalLineSpacingXS,
+    sm: verticalLineSpacingSM,
+    md: verticalLineSpacingMD,
+    lg: verticalLineSpacingLG,
+    xl: verticalLineSpacingXL,
+  },
+  horizontalSpacing: {
+    none: horizontalSpacingNone,
+  },
+  lineDecoration: {
+    none: fontNoLineDecoration,
+    underline: fontUnderline,
+    strikethrough: fontStrikethrough,
+    overline: fontOverline,
   },
   style: {
     normal: {
