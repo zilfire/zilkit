@@ -10,19 +10,6 @@ import {
 
 import clsx from 'clsx';
 
-// Text size variables
-// export const textXS = 'text-xs';
-// export const textSmall = 'text-sm';
-// export const textBase = 'text-base';
-// export const textLarge = 'text-lg md:text-xl';
-// export const textXL = 'text-xl md:text-xxl';
-// export const text2XL = 'text-xxl md:text-3xl lg:text-4xl';
-// export const text3XL = 'text-3xl md:text-4xl lg:text-5xl';
-// export const text4XL = 'text-4xl md:text-5xl lg:text-6xl';
-// export const text5XL = 'text-4xl md:text-6xl lg:text-7xl';
-// export const text6XL = 'text-4xl md:text-6xl lg:text-8xl';
-// export const text7XL = 'text-5xl md:text-7xl lg:text-9xl';
-
 // Text colors
 export const textBlack = 'text-black';
 export const textWhite = 'text-white';
@@ -173,7 +160,7 @@ export const textClassNames: TextClassNames = {
     strikethrough: fontStrikethrough,
     overline: fontOverline,
   },
-  style: {
+  elementStyle: {
     normal: {
       default: {
         textSize: {

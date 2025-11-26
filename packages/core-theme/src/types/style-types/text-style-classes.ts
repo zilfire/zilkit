@@ -35,9 +35,11 @@ export type ListPosition = 'inside' | 'outside';
 
 export type VerticalSpacing = 'none' | 'xs' | 'sm' | 'md' | 'lg' | 'xl';
 
-export type HorizontalSpacing = 'none' | 'xs' | 'sm' | 'md' | 'lg' | 'xl';
+export type HorizontalSpacing = string;
 
-export type BorderColor = ThemeColor;
+export type Border = string;
+
+export type BorderColor = 'black' | 'white' | 'muted' | 'primary' | string;
 
 export type FontWeight =
   | 'thin'
@@ -74,6 +76,9 @@ export interface TextStyleOptions {
   listType?: ListType;
   listPosition?: ListPosition;
   verticalSpacing?: VerticalSpacing;
+  horizontalSpacing?: HorizontalSpacing;
+  border?: Border | false;
+  borderColor?: BorderColor | false;
   lineDecoration?: TextLineDecoration | false;
   textColor?: TextColor | false;
 }
@@ -105,20 +110,22 @@ export type TextVariantStyle = {
 };
 
 export type TextClassNames = {
-  textSize: Partial<Record<TextSize, string>>;
-  textAlign: Partial<Record<TextAlign, string>>;
-  textColor: { black: string; white: string; muted: string; primary: string } & Partial<
+  textSize?: Partial<Record<TextSize, string>>;
+  textAlign?: Partial<Record<TextAlign, string>>;
+  textColor?: { black: string; white: string; muted: string; primary: string } & Partial<
     Record<ThemeColor, string>
   >;
-  fontWeight: Partial<Record<FontWeight, string>>;
-  fontStyle: Partial<Record<FontStyle, string>>;
-  fontFamily: Partial<Record<FontFamily, string>>;
-  listType: Partial<Record<ListType, string>>;
-  listPosition: Partial<Record<ListPosition, string>>;
-  verticalSpacing: Partial<Record<VerticalSpacing, string>>;
-  horizontalSpacing: Partial<Record<HorizontalSpacing, string>>;
-  lineDecoration: Partial<Record<TextLineDecoration, string>>;
-  style: {
+  fontWeight?: Partial<Record<FontWeight, string>>;
+  fontStyle?: Partial<Record<FontStyle, string>>;
+  fontFamily?: Partial<Record<FontFamily, string>>;
+  listType?: Partial<Record<ListType, string>>;
+  listPosition?: Partial<Record<ListPosition, string>>;
+  verticalSpacing?: Partial<Record<VerticalSpacing, string>>;
+  horizontalSpacing?: Partial<Record<HorizontalSpacing, string>>;
+  lineDecoration?: Partial<Record<TextLineDecoration, string>>;
+  border?: Partial<Record<Border, string>>;
+  borderColor?: Partial<Record<BorderColor, string>>;
+  elementStyle: {
     normal: TextVariantStyle;
     variants?: {
       [key: Exclude<string, 'normal'>]: TextVariantStyle;

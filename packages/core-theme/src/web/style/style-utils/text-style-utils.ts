@@ -10,8 +10,6 @@ import type {
 
 import type { ThemeColor } from '../../../types/style-types/style-class-names.js';
 
-// import type { LayoutSizeOption } from '../../../types/style-types/layout-style-classes.js';
-
 import type { StyleClassNames } from '../../../types/style-types/style-class-names.js';
 
 /**
@@ -21,13 +19,15 @@ export function getTextColorClass(
   key: ThemeColor,
   classNames: StyleClassNames
 ): string | undefined {
-  return classNames.text.textColor[key];
+  if (classNames.text?.textColor?.[key]) {
+    return classNames.text?.textColor?.[key];
+  }
+  return undefined;
 }
 
 const getStyleGroupClassNameBySize = (
   classNamesBySize: classNamesBySize,
-  size: TextElementSize,
-  styleClasses: StyleClassNames
+  size: TextElementSize
 ): string => {
   if (typeof classNamesBySize === 'object') {
     // If object, check if size-specific class name exists
@@ -58,120 +58,70 @@ export const getTextClass = (
   styleOptions: TextStyleOptions & { classOverrides?: TextClassOverrides }
 ): string => {
   // Handle overrides
-  const classOverrides = styleOptions.classOverrides;
 
+  const textClassNames = styleClasses.text;
+
+  const classOverrides = styleOptions.classOverrides;
   if (typeof classOverrides === 'object' && textStyleGroup in classOverrides) {
     return classOverrides[textStyleGroup] || '';
   }
 
   // Check for option styles
-  if (styleOptions.textColor && textStyleGroup === 'textColor') {
-    const colorClass = styleClasses.text.textColor?.[styleOptions.textColor];
-    if (colorClass) {
-      return colorClass;
-    }
-  }
-
-  if (textStyleGroup === 'textAlign' && styleOptions.textAlign) {
-    const alignClass = styleClasses.text.textAlign?.[styleOptions.textAlign];
-    if (alignClass) {
-      return alignClass;
-    }
-  }
-
-  if (textStyleGroup === 'textSize' && styleOptions.textSize) {
-    const sizeClass = styleClasses.text.textSize?.[styleOptions.textSize];
-    if (sizeClass) {
-      return sizeClass;
-    }
-  }
-
-  if (textStyleGroup === 'fontWeight' && styleOptions.fontWeight) {
-    const weightClass = styleClasses.text.fontWeight?.[styleOptions.fontWeight];
-    if (weightClass) {
-      return weightClass;
-    }
-  }
-
-  if (textStyleGroup === 'fontStyle' && styleOptions.fontStyle) {
-    const styleClass = styleClasses.text.fontStyle?.[styleOptions.fontStyle];
-    if (styleClass) {
-      return styleClass;
-    }
-  }
-
-  if (textStyleGroup === 'fontFamily' && styleOptions.fontFamily) {
-    const familyClass = styleClasses.text.fontFamily?.[styleOptions.fontFamily];
-    if (familyClass) {
-      return familyClass;
-    }
-  }
-
-  if (textStyleGroup === 'listType' && styleOptions.listType) {
-    const listTypeClass = styleClasses.text.listType?.[styleOptions.listType];
-    if (listTypeClass) {
-      return listTypeClass;
-    }
-  }
-
-  if (textStyleGroup === 'listPosition' && styleOptions.listPosition) {
-    const listPositionClass = styleClasses.text.listPosition?.[styleOptions.listPosition];
-    if (listPositionClass) {
-      return listPositionClass;
-    }
-  }
-
-  if (textStyleGroup === 'verticalSpacing' && styleOptions.verticalSpacing) {
-    const verticalSpacingClass = styleClasses.text.verticalSpacing?.[styleOptions.verticalSpacing];
-    if (verticalSpacingClass) {
-      return verticalSpacingClass;
-    }
-  }
-
-  if (textStyleGroup === 'lineDecoration' && styleOptions.lineDecoration) {
-    const lineDecorationClass = styleClasses.text.lineDecoration?.[styleOptions.lineDecoration];
-    if (lineDecorationClass) {
-      return lineDecorationClass;
+  if (
+    textStyleGroup in styleOptions &&
+    styleOptions[textStyleGroup] &&
+    textClassNames[textStyleGroup]
+  ) {
+    const optionClassNameKey = styleOptions[
+      textStyleGroup
+    ] as keyof (typeof textClassNames)[typeof textStyleGroup];
+    const optionClassName =
+      textClassNames[textStyleGroup]?.[
+        optionClassNameKey as keyof (typeof textClassNames)[typeof textStyleGroup]
+      ];
+    if (optionClassName) {
+      return optionClassName;
     }
   }
 
   // If variant, check for variant-specific styles -- First check element then default
   if (variant !== 'normal') {
     // Check for variantStyles
-    const variantStyles: TextVariantStyle | undefined = styleClasses.text.style.variants?.[variant];
+    const variantStyles: TextVariantStyle | undefined =
+      styleClasses.text.elementStyle.variants?.[variant];
 
     if (variantStyles) {
       // check for textStyleGroup in variant element styles.
       const variantElementClassNames: classNamesBySize | undefined =
         variantStyles.elements?.[textComponent]?.[textStyleGroup];
       if (variantElementClassNames) {
-        return getStyleGroupClassNameBySize(variantElementClassNames, size, styleClasses);
+        return getStyleGroupClassNameBySize(variantElementClassNames, size);
       }
 
       // Check for textStyleGroup in variant default styles.
       const variantDefaultClassNames: classNamesBySize | undefined =
         variantStyles.default[textStyleGroup];
       if (variantDefaultClassNames) {
-        return getStyleGroupClassNameBySize(variantDefaultClassNames, size, styleClasses);
+        return getStyleGroupClassNameBySize(variantDefaultClassNames, size);
       }
     }
   }
 
   // Check for normal styles
-  const normalStyles: TextVariantStyle | undefined = styleClasses.text.style.normal;
+  const normalStyles: TextVariantStyle | undefined = styleClasses.text.elementStyle.normal;
   if (normalStyles) {
     // check for textStyleGroup in element styles.
     const normalElementClassNames: classNamesBySize | undefined =
       normalStyles.elements?.[textComponent]?.[textStyleGroup];
     if (normalElementClassNames) {
-      return getStyleGroupClassNameBySize(normalElementClassNames, size, styleClasses);
+      return getStyleGroupClassNameBySize(normalElementClassNames, size);
     }
 
     // Check for textStyleGroup in default styles.
     const normalDefaultClassNames: classNamesBySize | undefined =
       normalStyles.default[textStyleGroup];
     if (normalDefaultClassNames) {
-      return getStyleGroupClassNameBySize(normalDefaultClassNames, size, styleClasses);
+      return getStyleGroupClassNameBySize(normalDefaultClassNames, size);
     }
   }
 
