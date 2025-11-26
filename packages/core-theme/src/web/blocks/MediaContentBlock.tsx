@@ -5,9 +5,8 @@ import { H2, H3, H4, Span, P } from '../text/index.js';
 import SanityImage from '@zilfire/next-sanity-image';
 import { textComponents } from '../text/text-components.js';
 import { PortableText } from 'next-sanity';
-import { getHorizontalGapSpacingClass } from '../style/style-utils/layout-style-utils.js';
+import { getGapSpacingClass } from '../style/style-utils/layout-style-utils.js';
 import clsx from 'clsx';
-// import { verticalLineSpacing } from '../style/button-classes.js';
 
 export interface MediaContentBlockProps {
   data?: MediaContentBlockData;
@@ -18,7 +17,7 @@ export const MediaContentBlock: React.FC<MediaContentBlockProps> = ({ data, cont
   if (!data) return null;
   const { image, heading, subheading, eyebrow, content } = data;
 
-  const gapClass = getHorizontalGapSpacingClass('lg', context.styleClasses);
+  const gapClass = getGapSpacingClass('lg', context.styleClasses);
   const columnClass = 'w-full lg:w-6/12';
 
   return (
@@ -29,15 +28,11 @@ export const MediaContentBlock: React.FC<MediaContentBlockProps> = ({ data, cont
         </div>
         <div className={clsx(columnClass)}>
           {eyebrow && (
-            <Span className="uppercase" styleOptions={{ textColor: 'muted' }}>
+            <P className="uppercase" styleOptions={{ textColor: 'muted', verticalSpacing: 'none' }}>
               {eyebrow}
-            </Span>
+            </P>
           )}
-          {heading && (
-            <H2 styleOptions={{}} classOverrides={{ verticalSpacing: '' }}>
-              {heading}
-            </H2>
-          )}
+          {heading && <H2 styleOptions={{ verticalSpacing: 'sm' }}>{heading}</H2>}
           {subheading && <H4 styleOptions={{}}>{subheading}</H4>}
           {content && <PortableText value={content} components={textComponents({}, context)} />}
         </div>
