@@ -144,7 +144,6 @@ export const textClassNames: TextClassNames = {
     outside: listOutside,
   },
   verticalSpacing: {
-    none: zeroVerticalMargin,
     xs: verticalLineSpacingXS,
     sm: verticalLineSpacingSM,
     md: verticalLineSpacingMD,
@@ -155,7 +154,6 @@ export const textClassNames: TextClassNames = {
     none: horizontalSpacingNone,
   },
   lineDecoration: {
-    none: fontNoLineDecoration,
     underline: fontUnderline,
     strikethrough: fontStrikethrough,
     overline: fontOverline,

@@ -4,7 +4,7 @@ import type {
   TextVariantStyle,
   TextElementSize,
   classNamesBySize,
-  TextClassOverrides,
+  TextStyleOverride,
   TextStyleOptions,
 } from '../../../types/style-types/text-style-classes.js';
 
@@ -55,26 +55,27 @@ export const getTextClass = (
   size: TextElementSize,
   variant: string = 'normal',
   styleClasses: StyleClassNames,
-  styleOptions: TextStyleOptions & { classOverrides?: TextClassOverrides }
-): string => {
+  styleOptions: TextStyleOptions,
+  styleOverride: TextStyleOverride
+): string | false => {
   // Handle overrides
 
   const textClassNames = styleClasses.text;
 
-  const classOverrides = styleOptions.classOverrides;
-  if (typeof classOverrides === 'object' && textStyleGroup in classOverrides) {
-    return classOverrides[textStyleGroup] || '';
+  if (styleOverride && typeof styleOverride === 'object' && textStyleGroup in styleOverride) {
+    return styleOverride[textStyleGroup] || false;
   }
 
   // Check for option styles
-  if (
-    textStyleGroup in styleOptions &&
-    styleOptions[textStyleGroup] &&
-    textClassNames[textStyleGroup]
-  ) {
+  if (textStyleGroup in styleOptions && textClassNames[textStyleGroup]) {
+    if (styleOptions[textStyleGroup] === false) {
+      return false;
+    }
+
     const optionClassNameKey = styleOptions[
       textStyleGroup
     ] as keyof (typeof textClassNames)[typeof textStyleGroup];
+
     const optionClassName =
       textClassNames[textStyleGroup]?.[
         optionClassNameKey as keyof (typeof textClassNames)[typeof textStyleGroup]

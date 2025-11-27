@@ -2,7 +2,7 @@ import type {
   TextElement,
   TextComponent,
   TextStyleGroup,
-  TextClassOverrides,
+  TextStyleOverride,
   TextElementSize,
   TextVariant,
   TextStyleOptions,
@@ -38,7 +38,7 @@ export interface TextProps {
   as?: TextElement;
   children: React.ReactNode;
   className?: string;
-  classOverrides?: TextClassOverrides;
+  styleOverride?: TextStyleOverride;
   styleOptions?: TextStyleOptions;
   id?: string;
 }
@@ -55,18 +55,15 @@ const generateTextClasses = (
   size: TextElementSize,
   variant: string,
   styleOptions: TextStyleOptions,
-  classOverrides?: TextClassOverrides
+  styleOverride: TextStyleOverride
 ): string | string[] => {
-  if (typeof classOverrides === 'string') {
-    return classOverrides;
+  if (typeof styleOverride === 'string') {
+    return styleOverride;
   }
 
   return TEXT_STYLE_GROUPS.map((group: TextStyleGroup) =>
-    getTextClass(element, group, size, variant, styleClassNames, {
-      ...styleOptions,
-      classOverrides,
-    })
-  ).filter(Boolean);
+    getTextClass(element, group, size, variant, styleClassNames, styleOptions, styleOverride)
+  ).filter(Boolean) as string[];
 };
 
 export const Text = ({
@@ -74,14 +71,14 @@ export const Text = ({
   as,
   children,
   className,
-  classOverrides,
+  styleOverride = {},
   styleOptions = {},
   size = 'md',
   variant = 'normal',
   id,
 }: TextProps): React.ReactElement => {
   const Component = resolveComponent(element, as);
-  const textClasses = generateTextClasses(element, size, variant, styleOptions, classOverrides);
+  const textClasses = generateTextClasses(element, size, variant, styleOptions, styleOverride);
   return (
     <Component id={id} className={clsx(textClasses, className)}>
       {children}

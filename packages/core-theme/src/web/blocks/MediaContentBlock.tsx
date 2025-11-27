@@ -28,7 +28,7 @@ export const MediaContentBlock: React.FC<MediaContentBlockProps> = ({ data, cont
         </div>
         <div className={clsx(columnClass)}>
           {eyebrow && (
-            <P className="uppercase" styleOptions={{ textColor: 'muted', verticalSpacing: 'none' }}>
+            <P className="uppercase" styleOptions={{ textColor: 'muted', verticalSpacing: false }}>
               {eyebrow}
             </P>
           )}

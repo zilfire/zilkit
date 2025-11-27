@@ -1,4 +1,5 @@
 import type { ThemeColor } from './style-class-names.js';
+import type { StyleOption, StyleOverride } from './style.types.js';
 
 export type TextColor = ThemeColor;
 
@@ -21,7 +22,7 @@ export type TextElementVariant = 'blockquote' | 'indent';
 
 export type TextComponent = TextElement | TextElementVariant;
 
-export type TextLineDecoration = 'none' | 'underline' | 'strikethrough' | 'overline';
+export type TextLineDecoration = 'underline' | 'strikethrough' | 'overline';
 
 export type TextAlign = 'left' | 'center' | 'right' | 'justify';
 
@@ -29,11 +30,11 @@ export type FontStyle = 'normal' | 'italic';
 
 export type FontFamily = 'body' | 'heading' | string;
 
-export type ListType = 'disc' | 'none' | 'decimal' | string;
+export type ListType = 'disc' | 'decimal' | string;
 
 export type ListPosition = 'inside' | 'outside';
 
-export type VerticalSpacing = 'none' | 'xs' | 'sm' | 'md' | 'lg' | 'xl';
+export type VerticalSpacing = 'xs' | 'sm' | 'md' | 'lg' | 'xl';
 
 export type HorizontalSpacing = string;
 
@@ -68,22 +69,24 @@ export type TextStyleGroup =
   | 'lineDecoration';
 
 export interface TextStyleOptions {
-  textSize?: TextSize;
-  textAlign?: TextAlign;
-  fontWeight?: FontWeight;
-  fontStyle?: FontStyle;
-  fontFamily?: FontFamily;
-  listType?: ListType;
-  listPosition?: ListPosition;
-  verticalSpacing?: VerticalSpacing;
-  horizontalSpacing?: HorizontalSpacing;
-  border?: Border | false;
-  borderColor?: BorderColor | false;
-  lineDecoration?: TextLineDecoration | false;
-  textColor?: TextColor | false;
+  textSize?: StyleOption<TextSize>;
+  textAlign?: StyleOption<TextAlign>;
+  fontWeight?: StyleOption<FontWeight>;
+  fontStyle?: StyleOption<FontStyle>;
+  fontFamily?: StyleOption<FontFamily>;
+  listType?: StyleOption<ListType>;
+  listPosition?: StyleOption<ListPosition>;
+  verticalSpacing?: StyleOption<VerticalSpacing>;
+  horizontalSpacing?: StyleOption<HorizontalSpacing>;
+  border?: StyleOption<Border>;
+  borderColor?: StyleOption<BorderColor>;
+  lineDecoration?: StyleOption<TextLineDecoration>;
+  textColor?: StyleOption<TextColor>;
 }
 
-export type TextClassOverrides = Partial<Record<TextStyleGroup, string>> | string;
+// export type TextClassOverrides = Partial<Record<TextStyleGroup, string>> | string;
+
+export type TextStyleOverride = StyleOverride<TextStyleGroup>;
 
 export type TextSize =
   | 'xs'
