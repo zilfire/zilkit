@@ -44,7 +44,7 @@ export const HeroBlockHeading = ({
       id={id}
       size="lg"
       styleOptions={styleOptions}
-      classOverrides={HERO_TEXT_STYLES.classOverrides}
+      styleOverride={HERO_TEXT_STYLES.classOverrides}
     >
       {data.heading}
     </H1>

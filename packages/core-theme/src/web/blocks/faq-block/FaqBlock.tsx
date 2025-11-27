@@ -9,7 +9,7 @@ import type { FaqBlockData } from '../../../types/sanity-data-types/blocks/index
 import type { ThemeColor } from '../../../types/style-types/style-class-names.js';
 import type { TextStyleOptions } from '../../../types/style-types/text-style-classes.js';
 import type {
-  TextClassOverrides,
+  TextStyleOverride,
   TextElement,
 } from '../../../types/style-types/text-style-classes.js';
 import type { BorderColor } from '../../../types/style-types/border-style-classes.js';
@@ -59,14 +59,14 @@ type FaqOptions = {
   descriptionOptions?: {
     sidebarRuleColor?: ThemeColor;
     className?: string;
-    classOverrides?: TextClassOverrides;
+    styleOverride?: TextStyleOverride;
     styleOptions?: TextStyleOptions;
     id?: string;
   };
   headlineOptions?: {
     styleOptions?: TextStyleOptions;
     className?: string;
-    classOverrides?: TextClassOverrides;
+    styleOverride?: TextStyleOverride;
     as?: TextElement;
     id?: string;
   };
@@ -76,13 +76,13 @@ type FaqOptions = {
   questionOptions?: {
     styleOptions?: TextStyleOptions;
     className?: string;
-    classOverrides?: TextClassOverrides;
+    styleOverride?: TextStyleOverride;
     borderColor?: BorderColor;
     borderThickness?: 'thin' | 'medium' | 'thick';
   };
   answerOptions?: {
     className?: string;
-    classOverrides?: TextClassOverrides;
+    styleOverride?: TextStyleOverride;
     styleOptions?: TextStyleOptions;
   };
   plusIconOptions?: {
@@ -137,12 +137,11 @@ export const FaqBlock: React.FC<FaqBlockProps> = ({
   );
 
   const descriptionClassOverrides =
-    typeof descriptionOptions.classOverrides === 'string'
-      ? descriptionOptions.classOverrides
+    typeof descriptionOptions.styleOverride === 'string'
+      ? descriptionOptions.styleOverride
       : {
-          ...descriptionOptions.classOverrides,
-          borderColor:
-            descriptionOptions.classOverrides?.borderColor || descriptionBorderColorClass,
+          ...descriptionOptions.styleOverride,
+          borderColor: descriptionOptions.styleOverride?.borderColor || descriptionBorderColorClass,
         };
 
   // @todo: Refactor size to accomodate new text size naming convention
@@ -169,7 +168,7 @@ export const FaqBlock: React.FC<FaqBlockProps> = ({
           {heading && <H2 {...mergedHeadlineOptions}>{heading}</H2>}
           {description && (
             <Blockquote
-              classOverrides={descriptionClassOverrides}
+              styleOverride={descriptionClassOverrides}
               className={descriptionOptions.className}
               styleOptions={descriptionOptions.styleOptions}
               id={descriptionId}

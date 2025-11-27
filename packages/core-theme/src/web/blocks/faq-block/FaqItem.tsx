@@ -6,7 +6,7 @@ import { PortableText } from 'next-sanity';
 import type { PortableTextBlock } from '@portabletext/types';
 import type { ThemeContext } from '../../../types/context-types/index.js';
 import type { TextStyleOptions } from '../../../types/style-types/text-style-classes.js';
-import type { TextClassOverrides } from '../../../types/style-types/text-style-classes.js';
+import type { TextStyleOverride } from '../../../types/style-types/text-style-classes.js';
 import type { ThemeColor } from '../../../types/style-types/style-class-names.js';
 import type { BorderColor } from '../../../types/style-types/border-style-classes.js';
 import { getTextColorClass } from '../../style/style-utils/text-style-utils.js';
@@ -22,13 +22,13 @@ type FaqItemOptions = {
   questionOptions?: {
     styleOptions?: TextStyleOptions;
     className?: string;
-    classOverrides?: TextClassOverrides;
+    styleOverride?: TextStyleOverride;
     borderColor?: BorderColor;
     borderThickness?: 'thin' | 'medium' | 'thick';
   };
   answerOptions?: {
     className?: string;
-    classOverrides?: TextClassOverrides;
+    styleOverride?: TextStyleOverride;
     styleOptions?: TextStyleOptions;
   };
   plusIconOptions?: {

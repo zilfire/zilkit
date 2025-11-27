@@ -11,21 +11,21 @@ import clsx from 'clsx';
 import type {
   TextComponent,
   TextElement,
-  TextClassOverrides,
+  TextStyleOverride,
   TextElementSize,
   TextVariant,
 } from '../../types/style-types/text-style-classes.js';
 
 type ComponentOptions = {
   componentClassName?: string;
-  componentClassOverrides?: TextClassOverrides;
+  componentStyleOverride?: TextStyleOverride;
   componentStyleOptions?: TextStyleOptions;
 };
 
 type PortableTextOptions = {
   normalSpan?: boolean;
   className?: string;
-  classOverrides?: TextClassOverrides;
+  styleOverride?: TextStyleOverride;
   styleOptions?: TextStyleOptions;
   componentOptions?: Partial<Record<TextComponent, ComponentOptions>>;
   size?: TextElementSize;
@@ -60,7 +60,7 @@ const RenderedText: React.FC<RenderedTextProps> = ({
   };
 
   // Class handling: global defaults + component-specific overrides
-  const classOverrides = componentOption?.componentClassOverrides || options?.classOverrides;
+  const styleOverride = componentOption?.componentStyleOverride || options?.styleOverride;
   const className = componentOption?.componentClassName || options?.className;
 
   return (
@@ -68,7 +68,7 @@ const RenderedText: React.FC<RenderedTextProps> = ({
       element={element}
       as={as}
       className={clsx(className, renderClassName)}
-      classOverrides={classOverrides}
+      styleOverride={styleOverride}
       styleOptions={styleOptions}
       size={size}
       variant={variant}
