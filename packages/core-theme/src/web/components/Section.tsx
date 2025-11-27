@@ -3,11 +3,11 @@ import clsx from 'clsx';
 import {
   getSectionVerticalSpacingClass,
   getContentMaxWidthClass,
-} from '../style/style-utils/layout-style-utils.js';
-import { getBackgroundColorClass } from '../style/style-utils/background-style-utils.js';
-import type { ThemeContext } from '../../types/context-types/index.js';
-import type { ThemeColor } from '../../types/style-types/style-class-names.js';
-import type { LayoutSize, ContentWidth } from '../../types/style-types/layout-style-classes.js';
+} from '../style/utils/layout-style-utils.js';
+import { getBackgroundColorClass } from '../style/utils/background-style-utils.js';
+import type { ThemeContext } from '../../sanity/data-types/index.js';
+import type { ThemeColor } from '../style/types/style.types.js';
+import type { LayoutSize, ContentWidth } from '../style/types/layout-style.types.js';
 import { Container } from './Container.js';
 import type React from 'react';
 

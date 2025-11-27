@@ -1,6 +1,4 @@
-import type { ThemeColor } from '../../../types/style-types/style-class-names.js';
-
-import type { StyleClassNames } from '../../../types/style-types/style-class-names.js';
+import type { ThemeColor, StyleClassNames } from '../types/style.types.js';
 
 /**
  * Get a background color class by key

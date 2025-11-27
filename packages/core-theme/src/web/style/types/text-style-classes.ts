@@ -1,4 +1,4 @@
-import type { ThemeColor } from './style-class-names.js';
+import type { ThemeColor } from './style.types.js';
 import type { StyleOption, StyleOverride } from './style.types.js';
 
 export type TextColor = ThemeColor;
@@ -25,6 +25,8 @@ export type TextComponent = TextElement | TextElementVariant;
 export type TextLineDecoration = 'underline' | 'strikethrough' | 'overline';
 
 export type TextAlign = 'left' | 'center' | 'right' | 'justify';
+
+export type TextTransform = 'normal' | 'uppercase' | 'lowercase' | 'capitalize';
 
 export type FontStyle = 'normal' | 'italic';
 
@@ -57,6 +59,7 @@ export type TextStyleGroup =
   | 'textSize'
   | 'textAlign'
   | 'textColor'
+  | 'textTransform'
   | 'fontWeight'
   | 'fontStyle'
   | 'fontFamily'
@@ -82,6 +85,7 @@ export interface TextStyleOptions {
   borderColor?: StyleOption<BorderColor>;
   lineDecoration?: StyleOption<TextLineDecoration>;
   textColor?: StyleOption<TextColor>;
+  textTransform?: StyleOption<TextTransform>;
 }
 
 // export type TextClassOverrides = Partial<Record<TextStyleGroup, string>> | string;
@@ -128,6 +132,7 @@ export type TextClassNames = {
   lineDecoration?: Partial<Record<TextLineDecoration, string>>;
   border?: Partial<Record<Border, string>>;
   borderColor?: Partial<Record<BorderColor, string>>;
+  textTransform?: Partial<Record<TextTransform, string>>;
   elementStyle: {
     normal: TextVariantStyle;
     variants?: {

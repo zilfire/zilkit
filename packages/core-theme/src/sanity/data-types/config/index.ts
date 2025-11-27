@@ -1,5 +1,4 @@
-import type { SanityConfig } from '../sanity-data-types/config/index.js';
-import type { StyleClassNames } from '../style-types/style-class-names.js';
+import type { StyleClassNames } from '../../../web/style/types/style.types.js';
 
 export type LinkComponent = React.ComponentType<{
   href: string;
@@ -11,4 +10,11 @@ export type ThemeContext = {
   sanityConfig: SanityConfig;
   styleClasses: StyleClassNames;
   LinkComponent: LinkComponent;
+};
+
+export type SanityConfig = {
+  sanityProjectId: string;
+  sanityDataset: string;
+  sanityApiVersion: string;
+  sanityUseCdn?: boolean;
 };

@@ -1,1 +1,1 @@
-export * from './types/sanity-data-types/index.js';
+export * from './sanity/data-types/index.js';

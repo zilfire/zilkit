@@ -1,5 +1,5 @@
-import type { TextSize } from '../../../types/style-types/text-style-classes.js';
-import type { GapSpacing } from '../../../types/style-types/layout-style-classes.js';
+import type { TextSize } from '../../style/types/text-style-classes.js';
+import type { GapSpacing } from '../../style/types/layout-style.types.js';
 
 export const FAQ_DEFAULTS = {
   question: {

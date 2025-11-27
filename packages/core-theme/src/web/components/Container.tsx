@@ -1,8 +1,5 @@
-import {
-  getContainerXPaddingClass,
-  getContainerClass,
-} from '../style/style-utils/layout-style-utils.js';
-import type { ThemeContext } from '../../types/index.js';
+import { getContainerXPaddingClass, getContainerClass } from '../style/utils/layout-style-utils.js';
+import type { ThemeContext } from '../../sanity/data-types/index.js';
 import clsx from 'clsx';
 
 interface ContainerProps {

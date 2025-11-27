@@ -1,5 +1,5 @@
 import { text } from 'node:stream/consumers';
-import type { TextClassNames } from '../../types/style-types/text-style-classes.js';
+import type { TextClassNames } from '../types/text-style-classes.js';
 import {
   verticalLineSpacingXS,
   verticalLineSpacingSM,
@@ -86,6 +86,12 @@ export const blockquoteHorizontalSpacing = clsx('ml-1', blockquotePadding);
 export const blockquoteBorder = 'border-l-4';
 export const blockquoteBorderColor = 'border-gray-400';
 
+// Text Transforms
+export const textTransformNormal = 'normal-case';
+export const textTransformUppercase = 'uppercase';
+export const textTransformLowercase = 'lowercase';
+export const textTransformCapitalize = 'capitalize';
+
 // horizontal spacing
 export const horizontalSpacingNone = '';
 
@@ -157,6 +163,12 @@ export const textClassNames: TextClassNames = {
     underline: fontUnderline,
     strikethrough: fontStrikethrough,
     overline: fontOverline,
+  },
+  textTransform: {
+    normal: textTransformNormal,
+    uppercase: textTransformUppercase,
+    lowercase: textTransformLowercase,
+    capitalize: textTransformCapitalize,
   },
   elementStyle: {
     normal: {

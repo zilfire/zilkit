@@ -6,11 +6,11 @@ import type {
   classNamesBySize,
   TextStyleOverride,
   TextStyleOptions,
-} from '../../../types/style-types/text-style-classes.js';
+} from '../types/text-style-classes.js';
 
-import type { ThemeColor } from '../../../types/style-types/style-class-names.js';
+import type { ThemeColor } from '../types/style.types.js';
 
-import type { StyleClassNames } from '../../../types/style-types/style-class-names.js';
+import type { StyleClassNames } from '../types/style.types.js';
 
 /**
  * Get a text color class by key

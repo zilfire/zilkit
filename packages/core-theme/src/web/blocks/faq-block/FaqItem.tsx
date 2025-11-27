@@ -4,16 +4,12 @@ import clsx from 'clsx';
 import { FaPlus as PlusIcon, FaMinus as MinusIcon } from 'react-icons/fa6';
 import { PortableText } from 'next-sanity';
 import type { PortableTextBlock } from '@portabletext/types';
-import type { ThemeContext } from '../../../types/context-types/index.js';
-import type { TextStyleOptions } from '../../../types/style-types/text-style-classes.js';
-import type { TextStyleOverride } from '../../../types/style-types/text-style-classes.js';
-import type { ThemeColor } from '../../../types/style-types/style-class-names.js';
-import type { BorderColor } from '../../../types/style-types/border-style-classes.js';
-import { getTextColorClass } from '../../style/style-utils/text-style-utils.js';
-import {
-  getBorderColorClass,
-  getBorderEdgeClass,
-} from '../../style/style-utils/border-style-utils.js';
+import type { ThemeContext } from '../../../sanity/data-types/index.js';
+import type { TextStyleOptions, TextStyleOverride } from '../../style/types/text-style-classes.js';
+import type { ThemeColor } from '../../style/types/style.types.js';
+import type { BorderColor } from '../../style/types/border-style.types.js';
+import { getTextColorClass } from '../../style/utils/text-style-utils.js';
+import { getBorderColorClass, getBorderEdgeClass } from '../../style/utils/border-style-utils.js';
 import { textComponents } from '../../text/text-components.js';
 import { useToggle } from './faq-block-hooks.js';
 import { FAQ_DEFAULTS } from './faq-block-config.js';

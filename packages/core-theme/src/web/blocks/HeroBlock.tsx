@@ -1,13 +1,13 @@
-import type { HeroBlockData } from '../../types/sanity-data-types/blocks/index.js';
-import type { ThemeContext } from '../../types/context-types/index.js';
+import type { HeroBlockData } from '../../sanity/data-types/index.js';
+import type { ThemeContext } from '../../sanity/data-types/index.js';
 import { PortableText } from 'next-sanity';
 import { textComponents } from '../text/text-components.js';
 import { ImageSection } from '../components/ImageSection.js';
 import type { ImageSectionProps } from '../components/ImageSection.js';
 import { H1 } from '../text/index.js';
 import { ButtonGroup } from '../components/ButtonGroup.js';
-import type { ButtonData } from '../../types/sanity-data-types/index.js';
-import type { TextStyleOptions } from '../../types/style-types/text-style-classes.js';
+import type { ButtonData } from '../../sanity/data-types/index.js';
+import type { TextStyleOptions } from '../style/types/text-style-classes.js';
 
 // Constants
 const HERO_DEFAULT_SIZES =

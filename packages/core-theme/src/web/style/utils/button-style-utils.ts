@@ -5,8 +5,8 @@ import type {
   ButtonSize,
   ButtonClassOverride,
   ButtonClassCategory,
-} from '../../../types/style-types/button-style-classes.js';
-import type { StyleClassNames } from '../../../types/style-types/style-class-names.js';
+} from '../types/button-style.types.js';
+import type { StyleClassNames } from '../types/style.types.js';
 import clsx from 'clsx';
 
 export const buttonSizeClassCategories: readonly ButtonSizeClassCategory[] = [

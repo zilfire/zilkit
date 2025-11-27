@@ -1,11 +1,11 @@
-import type { MediaContentBlockData } from '../../types/index.js';
-import type { ThemeContext } from '../../types/context-types/index.js';
+import type { MediaContentBlockData } from '../../sanity/data-types/index.js';
+import type { ThemeContext } from '../../sanity/data-types/index.js';
 import { Section } from '../components/Section.js';
 import { H2, H3, H4, Span, P } from '../text/index.js';
 import SanityImage from '@zilfire/next-sanity-image';
 import { textComponents } from '../text/text-components.js';
 import { PortableText } from 'next-sanity';
-import { getGapSpacingClass } from '../style/style-utils/layout-style-utils.js';
+import { getGapSpacingClass } from '../style/utils/layout-style-utils.js';
 import clsx from 'clsx';
 
 export interface MediaContentBlockProps {

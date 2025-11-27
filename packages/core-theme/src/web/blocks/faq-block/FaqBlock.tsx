@@ -2,22 +2,19 @@
 import { H2 } from '../../text/H2.js';
 import { Blockquote } from '../../text/Blockquote.js';
 import clsx from 'clsx';
-import type { ThemeContext } from '../../../types/context-types/index.js';
+import type { ThemeContext } from '../../../sanity/data-types/index.js';
 import { Section } from '../../components/Section.js';
 import type { SectionOptions } from '../../components/Section.js';
-import type { FaqBlockData } from '../../../types/sanity-data-types/blocks/index.js';
-import type { ThemeColor } from '../../../types/style-types/style-class-names.js';
-import type { TextStyleOptions } from '../../../types/style-types/text-style-classes.js';
+import type { FaqBlockData } from '../../../sanity/data-types/index.js';
+import type { ThemeColor } from '../../style/types/style.types.js';
 import type {
+  TextStyleOptions,
   TextStyleOverride,
   TextElement,
-} from '../../../types/style-types/text-style-classes.js';
-import type { BorderColor } from '../../../types/style-types/border-style-classes.js';
-import {
-  getBorderColorClass,
-  getBorderEdgeClass,
-} from '../../style/style-utils/border-style-utils.js';
-import { getGapSpacingClass } from '../../style/style-utils/layout-style-utils.js';
+} from '../../style/types/text-style-classes.js';
+import type { BorderColor } from '../../style/types/border-style.types.js';
+import { getBorderColorClass, getBorderEdgeClass } from '../../style/utils/border-style-utils.js';
+import { getGapSpacingClass } from '../../style/utils/layout-style-utils.js';
 import { FaqItem } from './FaqItem.js';
 import { FAQ_DEFAULTS } from './faq-block-config.js';
 

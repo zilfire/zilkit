@@ -1,4 +1,4 @@
-import type { ButtonClassNames } from '../../types/style-types/button-style-classes.js';
+import type { ButtonClassNames } from '../types/button-style.types.js';
 
 export const verticalLineSpacing = 'mb-3 md:mb-4';
 export const horizontalButtonSpacing = 'mr-3';

@@ -1,4 +1,4 @@
-import type { ThemeColor } from './style-class-names.js';
+import type { ThemeColor } from './style.types.js';
 
 export type BorderColor = ThemeColor;
 export type BorderColors = {

@@ -1,10 +1,5 @@
-import type { ThemeColor } from '../../../types/style-types/style-class-names.js';
-import type {
-  BorderEdge,
-  BorderThickness,
-} from '../../../types/style-types/border-style-classes.js';
-
-import type { StyleClassNames } from '../../../types/style-types/style-class-names.js';
+import type { ThemeColor, StyleClassNames } from '../types/style.types.js';
+import type { BorderEdge, BorderThickness } from '../types/border-style.types.js';
 
 /**
  * Get a border color class by key

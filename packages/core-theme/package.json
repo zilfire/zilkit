@@ -29,16 +29,12 @@
       "import": "./dist/sanity/schema/index.js"
     },
     "./data-types": {
-      "types": "./dist/types/sanity-data-types/index.d.ts",
-      "import": "./dist/types/sanity-data-types/index.js"
-    },
-    "./types": {
-      "types": "./dist/types/index.d.ts",
-      "import": "./dist/types/index.js"
+      "types": "./dist/sanity/data-types/index.d.ts",
+      "import": "./dist/sanity/data-types/index.js"
     },
     "./style-classes": {
-      "types": "./dist/types/style-types/style-classes.d.ts",
-      "import": "./dist/web/style/style-classes.js"
+      "types": "./dist/web/style/classes/style-classes.d.ts",
+      "import": "./dist/web/style/classes/style-classes.js"
     }
   },
   "types": "./dist/index.d.ts",

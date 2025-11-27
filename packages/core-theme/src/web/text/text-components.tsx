@@ -4,8 +4,7 @@ import {
   PortableTextComponentProps,
   PortableTextBlock,
 } from 'next-sanity';
-import { ThemeContext } from '../../types/context-types/index.js';
-import type { TextStyleOptions } from '../../types/style-types/text-style-classes.js';
+import type { ThemeContext } from '../../sanity/data-types/index.js';
 import { Text } from './Text.js';
 import clsx from 'clsx';
 import type {
@@ -14,7 +13,8 @@ import type {
   TextStyleOverride,
   TextElementSize,
   TextVariant,
-} from '../../types/style-types/text-style-classes.js';
+  TextStyleOptions,
+} from '../style/types/text-style-classes.js';
 
 type ComponentOptions = {
   componentClassName?: string;

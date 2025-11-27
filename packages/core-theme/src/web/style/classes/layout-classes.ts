@@ -1,4 +1,4 @@
-import type { LayoutClassNames } from '@/types/style-types/layout-style-classes.js';
+import type { LayoutClassNames } from '../types/layout-style.types.js';
 
 // const sectionSpacingXS = 'py-10 md:py-18 lg:py-24';
 const sectionSpacingSM = 'py-16 md:py-24 lg:py-32';

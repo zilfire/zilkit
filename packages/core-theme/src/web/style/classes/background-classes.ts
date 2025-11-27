@@ -1,4 +1,4 @@
-import { BackgroundClassNames } from '../../types/style-types/background-style-classes.js';
+import { BackgroundClassNames } from '../types/background-style.types.js';
 
 // Background colors
 export const bgBlack = 'bg-black';

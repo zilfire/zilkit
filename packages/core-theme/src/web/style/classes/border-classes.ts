@@ -1,4 +1,4 @@
-import type { BorderClassNames } from '../../types/style-types/border-style-classes.js';
+import type { BorderClassNames } from '../types/border-style.types.js';
 
 // Border colors
 export const borderBlack = 'border-black';

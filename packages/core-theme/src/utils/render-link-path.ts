@@ -1,4 +1,4 @@
-import type { NavLink } from '../types/index.js';
+import type { NavLink } from '../sanity/data-types/index.js';
 
 export const renderLinkPath = (NavLink: NavLink): string => {
   const { useInternalPath, internalLink, externalLink, internalPath } = NavLink;

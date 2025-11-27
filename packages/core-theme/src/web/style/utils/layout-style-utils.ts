@@ -3,8 +3,8 @@ import type {
   ContentWidth,
   GapSpacing,
   ZIndexLayer,
-} from '../../../types/style-types/layout-style-classes.js';
-import { StyleClassNames } from '../../../types/style-types/style-class-names.js';
+} from '../types/layout-style.types.js';
+import { StyleClassNames } from '../types/style.types.js';
 
 export const getSectionVerticalSpacingClass = (
   size: LayoutSize,

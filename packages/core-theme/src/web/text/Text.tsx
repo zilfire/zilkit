@@ -6,9 +6,9 @@ import type {
   TextElementSize,
   TextVariant,
   TextStyleOptions,
-} from '../../types/style-types/text-style-classes.js';
-import { styleClassNames } from '../style/style-classes.js';
-import { getTextClass } from '../style/style-utils/text-style-utils.js';
+} from '../style/types/text-style-classes.js';
+import { styleClassNames } from '../style/classes/style-classes.js';
+import { getTextClass } from '../style/utils/text-style-utils.js';
 import clsx from 'clsx';
 
 const DEFAULT_ELEMENT: TextElement = 'p';
