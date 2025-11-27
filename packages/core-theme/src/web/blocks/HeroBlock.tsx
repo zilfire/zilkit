@@ -66,7 +66,13 @@ export const HeroBlockDescription = ({
   // @todo: update style formatting options
   return (
     <div id={id}>
-      <PortableText value={description} components={textComponents({}, context)} />
+      <PortableText
+        value={description}
+        components={textComponents(
+          { styleOptions: { textColor: 'white', textSize: 'lg', textAlign: 'center' } },
+          context
+        )}
+      />
     </div>
   );
 };

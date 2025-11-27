@@ -4,6 +4,8 @@ export type LinkComponent = React.ComponentType<{
   href: string;
   className?: string;
   children: React.ReactNode;
+  ref?: React.Ref<HTMLAnchorElement>;
+  onClick?: React.MouseEventHandler<HTMLAnchorElement>;
 }>;
 
 export type ThemeContext = {
