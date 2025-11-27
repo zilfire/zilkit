@@ -32,6 +32,10 @@
       "types": "./dist/sanity/data-types/index.d.ts",
       "import": "./dist/sanity/data-types/index.js"
     },
+    "./config-types": {
+      "types": "./dist/config/types/config.types.d.ts",
+      "import": "./dist/config/types/config.types.js"
+    },
     "./style-classes": {
       "types": "./dist/web/style/classes/style-classes.d.ts",
       "import": "./dist/web/style/classes/style-classes.js"

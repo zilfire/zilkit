@@ -1,4 +1,4 @@
-import type { ThemeContext } from '@zilfire/core-theme/data-types';
+import type { ThemeContext } from '@zilfire/core-theme/config-types';
 import { styleClassNames } from '@zilfire/core-theme/style-classes';
 import { sanityConfig } from '@/sanity/client';
 import NextLink from 'next/link';

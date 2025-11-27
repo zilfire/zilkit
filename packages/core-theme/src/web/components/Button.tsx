@@ -2,7 +2,7 @@ import { getButtonClasses } from '../style/utils/button-style-utils.js';
 import { ButtonClassOverride, ButtonSize } from '../style/types/button-style.types.js';
 import { ThemeContext } from '../../sanity/data-types/index.js';
 import { ButtonData } from '../../sanity/data-types/index.js';
-import { renderLinkPath } from '../../utils/render-link-path.js';
+import { renderLinkPath } from '../../config/utils/render-link-path.js';
 
 interface ButtonProps {
   context: ThemeContext;
