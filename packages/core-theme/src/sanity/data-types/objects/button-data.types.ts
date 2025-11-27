@@ -1,4 +1,4 @@
-import type { NavLink } from './nav-link.js';
+import type { NavLink } from './nav-link-data.types.js';
 
 export type ButtonData = {
   _type: 'button';

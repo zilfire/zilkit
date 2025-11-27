@@ -1,2 +1,2 @@
-export * from './button.js';
-export * from './nav-link.js';
+export * from './button-data.types.js';
+export * from './nav-link-data.types.js';
