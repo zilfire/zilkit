@@ -21,8 +21,7 @@ const HERO_TEXT_STYLES = {
 } as const;
 
 const HERO_TEXT_STYLES_CENTER = {
-  styleOptions: { textColor: 'white' as const },
-  classOverrides: { textAlign: 'text-center' },
+  styleOptions: { textColor: 'white' as const, textAlign: 'text-center' as const },
   size: 'lg',
 } as const;
 
@@ -64,12 +63,10 @@ export const HeroBlockDescription = ({
 
   if (!description) return null;
 
+  // @todo: update style formatting options
   return (
     <div id={id}>
-      <PortableText
-        value={description}
-        components={textComponents(HERO_TEXT_STYLES_CENTER, context)}
-      />
+      <PortableText value={description} components={textComponents({}, context)} />
     </div>
   );
 };
