@@ -1,7 +1,7 @@
 import {
   NavMenuWithInternalPath,
   NavLinkWithInternalPath,
-} from '../../../../sanity/data-types/objects/nav-menu-data.types.js';
+} from '../../../../sanity/data-types/objects/nav-link-data.types.js';
 
 export type FormattedNavChild = {
   text: string;

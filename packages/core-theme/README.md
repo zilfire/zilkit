@@ -29,6 +29,7 @@ function MyComponent() {
 ### Getting Started
 
 - [Installation & Setup](./docs/getting-started.md) - Get up and running quickly
+- [AI-Assisted Setup](./docs/ai-setup-guide.md) - Build projects with AI assistance
 - [Architecture Overview](./docs/architecture.md) - Understand the package structure
 
 ### Core Features

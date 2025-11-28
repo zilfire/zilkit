@@ -25,7 +25,6 @@ export default async function Home() {
 
   return (
     <>
-      <header className="py-12 bg-red-500">Header</header>
       <main className="grow flex flex-col">
         {heroData && (
           <HeroBlock

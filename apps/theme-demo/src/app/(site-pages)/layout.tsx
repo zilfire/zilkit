@@ -3,6 +3,11 @@ import { draftMode } from 'next/headers';
 import { DisableDraftMode } from '@/components/DisableDraftMode';
 import type { Metadata } from 'next';
 import { Geist, Geist_Mono, Merriweather } from 'next/font/google';
+import { LAYOUT_QUERY } from '@/sanity/queries';
+import type { LayoutQueryData } from '@/sanity/queries';
+import { client } from '@/sanity/client';
+import { Header, Footer } from '@zilfire/core-theme/web/blocks';
+import { themeContext } from '@/context';
 import '../globals.css';
 
 const geistSans = Geist({
@@ -30,12 +35,17 @@ export default async function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const layoutData: LayoutQueryData | null = await client.fetch(LAYOUT_QUERY);
+  console.log('Layout Data:', layoutData);
+
   return (
     <html lang="en">
       <body
         className={`${geistSans.variable} ${geistMono.variable} ${merriweather.variable} min-h-screen flex flex-col`}
       >
+        {layoutData && <Header promoBar={false} data={layoutData} context={themeContext} />}
         {children}
+        {layoutData && <Footer footerLogo={layoutData.footerLogo} context={themeContext} />}
         {(await draftMode()).isEnabled && (
           <>
             <VisualEditing />

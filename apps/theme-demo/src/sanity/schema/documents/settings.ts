@@ -18,12 +18,47 @@ export default defineType({
       rows: 3,
     }),
     defineField({
-      name: 'logo',
-      title: 'Logo',
-      type: 'image',
+      name: 'header',
+      title: 'Header',
+      type: 'object',
       options: {
-        hotspot: true,
+        collapsible: true,
+        collapsed: true,
       },
+      fields: [
+        defineField({
+          name: 'logo',
+          title: 'Logo',
+          type: 'reference',
+          to: [{ type: 'logo' }],
+          validation: (Rule) => Rule.required(),
+        }),
+        defineField({
+          name: 'navMenu',
+          title: 'Navigation Menu',
+          type: 'reference',
+          to: [{ type: 'navMenu' }],
+          validation: (Rule) => Rule.required(),
+        }),
+      ],
+    }),
+    defineField({
+      name: 'footer',
+      title: 'Footer',
+      type: 'object',
+      options: {
+        collapsible: true,
+        collapsed: true,
+      },
+      fields: [
+        defineField({
+          name: 'footerLogo',
+          title: 'Footer Logo',
+          type: 'reference',
+          to: [{ type: 'logo' }],
+          validation: (Rule) => Rule.required(),
+        }),
+      ],
     }),
   ],
 });

@@ -15,7 +15,7 @@ type HeaderProps = {
 };
 
 export const Header: React.FC<HeaderProps> = ({ data: { logo, navData }, context, promoBar }) => {
-  const { sanityConfig } = context;
+  // const { sanityConfig } = context;
   const [sidePanelOpen, setSidePanelOpen] = useState(false);
   const [showPromo, setShowPromo] = useState(true);
   const [headerHeight, setHeaderHeight] = useState(0);
