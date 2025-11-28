@@ -42,7 +42,7 @@ const MobileMenu: React.FC<MobileMenuProps> = ({
         }
         const button = menu.querySelector('.collapsible');
         if (button) {
-          button.classList.remove('text-green-700');
+          button.classList.remove('text-gray-700');
         }
       }
     });
@@ -72,7 +72,7 @@ const MobileMenu: React.FC<MobileMenuProps> = ({
         chevron.classList.toggle('rotate-180', active);
       }
       if (button) {
-        button.classList.toggle('text-sky-700', active);
+        button.classList.toggle('text-gray-700', active);
       }
     }
   };
@@ -97,8 +97,8 @@ const MobileMenu: React.FC<MobileMenuProps> = ({
                 removeActiveClasses();
               }}
               className={clsx(
-                'my-4 block text-base font-semibold text-sky-950',
-                'hover:text-sky-700 focus:text-sky-700 focus:outline-none'
+                'my-4 block text-base font-semibold text-gray-950',
+                'hover:text-gray-700 focus:text-gray-700 focus:outline-none'
               )}
             >
               {element.text}
@@ -117,7 +117,7 @@ const MobileMenu: React.FC<MobileMenuProps> = ({
             <button
               className={clsx(
                 'collapsible',
-                'w-full cursor-pointer text-left font-semibold text-sky-950 outline-none',
+                'w-full cursor-pointer text-left font-semibold text-gray-950 outline-none',
                 'focus:outline-none'
               )}
               aria-expanded={false}
@@ -151,7 +151,7 @@ const MobileMenu: React.FC<MobileMenuProps> = ({
                       href={child.href || '#'}
                       className={clsx(
                         'font-body block text-base text-gray-700',
-                        'hover:text-green-700 focus:text-green-700 focus:outline-none',
+                        'hover:text-gray-700 focus:text-gray-700 focus:outline-none',
                         childIndex === element.children!.length - 1 ? '' : 'pb-2'
                       )}
                       onClick={() => {

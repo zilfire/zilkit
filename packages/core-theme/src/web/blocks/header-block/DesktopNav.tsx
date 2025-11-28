@@ -21,7 +21,7 @@ const renderNavElement = (
       <NextLink
         key={index}
         href={element.href || '#'}
-        className={clsx('font-body text-base font-semibold', 'text-sky-950 hover:text-sky-700')}
+        className={clsx('font-body text-base font-semibold', 'text-gray-950 hover:text-green-700')}
       >
         {element.text}
       </NextLink>
@@ -31,7 +31,7 @@ const renderNavElement = (
   return (
     <div key={index} className="group relative">
       <button
-        className={clsx('font-body text-base font-semibold text-sky-950', 'hover:text-sky-700')}
+        className={clsx('font-body text-base font-semibold text-gray-950', 'hover:text-green-700')}
       >
         {element.text}
         <Chevron className="ml-1 inline h-3 w-3" />
@@ -48,7 +48,7 @@ const renderNavElement = (
             <NextLink
               key={childIndex}
               href={child.href || '#'}
-              className="font-body block px-4 py-1 text-base text-sky-950 hover:bg-gray-100"
+              className="font-body block px-4 py-1 text-base text-gray-950 hover:bg-green-100"
             >
               {child.text}
             </NextLink>

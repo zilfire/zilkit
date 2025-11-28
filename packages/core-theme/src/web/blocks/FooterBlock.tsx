@@ -29,14 +29,14 @@ export const Footer: React.FC<FooterProps> = ({ footerLogo, context }) => {
 
   return (
     <footer
-      className="bg-sky-950 w-full"
+      className="bg-gray-800 w-full"
       style={{
         backgroundImage: gridBG,
         backgroundRepeat: 'repeat',
         backgroundSize: '300px auto',
       }}
     >
-      <div className="bg-sky-950/90 py-16 text-left text-white">
+      <div className="bg-gray-800/90 py-16 text-left text-white">
         <Container context={context}>
           <div className="flex flex-wrap">
             <div className="w-full sm:w-1/2">
