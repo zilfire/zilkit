@@ -7,6 +7,7 @@ import { LAYOUT_QUERY } from '@/sanity/queries';
 import type { LayoutQueryData } from '@/sanity/queries';
 import { client } from '@/sanity/client';
 import { Header, Footer } from '@zilfire/core-theme/web/blocks';
+import { ThemeProvider } from '@/components/ThemeProvider';
 import { themeContext } from '@/context';
 import '../globals.css';
 
@@ -42,9 +43,11 @@ export default async function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} ${merriweather.variable} min-h-screen flex flex-col`}
       >
-        {layoutData && <Header promoBar={false} data={layoutData} context={themeContext} />}
-        {children}
-        {layoutData && <Footer footerLogo={layoutData.footerLogo} context={themeContext} />}
+        <ThemeProvider>
+          {layoutData && <Header promoBar={false} data={layoutData} context={themeContext} />}
+          {children}
+          {layoutData && <Footer footerLogo={layoutData.footerLogo} context={themeContext} />}
+        </ThemeProvider>
         {(await draftMode()).isEnabled && (
           <>
             <VisualEditing />

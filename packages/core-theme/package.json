@@ -36,6 +36,10 @@
       "types": "./dist/config/types/config.types.d.ts",
       "import": "./dist/config/types/config.types.js"
     },
+    "./context": {
+      "types": "./dist/config/context.d.ts",
+      "import": "./dist/config/context.js"
+    },
     "./style-classes": {
       "types": "./dist/web/style/classes/style-classes.d.ts",
       "import": "./dist/web/style/classes/style-classes.js"

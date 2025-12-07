@@ -12,6 +12,7 @@ import SanityImage from '@zilfire/next-sanity-image';
 import { Container } from './Container.js';
 import { styleClassNames } from '../style/classes/style-classes.js';
 import type React from 'react';
+import Image from './Image.js';
 
 // Constants
 const DEFAULT_BACKGROUND_IMAGE_QUALITY = 80 as const;
@@ -129,7 +130,7 @@ export const SectionBackgroundImage = ({
 
   return (
     <div className={clsx('absolute inset-0', zIndexClass, className)}>
-      <SanityImage
+      <Image
         imageObject={backgroundImage}
         alt={backgroundImage.alt || 'Background Image'}
         sanityConfig={sanityConfig}
