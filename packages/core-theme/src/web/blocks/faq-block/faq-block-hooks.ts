@@ -1,5 +1,5 @@
 import { useState, useCallback } from 'react';
-import type { ThemeContext } from '../../../sanity/data-types/index.js';
+import type { ThemeContext } from '../../../config/context.js';
 import type { BorderColor } from '../../style/types/border-style.types.js';
 import { getBorderColorClass, getBorderEdgeClass } from '../../style/utils/border-style-utils.js';
 import { getGapSpacingClass } from '../../style/utils/layout-style-utils.js';

@@ -2,7 +2,6 @@
 import clsx from 'clsx';
 import { IoMdClose as CloseIcon } from 'react-icons/io';
 import { useRef } from 'react';
-import type { ThemeContext } from '../../../config/types/config.types.js';
 
 const SidePanel: React.FC<{
   children: React.ReactNode;

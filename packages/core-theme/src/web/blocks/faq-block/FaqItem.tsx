@@ -4,7 +4,7 @@ import clsx from 'clsx';
 import { FaPlus as PlusIcon, FaMinus as MinusIcon } from 'react-icons/fa6';
 import { PortableText } from 'next-sanity';
 import type { PortableTextBlock } from '@portabletext/types';
-import type { ThemeContext } from '../../../sanity/data-types/index.js';
+import type { ThemeContext } from '../../../config/context.js';
 import type { TextStyleOptions, TextStyleOverride } from '../../style/types/text-style-classes.js';
 import type { ThemeColor } from '../../style/types/style.types.js';
 import type { BorderColor } from '../../style/types/border-style.types.js';
@@ -121,15 +121,12 @@ export const FaqItem: React.FC<FaqItemProps> = ({ qa, index, options, context })
           <div className="mt-4 ml-2">
             <PortableText
               value={qa.answer}
-              components={textComponents(
-                {
-                  styleOptions: {
-                    textColor: answerTextColor,
-                  },
-                  className: 'last:mb-0',
+              components={textComponents({
+                styleOptions: {
+                  textColor: answerTextColor,
                 },
-                context
-              )}
+                className: 'last:mb-0',
+              })}
             />
           </div>
         </div>

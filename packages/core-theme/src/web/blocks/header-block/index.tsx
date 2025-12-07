@@ -1,6 +1,5 @@
 'use client';
 import clsx from 'clsx';
-import type { ThemeContext } from '../../../config/types/config.types.js';
 import { MdOutlineMail as EmailIcon, MdOutlinePhoneInTalk as PhoneIcon } from 'react-icons/md';
 import { useState, useEffect, useRef } from 'react';
 import Navigation from './Navigation.js';
@@ -10,11 +9,10 @@ import formatNavData from './utils/formatNavData.js';
 
 type HeaderProps = {
   data: HeaderBlockData;
-  context: ThemeContext;
   promoBar?: boolean;
 };
 
-export const Header: React.FC<HeaderProps> = ({ data: { logo, navData }, context, promoBar }) => {
+export const Header: React.FC<HeaderProps> = ({ data: { logo, navData }, promoBar }) => {
   // const { sanityConfig } = context;
   const [sidePanelOpen, setSidePanelOpen] = useState(false);
   const [showPromo, setShowPromo] = useState(true);
@@ -99,7 +97,6 @@ export const Header: React.FC<HeaderProps> = ({ data: { logo, navData }, context
           logo={logo}
           sidePanelOpen={sidePanelOpen}
           setSidePanelOpen={setSidePanelOpen}
-          context={context}
         />
       )}
     </div>
@@ -113,7 +110,6 @@ export const Header: React.FC<HeaderProps> = ({ data: { logo, navData }, context
             navData={formattedNavData}
             sidePanelOpen={sidePanelOpen}
             setSidePanelOpen={setSidePanelOpen}
-            context={context}
           />
         )}
       </div>

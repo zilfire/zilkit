@@ -1,5 +1,4 @@
 import clsx from 'clsx';
-import type { ThemeContext } from '../../../config/types/config.types.js';
 import type { FormattedNavData } from './utils/formatNavData.js';
 import { FaChevronDown as Chevron } from 'react-icons/fa6';
 // import { MdOutlineMail as EmailIcon, MdOutlinePhoneInTalk as PhoneIcon } from 'react-icons/md';
@@ -8,17 +7,11 @@ import NextLink from 'next/link';
 
 type MobileMenuProps = {
   navData?: FormattedNavData;
-  context: ThemeContext;
   sidePanelOpen: boolean;
   setSidePanelOpen: React.Dispatch<React.SetStateAction<boolean>>;
 };
 
-const MobileMenu: React.FC<MobileMenuProps> = ({
-  navData,
-  setSidePanelOpen,
-  sidePanelOpen,
-  context,
-}) => {
+const MobileMenu: React.FC<MobileMenuProps> = ({ navData, setSidePanelOpen, sidePanelOpen }) => {
   useEffect(() => {
     if (!sidePanelOpen) {
       removeActiveClasses();

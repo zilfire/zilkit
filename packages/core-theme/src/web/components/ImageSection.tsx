@@ -4,7 +4,6 @@ import { getSectionVerticalSpacingClass } from '../style/utils/layout-style-util
 import { getBackgroundColorClass } from '../style/utils/background-style-utils.js';
 import { getContentMaxWidthClass } from '../style/utils/layout-style-utils.js';
 import { getZIndexClass } from '../style/utils/layout-style-utils.js';
-import type { ThemeContext } from '../../sanity/data-types/index.js';
 import type { BackgroundColor } from '../style/types/background-style.types.js';
 import type { LayoutSize, ContentWidth } from '../style/types/layout-style.types.js';
 import type { SanityImageWithAlt } from '@zilfire/next-sanity-image/types';
@@ -39,7 +38,6 @@ const hasBackgroundImage = (
 export interface ImageSectionProps {
   as?: 'section' | 'div' | 'article' | 'header' | 'footer' | 'main';
   children?: React.ReactNode;
-  context: ThemeContext;
   data?: SectionBackgroundImageData;
   className?: string;
   classOverride?: string;
@@ -58,7 +56,6 @@ interface SectionWrapperProps {
   className?: string;
   children?: React.ReactNode;
   classOverride?: string;
-  context: ThemeContext;
   verticalSpacing?: LayoutSize;
   id?: string;
   container?: boolean;
@@ -82,7 +79,6 @@ interface SectionBackgroundOverlayProps {
   opacity?: number;
   color?: BackgroundColor;
   className?: string;
-  context: ThemeContext;
 }
 
 export interface SectionBackgroundImageData {
@@ -91,7 +87,6 @@ export interface SectionBackgroundImageData {
 
 export interface SectionBackgroundImageProps {
   data: SectionBackgroundImageData;
-  context: ThemeContext;
   options?: SectionBackgroundImageOptions;
 }
 
@@ -104,16 +99,13 @@ export interface ImageSectionContentOptions {
 export interface ImageSectionContentProps {
   options?: ImageSectionContentOptions;
   children?: React.ReactNode;
-  context: ThemeContext;
 }
 
 export const SectionBackgroundImage = ({
   data,
-  context,
   options,
 }: SectionBackgroundImageProps): React.ReactElement | null => {
   const { backgroundImage } = data || {};
-  const { sanityConfig } = context;
   const {
     imageSizes,
     quality = DEFAULT_BACKGROUND_IMAGE_QUALITY,
@@ -133,7 +125,6 @@ export const SectionBackgroundImage = ({
       <Image
         imageObject={backgroundImage}
         alt={backgroundImage.alt || 'Background Image'}
-        sanityConfig={sanityConfig}
         layout="cover"
         quality={quality}
         priority={priority}
@@ -151,7 +142,6 @@ export const SectionWrapper = ({
   className,
   children,
   classOverride,
-  context,
   verticalSpacing = DEFAULT_VERTICAL_SPACING,
   id,
   container = true,
@@ -167,7 +157,7 @@ export const SectionWrapper = ({
       aria-label={ariaLabel}
       aria-labelledby={ariaLabelledBy}
     >
-      {container ? <Container context={context}>{children}</Container> : children}
+      {container ? <Container>{children}</Container> : children}
     </Component>
   );
 };
@@ -177,7 +167,6 @@ export const SectionBackgroundOverlay = ({
   enabled = true,
   opacity = DEFAULT_OVERLAY_OPACITY,
   className,
-  context,
 }: SectionBackgroundOverlayProps): React.ReactElement | null => {
   if (!enabled) return null;
 
@@ -200,12 +189,10 @@ export const SectionBackgroundOverlay = ({
 // Combined background image and overlay component
 const SectionBackground = ({
   data,
-  context,
   backgroundImageOptions,
   overlayOptions,
 }: {
   data?: SectionBackgroundImageData;
-  context: ThemeContext;
   backgroundImageOptions?: SectionBackgroundImageOptions;
   overlayOptions?: SectionBackgroundOverlayProps;
 }): React.ReactElement | null => {
@@ -213,8 +200,8 @@ const SectionBackground = ({
 
   return (
     <>
-      <SectionBackgroundImage data={data} context={context} options={backgroundImageOptions} />
-      <SectionBackgroundOverlay {...overlayOptions} context={context} />
+      <SectionBackgroundImage data={data} options={backgroundImageOptions} />
+      <SectionBackgroundOverlay {...overlayOptions} />
     </>
   );
 };
@@ -222,7 +209,6 @@ const SectionBackground = ({
 export const ImageSectionContent = ({
   options,
   children,
-  context,
 }: ImageSectionContentProps): React.ReactElement => {
   const maxWidthClass = options?.maxWidth
     ? getContentMaxWidthClass(options.maxWidth, styleClassNames)
@@ -245,7 +231,6 @@ export const ImageSectionContent = ({
 export const ImageSection = ({
   as = 'section',
   children,
-  context,
   data,
   verticalSpacing,
   overlayOptions,
@@ -261,7 +246,6 @@ export const ImageSection = ({
   return (
     <SectionWrapper
       as={as}
-      context={context}
       className={className}
       classOverride={classOverride}
       id={id}
@@ -272,13 +256,10 @@ export const ImageSection = ({
     >
       <SectionBackground
         data={data}
-        context={context}
         backgroundImageOptions={backgroundImageOptions}
         overlayOptions={overlayOptions}
       />
-      <ImageSectionContent options={contentOptions} context={context}>
-        {children}
-      </ImageSectionContent>
+      <ImageSectionContent options={contentOptions}>{children}</ImageSectionContent>
     </SectionWrapper>
   );
 };

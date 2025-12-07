@@ -1,22 +1,20 @@
 import { Container } from '../components/Container.js';
 import gridBG from '../assets/gridBG.js';
-import SanityImage from '@zilfire/next-sanity-image';
 import type { SanityImageWithAlt } from '@zilfire/next-sanity-image/types';
-import type { ThemeContext } from '../../sanity/data-types/index.js';
+import Image from '../components/Image.js';
+
 import NextLink from 'next/link';
 
 type FooterProps = {
   footerLogo?: SanityImageWithAlt;
   // footerPosts?: FooterPosts[];
-  context: ThemeContext;
 };
 
 // const cleanPhoneNumber = (phoneNumber: string) => {
 //   return phoneNumber.replace(/\D/g, '');
 // };
 
-export const Footer: React.FC<FooterProps> = ({ footerLogo, context }) => {
-  const { sanityConfig } = context;
+export const Footer: React.FC<FooterProps> = ({ footerLogo }) => {
   // const phoneNumber = '704-512-0125';
   // const address = {
   //   streetAddressOne: '525 North Tryon St., Suite 1600',
@@ -38,7 +36,7 @@ export const Footer: React.FC<FooterProps> = ({ footerLogo, context }) => {
       }}
     >
       <div className="bg-gray-800/90 py-16 text-left text-white">
-        <Container context={context}>
+        <Container>
           <div className="flex flex-wrap">
             <div className="w-full sm:w-1/2">
               <div className="flex flex-wrap">
@@ -46,12 +44,11 @@ export const Footer: React.FC<FooterProps> = ({ footerLogo, context }) => {
                   {footerLogo && (
                     <div className="mx-0 mb-0 w-36 max-w-full">
                       <NextLink href="/">
-                        <SanityImage
+                        <Image
                           imageObject={footerLogo}
                           alt={footerLogo.alt}
                           imageSizes={[200, 260, 400]}
                           priority={true}
-                          sanityConfig={sanityConfig}
                         />
                       </NextLink>
                     </div>

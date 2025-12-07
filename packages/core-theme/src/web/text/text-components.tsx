@@ -4,7 +4,6 @@ import {
   PortableTextComponentProps,
   PortableTextBlock,
 } from 'next-sanity';
-import type { ThemeContext } from '../../sanity/data-types/index.js';
 import { Text } from './Text.js';
 import clsx from 'clsx';
 import Link from 'next/link';
@@ -79,10 +78,7 @@ const RenderedText: React.FC<RenderedTextProps> = ({
   );
 };
 
-export const textComponents = (
-  options: PortableTextOptions = {},
-  context: ThemeContext
-): PortableTextReactComponents => {
+export const textComponents = (options: PortableTextOptions = {}): PortableTextReactComponents => {
   const normalSpan = options.normalSpan || false;
 
   return {

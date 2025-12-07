@@ -2,7 +2,7 @@
 import { H2 } from '../../text/H2.js';
 import { Blockquote } from '../../text/Blockquote.js';
 import clsx from 'clsx';
-import type { ThemeContext } from '../../../sanity/data-types/index.js';
+import type { ThemeContext } from '../../../config/context.js';
 import { Section } from '../../components/Section.js';
 import type { SectionOptions } from '../../components/Section.js';
 import type { FaqBlockData } from '../../../sanity/data-types/index.js';

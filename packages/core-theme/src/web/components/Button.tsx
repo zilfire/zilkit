@@ -1,12 +1,10 @@
 import { getButtonClasses } from '../style/utils/button-style-utils.js';
 import { ButtonClassOverride, ButtonSize } from '../style/types/button-style.types.js';
-import { ThemeContext } from '../../sanity/data-types/index.js';
 import { ButtonData } from '../../sanity/data-types/index.js';
 import { renderLinkPath } from '../../config/utils/render-link-path.js';
 import NextLink from 'next/link';
 
 interface ButtonProps {
-  context: ThemeContext;
   // onClick?: React.MouseEventHandler<HTMLButtonElement>;
   children?: React.ReactNode;
   data: ButtonData;
@@ -23,7 +21,6 @@ interface ButtonProps {
 }
 
 export const Button: React.FC<ButtonProps> = ({
-  context,
   // onClick,
   children,
   data,

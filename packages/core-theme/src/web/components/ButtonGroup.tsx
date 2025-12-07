@@ -1,6 +1,5 @@
 import { Button } from './Button.js';
 import type { ButtonData } from '../../sanity/data-types/index.js';
-import type { ThemeContext } from '../../sanity/data-types/index.js';
 import type { GapSpacing } from '../style/types/layout-style.types.js';
 import type { ButtonSize } from '../style/types/button-style.types.js';
 import { getHorizontalGapSpacingClass } from '../style/utils/layout-style-utils.js';
@@ -9,7 +8,6 @@ import clsx from 'clsx';
 
 export interface ButtonGroupProps {
   buttons: ButtonData[];
-  context: ThemeContext;
   id?: string;
   className?: string;
   gap?: GapSpacing;
@@ -26,7 +24,6 @@ export interface ButtonGroupProps {
 
 export const ButtonGroup: React.FC<ButtonGroupProps> = ({
   buttons,
-  context,
   id,
   className,
   gap = 'sm',
@@ -60,7 +57,6 @@ export const ButtonGroup: React.FC<ButtonGroupProps> = ({
         return (
           <Button
             key={index}
-            context={context}
             data={button}
             options={{
               ...buttonOptions,

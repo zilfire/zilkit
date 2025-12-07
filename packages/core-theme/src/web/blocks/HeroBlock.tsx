@@ -1,5 +1,4 @@
 import type { HeroBlockData } from '../../sanity/data-types/index.js';
-import type { ThemeContext } from '../../sanity/data-types/index.js';
 import { PortableText } from 'next-sanity';
 import { textComponents } from '../text/text-components.js';
 import { ImageSection } from '../components/ImageSection.js';
@@ -52,11 +51,9 @@ export const HeroBlockHeading = ({
 
 export const HeroBlockDescription = ({
   data,
-  context,
   id,
 }: {
   data: HeroBlockData;
-  context: ThemeContext;
   id?: string;
 }): React.ReactElement | null => {
   const { description } = data;
@@ -68,10 +65,9 @@ export const HeroBlockDescription = ({
     <div id={id}>
       <PortableText
         value={description}
-        components={textComponents(
-          { styleOptions: { textColor: 'white', textSize: 'lg', textAlign: 'center' } },
-          context
-        )}
+        components={textComponents({
+          styleOptions: { textColor: 'white', textSize: 'lg', textAlign: 'center' },
+        })}
       />
     </div>
   );
@@ -94,7 +90,6 @@ const getBackgroundImageOptions = (
 
 export const HeroSection: React.FC<HeroSectionProps> = ({
   data,
-  context,
   children,
   verticalSpacing = 'xl',
   container = true,
@@ -106,7 +101,6 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
 
   return (
     <ImageSection
-      context={context}
       verticalSpacing={verticalSpacing}
       data={data}
       backgroundImageOptions={finalBackgroundImageOptions}
@@ -127,12 +121,10 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
 const HeroButtonGroup = ({
   primaryButton,
   secondaryButton,
-  context,
   id,
 }: {
   primaryButton?: HeroBlockData['primaryButton'];
   secondaryButton?: HeroBlockData['secondaryButton'];
-  context: ThemeContext;
   id?: string;
 }): React.ReactElement | null => {
   const buttons = [primaryButton, secondaryButton].filter(Boolean) as ButtonData[];
@@ -143,7 +135,6 @@ const HeroButtonGroup = ({
     <ButtonGroup
       id={id}
       buttons={buttons}
-      context={context}
       gap="sm"
       buttonOptions={{ size: 'lg' }}
       secondaryVariant="outline"
@@ -159,7 +150,6 @@ interface HeroBlockContentIds {
 
 export interface HeroBlockProps {
   data: HeroBlockData;
-  context: ThemeContext;
   contentIds?: HeroBlockContentIds;
   id?: string;
   'aria-label'?: string;
@@ -168,30 +158,22 @@ export interface HeroBlockProps {
 
 export const HeroBlock = ({
   data,
-  context,
   contentIds,
   id,
   'aria-label': ariaLabel,
   'aria-labelledby': ariaLabelledBy,
 }: HeroBlockProps): React.ReactElement => {
   return (
-    <HeroSection
-      data={data}
-      context={context}
-      id={id}
-      aria-label={ariaLabel}
-      aria-labelledby={ariaLabelledBy}
-    >
+    <HeroSection data={data} id={id} aria-label={ariaLabel} aria-labelledby={ariaLabelledBy}>
       <HeroBlockHeading
         data={data}
         id={contentIds?.heading}
         styleOptions={{ textAlign: 'left', textColor: 'white' }}
       />
-      <HeroBlockDescription data={data} context={context} id={contentIds?.description} />
+      <HeroBlockDescription data={data} id={contentIds?.description} />
       <HeroButtonGroup
         primaryButton={data.primaryButton}
         secondaryButton={data.secondaryButton}
-        context={context}
         id={contentIds?.buttonGroup}
       />
     </HeroSection>

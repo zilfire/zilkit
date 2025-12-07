@@ -1,18 +1,15 @@
 import type { FormattedNavData, FormattedNavElement } from './utils/formatNavData.js';
 import clsx from 'clsx';
-import type { ThemeContext } from '../../../config/types/config.types.js';
 // import { useState } from "react";
 import { FaChevronDown as Chevron } from 'react-icons/fa6';
 import NextLink from 'next/link';
 
 type DesktopNavProps = {
   navData?: FormattedNavData;
-  context: ThemeContext;
 };
 
 const renderNavElement = (
   element: FormattedNavElement,
-  context: ThemeContext,
   index: number
 ): React.ReactElement | null => {
   if (!element) return null;
@@ -59,11 +56,11 @@ const renderNavElement = (
   );
 };
 
-const DesktopNav: React.FC<DesktopNavProps> = ({ navData, context }) => {
+const DesktopNav: React.FC<DesktopNavProps> = ({ navData }) => {
   if (!navData) return null;
   return (
     <nav className="flex space-x-4">
-      {navData.map((element, index) => renderNavElement(element, context, index))}
+      {navData.map((element, index) => renderNavElement(element, index))}
     </nav>
   );
 };

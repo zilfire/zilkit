@@ -5,7 +5,7 @@ import {
   getContentMaxWidthClass,
 } from '../style/utils/layout-style-utils.js';
 import { getBackgroundColorClass } from '../style/utils/background-style-utils.js';
-import type { ThemeContext } from '../../sanity/data-types/index.js';
+import type { ThemeContext } from '../../config/context.js';
 import type { ThemeColor } from '../style/types/style.types.js';
 import type { LayoutSize, ContentWidth } from '../style/types/layout-style.types.js';
 import { Container } from './Container.js';
