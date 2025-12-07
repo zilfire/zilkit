@@ -43,7 +43,7 @@ export interface SectionOptions {
 
 export interface SectionProps extends SectionOptions {
   children?: React.ReactNode;
-  context: ThemeContext;
+  context?: ThemeContext;
 }
 
 export interface SectionContentOptions {
@@ -107,7 +107,7 @@ export const Section = ({
       aria-label={ariaLabel}
       aria-labelledby={ariaLabelledBy}
     >
-      {container ? <Container context={context}>{children}</Container> : children}
+      {container ? <Container>{children}</Container> : children}
     </Component>
   );
 };

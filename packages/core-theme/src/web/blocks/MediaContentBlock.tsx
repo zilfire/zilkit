@@ -1,7 +1,7 @@
 import type { MediaContentBlockData } from '../../sanity/data-types/index.js';
 import type { ThemeContext } from '../../sanity/data-types/index.js';
 import { Section } from '../components/Section.js';
-import { H2, H3, H4, Span, P } from '../text/index.js';
+import { H2, H4, P } from '../text/index.js';
 import SanityImage from '@zilfire/next-sanity-image';
 import { textComponents } from '../text/text-components.js';
 import { PortableText } from 'next-sanity';

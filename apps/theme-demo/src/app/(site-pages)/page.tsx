@@ -1,4 +1,9 @@
-import { HeroBlock, FaqBlock, MediaContentBlock } from '@zilfire/core-theme/web/blocks';
+import {
+  HeroBlock,
+  FaqBlock,
+  MediaContentBlock,
+  FeaturesBlock,
+} from '@zilfire/core-theme/web/blocks';
 // import type { HeroBlockOptions } from '@zilfire/core-theme/web/blocks';
 import { HOME_QUERY, HomeQueryData } from '@/sanity/queries';
 import { client } from '@/sanity/client';
@@ -31,6 +36,7 @@ export default async function Home() {
             }}
           />
         )}
+        <FeaturesBlock />
         {mediaContentData && <MediaContentBlock data={mediaContentData} context={themeContext} />}
         {faqData && (
           <FaqBlock

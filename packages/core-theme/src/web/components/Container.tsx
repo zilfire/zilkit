@@ -5,7 +5,7 @@ import clsx from 'clsx';
 
 interface ContainerProps {
   children: React.ReactNode;
-  context: ThemeContext;
+  context?: ThemeContext;
 }
 
 // todo: add responsive padding props
