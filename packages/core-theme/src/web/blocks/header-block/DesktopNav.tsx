@@ -3,6 +3,7 @@ import clsx from 'clsx';
 import type { ThemeContext } from '../../../config/types/config.types.js';
 // import { useState } from "react";
 import { FaChevronDown as Chevron } from 'react-icons/fa6';
+import NextLink from 'next/link';
 
 type DesktopNavProps = {
   navData?: FormattedNavData;
@@ -14,7 +15,6 @@ const renderNavElement = (
   context: ThemeContext,
   index: number
 ): React.ReactElement | null => {
-  const NextLink = context.LinkComponent;
   if (!element) return null;
   if (!element.children || element.children.length == 0) {
     return (

@@ -13,6 +13,7 @@ import { getBorderColorClass, getBorderEdgeClass } from '../../style/utils/borde
 import { textComponents } from '../../text/text-components.js';
 import { useToggle } from './faq-block-hooks.js';
 import { FAQ_DEFAULTS } from './faq-block-config.js';
+import { styleClassNames } from '../../style/classes/style-classes.js';
 
 type FaqItemOptions = {
   questionOptions?: {
@@ -49,16 +50,15 @@ export const FaqItem: React.FC<FaqItemProps> = ({ qa, index, options, context })
     options?.answerOptions?.styleOptions?.textColor || FAQ_DEFAULTS.answer.color;
   const plusIconColor = options?.plusIconOptions?.color || FAQ_DEFAULTS.plusIcon.color;
   const { borderColor, borderThickness } = options?.questionOptions || {};
-  const { styleClasses } = context;
 
   const borderColorClass = getBorderColorClass(
     borderColor || FAQ_DEFAULTS.border.color,
-    context.styleClasses
+    styleClassNames
   );
   const borderEdgeClass = getBorderEdgeClass(
     'bottom',
     borderThickness || FAQ_DEFAULTS.border.thickness,
-    context.styleClasses
+    styleClassNames
   );
 
   const [open, toggle] = useToggle(false);
@@ -95,16 +95,16 @@ export const FaqItem: React.FC<FaqItemProps> = ({ qa, index, options, context })
             <div
               className={clsx(
                 'font-semibold text-lg',
-                getTextColorClass(questionTextColor, styleClasses)
+                getTextColorClass(questionTextColor, styleClassNames)
               )}
             >
               {qa.question}
             </div>
             <div className="flex-shrink-0">
               {open ? (
-                <MinusIcon className={getTextColorClass(plusIconColor, styleClasses)} />
+                <MinusIcon className={getTextColorClass(plusIconColor, styleClassNames)} />
               ) : (
-                <PlusIcon className={getTextColorClass(plusIconColor, styleClasses)} />
+                <PlusIcon className={getTextColorClass(plusIconColor, styleClassNames)} />
               )}
             </div>
           </div>

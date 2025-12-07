@@ -5,6 +5,7 @@ import type { SanityImageWithAlt } from '@zilfire/next-sanity-image/types';
 import DesktopNav from './DesktopNav.js';
 import { IoIosMenu as MenuIcon } from 'react-icons/io';
 import type { ThemeContext } from '../../../config/types/config.types.js';
+import NextLink from 'next/link';
 
 type NavigationProps = {
   navData?: FormattedNavData;
@@ -20,7 +21,7 @@ export const Navigation: React.FC<NavigationProps> = ({
   setSidePanelOpen,
   context,
 }) => {
-  const { sanityConfig, LinkComponent: NextLink } = context;
+  const { sanityConfig } = context;
   return (
     <>
       <div className="container mx-auto flex px-2 md:px-4 lg:px-6 items-center">

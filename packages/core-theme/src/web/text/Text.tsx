@@ -7,7 +7,6 @@ import type {
   TextVariant,
   TextStyleOptions,
 } from '../style/types/text-style-classes.js';
-import { styleClassNames } from '../style/classes/style-classes.js';
 import { getTextClass } from '../style/utils/text-style-utils.js';
 import clsx from 'clsx';
 
@@ -62,7 +61,7 @@ const generateTextClasses = (
   }
 
   return TEXT_STYLE_GROUPS.map((group: TextStyleGroup) =>
-    getTextClass(element, group, size, variant, styleClassNames, styleOptions, styleOverride)
+    getTextClass(element, group, size, variant, styleOptions, styleOverride)
   ).filter(Boolean) as string[];
 };
 

@@ -7,6 +7,7 @@ import {
 import type { ThemeContext } from '../../sanity/data-types/index.js';
 import { Text } from './Text.js';
 import clsx from 'clsx';
+import Link from 'next/link';
 import type {
   TextComponent,
   TextElement,
@@ -83,7 +84,6 @@ export const textComponents = (
   context: ThemeContext
 ): PortableTextReactComponents => {
   const normalSpan = options.normalSpan || false;
-  const { LinkComponent } = context;
 
   return {
     types: {},
@@ -95,18 +95,18 @@ export const textComponents = (
         const href = `${internalPath}${id}`;
 
         return (
-          <LinkComponent className="text-blue-600" href={href}>
+          <Link className="text-blue-600" href={href}>
             {children}
-          </LinkComponent>
+          </Link>
         );
       },
       link: (props: PortableTextMarkComponentProps<any>) => {
         const { children, value } = props;
         const href = value?.href || '#';
         return (
-          <LinkComponent className="text-blue-600" href={href}>
+          <Link className="text-blue-600" href={href}>
             {children}
-          </LinkComponent>
+          </Link>
         );
       },
     },

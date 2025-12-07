@@ -7,17 +7,16 @@ import type {
   TextStyleOverride,
   TextStyleOptions,
 } from '../types/text-style-classes.js';
-
 import type { ThemeColor } from '../types/style.types.js';
-
 import type { StyleClassNames } from '../types/style.types.js';
+import { styleClassNames as defaultStyleClassNames } from '../../style/classes/style-classes.js';
 
 /**
  * Get a text color class by key
  */
 export function getTextColorClass(
   key: ThemeColor,
-  classNames: StyleClassNames
+  classNames: StyleClassNames = defaultStyleClassNames
 ): string | undefined {
   if (classNames.text?.textColor?.[key]) {
     return classNames.text?.textColor?.[key];
@@ -54,9 +53,9 @@ export const getTextClass = (
   textStyleGroup: TextStyleGroup,
   size: TextElementSize,
   variant: string = 'normal',
-  styleClasses: StyleClassNames,
   styleOptions: TextStyleOptions,
-  styleOverride: TextStyleOverride
+  styleOverride: TextStyleOverride,
+  styleClasses: StyleClassNames = defaultStyleClassNames
 ): string | false => {
   // Handle overrides
 

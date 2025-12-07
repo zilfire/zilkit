@@ -1,5 +1,6 @@
 import { getContainerXPaddingClass, getContainerClass } from '../style/utils/layout-style-utils.js';
 import type { ThemeContext } from '../../sanity/data-types/index.js';
+import { styleClassNames } from '../style/classes/style-classes.js';
 import clsx from 'clsx';
 
 interface ContainerProps {
@@ -8,12 +9,12 @@ interface ContainerProps {
 }
 
 // todo: add responsive padding props
-export const Container: React.FC<ContainerProps> = ({ children, context: { styleClasses } }) => {
+export const Container: React.FC<ContainerProps> = ({ children }) => {
   return (
     <div
       className={clsx(
-        getContainerClass(styleClasses),
-        getContainerXPaddingClass('md', styleClasses)
+        getContainerClass(styleClassNames),
+        getContainerXPaddingClass('md', styleClassNames)
       )}
     >
       {children}

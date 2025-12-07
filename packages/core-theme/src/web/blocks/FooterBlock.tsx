@@ -3,6 +3,7 @@ import gridBG from '../assets/gridBG.js';
 import SanityImage from '@zilfire/next-sanity-image';
 import type { SanityImageWithAlt } from '@zilfire/next-sanity-image/types';
 import type { ThemeContext } from '../../sanity/data-types/index.js';
+import NextLink from 'next/link';
 
 type FooterProps = {
   footerLogo?: SanityImageWithAlt;
@@ -15,7 +16,7 @@ type FooterProps = {
 // };
 
 export const Footer: React.FC<FooterProps> = ({ footerLogo, context }) => {
-  const { LinkComponent, sanityConfig } = context;
+  const { sanityConfig } = context;
   // const phoneNumber = '704-512-0125';
   // const address = {
   //   streetAddressOne: '525 North Tryon St., Suite 1600',
@@ -44,7 +45,7 @@ export const Footer: React.FC<FooterProps> = ({ footerLogo, context }) => {
                 <div className="w-full md:w-1/2">
                   {footerLogo && (
                     <div className="mx-0 mb-0 w-36 max-w-full">
-                      <LinkComponent href="/">
+                      <NextLink href="/">
                         <SanityImage
                           imageObject={footerLogo}
                           alt={footerLogo.alt}
@@ -52,7 +53,7 @@ export const Footer: React.FC<FooterProps> = ({ footerLogo, context }) => {
                           priority={true}
                           sanityConfig={sanityConfig}
                         />
-                      </LinkComponent>
+                      </NextLink>
                     </div>
                   )}
                 </div>

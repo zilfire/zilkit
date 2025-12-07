@@ -5,21 +5,22 @@ import type {
   ZIndexLayer,
 } from '../types/layout-style.types.js';
 import { StyleClassNames } from '../types/style.types.js';
+import { styleClassNames } from '../../style/classes/style-classes.js';
 
 export const getSectionVerticalSpacingClass = (
   size: LayoutSize,
-  styleClasses: StyleClassNames
+  styleClasses: StyleClassNames = styleClassNames
 ): string => {
   return styleClasses.layout.verticalSectionSpacing[size] || '';
 };
 
-export const getContainerClass = (styleClasses: StyleClassNames): string => {
+export const getContainerClass = (styleClasses: StyleClassNames = styleClassNames): string => {
   return styleClasses.layout.structure.container || '';
 };
 
 export const getContainerXPaddingClass = (
   size: LayoutSize,
-  styleClasses: StyleClassNames
+  styleClasses: StyleClassNames = styleClassNames
 ): string => {
   if (typeof styleClasses.layout.structure.containerXPadding === 'string') {
     return styleClasses.layout.structure.containerXPadding;
@@ -29,21 +30,21 @@ export const getContainerXPaddingClass = (
 
 export const getContentMaxWidthClass = (
   width: ContentWidth,
-  styleClasses: StyleClassNames
+  styleClasses: StyleClassNames = styleClassNames
 ): string => {
   return styleClasses.layout.contentMaxWidth[width] || '';
 };
 
 export const getHorizontalGapSpacingClass = (
   size: GapSpacing,
-  styleClasses: StyleClassNames
+  styleClasses: StyleClassNames = styleClassNames
 ): string => {
   return styleClasses.layout.horizontalGapSpacing[size] || '';
 };
 
 export const getVerticalGapSpacingClass = (
   size: GapSpacing,
-  styleClasses: StyleClassNames
+  styleClasses: StyleClassNames = styleClassNames
 ): string => {
   return styleClasses.layout.verticalGapSpacing[size] || '';
 };
@@ -54,7 +55,7 @@ export const getZIndexClass = (layer: ZIndexLayer, styleClasses: StyleClassNames
 
 export const getVerticalLineSpacingClass = (
   size: LayoutSize,
-  styleClasses: StyleClassNames
+  styleClasses: StyleClassNames = styleClassNames
 ): string => {
   return styleClasses.layout.verticalLineSpacing[size] || '';
 };

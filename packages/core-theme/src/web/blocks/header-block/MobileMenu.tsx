@@ -4,6 +4,7 @@ import type { FormattedNavData } from './utils/formatNavData.js';
 import { FaChevronDown as Chevron } from 'react-icons/fa6';
 // import { MdOutlineMail as EmailIcon, MdOutlinePhoneInTalk as PhoneIcon } from 'react-icons/md';
 import { useRef, useEffect } from 'react';
+import NextLink from 'next/link';
 
 type MobileMenuProps = {
   navData?: FormattedNavData;
@@ -23,8 +24,6 @@ const MobileMenu: React.FC<MobileMenuProps> = ({
       removeActiveClasses();
     }
   }, [sidePanelOpen]);
-
-  const NextLink = context.LinkComponent;
 
   const collapsibleRefs = useRef<(HTMLDivElement | HTMLAnchorElement | null)[]>([]);
 

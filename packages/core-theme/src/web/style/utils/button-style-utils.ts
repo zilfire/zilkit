@@ -7,6 +7,7 @@ import type {
   ButtonClassCategory,
 } from '../types/button-style.types.js';
 import type { StyleClassNames } from '../types/style.types.js';
+import { styleClassNames as defaultStyleClassNames } from '../../style/classes/style-classes.js';
 import clsx from 'clsx';
 
 export const buttonSizeClassCategories: readonly ButtonSizeClassCategory[] = [
@@ -37,13 +38,13 @@ export const buttonClassCategories: readonly ButtonClassCategory[] = [
 ] as const;
 
 export const getButtonClass = (
-  styleClassNames: StyleClassNames,
   classCategory: ButtonClassCategory,
   options: {
     variant?: string;
     size?: ButtonSize;
     color?: string;
-  }
+  },
+  styleClassNames: StyleClassNames = defaultStyleClassNames
 ): string => {
   const { variant = 'normal', size = 'base', color } = options;
 
@@ -136,14 +137,14 @@ export const getButtonClass = (
 };
 
 export const getButtonClasses = (
-  styleClassNames: StyleClassNames,
   options: {
     variant?: string;
     size?: ButtonSize;
     color?: string;
     className?: string;
     classOverride?: ButtonClassOverride;
-  }
+  } = {},
+  styleClassNames: StyleClassNames = defaultStyleClassNames
 ): string => {
   const { variant, size, color, className, classOverride } = options;
 
@@ -162,11 +163,15 @@ export const getButtonClasses = (
       classNames.push(classOverride[classCategory]!);
     } else {
       // Use getButtonClass to retrieve the class for this category
-      const categoryClass = getButtonClass(styleClassNames, classCategory, {
-        variant,
-        size,
-        color,
-      });
+      const categoryClass = getButtonClass(
+        classCategory,
+        {
+          variant,
+          size,
+          color,
+        },
+        styleClassNames
+      );
       if (categoryClass) {
         classNames.push(categoryClass);
       }

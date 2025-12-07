@@ -6,6 +6,7 @@ import SanityImage from '@zilfire/next-sanity-image';
 import { textComponents } from '../text/text-components.js';
 import { PortableText } from 'next-sanity';
 import { getGapSpacingClass } from '../style/utils/layout-style-utils.js';
+import { styleClassNames } from '../style/classes/style-classes.js';
 import clsx from 'clsx';
 
 export interface MediaContentBlockProps {
@@ -17,7 +18,7 @@ export const MediaContentBlock: React.FC<MediaContentBlockProps> = ({ data, cont
   if (!data) return null;
   const { image, heading, subheading, eyebrow, content } = data;
 
-  const gapClass = getGapSpacingClass('lg', context.styleClasses);
+  const gapClass = getGapSpacingClass('lg', styleClassNames);
   const columnClass = 'w-full lg:w-6/12';
 
   return (

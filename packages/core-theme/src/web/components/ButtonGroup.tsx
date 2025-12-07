@@ -4,6 +4,7 @@ import type { ThemeContext } from '../../sanity/data-types/index.js';
 import type { GapSpacing } from '../style/types/layout-style.types.js';
 import type { ButtonSize } from '../style/types/button-style.types.js';
 import { getHorizontalGapSpacingClass } from '../style/utils/layout-style-utils.js';
+import { styleClassNames } from '../style/classes/style-classes.js';
 import clsx from 'clsx';
 
 export interface ButtonGroupProps {
@@ -37,7 +38,7 @@ export const ButtonGroup: React.FC<ButtonGroupProps> = ({
 }) => {
   if (!buttons || buttons.length === 0) return null;
 
-  const gapClass = getHorizontalGapSpacingClass(gap, context.styleClasses);
+  const gapClass = getHorizontalGapSpacingClass(gap, styleClassNames);
   const alignClass = {
     start: 'justify-start',
     center: 'justify-center',

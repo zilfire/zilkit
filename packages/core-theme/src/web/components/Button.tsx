@@ -3,6 +3,7 @@ import { ButtonClassOverride, ButtonSize } from '../style/types/button-style.typ
 import { ThemeContext } from '../../sanity/data-types/index.js';
 import { ButtonData } from '../../sanity/data-types/index.js';
 import { renderLinkPath } from '../../config/utils/render-link-path.js';
+import NextLink from 'next/link';
 
 interface ButtonProps {
   context: ThemeContext;
@@ -32,11 +33,10 @@ export const Button: React.FC<ButtonProps> = ({
   ariaLabel,
 }) => {
   const content = data.text || children;
-  const Link = context.LinkComponent;
   const path = data.link ? renderLinkPath(data.link) : '';
   // const hasLink = Boolean(path);
 
-  const buttonClasses = getButtonClasses(context.styleClasses, {
+  const buttonClasses = getButtonClasses({
     variant,
     size,
     color,
@@ -55,11 +55,11 @@ export const Button: React.FC<ButtonProps> = ({
   // If there's a link, wrap button in Link component
   // if (hasLink) {
   return (
-    <Link href={path}>
+    <NextLink href={path}>
       <button className={buttonClasses} type={type} disabled={disabled} aria-label={ariaLabel}>
         {content}
       </button>
-    </Link>
+    </NextLink>
   );
   // }
 

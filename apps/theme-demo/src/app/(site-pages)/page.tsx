@@ -15,14 +15,6 @@ export default async function Home() {
 
   const { hero: heroData, faq: faqData, mediaContent: mediaContentData } = homeData;
 
-  // const options: HeroBlockOptions = {
-  //   // overlayOptions: {
-  //   //   overlayColor: 'neutral',
-  //   //   overlayColorTone: 'darkest',
-  //   //   overlayOpacity: 'shade',
-  //   // },
-  // };
-
   return (
     <>
       <main className="grow flex flex-col">

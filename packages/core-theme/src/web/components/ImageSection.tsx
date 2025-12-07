@@ -10,6 +10,7 @@ import type { LayoutSize, ContentWidth } from '../style/types/layout-style.types
 import type { SanityImageWithAlt } from '@zilfire/next-sanity-image/types';
 import SanityImage from '@zilfire/next-sanity-image';
 import { Container } from './Container.js';
+import { styleClassNames } from '../style/classes/style-classes.js';
 import type React from 'react';
 
 // Constants
@@ -111,7 +112,7 @@ export const SectionBackgroundImage = ({
   options,
 }: SectionBackgroundImageProps): React.ReactElement | null => {
   const { backgroundImage } = data || {};
-  const { sanityConfig, styleClasses } = context;
+  const { sanityConfig } = context;
   const {
     imageSizes,
     quality = DEFAULT_BACKGROUND_IMAGE_QUALITY,
@@ -124,7 +125,7 @@ export const SectionBackgroundImage = ({
 
   if (!backgroundImage) return null;
 
-  const zIndexClass = getZIndexClass('background', styleClasses);
+  const zIndexClass = getZIndexClass('background', styleClassNames);
 
   return (
     <div className={clsx('absolute inset-0', zIndexClass, className)}>
@@ -156,9 +157,7 @@ export const SectionWrapper = ({
   'aria-label': ariaLabel,
   'aria-labelledby': ariaLabelledBy,
 }: SectionWrapperProps): React.ReactElement => {
-  const spacingClass = context?.styleClasses
-    ? getSectionVerticalSpacingClass(verticalSpacing, context.styleClasses)
-    : '';
+  const spacingClass = getSectionVerticalSpacingClass(verticalSpacing, styleClassNames);
 
   return (
     <Component
@@ -181,8 +180,8 @@ export const SectionBackgroundOverlay = ({
 }: SectionBackgroundOverlayProps): React.ReactElement | null => {
   if (!enabled) return null;
 
-  const backgroundColorClass = getBackgroundColorClass(color, context.styleClasses);
-  const zIndexClass = getZIndexClass('overlay', context.styleClasses);
+  const backgroundColorClass = getBackgroundColorClass(color, styleClassNames);
+  const zIndexClass = getZIndexClass('overlay', styleClassNames);
 
   return (
     <div
@@ -224,11 +223,10 @@ export const ImageSectionContent = ({
   children,
   context,
 }: ImageSectionContentProps): React.ReactElement => {
-  const { styleClasses } = context;
   const maxWidthClass = options?.maxWidth
-    ? getContentMaxWidthClass(options.maxWidth, styleClasses)
+    ? getContentMaxWidthClass(options.maxWidth, styleClassNames)
     : '';
-  const zIndexClass = getZIndexClass('content', styleClasses);
+  const zIndexClass = getZIndexClass('content', styleClassNames);
 
   return (
     <div

@@ -17,6 +17,7 @@ import { getBorderColorClass, getBorderEdgeClass } from '../../style/utils/borde
 import { getGapSpacingClass } from '../../style/utils/layout-style-utils.js';
 import { FaqItem } from './FaqItem.js';
 import { FAQ_DEFAULTS } from './faq-block-config.js';
+import { styleClassNames } from '../../style/classes/style-classes.js';
 
 /**
  * Helper function to generate border classes
@@ -27,14 +28,11 @@ const getBorderClasses = (
   borderThickness: 'thin' | 'medium' | 'thick' | undefined,
   context: ThemeContext
 ) => {
-  const colorClass = getBorderColorClass(
-    borderColor || FAQ_DEFAULTS.border.color,
-    context.styleClasses
-  );
+  const colorClass = getBorderColorClass(borderColor || FAQ_DEFAULTS.border.color, styleClassNames);
   const edgeClass = getBorderEdgeClass(
     edge,
     borderThickness || FAQ_DEFAULTS.border.thickness,
-    context.styleClasses
+    styleClassNames
   );
 
   return { colorClass, edgeClass };
@@ -44,7 +42,7 @@ const getBorderClasses = (
  * Helper function to generate layout classes
  */
 const getLayoutClasses = (context: ThemeContext) => {
-  const gapClass = getGapSpacingClass(FAQ_DEFAULTS.layout.columnGap, context.styleClasses);
+  const gapClass = getGapSpacingClass(FAQ_DEFAULTS.layout.columnGap, styleClassNames);
   const colOneClass = 'w-full, lg:w-1/3';
   const colTwoClass = 'w-full lg:w-2/3';
 
@@ -130,7 +128,7 @@ export const FaqBlock: React.FC<FaqBlockProps> = ({
   // Set up description border color override
   const descriptionBorderColorClass = getBorderColorClass(
     descriptionOptions.sidebarRuleColor || FAQ_DEFAULTS.blockquote.borderColor,
-    context.styleClasses
+    styleClassNames
   );
 
   const descriptionClassOverrides =

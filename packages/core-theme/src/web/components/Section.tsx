@@ -63,10 +63,7 @@ export const SectionContent = ({
   children,
   context,
 }: SectionContentProps): React.ReactElement => {
-  const { styleClasses } = context;
-  const maxWidthClass = options?.maxWidth
-    ? getContentMaxWidthClass(options.maxWidth, styleClasses)
-    : '';
+  const maxWidthClass = options?.maxWidth ? getContentMaxWidthClass(options.maxWidth) : '';
 
   return (
     <div
@@ -94,11 +91,8 @@ export const Section = ({
   'aria-labelledby': ariaLabelledBy,
   styleOptions: { backgroundColor, verticalSpacing = DEFAULT_VERTICAL_SPACING } = {},
 }: SectionProps): React.ReactElement => {
-  const { styleClasses } = context;
-  const spacingClass = getSectionVerticalSpacingClass(verticalSpacing, styleClasses);
-  const bgColorClass = backgroundColor
-    ? getBackgroundColorClass(backgroundColor, styleClasses)
-    : '';
+  const spacingClass = getSectionVerticalSpacingClass(verticalSpacing);
+  const bgColorClass = backgroundColor ? getBackgroundColorClass(backgroundColor) : '';
 
   const sectionClasses = getClassName(
     classOverride,
