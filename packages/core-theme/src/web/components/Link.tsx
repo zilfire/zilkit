@@ -1,5 +1,3 @@
-// @todo: fix next-link
-// @ts-ignore
 import NextLink from 'next/link';
 
 type Props = {

@@ -48,7 +48,7 @@ const renderNavElement = (
             <NextLink
               key={childIndex}
               href={child.href || '#'}
-              className="font-body block px-4 py-1 text-base text-gray-950 hover:bg-green-100"
+              className="font-body block px-4 py-1 text-base text-gray-950 hover:bg-gray-100"
             >
               {child.text}
             </NextLink>

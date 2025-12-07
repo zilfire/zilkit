@@ -36,7 +36,6 @@ export default async function RootLayout({
   children: React.ReactNode;
 }>) {
   const layoutData: LayoutQueryData | null = await client.fetch(LAYOUT_QUERY);
-  console.log('Layout Data:', layoutData);
 
   return (
     <html lang="en">

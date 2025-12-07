@@ -76,7 +76,10 @@ export default defineConfig({
     //       ? input.filter(({ action }) => action && singletonActions.has(action))
     //       : input,
     actions: (prev) => {
-      return [(props) => UpdatePathFromSlugAction(props as any), ...prev];
+      return [
+        (props) => UpdatePathFromSlugAction(props as any, new Set(['homePage', 'page'])),
+        ...prev,
+      ];
     },
   },
 });
