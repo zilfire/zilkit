@@ -18,7 +18,12 @@ export default async function Home() {
     { perspective: isEnabled ? 'drafts' : 'published' }
   );
 
-  const { hero: heroData, faq: faqData, mediaContent: mediaContentData } = homeData;
+  const {
+    hero: heroData,
+    faq: faqData,
+    mediaContent: mediaContentData,
+    features: featuresBlockData,
+  } = homeData;
 
   return (
     <>
@@ -26,7 +31,6 @@ export default async function Home() {
         {heroData && (
           <HeroBlock
             data={heroData}
-            context={themeContext}
             id="home-hero"
             aria-labelledby="home-hero-heading"
             contentIds={{
@@ -36,8 +40,8 @@ export default async function Home() {
             }}
           />
         )}
-        <FeaturesBlock />
-        {mediaContentData && <MediaContentBlock data={mediaContentData} context={themeContext} />}
+        {featuresBlockData && <FeaturesBlock data={featuresBlockData} />}
+        {mediaContentData && <MediaContentBlock data={mediaContentData} />}
         {faqData && (
           <FaqBlock
             data={faqData}

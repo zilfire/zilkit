@@ -37,6 +37,15 @@ export default defineType({
       },
     }),
     defineField({
+      name: 'features',
+      title: 'Features',
+      type: 'featuresBlock',
+      options: {
+        collapsible: true,
+        collapsed: true,
+      },
+    }),
+    defineField({
       name: 'mediaContent',
       title: 'Media Content',
       type: 'mediaContentBlock',

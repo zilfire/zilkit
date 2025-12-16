@@ -3,12 +3,14 @@ import type {
   HeroBlockData,
   MediaContentBlockData,
   NavMenuWithInternalPath,
+  FeaturesBlockData,
 } from '@zilfire/core-theme/data-types';
 import type { SanityImageWithAlt } from '@zilfire/next-sanity-image/types';
 
 export type HomeQueryData = SanityDocument & {
   hero?: HeroBlockData;
   mediaContent?: MediaContentBlockData;
+  features?: FeaturesBlockData;
 };
 
 export type LayoutQueryData = SanityDocument & {

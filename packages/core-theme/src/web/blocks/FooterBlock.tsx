@@ -1,5 +1,5 @@
 import { Container } from '../components/Container.js';
-import gridBG from '../assets/gridBG.js';
+import gridBG from '../../assets/gridBG.js';
 import type { SanityImageWithAlt } from '@zilfire/next-sanity-image/types';
 import Image from '../components/Image.js';
 
