@@ -40,8 +40,14 @@ export default async function Home() {
             }}
           />
         )}
-        {featuresBlockData && <FeaturesBlock data={featuresBlockData} />}
-        {mediaContentData && <MediaContentBlock data={mediaContentData} />}
+        {mediaContentData && (
+          <MediaContentBlock
+            data={mediaContentData}
+            sectionStyleOptions={{ backgroundColor: 'muted' }}
+            id="about-zilkit"
+          />
+        )}
+        {featuresBlockData && <FeaturesBlock data={featuresBlockData} id="features" />}
         {faqData && (
           <FaqBlock
             data={faqData}
@@ -50,6 +56,7 @@ export default async function Home() {
               headlineOptions: { as: 'h3' },
               sectionOptions: { styleOptions: { backgroundColor: 'muted' } },
             }}
+            id="faq"
           />
         )}
         <div className="bg-gray-100 flex flex-col grow"></div>

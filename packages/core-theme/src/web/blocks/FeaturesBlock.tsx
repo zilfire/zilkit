@@ -1,13 +1,19 @@
 import { Section } from '../components/Section.js';
+import type { SectionStyleOptions } from '../components/Section.js';
 import { iconRegistry } from '../../assets/icon-registry.js';
 import type { IconRegistry } from '../../assets/icon-registry.js';
 import type {
   FeaturesBlockData,
   FeatureItem,
 } from '../../sanity/data-types/blocks/features-block-data.types.js';
+import { PortableText } from 'next-sanity';
+import { textComponents } from '../text/text-components.js';
+import { H2, H3 } from '../text/index.js';
 
 export interface FeaturesBlockProps {
   data: FeaturesBlockData;
+  sectionStyleOptions?: Record<string, unknown>;
+  id?: string;
 }
 
 export type FeatureProps = {
@@ -27,20 +33,26 @@ export const Feature: React.FC<FeatureProps> = ({ iconRegistry, feature }) => {
           <IconComponent className="w-16 h-16 text-primary-500" />
         </div>
       )}
-      <h3 className="text-lg font-semibold mb-2">{heading}</h3>
-      {/* <p className="text-sm text-gray-600">{description}</p> */}
+      <H3 className="" size="sm">
+        {heading}
+      </H3>
+      {description && (
+        <div className="text-base text-gray-600">
+          <PortableText value={description} components={textComponents()} />
+        </div>
+      )}
     </div>
   );
 };
 
-export const FeaturesBlock: React.FC<FeaturesBlockProps> = ({ data }) => {
+export const FeaturesBlock: React.FC<FeaturesBlockProps> = ({ data, id, sectionStyleOptions }) => {
   const { title, features } = data;
   console.log('FeaturesBlock data:', data);
   return (
-    <Section>
-      {title && <div>{title}</div>}
+    <Section styleOptions={sectionStyleOptions} id={id}>
+      {title && <H2 styleOptions={{ textAlign: 'center' }}>{title}</H2>}
       {features && (
-        <div className="grid grid-cols-4 gap-4">
+        <div className="grid grid-cols-3 gap-4">
           {features?.map((feature, index) => (
             <Feature key={index} iconRegistry={iconRegistry} feature={feature} />
           ))}
