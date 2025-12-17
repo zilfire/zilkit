@@ -7,7 +7,6 @@ import {
 // import type { HeroBlockOptions } from '@zilfire/core-theme/web/blocks';
 import { HOME_QUERY, HomeQueryData } from '@/sanity/queries';
 import { client } from '@/sanity/client';
-import { themeContext } from '@/context';
 import { draftMode } from 'next/headers';
 
 export default async function Home() {
@@ -51,7 +50,6 @@ export default async function Home() {
         {faqData && (
           <FaqBlock
             data={faqData}
-            context={themeContext}
             options={{
               headlineOptions: { as: 'h3' },
               sectionOptions: { styleOptions: { backgroundColor: 'muted' } },

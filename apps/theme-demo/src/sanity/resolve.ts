@@ -1,24 +1,24 @@
 import {
   defineLocations,
-  defineDocuments,
+  // defineDocuments,
   PresentationPluginOptions,
-} from "sanity/presentation";
+} from 'sanity/presentation';
 
-export const resolve: PresentationPluginOptions["resolve"] = {
+export const resolve: PresentationPluginOptions['resolve'] = {
   locations: {
     // Add more locations for other post types
     post: defineLocations({
       select: {
-        title: "title",
-        slug: "slug.current",
+        title: 'title',
+        slug: 'slug.current',
       },
       resolve: (doc) => ({
         locations: [
           {
-            title: doc?.title || "Untitled",
+            title: doc?.title || 'Untitled',
             href: `/pages/${doc?.slug.current}`,
           },
-          { title: "Home Page", href: `/` },
+          { title: 'Home Page', href: `/` },
         ],
       }),
     }),

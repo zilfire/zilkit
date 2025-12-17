@@ -47,7 +47,6 @@ export const Feature: React.FC<FeatureProps> = ({ iconRegistry, feature }) => {
 
 export const FeaturesBlock: React.FC<FeaturesBlockProps> = ({ data, id, sectionStyleOptions }) => {
   const { title, features } = data;
-  console.log('FeaturesBlock data:', data);
   return (
     <Section styleOptions={sectionStyleOptions} id={id}>
       {title && <H2 styleOptions={{ textAlign: 'center' }}>{title}</H2>}

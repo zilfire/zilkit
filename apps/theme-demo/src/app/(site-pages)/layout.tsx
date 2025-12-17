@@ -8,7 +8,6 @@ import type { LayoutQueryData } from '@/sanity/queries';
 import { client } from '@/sanity/client';
 import { Header, Footer } from '@zilfire/core-theme/web/blocks';
 import { ThemeProvider } from '@/components/ThemeProvider';
-import { themeContext } from '@/context';
 import '../globals.css';
 
 const geistSans = Geist({
@@ -44,9 +43,9 @@ export default async function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} ${merriweather.variable} min-h-screen flex flex-col`}
       >
         <ThemeProvider>
-          {layoutData && <Header promoBar={false} data={layoutData} context={themeContext} />}
+          {layoutData && <Header promoBar={false} data={layoutData} />}
           {children}
-          {layoutData && <Footer footerLogo={layoutData.footerLogo} context={themeContext} />}
+          {layoutData && <Footer footerLogo={layoutData.footerLogo} />}
         </ThemeProvider>
         {(await draftMode()).isEnabled && (
           <>

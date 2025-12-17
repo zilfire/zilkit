@@ -40,10 +40,9 @@ export type FaqItemProps = {
   };
   options?: FaqItemOptions;
   index: number;
-  context: ThemeContext;
 };
 
-export const FaqItem: React.FC<FaqItemProps> = ({ qa, index, options, context }) => {
+export const FaqItem: React.FC<FaqItemProps> = ({ qa, index, options }) => {
   const questionTextColor =
     options?.questionOptions?.styleOptions?.textColor || FAQ_DEFAULTS.question.color;
   const answerTextColor =

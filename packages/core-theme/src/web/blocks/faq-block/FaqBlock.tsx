@@ -25,8 +25,7 @@ import { styleClassNames } from '../../style/classes/style-classes.js';
 const getBorderClasses = (
   edge: 'top' | 'bottom' | 'left' | 'right' | 'all',
   borderColor: BorderColor | undefined,
-  borderThickness: 'thin' | 'medium' | 'thick' | undefined,
-  context: ThemeContext
+  borderThickness: 'thin' | 'medium' | 'thick' | undefined
 ) => {
   const colorClass = getBorderColorClass(borderColor || FAQ_DEFAULTS.border.color, styleClassNames);
   const edgeClass = getBorderEdgeClass(
@@ -41,7 +40,7 @@ const getBorderClasses = (
 /**
  * Helper function to generate layout classes
  */
-const getLayoutClasses = (context: ThemeContext) => {
+const getLayoutClasses = () => {
   const gapClass = getGapSpacingClass(FAQ_DEFAULTS.layout.columnGap, styleClassNames);
   const colOneClass = 'w-full, lg:w-1/3';
   const colTwoClass = 'w-full lg:w-2/3';
@@ -88,7 +87,6 @@ type FaqOptions = {
 type FaqBlockProps = {
   data: FaqBlockData;
   options?: FaqOptions;
-  context: ThemeContext;
   id?: string;
   ariaLabel?: string;
   ariaLabelledby?: string;
@@ -97,7 +95,6 @@ type FaqBlockProps = {
 export const FaqBlock: React.FC<FaqBlockProps> = ({
   data,
   options,
-  context,
   ariaLabel,
   ariaLabelledby,
   id,
@@ -118,12 +115,11 @@ export const FaqBlock: React.FC<FaqBlockProps> = ({
   const { colorClass: borderColorClass, edgeClass: borderEdgeClass } = getBorderClasses(
     'top',
     borderColor,
-    borderThickness,
-    context
+    borderThickness
   );
 
   // Get layout classes using helper function
-  const { gapClass, colOneClass, colTwoClass } = getLayoutClasses(context);
+  const { gapClass, colOneClass, colTwoClass } = getLayoutClasses();
 
   // Set up description border color override
   const descriptionBorderColorClass = getBorderColorClass(
@@ -151,13 +147,7 @@ export const FaqBlock: React.FC<FaqBlockProps> = ({
   };
 
   return (
-    <Section
-      context={context}
-      {...sectionOptions}
-      aria-label={ariaLabel}
-      aria-labelledby={ariaLabelledby}
-      id={id}
-    >
+    <Section {...sectionOptions} aria-label={ariaLabel} aria-labelledby={ariaLabelledby} id={id}>
       <div className={clsx('flex flex-wrap lg:flex-nowrap', gapClass)}>
         <div className={colOneClass}>
           {heading && <H2 {...mergedHeadlineOptions}>{heading}</H2>}
@@ -175,7 +165,7 @@ export const FaqBlock: React.FC<FaqBlockProps> = ({
         {faqs && faqs.length > 0 && (
           <div className={clsx(colTwoClass, borderEdgeClass, borderColorClass)} id={faqContentId}>
             {faqs.map((faq, index) => (
-              <FaqItem qa={faq} index={index} key={index} options={options} context={context} />
+              <FaqItem qa={faq} index={index} key={index} options={options} />
             ))}
           </div>
         )}

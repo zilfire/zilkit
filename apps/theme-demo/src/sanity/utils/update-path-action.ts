@@ -26,7 +26,7 @@ export function UpdatePathFromSlugAction(
     if (isUpdating && !props.draft) {
       setIsUpdating(false);
     }
-  }, [props.draft]);
+  }, [props.draft, isUpdating]);
 
   return {
     label: isUpdating ? 'Publishing…' : 'Publish',

@@ -1,5 +1,5 @@
 import { createClient } from 'next-sanity';
-import type { SanityConfig, ThemeContext } from '@zilfire/core-theme/types';
+import type { SanityConfig } from '@zilfire/core-theme/context';
 
 import { apiVersion, dataset, projectId, readToken } from './env';
 
