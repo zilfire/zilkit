@@ -1,4 +1,4 @@
-import { defineConfig, DocumentActionProps } from 'sanity';
+import { defineConfig } from 'sanity';
 import { structureTool } from 'sanity/structure';
 import { presentationTool, defineDocuments } from 'sanity/presentation';
 import { visionTool } from '@sanity/vision';
