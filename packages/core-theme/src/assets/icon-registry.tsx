@@ -1,3 +1,4 @@
+import type { IconType } from 'react-icons';
 import { LuLayoutDashboard as DashboardIcon } from 'react-icons/lu';
 import { RiInputField as InputIcon } from 'react-icons/ri';
 import { FaRegImage as ImageIcon } from 'react-icons/fa';
@@ -25,7 +26,7 @@ const CMSIcon: React.FC<React.SVGProps<SVGSVGElement>> = (props) => {
 
 export type IconConfig = {
   title: string;
-  Icon: React.ComponentType<React.SVGProps<SVGSVGElement>>;
+  Icon: React.ComponentType<React.SVGProps<SVGSVGElement>> | IconType;
 };
 
 export type IconRegistry = {

@@ -13,14 +13,6 @@ type HeaderProps = {
 };
 
 export const Header: React.FC<HeaderProps> = ({ data: { logo, navData }, promoBar }) => {
-  console.log('navData in header:', navData);
-  const navElements = navData?.navElements || [];
-
-  navElements.forEach((el) => {
-    console.log('Nav Element:', el.navItem, el.navItem.link?.internalPath);
-  });
-
-  // const { sanityConfig } = context;
   const [sidePanelOpen, setSidePanelOpen] = useState(false);
   const [showPromo, setShowPromo] = useState(true);
   const [headerHeight, setHeaderHeight] = useState(0);
