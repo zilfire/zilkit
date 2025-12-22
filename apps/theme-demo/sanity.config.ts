@@ -1,4 +1,4 @@
-import { defineConfig } from 'sanity';
+import { defineConfig, DocumentActionProps } from 'sanity';
 import { structureTool } from 'sanity/structure';
 import { presentationTool, defineDocuments } from 'sanity/presentation';
 import { visionTool } from '@sanity/vision';
@@ -61,6 +61,10 @@ export default defineConfig({
             route: '/pages/:slug',
             filter: `_type == "page" && slug.current == $slug`,
           },
+          {
+            route: '/',
+            filter: `_type == "homePage" && _id == "siteHome"`,
+          },
         ]),
       },
     }),
@@ -76,10 +80,7 @@ export default defineConfig({
     //       ? input.filter(({ action }) => action && singletonActions.has(action))
     //       : input,
     actions: (prev) => {
-      return [
-        (props) => UpdatePathFromSlugAction(props as any, new Set(['homePage', 'page'])),
-        ...prev,
-      ];
+      return [(props) => UpdatePathFromSlugAction(props, new Set(['homePage', 'page'])), ...prev];
     },
   },
 });

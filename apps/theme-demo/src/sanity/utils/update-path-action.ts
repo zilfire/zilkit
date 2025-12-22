@@ -1,25 +1,19 @@
-import { useDocumentOperation } from 'sanity';
+import { useDocumentOperation, DocumentActionProps } from 'sanity';
 import { useState, useEffect } from 'react';
-
-interface UpdatePathFromSlugActionProps {
-  id: string;
-  type: string;
-  draft?: { slug?: { current?: string } };
-  published?: { slug?: { current?: string } };
-  onComplete: () => void;
-}
 
 const defaultPageTypes = new Set(['page', 'homePage']);
 
 export function UpdatePathFromSlugAction(
-  props: UpdatePathFromSlugActionProps,
+  props: DocumentActionProps,
   pageTypesSet = defaultPageTypes
 ) {
   const { patch, publish } = useDocumentOperation(props.id, props.type);
   const [isUpdating, setIsUpdating] = useState(false);
 
   // Get the slug value from the draft or published document
-  const slug = props.draft?.slug?.current || props.published?.slug?.current;
+  const draft = props.draft as { slug?: { current?: string } } | null;
+  const published = props.published as { slug?: { current?: string } } | null;
+  const slug = draft?.slug?.current || published?.slug?.current;
   const type = props.type;
 
   const buildPath = () => {
@@ -30,10 +24,10 @@ export function UpdatePathFromSlugAction(
   };
 
   useEffect(() => {
-    if (isUpdating && !props.draft) {
+    if (isUpdating && !draft) {
       setIsUpdating(false);
     }
-  }, [props.draft, isUpdating]);
+  }, [draft, isUpdating]);
 
   return {
     label: isUpdating ? 'Publishing…' : 'Publish',

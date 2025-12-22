@@ -11,6 +11,9 @@ import { draftMode } from 'next/headers';
 
 export default async function Home() {
   const { isEnabled } = await draftMode();
+
+  console.log('Draft mode enabled:', isEnabled);
+
   const homeData: HomeQueryData = await client.fetch(
     HOME_QUERY,
     {},
