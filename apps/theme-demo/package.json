@@ -20,7 +20,7 @@
     "@zilfire/sanity-form": "^0.0.1",
     "@zilfire/sanity-nav-menu": "^0.0.2",
     "date-fns": "^4.1.0",
-    "next": "15.4.1",
+    "next": "15.6.0",
     "next-sanity": "^10.0.0",
     "react": "19.1.0",
     "react-dom": "19.1.0",
