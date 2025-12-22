@@ -22,6 +22,13 @@ export function UpdatePathFromSlugAction(
   const slug = props.draft?.slug?.current || props.published?.slug?.current;
   const type = props.type;
 
+  const buildPath = () => {
+    if (type === 'homePage') {
+      return '/';
+    }
+    return `/${slug || ''}`;
+  };
+
   useEffect(() => {
     if (isUpdating && !props.draft) {
       setIsUpdating(false);
@@ -38,7 +45,7 @@ export function UpdatePathFromSlugAction(
       }
       setIsUpdating(true);
       // Update the 'path' field based on the 'slug' field
-      patch.execute([{ set: { path: `/${slug || ''}` } }]);
+      patch.execute([{ set: { path: buildPath() } }]);
       // Perform the publish
       publish.execute();
     },
