@@ -168,7 +168,7 @@ export const HeroBlock = ({
       <HeroBlockHeading
         data={data}
         id={contentIds?.heading}
-        styleOptions={{ textAlign: 'left', textColor: 'white' }}
+        styleOptions={{ textAlign: 'center', textColor: 'white' }}
       />
       <HeroBlockDescription data={data} id={contentIds?.description} />
       <HeroButtonGroup
