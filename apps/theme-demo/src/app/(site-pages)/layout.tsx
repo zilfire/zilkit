@@ -26,8 +26,11 @@ const merriweather = Merriweather({
 });
 
 export const metadata: Metadata = {
-  title: 'Theme Demo',
+  title: 'ZILCORE | A Toolkit for Building Modern Web Apps',
   description: 'A Next.js application with TypeScript, TailwindCSS, and Sanity CMS',
+  icons: {
+    icon: '/icon.png',
+  },
 };
 
 export default async function RootLayout({
@@ -39,6 +42,9 @@ export default async function RootLayout({
 
   return (
     <html lang="en">
+      <head>
+        <link rel="icon" href="/icon.png" sizes="any" type="image/png" />
+      </head>
       <body
         className={`${geistSans.variable} ${geistMono.variable} ${merriweather.variable} min-h-screen flex flex-col`}
       >
