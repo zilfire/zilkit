@@ -69,7 +69,7 @@ export const HeroBlockDescription = ({
           styleOptions: {
             textColor: 'white',
             textSize: 'lg',
-            textAlign: 'center',
+            textAlign: 'left',
             verticalSpacing: 'lg',
           },
         })}
