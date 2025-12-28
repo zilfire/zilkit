@@ -104,6 +104,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
       verticalSpacing={verticalSpacing}
       data={data}
       backgroundImageOptions={finalBackgroundImageOptions}
+      overlayOptions={{ opacity: 0.6, color: 'black' }}
       container={container}
       id={id}
       aria-labelledby={ariaLabelledBy}

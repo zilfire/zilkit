@@ -2,6 +2,11 @@ import type { IconType } from 'react-icons';
 import { LuLayoutDashboard as DashboardIcon } from 'react-icons/lu';
 import { RiInputField as InputIcon } from 'react-icons/ri';
 import { FaRegImage as ImageIcon } from 'react-icons/fa';
+import { FaCode as CodeIcon } from 'react-icons/fa';
+import { PiNavigationArrowBold as PointerIcon } from 'react-icons/pi';
+import { BiLayout as LayoutIcon } from 'react-icons/bi';
+import { FaRegStar as StarIcon } from 'react-icons/fa';
+import { GiArtificialHive as HiveIcon } from 'react-icons/gi';
 
 const CMSIcon: React.FC<React.SVGProps<SVGSVGElement>> = (props) => {
   return (
@@ -49,5 +54,25 @@ export const iconRegistry: IconRegistry = {
   cms: {
     title: 'CMS',
     Icon: CMSIcon,
+  },
+  code: {
+    title: 'Code',
+    Icon: CodeIcon,
+  },
+  pointer: {
+    title: 'Pointer',
+    Icon: PointerIcon,
+  },
+  layout: {
+    title: 'Layout',
+    Icon: LayoutIcon,
+  },
+  star: {
+    title: 'Star',
+    Icon: StarIcon,
+  },
+  aiHive: {
+    title: 'AI Hive',
+    Icon: HiveIcon,
   },
 };
