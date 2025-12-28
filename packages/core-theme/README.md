@@ -1,5 +1,7 @@
 # @zilfire/core-theme
 
+Part of the [Zilfire Core](../../README.md) monorepo.
+
 A comprehensive React component library and type system for building Next.js applications with Sanity CMS integration.
 
 > ⚠️ **Warning: Active Development**
