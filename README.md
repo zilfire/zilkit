@@ -1,4 +1,4 @@
-# Zilfire Core
+# ZILKIT
 
 A monorepo containing packages for building Next.js applications with Sanity CMS.
 
