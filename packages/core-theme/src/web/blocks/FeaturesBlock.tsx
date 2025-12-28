@@ -49,7 +49,7 @@ export const FeaturesBlock: React.FC<FeaturesBlockProps> = ({ data, id, sectionS
   const { title, features } = data;
   return (
     <Section styleOptions={sectionStyleOptions} id={id}>
-      {title && <H2 styleOptions={{ textAlign: 'center' }}>{title}</H2>}
+      {title && <H2 styleOptions={{ textAlign: 'center', verticalSpacing: 'lg' }}>{title}</H2>}
       {features && (
         <div className="grid grid-cols-4 gap-4">
           {features?.map((feature, index) => (

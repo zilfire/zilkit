@@ -36,9 +36,11 @@ export const MediaContentBlock: React.FC<MediaContentBlockProps> = ({
               {eyebrow}
             </P>
           )}
-          {heading && <H2 styleOptions={{ verticalSpacing: 'sm' }}>{heading}</H2>}
+          {heading && <H2 styleOptions={{ verticalSpacing: 'md' }}>{heading}</H2>}
           {subheading && <H4 styleOptions={{}}>{subheading}</H4>}
-          {content && <PortableText value={content} components={textComponents()} />}
+          {content && (
+            <PortableText value={content} components={textComponents({ className: 'last:mb-0' })} />
+          )}
         </div>
       </div>
     </Section>

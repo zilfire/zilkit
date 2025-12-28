@@ -9,7 +9,7 @@ export const FAQ_DEFAULTS = {
     color: 'muted' as const,
   },
   plusIcon: {
-    color: 'primary' as const,
+    color: 'muted' as const,
   },
   border: {
     color: 'muted' as const,
