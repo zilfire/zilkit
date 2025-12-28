@@ -73,8 +73,10 @@ export default defineConfig({
 
 Page-level content blocks:
 
-- **heroBlock** - Hero section
-- **faqBlock** - FAQ section
+- **heroBlock** - Hero section with heading, description, and CTAs
+- **faqBlock** - FAQ section with collapsible questions
+- **featuresBlock** - Feature showcase with icons
+- **mediaContentBlock** - Media with text content
 
 [→ Learn more about Schemas](./schema.md)
 
@@ -85,7 +87,8 @@ Reusable content objects:
 - **button** - Button with link
 - **blockContent** - Rich text content
 - **richText** - Enhanced portable text
-- **figure** - Image with caption
+- **figure** - Image with caption and alt text
+- **icon** - Icon selector
 
 [→ Learn more about Schemas](./schema.md)
 

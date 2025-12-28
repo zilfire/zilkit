@@ -9,40 +9,56 @@ This document explains the architecture and design decisions behind `@zilfire/co
 ```
 packages/core-theme/
 ├── src/
-│   ├── index.ts                    # Main entry point (exports data types)
-│   ├── types/                      # TypeScript type definitions
-│   │   ├── context-types/          # React context types
-│   │   ├── sanity-data-types/      # Sanity CMS data structure types
-│   │   │   ├── blocks/             # Block content types
-│   │   │   ├── objects/            # Object types
-│   │   │   └── config/             # Configuration types
-│   │   └── style-types/            # Style system types
-│   │       ├── button-style-classes.ts
-│   │       ├── color-style-classes.ts
-│   │       ├── layout-style-classes.ts
-│   │       └── text-style-classes.ts
+│   ├── index.ts                    # Main entry point
+│   ├── assets/                     # Static assets
+│   │   ├── gridBG.ts               # Background patterns
+│   │   └── icon-registry.tsx       # Icon component registry
+│   ├── config/                     # Configuration
+│   │   ├── context.ts              # ThemeProvider and hooks
+│   │   └── utils/                  # Config utilities
+│   │       └── render-link-path.ts
 │   ├── web/                        # React components
 │   │   ├── blocks/                 # Page-level block components
 │   │   │   ├── HeroBlock.tsx
-│   │   │   └── FaqBlock.tsx
+│   │   │   ├── FeaturesBlock.tsx
+│   │   │   ├── MediaContentBlock.tsx
+│   │   │   ├── FooterBlock.tsx
+│   │   │   ├── faq-block/          # FAQ block with sub-components
+│   │   │   └── header-block/       # Header/navigation block
 │   │   ├── components/             # Reusable UI components
 │   │   │   ├── Button.tsx
+│   │   │   ├── ButtonGroup.tsx
 │   │   │   ├── Link.tsx
 │   │   │   ├── Section.tsx
-│   │   │   └── Container.tsx
-│   │   ├── text/                   # Text components (Heading, Paragraph)
-│   │   └── style/                  # Style utilities
-│   │       ├── button-classes.ts
-│   │       ├── color-classes.ts
-│   │       ├── layout-classes.ts
-│   │       ├── text-classes.ts
-│   │       └── style-utils/        # Style utility functions
+│   │   │   ├── Container.tsx
+│   │   │   ├── Image.tsx
+│   │   │   └── ImageSection.tsx
+│   │   ├── text/                   # Text components
+│   │   │   ├── H1-H5.tsx           # Heading components
+│   │   │   ├── P.tsx               # Paragraph
+│   │   │   ├── Text.tsx            # Base text component
+│   │   │   ├── Blockquote.tsx
+│   │   │   ├── Span.tsx
+│   │   │   ├── OL.tsx, UL.tsx, LI.tsx  # List components
+│   │   │   └── Indent.tsx
+│   │   └── style/                  # Style system
+│   │       ├── classes/            # Style class definitions
+│   │       │   ├── style-classes.ts
+│   │       │   ├── button-classes.ts
+│   │       │   ├── text-classes.ts
+│   │       │   ├── layout-classes.ts
+│   │       │   ├── border-classes.ts
+│   │       │   └── background-classes.ts
+│   │       ├── types/              # Style type definitions
+│   │       └── utils/              # Style utility functions
 │   ├── sanity/                     # Sanity CMS integration
 │   │   ├── schema/                 # Sanity schema definitions
 │   │   │   ├── blocks/             # Block schemas
 │   │   │   ├── objects/            # Object schemas
 │   │   │   └── documents/          # Document schemas
-│   │   └── utils/                  # Sanity utilities
+│   │   └── data-types/             # TypeScript types for Sanity data
+│   │       ├── blocks/             # Block data types
+│   │       └── objects/            # Object data types
 │   └── utils/                      # General utilities
 └── docs/                           # Documentation
 ```
@@ -63,13 +79,14 @@ import { bgPrimary } from '@zilfire/core-theme/style-classes';
 Each export path corresponds to a specific concern:
 
 - **Main export (`.`)**: Core types and data types
-- **`/web/blocks`**: Page-level block components
-- **`/web/components`**: Reusable UI components
-- **`/web/text`**: Text rendering components
-- **`/sanity-schema`**: Sanity Studio schemas
+- **`/web/blocks`**: Page-level block components (HeroBlock, FaqBlock, FeaturesBlock, etc.)
+- **`/web/components`**: Reusable UI components (Button, Section, Container, etc.)
+- **`/web/text`**: Text rendering components (H1-H5, P, Text, Blockquote, etc.)
+- **`/sanity-schema`**: Sanity Studio schemas (schemaDefs, blockSchemas, objectSchemas)
 - **`/data-types`**: Sanity data structure types
-- **`/types`**: General TypeScript types
-- **`/style-classes`**: Pre-built style classes
+- **`/context`**: ThemeProvider and context hooks
+- **`/config-types`**: Configuration type definitions
+- **`/style-classes`**: Pre-built style class names (styleClassNames)
 
 ### 2. Type Safety
 
@@ -121,15 +138,29 @@ The package is designed around Sanity CMS:
 
 **Blocks** are page-level, self-contained sections:
 
-- `HeroBlock`: Hero section with heading, subheading, and buttons
-- `FaqBlock`: FAQ section with collapsible questions
+- `HeroBlock`: Hero section with heading, description, background image, and CTAs
+- `FaqBlock`: FAQ section with collapsible questions and answers
+- `FeaturesBlock`: Feature showcase with icons and descriptions
+- `MediaContentBlock`: Media with text content layout
+- `HeaderBlock`: Site header with navigation
+- `FooterBlock`: Site footer
 
 **Components** are smaller, reusable building blocks:
 
-- `Button`: Styled button with variants
-- `Link`: Navigation link
-- `Section`: Layout container with spacing
+- `Button`: Styled button with variants and link support
+- `ButtonGroup`: Container for grouping buttons
+- `Link`: Navigation link component
+- `Section`: Layout section with spacing and background options
 - `Container`: Content width container
+- `Image`: Optimized image component
+- `ImageSection`: Section with background image support
+
+**Text Components** for typography:
+
+- `H1`, `H2`, `H3`, `H4`, `H5`: Heading components
+- `P`: Paragraph component
+- `Text`: Base text component with full styling options
+- `Blockquote`, `Span`, `OL`, `UL`, `LI`, `Indent`: Additional text elements
 
 ### Style System
 

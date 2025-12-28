@@ -6,6 +6,15 @@ Blocks are page-level content sections that map to Sanity CMS content.
 
 ## Available Blocks
 
+- [HeroBlock](#heroblock) - Hero section with heading, description, and CTAs
+- [FaqBlock](#faqblock) - FAQ section with collapsible questions
+- [FeaturesBlock](#featuresblock) - Feature showcase with icons
+- [MediaContentBlock](#mediacontentblock) - Media with text content
+- [HeaderBlock](#headerblock) - Site header with navigation
+- [FooterBlock](#footerblock) - Site footer
+
+---
+
 ### HeroBlock
 
 Hero section with heading, description, background image, and call-to-action buttons.
@@ -128,6 +137,154 @@ const faqData: FaqBlockData = {
 - Optional heading and description
 - Accessible keyboard navigation
 - Smooth animations
+- Configurable border and layout styling
+
+---
+
+### FeaturesBlock
+
+Feature showcase section with icons and descriptions.
+
+**Import:**
+
+```typescript
+import { FeaturesBlock } from '@zilfire/core-theme/web/blocks';
+import type { FeaturesBlockData } from '@zilfire/core-theme/data-types';
+```
+
+**Props:**
+
+```typescript
+interface FeaturesBlockProps {
+  data: FeaturesBlockData;
+  sectionStyleOptions?: Record<string, unknown>;
+  id?: string;
+}
+```
+
+**Example:**
+
+```typescript
+const featuresData: FeaturesBlockData = {
+  _type: 'featuresBlock',
+  title: 'Our Features',
+  features: [
+    {
+      heading: 'Fast Performance',
+      description: [/* Portable Text */],
+      icon: { iconKey: 'rocket' },
+    },
+    {
+      heading: 'Easy to Use',
+      description: [/* Portable Text */],
+      icon: { iconKey: 'check' },
+    },
+  ],
+};
+
+<FeaturesBlock data={featuresData} />
+```
+
+**Features:**
+
+- Grid layout for feature items
+- Icon support via icon registry
+- Portable Text descriptions
+- Customizable section styling
+
+---
+
+### MediaContentBlock
+
+Media with text content layout (image and text side by side).
+
+**Import:**
+
+```typescript
+import { MediaContentBlock } from '@zilfire/core-theme/web/blocks';
+import type { MediaContentBlockData } from '@zilfire/core-theme/data-types';
+```
+
+**Props:**
+
+```typescript
+interface MediaContentBlockProps {
+  data?: MediaContentBlockData;
+  sectionStyleOptions?: SectionStyleOptions;
+  id?: string;
+}
+```
+
+**Example:**
+
+```typescript
+const mediaContentData: MediaContentBlockData = {
+  _type: 'mediaContentBlock',
+  eyebrow: 'About Us',
+  heading: 'Our Story',
+  subheading: 'Building great products',
+  content: [/* Portable Text */],
+  image: {
+    asset: { _ref: '...' },
+    alt: 'Team photo',
+  },
+};
+
+<MediaContentBlock data={mediaContentData} />
+```
+
+**Features:**
+
+- Two-column responsive layout
+- Optional eyebrow, heading, subheading
+- Portable Text content support
+- Optimized image rendering
+
+---
+
+### HeaderBlock
+
+Site header with navigation support.
+
+**Import:**
+
+```typescript
+import { HeaderBlock } from '@zilfire/core-theme/web/blocks';
+```
+
+**Features:**
+
+- Desktop and mobile navigation
+- Responsive menu with mobile drawer
+- Logo support
+- Navigation link support
+
+---
+
+### FooterBlock
+
+Site footer with logo and links.
+
+**Import:**
+
+```typescript
+import { FooterBlock } from '@zilfire/core-theme/web/blocks';
+```
+
+**Props:**
+
+```typescript
+type FooterProps = {
+  footerLogo?: SanityImageWithAlt;
+};
+```
+
+**Features:**
+
+- Logo with link to home
+- Grid background pattern
+- Copyright year auto-update
+- Responsive layout
 
 ---
 

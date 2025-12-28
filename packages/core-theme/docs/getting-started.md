@@ -21,7 +21,7 @@ yarn add @zilfire/core-theme
 Ensure you have the required peer dependencies installed:
 
 ```bash
-pnpm add react@^19.0.0 react-dom@^19.0.0 sanity@^4.0.0 next-sanity@^10.0.0
+pnpm add react@^19.0.0 react-dom@^19.0.0 next@^15.0.0 sanity@^4.0.0 next-sanity@^10.0.0
 ```
 
 ## Basic Setup
@@ -34,21 +34,27 @@ Import and use components in your Next.js pages or components:
 // app/page.tsx
 import { HeroBlock } from '@zilfire/core-theme/web/blocks';
 import { Button } from '@zilfire/core-theme/web/components';
+import type { HeroBlockData } from '@zilfire/core-theme/data-types';
+
+const heroData: HeroBlockData = {
+  _type: 'heroBlock',
+  heading: 'Welcome to My Site',
+  description: [/* Portable Text content */],
+  backgroundImage: {
+    asset: { _ref: '...', _type: 'reference' },
+    alt: 'Hero background',
+  },
+  primaryButton: {
+    _type: 'button',
+    text: 'Get Started',
+    link: { _type: 'navLink', href: '/start' },
+  },
+};
 
 export default function HomePage() {
   return (
     <main>
-      <HeroBlock
-        heading="Welcome to My Site"
-        subheading="Built with core-theme"
-        buttons={[
-          {
-            text: 'Get Started',
-            href: '/get-started',
-            style: 'primary',
-          },
-        ]}
-      />
+      <HeroBlock data={heroData} />
     </main>
   );
 }
@@ -59,12 +65,14 @@ export default function HomePage() {
 Import pre-built utility classes:
 
 ```typescript
-import { textLarge, bgPrimary, buttonPrimary } from '@zilfire/core-theme/style-classes';
+import { styleClassNames } from '@zilfire/core-theme/style-classes';
 
 function MyComponent() {
+  const { text, background, layout } = styleClassNames;
+
   return (
-    <div className={bgPrimary}>
-      <h1 className={textLarge}>Hello World</h1>
+    <div>
+      <h1>Hello World</h1>
     </div>
   );
 }
@@ -77,20 +85,23 @@ Add core-theme schemas to your Sanity configuration:
 ```typescript
 // sanity.config.ts
 import { defineConfig } from 'sanity';
-import { blockSchemas, objectSchemas, documentSchemas } from '@zilfire/core-theme/sanity-schema';
+import { schemaDefs } from '@zilfire/core-theme/sanity-schema';
 
 export default defineConfig({
   // ... other config
   schema: {
     types: [
-      ...blockSchemas,
-      ...objectSchemas,
-      ...documentSchemas,
+      ...schemaDefs,
       // ... your custom schemas
     ],
   },
 });
 ```
+
+Or import specific schema categories:
+
+````typescript
+import { blockSchemas, objectSchemas, documentSchemas } from '@zilfire/core-theme/sanity-schema';
 
 ## TypeScript Configuration
 
@@ -105,7 +116,7 @@ Ensure your `tsconfig.json` has module resolution set up correctly:
     "jsx": "preserve"
   }
 }
-```
+````
 
 ## Next Steps
 
@@ -121,26 +132,26 @@ Now that you have the basics set up, explore:
 ### Building a Landing Page
 
 ```typescript
-import { HeroBlock, FaqBlock } from '@zilfire/core-theme/web/blocks';
+import { HeroBlock, FaqBlock, FeaturesBlock } from '@zilfire/core-theme/web/blocks';
 import { Section, Container } from '@zilfire/core-theme/web/components';
+import type { HeroBlockData, FaqBlockData, FeaturesBlockData } from '@zilfire/core-theme/data-types';
 
-export default function LandingPage() {
+export default function LandingPage({ heroData, featuresData, faqData }: {
+  heroData: HeroBlockData;
+  featuresData: FeaturesBlockData;
+  faqData: FaqBlockData;
+}) {
   return (
     <>
-      <HeroBlock heading="My Product" subheading="The best solution for your needs" />
+      <HeroBlock data={heroData} />
+
+      <FeaturesBlock data={featuresData} />
 
       <Section>
         <Container>{/* Your content */}</Container>
       </Section>
 
-      <FaqBlock
-        heading="Frequently Asked Questions"
-        faqs={
-          [
-            /* FAQ data */
-          ]
-        }
-      />
+      <FaqBlock data={faqData} />
     </>
   );
 }
@@ -154,13 +165,31 @@ import { HeroBlock } from '@zilfire/core-theme/web/blocks';
 import type { HeroBlockData } from '@zilfire/core-theme/data-types';
 
 async function getHeroData(): Promise<HeroBlockData> {
-  return client.fetch('*[_type == "hero"][0]');
+  return client.fetch(`
+    *[_type == "heroBlock"][0] {
+      _type,
+      heading,
+      description,
+      backgroundImage {
+        asset,
+        alt,
+        hotspot,
+        crop
+      },
+      primaryButton {
+        _type,
+        text,
+        link
+      },
+      secondaryButton
+    }
+  `);
 }
 
 export default async function Page() {
   const heroData = await getHeroData();
 
-  return <HeroBlock {...heroData} />;
+  return <HeroBlock data={heroData} />;
 }
 ```
 

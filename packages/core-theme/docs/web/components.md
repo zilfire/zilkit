@@ -174,6 +174,43 @@ interface ContainerProps {
 
 ---
 
+### Image
+
+Optimized image component with Sanity integration.
+
+**Import:**
+
+```typescript
+import { Image } from '@zilfire/core-theme/web/components';
+```
+
+**Props:**
+
+```typescript
+interface ImageProps {
+  imageObject: SanityImageWithAlt;
+  alt?: string;
+  imageSizes?: number[];
+  priority?: boolean;
+  className?: string;
+}
+```
+
+**Example:**
+
+```typescript
+<Image
+  imageObject={{
+    asset: { _ref: '...', _type: 'reference' },
+    alt: 'Description',
+  }}
+  imageSizes={[400, 800, 1200]}
+  priority={false}
+/>
+```
+
+---
+
 ### ImageSection
 
 Section with background image support.

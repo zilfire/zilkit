@@ -17,13 +17,42 @@ Components are organized into three categories:
 
 ```typescript
 // Blocks
-import { HeroBlock, FaqBlock } from '@zilfire/core-theme/web/blocks';
+import {
+  HeroBlock,
+  FaqBlock,
+  FeaturesBlock,
+  MediaContentBlock,
+  HeaderBlock,
+  FooterBlock,
+} from '@zilfire/core-theme/web/blocks';
 
 // Components
-import { Button, Link, Section, Container } from '@zilfire/core-theme/web/components';
+import {
+  Button,
+  ButtonGroup,
+  Link,
+  Section,
+  Container,
+  Image,
+  ImageSection,
+} from '@zilfire/core-theme/web/components';
 
 // Text
-import { Heading, Paragraph, H1, H2 } from '@zilfire/core-theme/web/text';
+import {
+  H1,
+  H2,
+  H3,
+  H4,
+  H5,
+  P,
+  Text,
+  Span,
+  Blockquote,
+  Indent,
+  OL,
+  UL,
+  LI,
+} from '@zilfire/core-theme/web/text';
 ```
 
 ## Quick Start
@@ -79,8 +108,12 @@ Large, self-contained page sections that typically map to Sanity CMS content blo
 
 **Available Blocks:**
 
-- `HeroBlock` - Hero section with heading, description, and CTAs
-- `FaqBlock` - FAQ section with collapsible questions
+- `HeroBlock` - Hero section with heading, description, background image, and CTAs
+- `FaqBlock` - FAQ section with collapsible questions and answers
+- `FeaturesBlock` - Feature showcase with icons and descriptions
+- `MediaContentBlock` - Media with text content layout
+- `HeaderBlock` - Site header with navigation
+- `FooterBlock` - Site footer with logo and links
 
 [→ Learn more about Blocks](./blocks.md)
 
@@ -90,11 +123,12 @@ Smaller, reusable building blocks for composing layouts and UI.
 
 **Available Components:**
 
-- `Button` - Styled button with variants
+- `Button` - Styled button with variants and link support
 - `ButtonGroup` - Group of buttons with spacing
 - `Link` - Navigation link component
-- `Section` - Layout section with spacing
+- `Section` - Layout section with spacing and background
 - `Container` - Content width container
+- `Image` - Optimized image component with Sanity integration
 - `ImageSection` - Section with background image
 
 [→ Learn more about Components](./components.md)
@@ -105,11 +139,13 @@ Typography components for headings, paragraphs, and formatted text.
 
 **Available Text Components:**
 
-- `Heading` - Generic heading with levels
-- `H1`, `H2`, `H3`, `H4`, `H5`, `H6` - Specific heading levels
-- `Paragraph` - Paragraph text
+- `H1`, `H2`, `H3`, `H4`, `H5` - Heading components
+- `P` - Paragraph text
+- `Text` - Base text component with full styling options
+- `Span` - Inline text spans
 - `Blockquote` - Quoted text
-- `List`, `ListItem` - Lists
+- `OL`, `UL`, `LI` - Ordered/unordered lists and list items
+- `Indent` - Indented text blocks
 
 ### Styling
 
@@ -126,23 +162,21 @@ Utility classes and style utility functions for consistent styling.
 
 ## Theme Context
 
-Most components require a `ThemeContext` prop for styling and configuration.
+Some components use a `ThemeContext` for Sanity configuration.
 
 ```typescript
-import type { ThemeContext } from '@zilfire/core-theme/types';
+import { ThemeProvider, useThemeContext, useSanityConfig } from '@zilfire/core-theme/context';
+import type { ThemeContext, SanityConfig } from '@zilfire/core-theme/context';
+
+const sanityConfig: SanityConfig = {
+  sanityProjectId: 'your-project-id',
+  sanityDataset: 'production',
+  sanityApiVersion: '2024-01-01',
+  sanityUseCdn: true,
+};
 
 const themeContext: ThemeContext = {
-  styleClasses: {
-    buttonClasses: {
-      /* ... */
-    },
-    colorClasses: {
-      /* ... */
-    },
-    // ... other style classes
-  },
-  LinkComponent: NextLink, // Your Link component
-  ImageComponent: NextImage, // Your Image component
+  sanityConfig,
 };
 ```
 

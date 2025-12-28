@@ -1,7 +1,7 @@
 {
-  "name": "zilfire-core",
+  "name": "zilkit",
   "version": "1.0.0",
-  "description": "Zilfire Core Workspace",
+  "description": "Zilkit Workspace",
   "private": true,
   "scripts": {
     "build": "pnpm -r build",

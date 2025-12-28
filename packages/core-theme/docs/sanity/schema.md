@@ -8,21 +8,13 @@ Complete reference for Sanity Studio schema definitions in `@zilfire/core-theme`
 
 ```typescript
 import {
-  // All schemas
+  // All schemas combined
   schemaDefs,
 
   // By category
   blockSchemas,
   objectSchemas,
   documentSchemas,
-
-  // Individual schemas
-  heroBlock,
-  faqBlock,
-  button,
-  blockContent,
-  richText,
-  figure,
 } from '@zilfire/core-theme/sanity-schema';
 ```
 
