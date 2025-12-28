@@ -78,6 +78,7 @@ export const Text = ({
 }: TextProps): React.ReactElement => {
   const Component = resolveComponent(element, as);
   const textClasses = generateTextClasses(element, size, variant, styleOptions, styleOverride);
+
   return (
     <Component id={id} className={clsx(textClasses, className)}>
       {children}

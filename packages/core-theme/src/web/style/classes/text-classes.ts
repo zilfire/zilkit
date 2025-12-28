@@ -1,4 +1,3 @@
-import { text } from 'node:stream/consumers';
 import type { TextClassNames } from '../types/text-style-classes.js';
 import {
   verticalLineSpacingXS,

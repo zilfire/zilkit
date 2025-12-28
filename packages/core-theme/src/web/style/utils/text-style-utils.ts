@@ -67,6 +67,7 @@ export const getTextClass = (
 
   // Check for option styles
   if (textStyleGroup in styleOptions && textClassNames[textStyleGroup]) {
+    // console.log('getTextClass option', textStyleGroup, styleOptions[textStyleGroup]);
     if (styleOptions[textStyleGroup] === false) {
       return false;
     }

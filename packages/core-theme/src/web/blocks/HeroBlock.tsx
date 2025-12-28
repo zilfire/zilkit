@@ -66,7 +66,12 @@ export const HeroBlockDescription = ({
       <PortableText
         value={description}
         components={textComponents({
-          styleOptions: { textColor: 'white', textSize: 'lg', textAlign: 'center' },
+          styleOptions: {
+            textColor: 'white',
+            textSize: 'lg',
+            textAlign: 'center',
+            verticalSpacing: 'lg',
+          },
         })}
       />
     </div>
