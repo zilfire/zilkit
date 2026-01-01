@@ -15,7 +15,6 @@
     "@sanity/image-url": "^2.0.2",
     "@sanity/preview-url-secret": "^4.0.1",
     "@sanity/vision": "^4.0.1",
-    "@zilfire/core-theme": "workspace:*",
     "@zilfire/next-sanity-image": "^0.0.15",
     "@zilfire/sanity-form": "^0.0.1",
     "@zilfire/sanity-nav-menu": "^0.0.2",
